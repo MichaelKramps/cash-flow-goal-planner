@@ -1,0 +1,9 @@
+.simulator-header-container, .simulator-totals-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.simulator-header-container div, .simulator-totals-container div {
+    flex: 1 1 0px;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
-import SimpleAsset from "./SimpleAsset";
+import SimpleAsset from './Assets/SimpleAsset';
+import './Simulator.css';
 
 class Simulator extends React.Component {
 
@@ -27,7 +28,7 @@ class Simulator extends React.Component {
     render() {
         return (
             <div>
-                <div className="header">
+                <div className="simulator-header-container">
                     <div>Name</div>
                     <div>Type</div>
                     <div>Initial Investment</div>
@@ -38,7 +39,7 @@ class Simulator extends React.Component {
                     {this.listAssets()}
                 </div>
                 <h2>Totals</h2>
-                <div>
+                <div className="simulator-totals-container">
                     <div></div>
                     <div></div>
                     <div></div>

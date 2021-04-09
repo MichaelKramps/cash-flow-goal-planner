@@ -1,4 +1,5 @@
 import React from 'react';
+import './SimpleAsset.css';
 
 class SimpleAsset extends React.Component {
 
