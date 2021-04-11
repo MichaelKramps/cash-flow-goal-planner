@@ -2,6 +2,7 @@ import React from 'react';
 import SimpleAsset from './Assets/SimpleAsset';
 import './Simulator.css';
 import AddAsset from "./Assets/AddAsset";
+import Totals from "./Calculations/Totals";
 
 class Simulator extends React.Component {
 
@@ -20,7 +21,6 @@ class Simulator extends React.Component {
     }
 
     listAssets(assetList) {
-        console.log(this.state)
         return assetList.map((asset, index) => {
             return <SimpleAsset
                 key={index}
@@ -77,10 +77,7 @@ class Simulator extends React.Component {
                 </div>
                 <h2>Totals</h2>
                 <div className="simulator-totals-container">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <Totals {...this.state} />
                 </div>
             </div>
         );

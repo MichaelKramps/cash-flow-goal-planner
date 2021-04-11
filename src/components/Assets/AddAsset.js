@@ -1,4 +1,5 @@
 import React from 'react';
+import './AddAsset.css';
 
 class AddAsset extends React.Component {
 
@@ -10,7 +11,7 @@ class AddAsset extends React.Component {
             type: "",
             initialInvestment: 0,
             cashFlow: 0
-        }
+        };
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -58,16 +59,25 @@ class AddAsset extends React.Component {
     handleSubmit(event) {
         this.props.onSubmission(this.state);
         event.preventDefault();
+
+        this.setState({
+            name: "",
+                type: "",
+            initialInvestment: 0,
+            cashFlow: 0
+        });
     }
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="add-simple-asset" onSubmit={this.handleSubmit}>
                 <div><input onChange={this.handleNameChange} /></div>
                 <div><input onChange={this.handleTypeChange} /></div>
                 <div><input type="number" onChange={this.handleInitialInvestmentChange} /></div>
-                <div><input type="number" onChange={this.handleCashFlowChange} /></div>
-                <input type="submit" value="Add Asset" />
+                <div>
+                    <input type="number" onChange={this.handleCashFlowChange} />
+                    <input type="submit" value="Add Asset" />
+                </div>
             </form>
         );
     }
