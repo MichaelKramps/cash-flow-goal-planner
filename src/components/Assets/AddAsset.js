@@ -7,10 +7,10 @@ class AddAsset extends React.Component {
         super(props);
 
         this.state = {
-            name: "",
-            type: "",
-            initialInvestment: 0,
-            cashFlow: 0
+            name: this.props.name,
+            type: this.props.type,
+            initialInvestment: this.props.initialInvestment,
+            cashFlow: this.props.cashFlow
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,7 +57,12 @@ class AddAsset extends React.Component {
     }
 
     handleSubmit(event) {
-        this.props.onSubmission(this.state);
+        if (this.props.index >= 0){
+            this.props.stopEditing(this.state);
+            this.props.onSubmission(this.props.index, this.state);
+        } else {
+            this.props.onSubmission(this.state);
+        }
         event.preventDefault();
 
         this.setState({
@@ -71,11 +76,11 @@ class AddAsset extends React.Component {
     render() {
         return (
             <form className="add-simple-asset" onSubmit={this.handleSubmit}>
-                <div><input onChange={this.handleNameChange} /></div>
-                <div><input onChange={this.handleTypeChange} /></div>
-                <div><input type="number" onChange={this.handleInitialInvestmentChange} /></div>
+                <div><input value={this.state.name} onChange={this.handleNameChange} /></div>
+                <div><input value={this.state.type} onChange={this.handleTypeChange} /></div>
+                <div><input value={this.state.initialInvestment} type="number" onChange={this.handleInitialInvestmentChange} /></div>
                 <div>
-                    <input type="number" onChange={this.handleCashFlowChange} />
+                    <input value={this.state.cashFlow} type="number" onChange={this.handleCashFlowChange} />
                     <input type="submit" value="Add Asset" />
                 </div>
             </form>

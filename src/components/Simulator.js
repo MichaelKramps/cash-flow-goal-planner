@@ -16,20 +16,48 @@ class Simulator extends React.Component {
         };
 
         this.listAssets = this.listAssets.bind(this);
+        this.updateCurrentAsset = this.updateCurrentAsset.bind(this);
+        this.updateFutureAsset = this.updateFutureAsset.bind(this);
         this.submitCurrentAsset = this.submitCurrentAsset.bind(this);
         this.submitFutureAsset = this.submitFutureAsset.bind(this);
     }
 
-    listAssets(assetList) {
+    listAssets(assetList, updateFunction) {
         return assetList.map((asset, index) => {
             return <SimpleAsset
                 key={index}
+                index={index}
                 name={asset.name}
                 type={asset.type}
                 initialInvestment={asset.initialInvestment}
                 cashFlow={asset.cashFlow}
+                onUpdate={updateFunction}
             />
         })
+    }
+
+    updateCurrentAsset(index, asset) {
+        let newAssets = this.state.currentAssets.slice();
+        newAssets[index] = asset;
+
+        this.setState({
+            targetCashFlow: this.state.targetCashFlow,
+            currentAssets: newAssets,
+            futureAssets: this.state.futureAssets,
+            totals: this.state.totals
+        });
+    }
+
+    updateFutureAsset(index, asset) {
+        let newAssets = this.state.futureAssets.slice();
+        newAssets[index] = asset;
+
+        this.setState({
+            targetCashFlow: this.state.targetCashFlow,
+            currentAssets: this.state.currentAssets,
+            futureAssets: newAssets,
+            totals: this.state.totals
+        });
     }
 
     submitCurrentAsset(asset) {
@@ -67,12 +95,12 @@ class Simulator extends React.Component {
                 </div>
                 <h2>Current Assets</h2>
                 <div>
-                    {this.listAssets(this.state.currentAssets)}
+                    {this.listAssets(this.state.currentAssets, this.updateCurrentAsset)}
                     <AddAsset onSubmission={this.submitCurrentAsset} />
                 </div>
                 <h2>Future Assets</h2>
                 <div>
-                    {this.listAssets(this.state.futureAssets)}
+                    {this.listAssets(this.state.futureAssets, this.updateFutureAsset)}
                     <AddAsset onSubmission={this.submitFutureAsset} />
                 </div>
                 <h2>Totals</h2>
