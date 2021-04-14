@@ -46,7 +46,7 @@ class SimpleAsset extends React.Component {
                     <div>{this.state.name}</div>
                     <div>{this.state.type}</div>
                     <div>{this.state.initialInvestment}</div>
-                    <div>{this.state.cashFlow}<span onClick={() => {this.setState({editing: true})}}>Edit</span></div>
+                    <div>{this.state.cashFlow}<span onClick={() => {this.setState({editing: true})}}>&#9998;</span></div>
                 </div>
             );
         }

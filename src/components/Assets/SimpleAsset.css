@@ -7,3 +7,7 @@
 .simple-asset div {
     flex: 1 1 0px;
 }
+
+.simple-asset div {
+    cursor: pointer;
+}

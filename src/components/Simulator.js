@@ -3,6 +3,7 @@ import SimpleAsset from './Assets/SimpleAsset';
 import './Simulator.css';
 import AddAsset from "./Assets/AddAsset";
 import Totals from "./Calculations/Totals";
+import CashFlowGoalEditor from "./Editors/CashFlowGoalEditor";
 
 class Simulator extends React.Component {
 
@@ -27,6 +28,7 @@ class Simulator extends React.Component {
         };
 
         this.listAssets = this.listAssets.bind(this);
+        this.updateCashFlowGoal = this.updateCashFlowGoal.bind(this);
         this.updateCurrentAsset = this.updateCurrentAsset.bind(this);
         this.updateFutureAsset = this.updateFutureAsset.bind(this);
         this.submitCurrentAsset = this.submitCurrentAsset.bind(this);
@@ -45,6 +47,10 @@ class Simulator extends React.Component {
                 onUpdate={updateFunction}
             />
         })
+    }
+
+    updateCashFlowGoal(targetCashFlow) {
+        this.setState({targetCashFlow: targetCashFlow});
     }
 
     updateCurrentAsset(index, asset) {
@@ -102,7 +108,12 @@ class Simulator extends React.Component {
                     <div>Name</div>
                     <div>Type</div>
                     <div>Initial Investment</div>
-                    <div>Cash Flow<br />Goal: ${this.state.targetCashFlow.goal}/month</div>
+                    <div>Cash Flow
+                        <CashFlowGoalEditor
+                        goal={this.state.targetCashFlow.goal}
+                        expenses={this.state.targetCashFlow.expenses}
+                        onSubmission={this.updateCashFlowGoal} />
+                    </div>
                 </div>
                 <h2>Current Assets</h2>
                 <div>
