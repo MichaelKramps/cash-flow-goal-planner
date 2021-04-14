@@ -8,8 +8,19 @@ class Simulator extends React.Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
-            targetCashFlow: 2000,
+            targetCashFlow: {
+                goal: 2000,
+                expenses: {
+                    mortgage: 0,
+                    utilities: 200,
+                    internet: 100,
+                    food: 700,
+                    travel: 500,
+                    entertainment: 500
+                }
+            },
             currentAssets: [{name: "westridge", type: "real estate", initialInvestment: "30000", cashFlow: "500"}],
             futureAssets: [],
             totals: []
@@ -91,7 +102,7 @@ class Simulator extends React.Component {
                     <div>Name</div>
                     <div>Type</div>
                     <div>Initial Investment</div>
-                    <div>Cash Flow</div>
+                    <div>Cash Flow<br />Goal: ${this.state.targetCashFlow.goal}/month</div>
                 </div>
                 <h2>Current Assets</h2>
                 <div>
