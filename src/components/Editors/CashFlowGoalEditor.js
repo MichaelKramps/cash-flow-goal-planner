@@ -1,4 +1,5 @@
 import React from 'react';
+import './CashFlowGoalEditor.css';
 
 class CashFlowGoalEditor extends React.Component {
 
@@ -37,7 +38,10 @@ class CashFlowGoalEditor extends React.Component {
             )
         } else {
             return (
-                <div>Goal: ${this.state.goal}/month<span onClick={() => {this.setState({editing: true})}}>&#9998;</span></div>
+                <div className="cash-flow-goal">
+                    Goal: ${this.state.goal}/month
+                    <span onClick={() => {this.setState({editing: true})}}>&#9998;</span>
+                </div>
             );
         }
     }

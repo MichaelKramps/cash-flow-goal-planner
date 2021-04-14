@@ -57,48 +57,28 @@ class Simulator extends React.Component {
         let newAssets = this.state.currentAssets.slice();
         newAssets[index] = asset;
 
-        this.setState({
-            targetCashFlow: this.state.targetCashFlow,
-            currentAssets: newAssets,
-            futureAssets: this.state.futureAssets,
-            totals: this.state.totals
-        });
+        this.setState({currentAssets: newAssets});
     }
 
     updateFutureAsset(index, asset) {
         let newAssets = this.state.futureAssets.slice();
         newAssets[index] = asset;
 
-        this.setState({
-            targetCashFlow: this.state.targetCashFlow,
-            currentAssets: this.state.currentAssets,
-            futureAssets: newAssets,
-            totals: this.state.totals
-        });
+        this.setState({futureAssets: newAssets});
     }
 
     submitCurrentAsset(asset) {
         let newAssets = this.state.currentAssets.slice();
         newAssets.push(asset);
 
-        this.setState({
-            targetCashFlow: this.state.targetCashFlow,
-            currentAssets: newAssets,
-            futureAssets: this.state.futureAssets,
-            totals: this.state.totals
-        });
+        this.setState({currentAssets: newAssets});
     }
 
     submitFutureAsset(asset) {
         let newAssets = this.state.futureAssets.slice();
         newAssets.push(asset);
 
-        this.setState({
-            targetCashFlow: this.state.targetCashFlow,
-            currentAssets: this.state.currentAssets,
-            futureAssets: newAssets,
-            totals: this.state.totals
-        });
+        this.setState({futureAssets: newAssets});
     }
 
     render() {
