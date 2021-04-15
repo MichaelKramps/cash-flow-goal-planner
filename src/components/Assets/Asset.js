@@ -1,8 +1,8 @@
 import React from 'react';
-import './SimpleAsset.css';
+import './Asset.css';
 import EditAsset from "./EditAsset";
 
-class SimpleAsset extends React.Component {
+class Asset extends React.Component {
 
     constructor(props) {
         super(props);
@@ -51,4 +51,4 @@ class SimpleAsset extends React.Component {
     }
 }
 
-export default SimpleAsset;
+export default Asset;

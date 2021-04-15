@@ -1,9 +1,10 @@
 import React from 'react';
-import SimpleAsset from './Assets/SimpleAsset';
+import Asset from './Assets/Asset';
 import './Simulator.css';
-import AddAsset from "./Assets/AddAsset";
+import AssetForm from "./Assets/AssetForm";
 import Totals from "./Totals/Totals";
 import CashFlowGoalEditor from "./Editors/CashFlowGoalEditor";
+import AddCurrentAsset from "./Assets/AddCurrentAsset";
 
 class Simulator extends React.Component {
 
@@ -37,7 +38,7 @@ class Simulator extends React.Component {
 
     listAssets(assetList, updateFunction) {
         return assetList.map((asset, index) => {
-            return <SimpleAsset
+            return <Asset
                 key={index}
                 index={index}
                 name={asset.name}
@@ -95,15 +96,15 @@ class Simulator extends React.Component {
                         onSubmission={this.updateCashFlowGoal} />
                     </div>
                 </div>
-                <h2>Current Assets</h2>
+                <h2>Currently Owned Assets</h2>
                 <div>
                     {this.listAssets(this.state.currentAssets, this.updateCurrentAsset)}
-                    <AddAsset onSubmission={this.submitCurrentAsset} />
+                    <AddCurrentAsset onSubmission={this.submitCurrentAsset} />
                 </div>
                 <h2>Future Assets</h2>
                 <div>
                     {this.listAssets(this.state.futureAssets, this.updateFutureAsset)}
-                    <AddAsset onSubmission={this.submitFutureAsset} />
+                    <AssetForm onSubmission={this.submitFutureAsset} />
                 </div>
                 <h2>Totals</h2>
                 <div className="simulator-totals-container">

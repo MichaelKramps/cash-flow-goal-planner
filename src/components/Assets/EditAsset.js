@@ -1,7 +1,7 @@
 import React from 'react';
-import AddAsset from "./AddAsset";
+import AssetForm from "./AssetForm";
 
-class EditAsset extends AddAsset {
+class EditAsset extends AssetForm {
 
     handleSubmit(event) {
         event.preventDefault();
