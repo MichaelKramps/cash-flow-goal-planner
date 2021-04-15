@@ -2,7 +2,7 @@ import React from 'react';
 import SimpleAsset from './Assets/SimpleAsset';
 import './Simulator.css';
 import AddAsset from "./Assets/AddAsset";
-import Totals from "./Calculations/Totals";
+import Totals from "./Totals/Totals";
 import CashFlowGoalEditor from "./Editors/CashFlowGoalEditor";
 
 class Simulator extends React.Component {

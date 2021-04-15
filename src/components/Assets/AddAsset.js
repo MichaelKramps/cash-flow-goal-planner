@@ -1,5 +1,5 @@
 import React from 'react';
-import './AddAsset.css';
+import ModalForm from "../Shared/ModalForm";
 
 class AddAsset extends React.Component {
 
@@ -57,33 +57,19 @@ class AddAsset extends React.Component {
     }
 
     handleSubmit(event) {
-        if (this.props.index >= 0){
-            this.props.stopEditing(this.state);
-            this.props.onSubmission(this.props.index, this.state);
-        } else {
-            this.props.onSubmission(this.state);
-        }
         event.preventDefault();
-
-        this.setState({
-            name: "",
-                type: "",
-            initialInvestment: 0,
-            cashFlow: 0
-        });
+        this.props.onSubmission(this.state);
     }
 
     render() {
         return (
-            <form className="add-simple-asset" onSubmit={this.handleSubmit}>
-                <div><input value={this.state.name} onChange={this.handleNameChange} /></div>
-                <div><input value={this.state.type} onChange={this.handleTypeChange} /></div>
-                <div><input value={this.state.initialInvestment} type="number" onChange={this.handleInitialInvestmentChange} /></div>
-                <div>
-                    <input value={this.state.cashFlow} type="number" onChange={this.handleCashFlowChange} />
-                    <input type="submit" value="Add Asset" />
-                </div>
-            </form>
+            <ModalForm visible={this.props.visible} onSubmission={this.handleSubmit}>
+                <label>Name: </label><input value={this.state.name} onChange={this.handleNameChange} />
+                <label>Type: </label><input value={this.state.type} onChange={this.handleTypeChange} />
+                <label>Initial Investment: </label><input value={this.state.initialInvestment} type="number" onChange={this.handleInitialInvestmentChange} />
+                <label>Monthly Cash Flow: </label><input value={this.state.cashFlow} type="number" onChange={this.handleCashFlowChange} />
+                <input type="submit" value="Add Asset" />
+            </ModalForm>
         );
     }
 }

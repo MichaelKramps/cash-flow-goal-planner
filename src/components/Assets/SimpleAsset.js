@@ -1,6 +1,6 @@
 import React from 'react';
 import './SimpleAsset.css';
-import AddAsset from "./AddAsset";
+import EditAsset from "./EditAsset";
 
 class SimpleAsset extends React.Component {
 
@@ -19,7 +19,6 @@ class SimpleAsset extends React.Component {
     }
 
     stopEditing(edits) {
-        console.log(edits)
         this.setState({
             name: edits.name,
             type: edits.type,
@@ -30,26 +29,25 @@ class SimpleAsset extends React.Component {
     }
 
     render() {
-        if (this.state.editing) {
-            return <AddAsset
-                name={this.state.name}
-                type={this.state.type}
-                initialInvestment={this.state.initialInvestment}
-                cashFlow={this.state.cashFlow}
-                onSubmission={this.props.onUpdate}
-                stopEditing={this.stopEditing}
-                index={this.props.index}
-            />
-        } else {
-            return (
+        return (
+            <React.Fragment>
                 <div className="simple-asset">
                     <div>{this.state.name}</div>
                     <div>{this.state.type}</div>
                     <div>{this.state.initialInvestment}</div>
                     <div>{this.state.cashFlow}<span onClick={() => {this.setState({editing: true})}}>&#9998;</span></div>
                 </div>
-            );
-        }
+                <EditAsset
+                    name={this.state.name}
+                    type={this.state.type}
+                    visible={this.state.editing}
+                    initialInvestment={this.state.initialInvestment}
+                    cashFlow={this.state.cashFlow}
+                    onSubmission={this.props.onUpdate}
+                    stopEditing={this.stopEditing}
+                    index={this.props.index}/>
+            </React.Fragment>
+        );
     }
 }
 

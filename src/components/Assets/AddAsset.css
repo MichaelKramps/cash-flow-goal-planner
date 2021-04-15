@@ -1,9 +1,0 @@
-.add-simple-asset {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.add-simple-asset div {
-    flex: 1 1 0px;
-}
