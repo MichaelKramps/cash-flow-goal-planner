@@ -1,5 +1,6 @@
 import React from 'react';
 import './CashFlowGoalEditor.css';
+import ModalForm from "../Shared/ModalForm";
 
 class CashFlowGoalEditor extends React.Component {
 
@@ -31,10 +32,11 @@ class CashFlowGoalEditor extends React.Component {
     render() {
         if (this.state.editing) {
             return (
-                <form onSubmit={this.handleSubmit}>
+                <ModalForm onSubmission={this.handleSubmit}>
+                    <h3>Update your monthly cash flow goal</h3>
                     <input value={this.state.goal} onChange={this.handleGoalChange} />
                     <input type="submit" value="Change goal" />
-                </form>
+                </ModalForm>
             )
         } else {
             return (
