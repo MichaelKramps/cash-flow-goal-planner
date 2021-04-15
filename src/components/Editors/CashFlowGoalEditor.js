@@ -30,22 +30,19 @@ class CashFlowGoalEditor extends React.Component {
     }
 
     render() {
-        if (this.state.editing) {
-            return (
-                <ModalForm onSubmission={this.handleSubmit}>
+        return (
+            <React.Fragment>
+                <div className="cash-flow-goal">
+                    Goal: ${this.props.goal}/month
+                    <span onClick={() => {this.setState({editing: true})}}>&#9998;</span>
+                </div>
+                <ModalForm visible={this.state.editing} onSubmission={this.handleSubmit}>
                     <h3>Update your monthly cash flow goal</h3>
                     <input value={this.state.goal} onChange={this.handleGoalChange} />
                     <input type="submit" value="Change goal" />
                 </ModalForm>
-            )
-        } else {
-            return (
-                <div className="cash-flow-goal">
-                    Goal: ${this.state.goal}/month
-                    <span onClick={() => {this.setState({editing: true})}}>&#9998;</span>
-                </div>
-            );
-        }
+            </React.Fragment>
+        )
     }
 }
 

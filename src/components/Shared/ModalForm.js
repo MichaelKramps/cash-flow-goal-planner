@@ -8,8 +8,9 @@ class ModalForm extends React.Component {
     }
 
     render() {
+        let visible = this.props.visible ? "visible" : "";
         return (
-            <div className="modal-form">
+            <div className={"modal-form " + visible}>
                 <div className="modal-curtain" onClick={this.props.onSubmission}></div>
                 <form onSubmit={this.props.onSubmission}>
                     {this.props.children}
