@@ -94,6 +94,7 @@ class Simulator extends React.Component {
                         expenses={this.state.targetCashFlow.expenses}
                         onSubmission={this.updateCashFlowGoal} />
                     </div>
+                    <div>Cash on cash</div>
                 </div>
                 <h2>Currently Owned Assets</h2>
                 <div>

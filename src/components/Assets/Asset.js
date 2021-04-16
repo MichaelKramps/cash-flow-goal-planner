@@ -12,6 +12,7 @@ class Asset extends React.Component {
             type: this.props.type,
             initialInvestment: this.props.initialInvestment,
             cashFlow: this.props.cashFlow,
+            cashOnCash: this.calculateCashOnCash(this.props.cashFlow, this.props.initialInvestment),
             editing: false
         }
 
@@ -24,8 +25,13 @@ class Asset extends React.Component {
             type: edits.type,
             initialInvestment: edits.initialInvestment,
             cashFlow: edits.cashFlow,
+            cashOnCash: this.calculateCashOnCash(edits.cashFlow, edits.initialInvestment),
             editing: false
         })
+    }
+
+    calculateCashOnCash(cashFlow, initialInvestment) {
+        return (parseFloat(cashFlow) * 12 / parseFloat(initialInvestment) * 100).toFixed(1);
     }
 
     render() {
@@ -36,6 +42,7 @@ class Asset extends React.Component {
                     <div>{this.state.type}</div>
                     <div>{this.state.initialInvestment}</div>
                     <div>{this.state.cashFlow}<span onClick={() => {this.setState({editing: true})}}>&#9998;</span></div>
+                    <div>{this.state.cashOnCash}%</div>
                 </div>
                 <EditAsset
                     name={this.state.name}
