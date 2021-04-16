@@ -3,10 +3,6 @@ import './Totals.css';
 
 class Totals extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     calculateTotals() {
         let currentAssetsTotals = this.extractTotalsFromAssets(this.props.currentAssets);
         let futureAssetsTotals = this.extractTotalsFromAssets(this.props.futureAssets);

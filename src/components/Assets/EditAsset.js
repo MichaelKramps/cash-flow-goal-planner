@@ -1,4 +1,3 @@
-import React from 'react';
 import AssetForm from "./AssetForm";
 
 class EditAsset extends AssetForm {

@@ -1,7 +1,6 @@
 import React from 'react';
 import Asset from './Assets/Asset';
 import './Simulator.css';
-import AssetForm from "./Assets/AssetForm";
 import Totals from "./Totals/Totals";
 import CashFlowGoalEditor from "./Editors/CashFlowGoalEditor";
 import AddCurrentAsset from "./Assets/AddCurrentAsset";
@@ -104,7 +103,7 @@ class Simulator extends React.Component {
                 <h2>Future Assets</h2>
                 <div>
                     {this.listAssets(this.state.futureAssets, this.updateFutureAsset)}
-                    <AssetForm onSubmission={this.submitFutureAsset} />
+                    {/*<AddFutureAsset onSubmission={this.submitFutureAsset} />*/}
                 </div>
                 <h2>Totals</h2>
                 <div className="simulator-totals-container">

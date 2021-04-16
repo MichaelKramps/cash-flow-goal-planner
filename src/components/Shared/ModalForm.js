@@ -3,10 +3,6 @@ import './ModalForm.css';
 
 class ModalForm extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         let visible = this.props.visible ? "visible" : "";
         return (
