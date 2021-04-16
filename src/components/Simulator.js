@@ -15,11 +15,12 @@ class Simulator extends React.Component {
                 goal: 2000,
                 expenses: {
                     mortgage: 0,
-                    utilities: 200,
-                    internet: 100,
+                    utilities: 300,
                     food: 700,
                     travel: 500,
-                    entertainment: 500
+                    entertainment: 500,
+                    miscellaneous: 0,
+                    investing: 0
                 }
             },
             currentAssets: [{name: "westridge", type: "real estate", initialInvestment: "30000", cashFlow: "500"}],
