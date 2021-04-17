@@ -63,10 +63,26 @@ class AssetForm extends React.Component {
     render() {
         return (
             <ModalForm visible={this.props.visible} onSubmission={this.handleSubmit}>
-                <label>Name: </label><input value={this.state.name} onChange={this.handleNameChange} />
-                <label>Type: </label><input value={this.state.type} onChange={this.handleTypeChange} />
-                <label>Initial Investment: </label><input value={this.state.initialInvestment} type="number" onChange={this.handleInitialInvestmentChange} />
-                <label>Monthly Cash Flow: </label><input value={this.state.cashFlow} type="number" onChange={this.handleCashFlowChange} />
+                <div>
+                    <label>Name: </label><input value={this.state.name} onChange={this.handleNameChange} />
+                </div>
+                <div>
+                    <label>Type: </label>
+                    <select value={this.state.type} onChange={this.handleTypeChange}>
+                        <option value="Short Term Rental">Short Term Rental</option>
+                        <option value="Long Term Rental">Long Term Rental</option>
+                        <option value="Business">Business</option>
+                        <option value="Stock Portfolio">Stock Portfolio</option>
+                        <option value="Retirement Account">Retirement Account</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Initial Investment: </label><input value={this.state.initialInvestment} type="number" onChange={this.handleInitialInvestmentChange} />
+                </div>
+                <div>
+                    <label>Monthly Cash Flow: </label><input value={this.state.cashFlow} type="number" onChange={this.handleCashFlowChange} />
+                </div>
                 <input type="submit" value="Add Asset" />
             </ModalForm>
         );
