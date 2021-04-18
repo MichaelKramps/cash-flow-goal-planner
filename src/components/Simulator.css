@@ -1,6 +1,11 @@
 .simulator {
     margin-top: 50px;
     padding: 16px;
+    display: none;
+}
+
+.simulator-view .simulator {
+    display: block;
 }
 
 h2 {
