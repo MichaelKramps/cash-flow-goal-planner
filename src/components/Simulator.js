@@ -84,7 +84,7 @@ class Simulator extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="simulator">
                 <div className="simulator-header-container">
                     <div>Name</div>
                     <div>Type</div>
