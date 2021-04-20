@@ -7,6 +7,7 @@ import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCal
 import MortgageCalculator from "./components/Calculators/MortgageCalculator";
 import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalCalculator";
 import InvestmentCalculator from "./components/Calculators/InvestmentCalculator";
+import InvestingConstants from "./components/InvestingConstants/InvestingConstants";
 
 class App extends React.Component {
 
@@ -29,6 +30,7 @@ class App extends React.Component {
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
               <Simulator />
+              <InvestingConstants />
               <InvestmentCalculator />
               <LoanCalculator />
               <LongTermRentalCalculator />
