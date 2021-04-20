@@ -1,0 +1,7 @@
+.short-term-rental-calculator {
+    display: none;
+}
+
+.short-term-rental-calculator-view .short-term-rental-calculator {
+    display: block;
+}

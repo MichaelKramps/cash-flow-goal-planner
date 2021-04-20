@@ -1,0 +1,7 @@
+.long-term-rental-calculator {
+    display: none;
+}
+
+.long-term-rental-calculator-view .long-term-rental-calculator {
+    display: block;
+}

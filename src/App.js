@@ -2,6 +2,11 @@ import React from 'react';
 import './App.css';
 import Simulator from "./components/Simulator";
 import Header from "./components/Header";
+import LoanCalculator from "./components/Calculators/LoanCalculator";
+import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCalculator";
+import MortgageCalculator from "./components/Calculators/MortgageCalculator";
+import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalCalculator";
+import InvestmentCalculator from "./components/Calculators/InvestmentCalculator";
 
 class App extends React.Component {
 
@@ -24,6 +29,11 @@ class App extends React.Component {
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
               <Simulator />
+              <InvestmentCalculator />
+              <LoanCalculator />
+              <LongTermRentalCalculator />
+              <MortgageCalculator />
+              <ShortTermRentalCalculator />
           </div>
       );
   }

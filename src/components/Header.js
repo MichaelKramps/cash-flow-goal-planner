@@ -12,11 +12,11 @@ class Header extends React.Component {
                 <div className="header-dropdown-container">
                     <span>Calculators</span>
                     <ul className="header-dropdown">
-                        <li>Short Term Rental Deal Analysis</li>
-                        <li>Long Term Rental Deal Analysis</li>
-                        <li>Loan Calculator</li>
-                        <li>Mortgage Calculator</li>
-                        <li>Investment Calculator</li>
+                        <li onClick={() => {this.props.changeView("short-term-rental-calculator-view")}}>Short Term Rental Calculator</li>
+                        <li onClick={() => {this.props.changeView("long-term-rental-calculator-view")}}>Long Term Rental Calculator</li>
+                        <li onClick={() => {this.props.changeView("loan-calculator-view")}}>Loan Calculator</li>
+                        <li onClick={() => {this.props.changeView("mortgage-calculator-view")}}>Mortgage Calculator</li>
+                        <li onClick={() => {this.props.changeView("investment-calculator-view")}}>Investment Calculator</li>
                     </ul>
                 </div>
                 <div>

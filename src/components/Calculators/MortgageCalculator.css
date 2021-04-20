@@ -1,0 +1,7 @@
+.mortgage-calculator {
+    display: none;
+}
+
+.mortgage-calculator-view .mortgage-calculator {
+    display: block;
+}

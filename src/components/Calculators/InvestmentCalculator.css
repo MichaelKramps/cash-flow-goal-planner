@@ -1,0 +1,7 @@
+.investment-calculator {
+    display: none;
+}
+
+.investment-calculator-view .investment-calculator {
+    display: block;
+}
