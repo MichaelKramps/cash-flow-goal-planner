@@ -26,17 +26,19 @@ class Totals extends React.Component {
         };
 
         for (let asset = 0; asset < assetsArray.length; asset ++) {
-            totals.initialInvestment += parseFloat(assetsArray[asset].initialInvestment);
-            totals.cashFlow += parseFloat(assetsArray[asset].cashFlow);
+            totals.initialInvestment += parseFloat(assetsArray[asset].initialInvestment) || 0;
+            totals.cashFlow += parseFloat(assetsArray[asset].cashFlow) || 0;
         }
 
-        totals.cashOnCash = this.calculateCashOnCash(totals.cashFlow, totals.initialInvestment);
+        if (assetsArray.length > 0) {
+            totals.cashOnCash = this.calculateCashOnCash(totals.cashFlow, totals.initialInvestment);
+        }
 
         return totals;
     }
 
     calculateCashOnCash(cashFlow, initialInvestment) {
-        return (parseFloat(cashFlow) * 12 / parseFloat(initialInvestment) * 100).toFixed(1);
+        return (parseFloat(cashFlow) * 12 / parseFloat(initialInvestment) * 100).toFixed(1) || 0;
     }
 
     render() {
