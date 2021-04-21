@@ -8,7 +8,7 @@ class CashFlowGoalEditor extends React.Component {
         super(props);
 
         this.state = {
-            goal: this.props.goal,
+            cashFlowGoal: this.props.cashFlowGoal,
             expenses: this.props.expenses,
             editing: false
         }
@@ -27,7 +27,7 @@ class CashFlowGoalEditor extends React.Component {
     handleGoalChange(event) {
         if (event.target.value === '') {
             this.setState({
-                goal: event.target.value
+                cashFlowGoal: event.target.value
             })
         } else {
             let difference = this.parseInput(event.target.value) - this.calculateGoal();
@@ -35,7 +35,7 @@ class CashFlowGoalEditor extends React.Component {
             newExpenses.investing = this.parseInput(this.state.investing) + difference;
 
             this.setState({
-                goal: event.target.value,
+                cashFlowGoal: event.target.value,
                 expenses: newExpenses
             })
         }
@@ -95,7 +95,7 @@ class CashFlowGoalEditor extends React.Component {
             let newExpenses = this.state.expenses;
             newExpenses[expense] = this.parseInput(event.target.value);
             this.setState({
-                goal: this.calculateGoal(),
+                cashFlowGoal: this.calculateGoal(),
                 expenses: newExpenses
             })
         }
@@ -111,13 +111,13 @@ class CashFlowGoalEditor extends React.Component {
         return (
             <React.Fragment>
                 <div className="cash-flow-goal">
-                    Goal: ${this.props.goal}/month
+                    Goal: ${this.props.cashFlowGoal}/month
                     <span onClick={() => {this.setState({editing: true})}}>&#9998;</span>
                 </div>
                 <ModalForm visible={this.state.editing} onSubmission={this.handleSubmit}>
                     <h3>Update your monthly cash flow goal</h3>
                     <div>
-                        <label>Monthly cash flow goal</label><input value={this.state.goal} onChange={this.handleGoalChange} />
+                        <label>Monthly cash flow goal</label><input value={this.state.cashFlowGoal} onChange={this.handleGoalChange} />
                     </div>
                     <div>
                         <label>Mortgage/rent</label><input value={this.state.expenses.mortgage} onChange={this.handleMortgageChange} />

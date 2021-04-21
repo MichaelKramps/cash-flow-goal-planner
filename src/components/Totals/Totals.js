@@ -1,7 +1,27 @@
 import React from 'react';
 import './Totals.css';
+import CashFlowGoalEditor from "../CashFlowGoal/CashFlowGoalEditor";
 
 class Totals extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            cashFlowGoal: 2000,
+            expenses: {
+                mortgage: 0,
+                utilities: 300,
+                food: 700,
+                travel: 500,
+                entertainment: 500,
+                miscellaneous: 0,
+                investing: 0
+            }
+        }
+
+        this.updateCashFlowGoal = this.updateCashFlowGoal.bind(this);
+    }
+
 
     calculateTotals() {
         let currentAssetsTotals = this.extractTotalsFromAssets(this.props.currentAssets);
@@ -41,10 +61,24 @@ class Totals extends React.Component {
         return (parseFloat(cashFlow) * 12 / parseFloat(initialInvestment) * 100).toFixed(1) || 0;
     }
 
+    updateCashFlowGoal(newCashFlowGoal) {
+        this.setState(newCashFlowGoal);
+    }
+
     render() {
         let totals = this.calculateTotals();
         return (
             <React.Fragment>
+                <div className="totals-container">
+                    <div>&nbsp;</div>
+                    <div>&nbsp;</div>
+                    <div>&nbsp;</div>
+                    <CashFlowGoalEditor
+                        cashFlowGoal={this.state.cashFlowGoal}
+                        expenses={this.state.expenses}
+                        onSubmission={this.updateCashFlowGoal} />
+                    <div>&nbsp;</div>
+                </div>
                 <div className="totals-container">
                     <div>Current Totals</div>
                     <div>&nbsp;</div>

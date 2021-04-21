@@ -11,25 +11,12 @@ class Simulator extends React.Component {
         super(props);
 
         this.state = {
-            targetCashFlow: {
-                goal: 2000,
-                expenses: {
-                    mortgage: 0,
-                    utilities: 300,
-                    food: 700,
-                    travel: 500,
-                    entertainment: 500,
-                    miscellaneous: 0,
-                    investing: 0
-                }
-            },
             currentAssets: [{name: "westridge", type: "real estate", initialInvestment: "30000", cashFlow: "500"}],
             futureAssets: [],
             totals: []
         };
 
         this.listAssets = this.listAssets.bind(this);
-        this.updateCashFlowGoal = this.updateCashFlowGoal.bind(this);
         this.updateCurrentAsset = this.updateCurrentAsset.bind(this);
         this.updateFutureAsset = this.updateFutureAsset.bind(this);
         this.submitCurrentAsset = this.submitCurrentAsset.bind(this);
@@ -48,10 +35,6 @@ class Simulator extends React.Component {
                 onUpdate={updateFunction}
             />
         })
-    }
-
-    updateCashFlowGoal(targetCashFlow) {
-        this.setState({targetCashFlow: targetCashFlow});
     }
 
     updateCurrentAsset(index, asset) {
@@ -90,12 +73,7 @@ class Simulator extends React.Component {
                     <div>Name</div>
                     <div>Type</div>
                     <div>Initial Investment</div>
-                    <div>Cash Flow
-                        <CashFlowGoalEditor
-                        goal={this.state.targetCashFlow.goal}
-                        expenses={this.state.targetCashFlow.expenses}
-                        onSubmission={this.updateCashFlowGoal} />
-                    </div>
+                    <div>Monthly Cash Flow</div>
                     <div>Cash on cash</div>
                 </div>
                 <h2>Currently Owned Assets</h2>
