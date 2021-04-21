@@ -21,7 +21,6 @@ class App extends React.Component {
   }
 
   changeView(viewName) {
-      console.log(viewName)
       this.setState({view: viewName});
   }
 
