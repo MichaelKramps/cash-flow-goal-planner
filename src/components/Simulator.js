@@ -67,7 +67,7 @@ class Simulator extends React.Component {
     render() {
         return (
             <div className="simulator">
-                <h1>Cash Flow Simulator</h1>
+                <h1>Cash Flow Early Retirement Planner</h1>
                 <div className="simulator-header-container">
                     <div>Name</div>
                     <div>Type</div>

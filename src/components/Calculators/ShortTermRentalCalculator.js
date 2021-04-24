@@ -93,16 +93,43 @@ class ShortTermRentalCalculator extends React.Component {
         return (
             <form className="short-term-rental-calculator">
                 <h2>Short Term Rental Calculator</h2>
-                <label>Expected Monthly Income</label><input value={this.state.monthlyIncome} type="number" onChange={this.handleMonthlyIncomeChange} />
-                <label>Mortgage Payment</label><input value={this.state.mortgage} type="number" onChange={this.handleMortgageChange} />
-                <label>Utilities</label><input value={this.state.utilities} type="number" onChange={this.handleUtilitiesChange} />
-                <label>Maintenance</label><input value={this.state.maintenance} type="number" onChange={this.handleMaintenanceChange} />
-                <label>Cleaning</label><input value={this.state.cleaning} type="number" onChange={this.handleCleaningChange} />
-                <label>Supplies</label><input value={this.state.supplies} type="number" onChange={this.handleSuppliesChange} />
-                <label>Other Expenses</label><input value={this.state.otherExpenses} type="number" onChange={this.handleOtherExpensesChange} />
+                <div>
+                    <label>Expected Monthly Income</label><input value={this.state.monthlyIncome} type="number" onChange={this.handleMonthlyIncomeChange} />
+                    <a href="#">Short Term Rental Income Calculator</a>
+                    <p>Yearly increase to nightly rate</p>
+                </div>
+                <h3>Expenses</h3>
+                <div>
+                    <label>Mortgage Payment</label><input value={this.state.mortgage} type="number" onChange={this.handleMortgageChange} />
+                    <a href="#">Mortgage Calculator</a>
+                </div>
+                <div>
+                    <label>Utilities</label><input value={this.state.utilities} type="number" onChange={this.handleUtilitiesChange} />
+                    <a href="#">Utilities Helper (lists out possible utilities like internet, water, trash, gas) find numbers by looking at past statements or calling the utility companies</a>
+                </div>
+                <div>
+                    <label>Maintenance</label><input value={this.state.maintenance} type="number" onChange={this.handleMaintenanceChange} />
+                    <p>Maintenance is 1-3% of the value of the property and includes things like lawn care, home repairs</p>
+                </div>
+                <div>
+                    <label>Cleaning</label><input value={this.state.cleaning} type="number" onChange={this.handleCleaningChange} />
+                    <p>$0 if you do your own cleaning, but short term rentals require regular cleans</p>
+                </div>
+                <div>
+                    <label>Supplies</label><input value={this.state.supplies} type="number" onChange={this.handleSuppliesChange} />
+                    <p>Includes things like food, toiletries, coffee bar, cleaning supplies</p>
+                </div>
+                <div>
+                    <label>Other Expenses</label><input value={this.state.otherExpenses} type="number" onChange={this.handleOtherExpensesChange} />
+                </div>
+                <div>Inflation Rate</div>
                 <div>
                     Monthly Cash Flow: ${this.state.cashFlow}
                 </div>
+                <h3>Considerations for Net Worth</h3>
+                <p>Value of the property, rate of appreciation, loan terms and years left on loan</p>
+                <h3>Considerations for ROI</h3>
+                <p>Down payment and Additional Initial investment (furniture, linens, etc)</p>
             </form>
         );
     }
