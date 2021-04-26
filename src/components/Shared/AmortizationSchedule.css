@@ -1,0 +1,8 @@
+.amortization-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.amortization-row div {
+    flex: 1 1 0px;
+}
