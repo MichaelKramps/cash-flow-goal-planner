@@ -35,9 +35,7 @@ class LoanCalculator extends React.Component {
     }
 
     validateInterestRateKeyPress(event) {
-        console.log(event)
-        console.log(event.key)
-        let interestRateRegex = /[1234567890\.]|Backspace|Delete|ArrowRight|ArrowLeft/;
+        let interestRateRegex = /[1234567890.]|Backspace|Delete|ArrowRight|ArrowLeft/;
         if (!interestRateRegex.test(event.key)) {
             event.preventDefault();
         } else if (event.key === "." && this.state.interestRate.toString().includes(".")) {
@@ -47,7 +45,7 @@ class LoanCalculator extends React.Component {
 
     calculateMonthlyPayments() {
         let loanAmount = parseInt(this.state.amount);
-        let periodicInterestRate = parseInt(this.state.interestRate) / 1200;
+        let periodicInterestRate = parseFloat(this.state.interestRate) / 1200;
         let numberPayments = parseInt(this.state.term) * 12;
         let topDivider = Math.pow(1 + periodicInterestRate, numberPayments) - 1;
         let bottomDivider = periodicInterestRate * Math.pow(1 + periodicInterestRate, numberPayments);
