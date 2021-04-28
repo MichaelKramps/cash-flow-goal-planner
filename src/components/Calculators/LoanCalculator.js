@@ -1,6 +1,7 @@
 import React from 'react';
 import './LoanCalculator.css';
 import AmortizationSchedule from "../Shared/AmortizationSchedule";
+import FormUtils from "../Shared/FormUtils";
 
 class LoanCalculator extends React.Component {
 
@@ -19,28 +20,18 @@ class LoanCalculator extends React.Component {
         this.handleAmountChange = this.handleAmountChange.bind(this);
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleInterestRateChange = this.handleInterestRateChange.bind(this);
-        this.validateInterestRateKeyPress = this.validateInterestRateKeyPress.bind(this);
     }
 
     handleAmountChange(event) {
-        this.setState({amount: parseInt(event.target.value)});
+        this.setState({amount: event.target.value});
     }
 
     handleTermChange(event) {
-        this.setState({term: parseInt(event.target.value)});
+        this.setState({term: event.target.value});
     }
 
     handleInterestRateChange(event) {
         this.setState({interestRate: event.target.value});
-    }
-
-    validateInterestRateKeyPress(event) {
-        let interestRateRegex = /[1234567890.]|Backspace|Delete|ArrowRight|ArrowLeft/;
-        if (!interestRateRegex.test(event.key)) {
-            event.preventDefault();
-        } else if (event.key === "." && this.state.interestRate.toString().includes(".")) {
-            event.preventDefault();
-        }
     }
 
     calculateMonthlyPayments() {
@@ -56,8 +47,8 @@ class LoanCalculator extends React.Component {
 
     createAmortization() {
         let monthlyPayment = this.state.monthlyPayment;
-        let loanBalance = this.state.amount;
-        let periodicInterestRate = this.state.interestRate / 1200;
+        let loanBalance = parseInt(this.state.amount);
+        let periodicInterestRate = parseFloat(this.state.interestRate) / 1200;
         this.state.amortization = [];
 
         for(let payment = 1; payment < this.state.term * 12; payment++) {
@@ -83,27 +74,46 @@ class LoanCalculator extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({monthlyPayment: this.calculateMonthlyPayments()}, () => {
-            this.createAmortization();
-        });
+        if (this.formIsValid()) {
+            this.setState({monthlyPayment: this.calculateMonthlyPayments()}, () => {
+                this.createAmortization();
+            });
+        } else {
+            alert("All fields are required")
+        }
+    }
+
+    formIsValid() {
+        return this.state.amount && this.state.term && this.state.interestRate;
     }
 
     render() {
         return (
-            <div>
-                <form className="loan-calculator" onSubmit={this.handleSubmit}>
+            <div className="loan-calculator">
+                <form onSubmit={this.handleSubmit}>
                     <h2>Loan Calculator</h2>
                     <div>
                         <label>Loan Amount</label>
-                        <input value={this.state.amount} type="number" onChange={this.handleAmountChange} />
+                        <input
+                            value={this.state.amount}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleAmountChange}
+                        />
                     </div>
                     <div>
                         <label>Length of Loan</label>
-                        <input value={this.state.term} type="number" onChange={this.handleTermChange} />
+                        <input
+                            value={this.state.term}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleTermChange} />
                     </div>
                     <div>
                         <label>Interest Rate</label>
-                        <input value={this.state.interestRate} onKeyDown={this.validateInterestRateKeyPress} onChange={this.handleInterestRateChange} />
+                        <input
+                            value={this.state.interestRate}
+                            onKeyDown={(event) => {FormUtils.validateFloatInput(event, this.state.interestRate)}}
+                            onChange={this.handleInterestRateChange}
+                        />
                     </div>
                     <div>
                         Monthly Payment: ${this.state.monthlyPayment}
