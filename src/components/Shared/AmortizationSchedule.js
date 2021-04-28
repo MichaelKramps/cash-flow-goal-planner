@@ -44,7 +44,7 @@ class AmortizationSchedule extends React.Component {
     createLoanRows() {
         return this.props.amortization.map((month, index) => {
             return (
-                <div className="amortization-row">
+                <div key={index} className="amortization-row">
                     <div>{index + 1}</div>
                     <div>${month.payment}</div>
                     <div>${month.principalPaid}</div>
@@ -58,7 +58,7 @@ class AmortizationSchedule extends React.Component {
     createMortgageRows() {
         return this.props.amortization.map((month, index) => {
             return (
-                <div className="amortization-row">
+                <div key={index} className="amortization-row">
                     <div>Payment Number</div>
                     <div>Payment Amount</div>
                     <div>Principal Paid</div>

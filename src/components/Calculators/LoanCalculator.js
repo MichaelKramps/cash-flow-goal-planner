@@ -19,6 +19,7 @@ class LoanCalculator extends React.Component {
         this.handleAmountChange = this.handleAmountChange.bind(this);
         this.handleTermChange = this.handleTermChange.bind(this);
         this.handleInterestRateChange = this.handleInterestRateChange.bind(this);
+        this.validateInterestRateKeyPress = this.validateInterestRateKeyPress.bind(this);
     }
 
     handleAmountChange(event) {
@@ -30,7 +31,18 @@ class LoanCalculator extends React.Component {
     }
 
     handleInterestRateChange(event) {
-        this.setState({interestRate: parseFloat(event.target.value)});
+        this.setState({interestRate: event.target.value});
+    }
+
+    validateInterestRateKeyPress(event) {
+        console.log(event)
+        console.log(event.key)
+        let interestRateRegex = /[1234567890\.]|Backspace|Delete|ArrowRight|ArrowLeft/;
+        if (!interestRateRegex.test(event.key)) {
+            event.preventDefault();
+        } else if (event.key === "." && this.state.interestRate.toString().includes(".")) {
+            event.preventDefault();
+        }
     }
 
     calculateMonthlyPayments() {
@@ -93,7 +105,7 @@ class LoanCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Interest Rate</label>
-                        <input value={this.state.interestRate} type="number" onChange={this.handleInterestRateChange} />
+                        <input value={this.state.interestRate} onKeyDown={this.validateInterestRateKeyPress} onChange={this.handleInterestRateChange} />
                     </div>
                     <div>
                         Monthly Payment: ${this.state.monthlyPayment}
