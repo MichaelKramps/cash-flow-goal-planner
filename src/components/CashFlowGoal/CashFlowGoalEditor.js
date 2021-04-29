@@ -1,6 +1,7 @@
 import React from 'react';
 import './CashFlowGoalEditor.css';
 import ModalForm from "../Shared/ModalForm";
+import FormUtils from "../Shared/FormUtils";
 
 class CashFlowGoalEditor extends React.Component {
 
@@ -71,17 +72,13 @@ class CashFlowGoalEditor extends React.Component {
 
     calculateGoal() {
         console.log(this.state);
-        return this.parseInput(this.state.expenses.mortgage) +
-            this.parseInput(this.state.expenses.utilities) +
-            this.parseInput(this.state.expenses.food) +
-            this.parseInput(this.state.expenses.travel) +
-            this.parseInput(this.state.expenses.entertainment) +
-            this.parseInput(this.state.expenses.miscellaneous) +
-            this.parseInput(this.state.expenses.investing);
-    }
-    
-    parseInput(value) {
-        return parseInt(value) || 0;
+        return FormUtils.parseIntegerInput(this.state.expenses.mortgage) +
+            FormUtils.parseIntegerInput(this.state.expenses.utilities) +
+            FormUtils.parseIntegerInput(this.state.expenses.food) +
+            FormUtils.parseIntegerInput(this.state.expenses.travel) +
+            FormUtils.parseIntegerInput(this.state.expenses.entertainment) +
+            FormUtils.parseIntegerInput(this.state.expenses.miscellaneous) +
+            FormUtils.parseIntegerInput(this.state.expenses.investing);
     }
 
     handleExpenseChange (event, expense) {
