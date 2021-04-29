@@ -59,14 +59,14 @@ class AmortizationSchedule extends React.Component {
         return this.props.amortization.map((month, index) => {
             return (
                 <div key={index} className="amortization-row">
-                    <div>Payment Number</div>
-                    <div>Payment Amount</div>
-                    <div>Principal Paid</div>
-                    <div>Interest Paid</div>
-                    <div>Property Insurance</div>
-                    <div>Property Taxes</div>
-                    <div>HOA Fee</div>
-                    <div>Loan Balance</div>
+                    <div>{index + 1}</div>
+                    <div>${month.payment}</div>
+                    <div>${month.principalPaid}</div>
+                    <div>${month.interestPaid}</div>
+                    <div>${month.insurance}</div>
+                    <div>${month.taxes}</div>
+                    <div>${month.hoa}</div>
+                    <div>${month.loanBalance}</div>
                 </div>
             );
         })

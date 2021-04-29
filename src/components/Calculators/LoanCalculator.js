@@ -35,9 +35,9 @@ class LoanCalculator extends React.Component {
     }
 
     calculateMonthlyPayments() {
-        let loanAmount = parseInt(this.state.amount);
-        let periodicInterestRate = parseFloat(this.state.interestRate) / 1200;
-        let numberPayments = parseInt(this.state.term) * 12;
+        let loanAmount = FormUtils.parseIntegerInput(this.state.amount);
+        let periodicInterestRate = FormUtils.parseFloatInput(this.state.interestRate) / 1200;
+        let numberPayments = FormUtils.parseIntegerInput(this.state.term) * 12;
         let topDivider = Math.pow(1 + periodicInterestRate, numberPayments) - 1;
         let bottomDivider = periodicInterestRate * Math.pow(1 + periodicInterestRate, numberPayments);
         let denominator = topDivider / bottomDivider;
@@ -47,8 +47,8 @@ class LoanCalculator extends React.Component {
 
     createAmortization() {
         let monthlyPayment = this.state.monthlyPayment;
-        let loanBalance = parseInt(this.state.amount);
-        let periodicInterestRate = parseFloat(this.state.interestRate) / 1200;
+        let loanBalance = FormUtils.parseIntegerInput(this.state.amount);
+        let periodicInterestRate = FormUtils.parseFloatInput(this.state.interestRate) / 1200;
         this.state.amortization = [];
 
         for(let payment = 1; payment < this.state.term * 12; payment++) {
@@ -65,7 +65,7 @@ class LoanCalculator extends React.Component {
         let lastEntry = {};
         lastEntry.interestPaid = (loanBalance * periodicInterestRate).toFixed(2);
         lastEntry.principalPaid = loanBalance;
-        lastEntry.payment = (parseFloat(loanBalance) + parseFloat(lastEntry.interestPaid)).toFixed(2);
+        lastEntry.payment = (FormUtils.parseFloatInput(loanBalance) + FormUtils.parseFloatInput(lastEntry.interestPaid)).toFixed(2);
         lastEntry.loanBalance = 0;
 
         this.state.amortization.push(lastEntry);

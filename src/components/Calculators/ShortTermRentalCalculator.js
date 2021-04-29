@@ -1,5 +1,6 @@
 import React from 'react';
 import './ShortTermRentalCalculator.css'
+import FormUtils from "../Shared/FormUtils";
 
 class ShortTermRentalCalculator extends React.Component {
 
@@ -28,61 +29,57 @@ class ShortTermRentalCalculator extends React.Component {
     }
 
     handleMonthlyIncomeChange(event) {
-        this.setState({monthlyIncome: parseInt(event.target.value)}, () => {
+        this.setState({monthlyIncome: event.target.value}, () => {
             this.updateCashFlow();
         });
     }
 
     handleMortgageChange(event) {
-        this.setState({mortgage: parseInt(event.target.value)}, () => {
+        this.setState({mortgage: event.target.value}, () => {
             this.updateCashFlow();
         });
     }
 
     handleUtilitiesChange(event) {
-        this.setState({utilities: parseInt(event.target.value)}, () => {
+        this.setState({utilities: event.target.value}, () => {
             this.updateCashFlow();
         });
     }
 
     handleMaintenanceChange(event) {
-        this.setState({maintenance: parseInt(event.target.value)}, () => {
+        this.setState({maintenance: event.target.value}, () => {
             this.updateCashFlow();
         });
     }
 
     handleCleaningChange(event) {
-        this.setState({cleaning: parseInt(event.target.value)}, () => {
+        this.setState({cleaning: event.target.value}, () => {
             this.updateCashFlow();
         });
     }
 
     handleSuppliesChange(event) {
-        this.setState({supplies: parseInt(event.target.value)}, () => {
+        this.setState({supplies: event.target.value}, () => {
             this.updateCashFlow();
         });
     }
 
     handleOtherExpensesChange(event) {
-        this.setState({mortgage: parseInt(event.target.value)}, () => {
+        this.setState({mortgage: event.target.value}, () => {
             this.updateCashFlow();
         });
     }
 
     updateCashFlow() {
-        let newCashFlow = this.parseInput(this.state.monthlyIncome);
-        newCashFlow -= this.parseInput(this.state.mortgage);
-        newCashFlow -= this.parseInput(this.state.utilities);
-        newCashFlow -= this.parseInput(this.state.maintenance);
-        newCashFlow -= this.parseInput(this.state.cleaning);
-        newCashFlow -= this.parseInput(this.state.supplies);
-        newCashFlow -= this.parseInput(this.state.otherExpenses);
+        let newCashFlow = FormUtils.parseIntegerInput(this.state.monthlyIncome);
+        newCashFlow -= FormUtils.parseIntegerInput(this.state.mortgage);
+        newCashFlow -= FormUtils.parseIntegerInput(this.state.utilities);
+        newCashFlow -= FormUtils.parseIntegerInput(this.state.maintenance);
+        newCashFlow -= FormUtils.parseIntegerInput(this.state.cleaning);
+        newCashFlow -= FormUtils.parseIntegerInput(this.state.supplies);
+        newCashFlow -= FormUtils.parseIntegerInput(this.state.otherExpenses);
 
         this.setState({cashFlow: newCashFlow});
-    }
-
-    parseInput(inputValue) {
-        return parseInt(inputValue) || 0;
     }
 
     handleSubmit(event) {
@@ -95,39 +92,66 @@ class ShortTermRentalCalculator extends React.Component {
                 <h2>Short Term Rental Calculator</h2>
                 <div>
                     <label>Expected Monthly Income</label>
-                    <input value={this.state.monthlyIncome} type="number" onChange={this.handleMonthlyIncomeChange} />
+                    <input
+                        value={this.state.monthlyIncome}
+                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                        onChange={this.handleMonthlyIncomeChange}
+                    />
                     <a href="#">Short Term Rental Income Calculator</a>
                     <p>Yearly increase to nightly rate</p>
                 </div>
                 <h3>Expenses</h3>
                 <div>
                     <label>Mortgage Payment</label>
-                    <input value={this.state.mortgage} type="number" onChange={this.handleMortgageChange} />
+                    <input
+                        value={this.state.mortgage}
+                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                        onChange={this.handleMortgageChange}
+                    />
                     <a href="#">Mortgage Calculator</a>
                 </div>
                 <div>
                     <label>Utilities</label>
-                    <input value={this.state.utilities} type="number" onChange={this.handleUtilitiesChange} />
+                    <input
+                        value={this.state.utilities}
+                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                        onChange={this.handleUtilitiesChange}
+                    />
                     <a href="#">Utilities Helper (lists out possible utilities like internet, water, trash, gas) find numbers by looking at past statements or calling the utility companies</a>
                 </div>
                 <div>
                     <label>Maintenance</label>
-                    <input value={this.state.maintenance} type="number" onChange={this.handleMaintenanceChange} />
+                    <input
+                        value={this.state.maintenance}
+                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                        onChange={this.handleMaintenanceChange}
+                    />
                     <p>Maintenance is 1-3% of the value of the property and includes things like lawn care, home repairs</p>
                 </div>
                 <div>
                     <label>Cleaning</label>
-                    <input value={this.state.cleaning} type="number" onChange={this.handleCleaningChange} />
+                    <input
+                        value={this.state.cleaning}
+                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                        onChange={this.handleCleaningChange}
+                    />
                     <p>$0 if you do your own cleaning, but short term rentals require regular cleans</p>
                 </div>
                 <div>
                     <label>Supplies</label>
-                    <input value={this.state.supplies} type="number" onChange={this.handleSuppliesChange} />
+                    <input
+                        value={this.state.supplies}
+                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                        onChange={this.handleSuppliesChange} />
                     <p>Includes things like food, toiletries, coffee bar, cleaning supplies</p>
                 </div>
                 <div>
                     <label>Other Expenses</label>
-                    <input value={this.state.otherExpenses} type="number" onChange={this.handleOtherExpensesChange} />
+                    <input
+                        value={this.state.otherExpenses}
+                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                        onChange={this.handleOtherExpensesChange}
+                    />
                 </div>
                 <div>
                     Inflation Rate

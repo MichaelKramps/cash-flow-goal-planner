@@ -1,6 +1,7 @@
 import React from 'react';
 import './MortgageCalculator.css';
 import FormUtils from "../Shared/FormUtils";
+import AmortizationSchedule from "../Shared/AmortizationSchedule";
 
 class MortgageCalculator extends React.Component {
 
@@ -15,7 +16,8 @@ class MortgageCalculator extends React.Component {
             insurance: this.props.insurance,
             propertyTax: this.props.propertyTax,
             hoa: this.props.hoa,
-            monthlyPayment: 0
+            monthlyPayment: 0,
+            amortization: []
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -57,88 +59,129 @@ class MortgageCalculator extends React.Component {
     }
 
     calculateMonthlyPayments() {
-        let loanAmount = parseInt(this.state.price) - parseInt(this.state.downPayment);
-        let periodicInterestRate = parseInt(this.state.interestRate) / 1200;
-        let numberPayments = parseInt(this.state.term) * 12;
+        let loanAmount = FormUtils.parseIntegerInput(this.state.price) - FormUtils.parseIntegerInput(this.state.downPayment);
+        let periodicInterestRate = FormUtils.parseIntegerInput(this.state.interestRate) / 1200;
+        let numberPayments = FormUtils.parseIntegerInput(this.state.term) * 12;
         let topDivider = Math.pow(1 + periodicInterestRate, numberPayments) - 1;
         let bottomDivider = periodicInterestRate * Math.pow(1 + periodicInterestRate, numberPayments);
         let denominator = topDivider / bottomDivider;
 
-        return (loanAmount / denominator).toFixed(2);
+        let loanPayment = (loanAmount / denominator);
+        let otherExpenses = FormUtils.parseIntegerInput(this.state.insurance) + FormUtils.parseIntegerInput(this.state.propertyTax) + FormUtils.parseIntegerInput(this.state.hoa);
+        return (loanPayment + otherExpenses).toFixed(2);
+    }
+
+    createAmortization() {
+        let monthlyPayment = this.state.monthlyPayment;
+        let loanBalance = FormUtils.parseIntegerInput(this.state.price) - FormUtils.parseIntegerInput(this.state.downPayment);
+        let periodicInterestRate = FormUtils.parseFloatInput(this.state.interestRate) / 1200;
+        this.state.amortization = [];
+
+        for(let payment = 1; payment < this.state.term * 12; payment++) {
+            let entry = {};
+            entry.payment = monthlyPayment;
+            entry.interestPaid = (loanBalance * periodicInterestRate).toFixed(2);
+            let otherExpenses = FormUtils.parseIntegerInput(this.state.insurance) + FormUtils.parseIntegerInput(this.state.propertyTax) + FormUtils.parseIntegerInput(this.state.hoa);
+            entry.principalPaid = (monthlyPayment - entry.interestPaid - otherExpenses).toFixed(2);
+            entry.insurance = FormUtils.parseIntegerInput(this.state.insurance);
+            entry.taxes = FormUtils.parseIntegerInput(this.state.propertyTax);
+            entry.hoa = FormUtils.parseIntegerInput(this.state.hoa);
+            loanBalance = (loanBalance - entry.principalPaid).toFixed(2);
+            entry.loanBalance = loanBalance;
+
+            this.state.amortization.push(entry);
+        }
+
+        let lastEntry = {};
+        lastEntry.interestPaid = (loanBalance * periodicInterestRate).toFixed(2);
+        lastEntry.principalPaid = loanBalance;
+        lastEntry.payment = (FormUtils.parseFloatInput(loanBalance) + FormUtils.parseFloatInput(lastEntry.interestPaid)).toFixed(2);
+        lastEntry.insurance = FormUtils.parseIntegerInput(this.state.insurance);
+        lastEntry.taxes = FormUtils.parseIntegerInput(this.state.propertyTax);
+        lastEntry.hoa = FormUtils.parseIntegerInput(this.state.hoa);
+        lastEntry.loanBalance = 0;
+
+        this.state.amortization.push(lastEntry);
+        this.forceUpdate();
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({monthlyPayment: this.calculateMonthlyPayments()});
+        this.setState({monthlyPayment: this.calculateMonthlyPayments()}, () => {
+            this.createAmortization();
+        });
     }
 
     render() {
         return (
-            <form className="mortgage-calculator" onSubmit={this.handleSubmit}>
-                <h2>Mortgage Calculator</h2>
-                <div>
-                    <label>Price of the home</label>
-                    <input
-                        value={this.state.price}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handlePriceChange}
-                    />
-                </div>
-                <div>
-                    <label>Down Payment</label>
-                    <input
-                        value={this.state.downPayment}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleDownPaymentChange}
-                    />
-                </div>
-                <div>
-                    <label>Length of Loan</label>
-                    <input
-                        value={this.state.term}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleTermChange}
-                    />
-                </div>
-                <div>
-                    <label>Interest Rate</label>
-                    <input
-                        value={this.state.interestRate}
-                        onKeyDown={(event) => {FormUtils.validateFloatInput(event, this.state.interestRate)}}
-                        onChange={this.handleInterestRateChange}
-                    />
-                </div>
-                <div>
-                    <label>Home Insurance</label>
-                    <input
-                        value={this.state.insurance}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleInsuranceChange}
-                    />
-                </div>
-                <div>
-                    <label>Property Taxes</label>
-                    <input
-                        value={this.state.propertyTax}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handlePropertyTaxChange}
-                    />
-                </div>
-                <div>
-                    <label>Home Owner's Association Fee</label>
-                    <input
-                        value={this.state.hoa}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleHoaChange}
-                    />
-                </div>
-                <div>
-                    Monthly Payment: ${this.state.monthlyPayment}
-                </div>
-                <div>
-                    <input type="submit" value="Calculate" />
-                </div>
-            </form>
+            <div className="mortgage-calculator">
+                <form onSubmit={this.handleSubmit}>
+                    <h2>Mortgage Calculator</h2>
+                    <div>
+                        <label>Price of the home</label>
+                        <input
+                            value={this.state.price}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handlePriceChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Down Payment</label>
+                        <input
+                            value={this.state.downPayment}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleDownPaymentChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Length of Loan</label>
+                        <input
+                            value={this.state.term}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleTermChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Interest Rate</label>
+                        <input
+                            value={this.state.interestRate}
+                            onKeyDown={(event) => {FormUtils.validateFloatInput(event, this.state.interestRate)}}
+                            onChange={this.handleInterestRateChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Home Insurance</label>
+                        <input
+                            value={this.state.insurance}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleInsuranceChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Property Taxes</label>
+                        <input
+                            value={this.state.propertyTax}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handlePropertyTaxChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Home Owner's Association Fee</label>
+                        <input
+                            value={this.state.hoa}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleHoaChange}
+                        />
+                    </div>
+                    <div>
+                        Monthly Payment: ${this.state.monthlyPayment}
+                    </div>
+                    <div>
+                        <input type="submit" value="Calculate" />
+                    </div>
+                </form>
+                <AmortizationSchedule amortization={this.state.amortization} />
+            </div>
         );
     }
 }

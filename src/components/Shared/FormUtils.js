@@ -14,6 +14,14 @@ class FormUtils {
             event.preventDefault();
         }
     }
+
+    static parseIntegerInput(inputValue) {
+        return parseInt(inputValue) || 0;
+    }
+
+    static parseFloatInput(inputValue) {
+        return parseFloat(inputValue) || 0;
+    }
 }
 
 export default FormUtils;
