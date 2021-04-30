@@ -1,6 +1,8 @@
 import React from 'react';
 import './ShortTermRentalCalculator.css'
 import FormUtils from "../Shared/FormUtils";
+import MortgageCalculatorForm from "./Forms/MortgageCalculatorForm";
+import ModalForm from "../Shared/ModalForm";
 
 class ShortTermRentalCalculator extends React.Component {
 
@@ -15,7 +17,10 @@ class ShortTermRentalCalculator extends React.Component {
             cleaning: this.props.cleaning,
             supplies: this.props.supplies,
             otherExpenses: this.props.otherExpenses,
-            cashFlow: 0
+            cashFlow: 0,
+            modals: {
+                mortgageCalculator: false
+            }
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -88,82 +93,87 @@ class ShortTermRentalCalculator extends React.Component {
 
     render() {
         return (
-            <form className="short-term-rental-calculator">
-                <h2>Short Term Rental Calculator</h2>
-                <div>
-                    <label>Expected Monthly Income</label>
-                    <input
-                        value={this.state.monthlyIncome}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleMonthlyIncomeChange}
-                    />
-                    <a href="#">Short Term Rental Income Calculator</a>
-                    <p>Yearly increase to nightly rate</p>
-                </div>
-                <h3>Expenses</h3>
-                <div>
-                    <label>Mortgage Payment</label>
-                    <input
-                        value={this.state.mortgage}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleMortgageChange}
-                    />
-                    <a href="#">Mortgage Calculator</a>
-                </div>
-                <div>
-                    <label>Utilities</label>
-                    <input
-                        value={this.state.utilities}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleUtilitiesChange}
-                    />
-                    <a href="#">Utilities Helper (lists out possible utilities like internet, water, trash, gas) find numbers by looking at past statements or calling the utility companies</a>
-                </div>
-                <div>
-                    <label>Maintenance</label>
-                    <input
-                        value={this.state.maintenance}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleMaintenanceChange}
-                    />
-                    <p>Maintenance is 1-3% of the value of the property and includes things like lawn care, home repairs</p>
-                </div>
-                <div>
-                    <label>Cleaning</label>
-                    <input
-                        value={this.state.cleaning}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleCleaningChange}
-                    />
-                    <p>$0 if you do your own cleaning, but short term rentals require regular cleans</p>
-                </div>
-                <div>
-                    <label>Supplies</label>
-                    <input
-                        value={this.state.supplies}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleSuppliesChange} />
-                    <p>Includes things like food, toiletries, coffee bar, cleaning supplies</p>
-                </div>
-                <div>
-                    <label>Other Expenses</label>
-                    <input
-                        value={this.state.otherExpenses}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleOtherExpensesChange}
-                    />
-                </div>
-                <div>
-                    Inflation Rate
-                </div>
-                <div>
-                    Monthly Cash Flow: ${this.state.cashFlow}
-                </div>
-                <h3>Considerations for Net Worth</h3>
-                <p>Value of the property, rate of appreciation, loan terms and years left on loan</p>
-                <h3>Considerations for ROI</h3>
-                <p>Down payment and Additional Initial investment (furniture, linens, etc)</p>
-            </form>
+            <div className="short-term-rental-calculator">
+                <form>
+                    <h2>Short Term Rental Calculator</h2>
+                    <div>
+                        <label>Expected Monthly Income</label>
+                        <input
+                            value={this.state.monthlyIncome}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleMonthlyIncomeChange}
+                        />
+                        <a href="#">Short Term Rental Income Calculator</a>
+                        <p>Yearly increase to nightly rate</p>
+                    </div>
+                    <h3>Expenses</h3>
+                    <div>
+                        <label>Mortgage Payment</label>
+                        <input
+                            value={this.state.mortgage}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleMortgageChange}
+                        />
+                        <a href="#">Mortgage Calculator</a>
+                    </div>
+                    <div>
+                        <label>Utilities</label>
+                        <input
+                            value={this.state.utilities}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleUtilitiesChange}
+                        />
+                        <a href="#">Utilities Helper (lists out possible utilities like internet, water, trash, gas) find numbers by looking at past statements or calling the utility companies</a>
+                    </div>
+                    <div>
+                        <label>Maintenance</label>
+                        <input
+                            value={this.state.maintenance}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleMaintenanceChange}
+                        />
+                        <p>Maintenance is 1-3% of the value of the property and includes things like lawn care, home repairs</p>
+                    </div>
+                    <div>
+                        <label>Cleaning</label>
+                        <input
+                            value={this.state.cleaning}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleCleaningChange}
+                        />
+                        <p>$0 if you do your own cleaning, but short term rentals require regular cleans</p>
+                    </div>
+                    <div>
+                        <label>Supplies</label>
+                        <input
+                            value={this.state.supplies}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleSuppliesChange} />
+                        <p>Includes things like food, toiletries, coffee bar, cleaning supplies</p>
+                    </div>
+                    <div>
+                        <label>Other Expenses</label>
+                        <input
+                            value={this.state.otherExpenses}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleOtherExpensesChange}
+                        />
+                    </div>
+                    <div>
+                        Inflation Rate
+                    </div>
+                    <div>
+                        Monthly Cash Flow: ${this.state.cashFlow}
+                    </div>
+                    <h3>Considerations for Net Worth</h3>
+                    <p>Value of the property, rate of appreciation, loan terms and years left on loan</p>
+                    <h3>Considerations for ROI</h3>
+                    <p>Down payment and Additional Initial investment (furniture, linens, etc)</p>
+                </form>
+                <ModalForm visible={this.state.modals.mortgageCalculator}>
+                    <MortgageCalculatorForm />
+                </ModalForm>
+            </div>
         );
     }
 }

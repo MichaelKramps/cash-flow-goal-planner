@@ -1,17 +1,15 @@
 import React from 'react';
-import './ModalForm.css';
+import Modal from "./Modal";
 
 class ModalForm extends React.Component {
 
     render() {
-        let visible = this.props.visible ? "visible" : "";
         return (
-            <div className={"modal-form " + visible}>
-                <div className="modal-curtain" onClick={this.props.onSubmission}></div>
+            <Modal visible={this.props.visible}>
                 <form onSubmit={this.props.onSubmission}>
                     {this.props.children}
                 </form>
-            </div>
+            </Modal>
         );
     }
 }
