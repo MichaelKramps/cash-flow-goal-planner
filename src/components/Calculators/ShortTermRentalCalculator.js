@@ -2,7 +2,7 @@ import React from 'react';
 import './ShortTermRentalCalculator.css'
 import FormUtils from "../Shared/FormUtils";
 import MortgageCalculatorForm from "./Forms/MortgageCalculatorForm";
-import ModalForm from "../Shared/ModalForm";
+import Modal from "../Shared/Modal";
 
 class ShortTermRentalCalculator extends React.Component {
 
@@ -31,6 +31,7 @@ class ShortTermRentalCalculator extends React.Component {
         this.handleCleaningChange = this.handleCleaningChange.bind(this);
         this.handleSuppliesChange = this.handleSuppliesChange.bind(this);
         this.handleOtherExpensesChange = this.handleOtherExpensesChange.bind(this);
+        this.handleMortgageCalculatorSubmit = this.handleMortgageCalculatorSubmit.bind(this);
     }
 
     handleMonthlyIncomeChange(event) {
@@ -87,6 +88,12 @@ class ShortTermRentalCalculator extends React.Component {
         this.setState({cashFlow: newCashFlow});
     }
 
+    handleMortgageCalculatorSubmit(state) {
+        this.setState({mortgage: state.monthlyPayment}, () => {
+            this.setState({modals: {mortgageCalculator: false}});
+        })
+    }
+
     handleSubmit(event) {
         event.preventDefault();
     }
@@ -114,7 +121,7 @@ class ShortTermRentalCalculator extends React.Component {
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleMortgageChange}
                         />
-                        <a href="#">Mortgage Calculator</a>
+                        <span onClick={() => {this.setState({modals: {mortgageCalculator: true}})}}>Mortgage Calculator</span>
                     </div>
                     <div>
                         <label>Utilities</label>
@@ -170,9 +177,9 @@ class ShortTermRentalCalculator extends React.Component {
                     <h3>Considerations for ROI</h3>
                     <p>Down payment and Additional Initial investment (furniture, linens, etc)</p>
                 </form>
-                <ModalForm visible={this.state.modals.mortgageCalculator}>
-                    <MortgageCalculatorForm />
-                </ModalForm>
+                <Modal visible={this.state.modals.mortgageCalculator}>
+                    <MortgageCalculatorForm onSubmission={this.handleMortgageCalculatorSubmit} />
+                </Modal>
             </div>
         );
     }
