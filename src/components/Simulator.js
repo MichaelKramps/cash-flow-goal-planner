@@ -68,12 +68,8 @@ class Simulator extends React.Component {
         return (
             <div className="simulator">
                 <h1>Cash Flow Early Retirement Planner</h1>
-                <div className="simulator-header-container">
-                    <div>Name</div>
-                    <div>Type</div>
-                    <div>Initial Investment</div>
-                    <div>Monthly Cash Flow</div>
-                    <div>Cash on cash</div>
+                <div className="simulator-totals-container">
+                    <Totals {...this.state} />
                 </div>
                 <h2>Currently Owned Assets</h2>
                 <div>
@@ -84,10 +80,6 @@ class Simulator extends React.Component {
                 <div>
                     {this.listAssets(this.state.futureAssets, this.updateFutureAsset)}
                     {/*<AddFutureAsset onSubmission={this.submitFutureAsset} />*/}
-                </div>
-                <h2>Totals</h2>
-                <div className="simulator-totals-container">
-                    <Totals {...this.state} />
                 </div>
             </div>
         );

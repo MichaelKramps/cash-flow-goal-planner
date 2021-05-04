@@ -10,7 +10,15 @@ class CashFlowGoalEditor extends React.Component {
 
         this.state = {
             cashFlowGoal: this.props.cashFlowGoal,
-            expenses: this.props.expenses,
+            expenses: {
+                mortgage: 0,
+                utilities: 300,
+                food: 700,
+                travel: 500,
+                entertainment: 500,
+                miscellaneous: 0,
+                investing: 0
+            },
             editing: false
         }
 
