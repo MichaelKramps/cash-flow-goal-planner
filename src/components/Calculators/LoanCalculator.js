@@ -49,7 +49,7 @@ class LoanCalculator extends React.Component {
         let monthlyPayment = this.state.monthlyPayment;
         let loanBalance = FormUtils.parseIntegerInput(this.state.amount);
         let periodicInterestRate = FormUtils.parseFloatInput(this.state.interestRate) / 1200;
-        this.state.amortization = [];
+        this.setState({amortization: []});
 
         for(let payment = 1; payment < this.state.term * 12; payment++) {
             let entry = {};

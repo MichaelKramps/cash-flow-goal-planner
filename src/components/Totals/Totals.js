@@ -1,6 +1,6 @@
 import React from 'react';
 import './Totals.css';
-import CashFlowGoalEditor from "../CashFlowGoal/CashFlowGoalEditor";
+import CashFlowGoalEditor from "./CashFlowGoal/CashFlowGoalEditor";
 import FormUtils from "../Shared/FormUtils";
 
 class Totals extends React.Component {
@@ -15,13 +15,23 @@ class Totals extends React.Component {
         }
 
         this.updateCashFlowGoal = this.updateCashFlowGoal.bind(this);
+        this.updateCurrentCashFlow = this.updateCurrentCashFlow.bind(this);
     }
 
     updateCashFlowGoal(state) {
-        console.log(state);
         this.setState({cashFlowGoal: state.cashFlowGoal}, () => {
             this.setState({editingCashFlowGoal: false});
         });
+    }
+
+    updateCurrentCashFlow(state) {
+        this.setState({currentCashFlow: this.calculateCurrentCashFlow(state)}, () => {
+            this.setState({editingCurrentCashFlow: false});
+        });
+    }
+
+    calculateCurrentCashFlow() {
+        return 0;
     }
 
     calculateCashFlowNeeded() {
@@ -43,7 +53,13 @@ class Totals extends React.Component {
                 </div>
                 <div>
                     <h3>Current Cash Flow</h3>
-                    {/*<CurrentCashFlowEditor />*/}
+                    <div className="current-cash-flow">
+                        Goal: ${this.state.currentCashFlow}/month
+                        <span onClick={() => {this.setState({editingCurrentCashFlow: true})}}>&#9998;</span>
+                    </div>
+                    {/*<CurrentCashFlowEditor*/}
+                    {/*    editing={this.state.editingCurrentCashFlow}*/}
+                    {/*    onSubmission={this.updateCurrentCashFlow} />*/}
                 </div>
                 <div>
                     <h3>Additional Cash Flow Needed</h3>
