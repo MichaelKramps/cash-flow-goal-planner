@@ -50,42 +50,34 @@ class CashFlowGoalEditor extends React.Component {
     }
 
     handleMortgageChange(event) {
-        this.handleExpenseChange(event, 'mortgage');
+        this.handleExpenseChange(event, "mortgage");
     }
 
     handleUtilitiesChange(event) {
-        this.handleExpenseChange(event, 'utilities');
+        this.handleExpenseChange(event, "utilities");
     }
 
     handleFoodChange(event) {
-        this.handleExpenseChange(event, 'food');
+        this.handleExpenseChange(event, "food");
     }
 
     handleTravelChange(event) {
-        this.handleExpenseChange(event, 'travel');
+        this.handleExpenseChange(event, "travel");
     }
 
     handleEntertainmentChange(event) {
-        this.handleExpenseChange(event, 'entertainment');
+        this.handleExpenseChange(event, "entertainment");
     }
 
     handleMiscellaneousChange(event) {
-        this.handleExpenseChange(event, 'miscellaneous');
+        this.handleExpenseChange(event, "miscellaneous");
     }
 
     handleInvestingChange(event) {
-        this.handleExpenseChange(event, 'investing');
+        this.handleExpenseChange(event, "investing");
     }
 
     calculateGoal() {
-        console.log(FormUtils.parseIntegerInput(this.state.expenses.mortgage))
-        console.log(FormUtils.parseIntegerInput(this.state.expenses.utilities))
-        console.log(FormUtils.parseIntegerInput(this.state.expenses.food))
-        console.log(FormUtils.parseIntegerInput(this.state.expenses.travel))
-        console.log(FormUtils.parseIntegerInput(this.state.expenses.entertainment))
-        console.log(FormUtils.parseIntegerInput(this.state.expenses.miscellaneous))
-        console.log(FormUtils.parseIntegerInput(this.state.expenses.investing))
-
         return FormUtils.parseIntegerInput(this.state.expenses.mortgage) +
             FormUtils.parseIntegerInput(this.state.expenses.utilities) +
             FormUtils.parseIntegerInput(this.state.expenses.food) +
@@ -95,21 +87,13 @@ class CashFlowGoalEditor extends React.Component {
             FormUtils.parseIntegerInput(this.state.expenses.investing);
     }
 
-    handleExpenseChange (event, expense) {
-        if (event.target.value === '') {
-            let newExpenses = this.state.expenses;
-            newExpenses[expense] = '';
-            this.setState({
-                expenses: newExpenses
-            })
-        } else {
-            let newExpenses = this.state.expenses;
-            newExpenses[expense] = FormUtils.parseIntegerInput(event.target.value);
-            this.setState({
-                cashFlowGoal: this.calculateGoal(),
-                expenses: newExpenses
-            })
-        }
+    handleExpenseChange(event, name) {
+        let newExpenses = this.state.expenses;
+        newExpenses[name] = event.target.value;
+        this.setState({
+            cashFlowGoal: this.calculateGoal(),
+            expenses: newExpenses
+        });
     }
 
     handleSubmit(event) {
@@ -123,35 +107,67 @@ class CashFlowGoalEditor extends React.Component {
                 <h3>Update your monthly cash flow goal</h3>
                 <div>
                     <label>Monthly cash flow goal</label>
-                    <input value={this.state.cashFlowGoal} onChange={this.handleGoalChange} />
+                    <input
+                        value={this.state.cashFlowGoal}
+                        onKeyDown={FormUtils.validateIntegerInput}
+                        onChange={this.handleGoalChange}
+                    />
                 </div>
                 <div>
                     <label>Mortgage/rent</label>
-                    <input value={this.state.expenses.mortgage} onChange={this.handleMortgageChange} />
+                    <input
+                        value={this.state.expenses.mortgage}
+                        onKeyDown={FormUtils.validateIntegerInput}
+                        onChange={this.handleMortgageChange}
+                    />
                 </div>
                 <div>
                     <label>Utilities</label>
-                    <input value={this.state.expenses.utilities} onChange={this.handleUtilitiesChange} />
+                    <input
+                        value={this.state.expenses.utilities}
+                        onKeyDown={FormUtils.validateIntegerInput}
+                        onChange={this.handleUtilitiesChange}
+                    />
                 </div>
                 <div>
                     <label>Food</label>
-                    <input value={this.state.expenses.food} onChange={this.handleFoodChange} />
+                    <input
+                        value={this.state.expenses.food}
+                        onKeyDown={FormUtils.validateIntegerInput}
+                        onChange={this.handleFoodChange}
+                    />
                 </div>
                 <div>
                     <label>Travel</label>
-                    <input value={this.state.expenses.travel} onChange={this.handleTravelChange} />
+                    <input
+                        value={this.state.expenses.travel}
+                        onKeyDown={FormUtils.validateIntegerInput}
+                        onChange={this.handleTravelChange}
+                    />
                 </div>
                 <div>
                     <label>Entertainment</label>
-                    <input value={this.state.expenses.entertainment} onChange={this.handleEntertainmentChange} />
+                    <input
+                        value={this.state.expenses.entertainment}
+                        onKeyDown={FormUtils.validateIntegerInput}
+                        onChange={this.handleEntertainmentChange}
+                    />
                 </div>
                 <div>
                     <label>Miscellaneous Expenses</label>
-                    <input value={this.state.expenses.miscellaneous} onChange={this.handleMiscellaneousChange} />
+                    <input
+                        value={this.state.expenses.miscellaneous}
+                        onKeyDown={FormUtils.validateIntegerInput}
+                        onChange={this.handleMiscellaneousChange}
+                    />
                 </div>
                 <div>
                     <label>Cash for investing</label>
-                    <input value={this.state.expenses.investing} onChange={this.handleInvestingChange} />
+                    <input
+                        value={this.state.expenses.investing}
+                        onKeyDown={FormUtils.validateIntegerInput}
+                        onChange={this.handleInvestingChange}
+                    />
                 </div>
                 <input type="submit" value="Change goal" />
             </ModalForm>
