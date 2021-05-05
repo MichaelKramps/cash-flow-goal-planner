@@ -9,14 +9,19 @@ class Totals extends React.Component {
         super(props);
         this.state = {
             cashFlowGoal: 2000,
-            currentCashFlow: 0
+            currentCashFlow: 0,
+            editingCashFlowGoal: false,
+            editingCurrentCashFlow: false
         }
 
         this.updateCashFlowGoal = this.updateCashFlowGoal.bind(this);
     }
 
     updateCashFlowGoal(state) {
-        this.setState({cashFlowGoal: state.cashFlowGoal});
+        console.log(state);
+        this.setState({cashFlowGoal: state.cashFlowGoal}, () => {
+            this.setState({editingCashFlowGoal: false});
+        });
     }
 
     calculateCashFlowNeeded() {
@@ -28,8 +33,12 @@ class Totals extends React.Component {
             <div className="totals-container">
                 <div>
                     <h2>Cash Flow Goal</h2>
+                    <div className="cash-flow-goal">
+                        Goal: ${this.state.cashFlowGoal}/month
+                        <span onClick={() => {this.setState({editingCashFlowGoal: true})}}>&#9998;</span>
+                    </div>
                     <CashFlowGoalEditor
-                        cashFlowGoal={this.state.cashFlowGoal}
+                        editing={this.state.editingCashFlowGoal}
                         onSubmission={this.updateCashFlowGoal} />
                 </div>
                 <div>

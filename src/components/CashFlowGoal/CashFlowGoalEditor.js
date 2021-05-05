@@ -12,15 +12,14 @@ class CashFlowGoalEditor extends React.Component {
             cashFlowGoal: this.props.cashFlowGoal,
             expenses: {
                 mortgage: 0,
-                utilities: 300,
-                food: 700,
-                travel: 500,
-                entertainment: 500,
+                utilities: 0,
+                food: 0,
+                travel: 0,
+                entertainment: 0,
                 miscellaneous: 0,
                 investing: 0
-            },
-            editing: false
-        }
+            }
+        };
 
         this.handleGoalChange = this.handleGoalChange.bind(this);
         this.handleMortgageChange = this.handleMortgageChange.bind(this);
@@ -39,9 +38,9 @@ class CashFlowGoalEditor extends React.Component {
                 cashFlowGoal: event.target.value
             })
         } else {
-            let difference = this.parseInput(event.target.value) - this.calculateGoal();
+            let difference = FormUtils.parseIntegerInput(event.target.value) - this.calculateGoal();
             let newExpenses = this.state.expenses;
-            newExpenses.investing = this.parseInput(this.state.investing) + difference;
+            newExpenses.investing = FormUtils.parseIntegerInput(this.state.investing) + difference;
 
             this.setState({
                 cashFlowGoal: event.target.value,
@@ -79,7 +78,6 @@ class CashFlowGoalEditor extends React.Component {
     }
 
     calculateGoal() {
-        console.log(this.state);
         return FormUtils.parseIntegerInput(this.state.expenses.mortgage) +
             FormUtils.parseIntegerInput(this.state.expenses.utilities) +
             FormUtils.parseIntegerInput(this.state.expenses.food) +
@@ -98,7 +96,7 @@ class CashFlowGoalEditor extends React.Component {
             })
         } else {
             let newExpenses = this.state.expenses;
-            newExpenses[expense] = this.parseInput(event.target.value);
+            newExpenses[expense] = FormUtils.parseIntegerInput(event.target.value);
             this.setState({
                 cashFlowGoal: this.calculateGoal(),
                 expenses: newExpenses
@@ -109,45 +107,38 @@ class CashFlowGoalEditor extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         this.props.onSubmission(this.state);
-        this.setState({editing: false});
     }
 
     render() {
         return (
-            <React.Fragment>
-                <div className="cash-flow-goal">
-                    Goal: ${this.props.cashFlowGoal}/month
-                    <span onClick={() => {this.setState({editing: true})}}>&#9998;</span>
+            <ModalForm visible={this.props.editing} onSubmission={this.handleSubmit}>
+                <h3>Update your monthly cash flow goal</h3>
+                <div>
+                    <label>Monthly cash flow goal</label><input value={this.state.cashFlowGoal} onChange={this.handleGoalChange} />
                 </div>
-                <ModalForm visible={this.state.editing} onSubmission={this.handleSubmit}>
-                    <h3>Update your monthly cash flow goal</h3>
-                    <div>
-                        <label>Monthly cash flow goal</label><input value={this.state.cashFlowGoal} onChange={this.handleGoalChange} />
-                    </div>
-                    <div>
-                        <label>Mortgage/rent</label><input value={this.state.expenses.mortgage} onChange={this.handleMortgageChange} />
-                    </div>
-                    <div>
-                        <label>Utilities</label><input value={this.state.expenses.utilities} onChange={this.handleUtilitiesChange} />
-                    </div>
-                    <div>
-                        <label>Food</label><input value={this.state.expenses.food} onChange={this.handleFoodChange} />
-                    </div>
-                    <div>
-                        <label>Travel</label><input value={this.state.expenses.travel} onChange={this.handleTravelChange} />
-                    </div>
-                    <div>
-                        <label>Entertainment</label><input value={this.state.expenses.entertainment} onChange={this.handleEntertainmentChange} />
-                    </div>
-                    <div>
-                        <label>Miscellaneous Expenses</label><input value={this.state.expenses.miscellaneous} onChange={this.handleMiscellaneousChange} />
-                    </div>
-                    <div>
-                        <label>Cash for investing</label><input value={this.state.expenses.investing} onChange={this.handleInvestingChange} />
-                    </div>
-                    <input type="submit" value="Change goal" />
-                </ModalForm>
-            </React.Fragment>
+                <div>
+                    <label>Mortgage/rent</label><input value={this.state.expenses.mortgage} onChange={this.handleMortgageChange} />
+                </div>
+                <div>
+                    <label>Utilities</label><input value={this.state.expenses.utilities} onChange={this.handleUtilitiesChange} />
+                </div>
+                <div>
+                    <label>Food</label><input value={this.state.expenses.food} onChange={this.handleFoodChange} />
+                </div>
+                <div>
+                    <label>Travel</label><input value={this.state.expenses.travel} onChange={this.handleTravelChange} />
+                </div>
+                <div>
+                    <label>Entertainment</label><input value={this.state.expenses.entertainment} onChange={this.handleEntertainmentChange} />
+                </div>
+                <div>
+                    <label>Miscellaneous Expenses</label><input value={this.state.expenses.miscellaneous} onChange={this.handleMiscellaneousChange} />
+                </div>
+                <div>
+                    <label>Cash for investing</label><input value={this.state.expenses.investing} onChange={this.handleInvestingChange} />
+                </div>
+                <input type="submit" value="Change goal" />
+            </ModalForm>
         )
     }
 }
