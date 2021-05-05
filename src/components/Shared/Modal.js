@@ -8,7 +8,9 @@ class Modal extends React.Component {
         return (
             <div className={"modal " + visible}>
                 <div className="modal-curtain" onClick={this.props.onSubmission}></div>
-                {this.props.children}
+                <div className="modal-content">
+                    {this.props.children}
+                </div>
             </div>
         );
     }

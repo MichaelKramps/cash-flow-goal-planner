@@ -35,15 +35,8 @@ class Asset extends React.Component {
     }
 
     render() {
-        return (
-            <React.Fragment>
-                <div className="simple-asset">
-                    <div>{this.state.name}</div>
-                    <div>{this.state.type}</div>
-                    <div>{this.state.initialInvestment}</div>
-                    <div>{this.state.cashFlow}<span onClick={() => {this.setState({editing: true})}}>&#9998;</span></div>
-                    <div>{this.state.cashOnCash}%</div>
-                </div>
+        if (this.state.editing) {
+            return (
                 <EditAsset
                     name={this.state.name}
                     type={this.state.type}
@@ -53,8 +46,18 @@ class Asset extends React.Component {
                     onSubmission={this.props.onUpdate}
                     stopEditing={this.stopEditing}
                     index={this.props.index}/>
-            </React.Fragment>
-        );
+            )
+        } else {
+            return (
+                <div className="simple-asset">
+                    <div>{this.state.name}</div>
+                    <div>{this.state.type}</div>
+                    <div>{this.state.initialInvestment}</div>
+                    <div>{this.state.cashFlow}<span onClick={() => {this.setState({editing: true})}}>&#9998;</span></div>
+                    <div>{this.state.cashOnCash}%</div>
+                </div>
+            )
+        }
     }
 }
 

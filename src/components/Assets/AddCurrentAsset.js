@@ -10,18 +10,20 @@ class AddCurrentAsset extends React.Component {
     }
 
     render() {
-        return (
-            <React.Fragment>
-                <button onClick={() => {this.setState({editing: true})}}>
-                    Add an Asset
-                </button>
+        if (this.state.editing) {
+            return (
                 <AddAsset
-                    visible={this.state.editing}
                     onSubmission={this.props.onSubmission}
                     stopEditing={() => {this.setState({editing: false})}}
                 />
-            </React.Fragment>
-        );
+            );
+        } else {
+            return(
+                <button onClick={() => {this.setState({editing: true})}}>
+                    Add an Asset
+                </button>
+            );
+        }
     }
 }
 

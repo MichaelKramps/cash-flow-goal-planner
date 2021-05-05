@@ -1,5 +1,4 @@
 import React from 'react';
-import ModalForm from "../Shared/ModalForm";
 
 class AssetForm extends React.Component {
 
@@ -58,17 +57,19 @@ class AssetForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.props.onSubmission(this.state);
     }
 
     render() {
         return (
-            <ModalForm visible={this.props.visible} onSubmission={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit}>
                 <div>
                     <label>Name: </label><input value={this.state.name} onChange={this.handleNameChange} />
                 </div>
                 <div>
                     <label>Type: </label>
                     <select value={this.state.type} onChange={this.handleTypeChange}>
+                        <option value="">Select an investment type</option>
                         <option value="Short Term Rental">Short Term Rental</option>
                         <option value="Long Term Rental">Long Term Rental</option>
                         <option value="Business">Business</option>
@@ -84,7 +85,7 @@ class AssetForm extends React.Component {
                     <label>Monthly Cash Flow: </label><input value={this.state.cashFlow} type="number" onChange={this.handleCashFlowChange} />
                 </div>
                 <input type="submit" value="Add Asset" />
-            </ModalForm>
+            </form>
         );
     }
 }
