@@ -5,7 +5,7 @@ class ModalForm extends React.Component {
 
     render() {
         return (
-            <Modal visible={this.props.visible}>
+            <Modal visible={this.props.visible} onSubmission={this.props.onSubmission}>
                 <form onSubmit={this.props.onSubmission}>
                     {this.props.children}
                 </form>
