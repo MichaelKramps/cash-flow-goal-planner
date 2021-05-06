@@ -32,7 +32,7 @@ class Totals extends React.Component {
     }
 
     calculateCashFlowNeeded() {
-        return FormUtils.parseIntegerInput(this.state.cashFlowGoal) - FormUtils.parseIntegerInput(this.state.currentAssets);
+        return FormUtils.parseIntegerInput(this.state.cashFlowGoal) - FormUtils.parseIntegerInput(this.state.currentCashFlow);
     }
 
     render() {
