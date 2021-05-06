@@ -11,7 +11,7 @@ class CurrentCashFlowEditor extends React.Component {
 
         this.state = {
             totalCashFlow: 0,
-            currentAssets: [{name: "westridge", type: "real estate", initialInvestment: "30000", cashFlow: "500"}],
+            currentAssets: [],
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);

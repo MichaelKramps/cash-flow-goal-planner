@@ -9,7 +9,7 @@ class Totals extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cashFlowGoal: 2000,
+            cashFlowGoal: 0,
             currentCashFlow: 0,
             editingCashFlowGoal: false,
             editingCurrentCashFlow: false
