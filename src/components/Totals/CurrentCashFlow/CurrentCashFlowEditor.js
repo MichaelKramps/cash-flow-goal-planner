@@ -1,6 +1,6 @@
 import React from 'react';
 import AddCurrentAsset from "../../Assets/AddCurrentAsset";
-import SimpleAsset from "../../Assets/SimpleAsset";
+import SimpleAsset from "../../Assets/SimpleAssets/SimpleAsset";
 import Modal from "../../Shared/Modal";
 import FormUtils from "../../Shared/FormUtils";
 

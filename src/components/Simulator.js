@@ -1,7 +1,8 @@
 import React from 'react';
-import SimpleAsset from './Assets/SimpleAsset';
+import SimpleAsset from './Assets/SimpleAssets/SimpleAsset';
 import './Simulator.css';
 import Highlights from "./Totals/Highlights";
+import AddFutureAsset from "./Assets/AddFutureAsset";
 
 class Simulator extends React.Component {
 
@@ -56,7 +57,7 @@ class Simulator extends React.Component {
                 <h2>Investment Plan</h2>
                 <div>
                     {this.listAssets(this.state.futureAssets, this.updateFutureAsset)}
-                    {/*<AddFutureAsset onSubmission={this.submitFutureAsset} />*/}
+                    <AddFutureAsset />
                 </div>
             </div>
         );

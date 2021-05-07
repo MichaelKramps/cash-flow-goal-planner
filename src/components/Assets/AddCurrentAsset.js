@@ -1,5 +1,5 @@
 import React from 'react';
-import AddSimpleAsset from "./AddSimpleAsset";
+import AddSimpleAsset from "./SimpleAssets/AddSimpleAsset";
 
 class AddCurrentAsset extends React.Component {
 
