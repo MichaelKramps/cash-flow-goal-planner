@@ -4,7 +4,7 @@ import CashFlowGoalEditor from "./CashFlowGoal/CashFlowGoalEditor";
 import FormUtils from "../Shared/FormUtils";
 import CurrentCashFlowEditor from "./CurrentCashFlow/CurrentCashFlowEditor";
 
-class Totals extends React.Component {
+class Highlights extends React.Component {
 
     constructor(props) {
         super(props);
@@ -67,4 +67,4 @@ class Totals extends React.Component {
     }
 }
 
-export default Totals;
+export default Highlights;

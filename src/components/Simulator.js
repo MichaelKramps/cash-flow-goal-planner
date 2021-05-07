@@ -1,7 +1,7 @@
 import React from 'react';
-import Asset from './Assets/Asset';
+import SimpleAsset from './Assets/SimpleAsset';
 import './Simulator.css';
-import Totals from "./Totals/Totals";
+import Highlights from "./Totals/Highlights";
 
 class Simulator extends React.Component {
 
@@ -9,7 +9,6 @@ class Simulator extends React.Component {
         super(props);
 
         this.state = {
-            currentAssets: [{name: "westridge", type: "real estate", initialInvestment: "30000", cashFlow: "500"}],
             futureAssets: [],
             totals: []
         };
@@ -21,7 +20,7 @@ class Simulator extends React.Component {
 
     listAssets(assetList, updateFunction) {
         return assetList.map((asset, index) => {
-            return <Asset
+            return <SimpleAsset
                 key={index}
                 index={index}
                 name={asset.name}
@@ -52,9 +51,9 @@ class Simulator extends React.Component {
             <div className="simulator">
                 <h1>Cash Flow Early Retirement Planner</h1>
                 <div className="simulator-totals-container">
-                    <Totals {...this.state} />
+                    <Highlights {...this.state} />
                 </div>
-                <h2>Future Assets</h2>
+                <h2>Investment Plan</h2>
                 <div>
                     {this.listAssets(this.state.futureAssets, this.updateFutureAsset)}
                     {/*<AddFutureAsset onSubmission={this.submitFutureAsset} />*/}

@@ -1,5 +1,5 @@
 import React from 'react';
-import AddAsset from "./AddAsset";
+import AddSimpleAsset from "./AddSimpleAsset";
 
 class AddCurrentAsset extends React.Component {
 
@@ -12,7 +12,7 @@ class AddCurrentAsset extends React.Component {
     render() {
         if (this.state.editing) {
             return (
-                <AddAsset
+                <AddSimpleAsset
                     onSubmission={this.props.onSubmission}
                     stopEditing={() => {this.setState({editing: false})}}
                 />

@@ -1,6 +1,6 @@
 import React from 'react';
 import AddCurrentAsset from "../../Assets/AddCurrentAsset";
-import Asset from "../../Assets/Asset";
+import SimpleAsset from "../../Assets/SimpleAsset";
 import Modal from "../../Shared/Modal";
 import FormUtils from "../../Shared/FormUtils";
 
@@ -21,7 +21,7 @@ class CurrentCashFlowEditor extends React.Component {
 
     listAssets(assetList, updateFunction) {
         return assetList.map((asset, index) => {
-            return <Asset
+            return <SimpleAsset
                 key={index}
                 index={index}
                 name={asset.name}

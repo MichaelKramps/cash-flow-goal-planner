@@ -1,8 +1,8 @@
 import React from 'react';
-import './Asset.css';
-import EditAsset from "./EditAsset";
+import './SimpleAsset.css';
+import EditSimpleAsset from "./EditSimpleAsset";
 
-class Asset extends React.Component {
+class SimpleAsset extends React.Component {
 
     constructor(props) {
         super(props);
@@ -37,7 +37,7 @@ class Asset extends React.Component {
     render() {
         if (this.state.editing) {
             return (
-                <EditAsset
+                <EditSimpleAsset
                     name={this.state.name}
                     type={this.state.type}
                     visible={this.state.editing}
@@ -61,4 +61,4 @@ class Asset extends React.Component {
     }
 }
 
-export default Asset;
+export default SimpleAsset;

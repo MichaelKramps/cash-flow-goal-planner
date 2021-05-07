@@ -1,6 +1,6 @@
-import AssetForm from "./AssetForm";
+import SimpleAssetForm from "./SimpleAssetForm";
 
-class EditAsset extends AssetForm {
+class EditSimpleAsset extends SimpleAssetForm {
 
     handleSubmit(event) {
         event.preventDefault();
@@ -9,4 +9,4 @@ class EditAsset extends AssetForm {
     }
 }
 
-export default EditAsset;
+export default EditSimpleAsset;

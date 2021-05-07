@@ -1,6 +1,6 @@
-import AssetForm from "./AssetForm";
+import SimpleAssetForm from "./SimpleAssetForm";
 
-class AddAsset extends AssetForm {
+class AddSimpleAsset extends SimpleAssetForm {
 
     handleSubmit(event) {
         event.preventDefault();
@@ -16,4 +16,4 @@ class AddAsset extends AssetForm {
     }
 }
 
-export default AddAsset;
+export default AddSimpleAsset;

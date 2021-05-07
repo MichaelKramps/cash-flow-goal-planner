@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AssetForm extends React.Component {
+class SimpleAssetForm extends React.Component {
 
     constructor(props) {
         super(props);
@@ -90,4 +90,4 @@ class AssetForm extends React.Component {
     }
 }
 
-export default AssetForm;
+export default SimpleAssetForm;
