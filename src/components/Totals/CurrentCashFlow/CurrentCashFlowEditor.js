@@ -38,7 +38,6 @@ class CurrentCashFlowEditor extends React.Component {
     }
 
     submitCurrentAsset(asset) {
-        console.log(asset)
         let newAssets = this.state.currentAssets.slice();
         newAssets.push(asset);
 

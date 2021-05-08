@@ -105,7 +105,9 @@ class CashFlowGoalEditor extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.onSubmission(this.state);
+        this.setState({cashFlowGoal: this.calculateGoal()}, () => {
+            this.props.onSubmission(this.state);
+        });
     }
 
     render() {

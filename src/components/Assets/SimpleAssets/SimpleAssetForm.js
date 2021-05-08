@@ -1,4 +1,5 @@
 import React from 'react';
+import FormUtils from "../../Shared/FormUtils";
 
 class SimpleAssetForm extends React.Component {
 
@@ -17,47 +18,36 @@ class SimpleAssetForm extends React.Component {
         this.handleTypeChange = this.handleTypeChange.bind(this);
         this.handleInitialInvestmentChange = this.handleInitialInvestmentChange.bind(this);
         this.handleCashFlowChange = this.handleCashFlowChange.bind(this);
+        this.formIsValid = this.formIsValid.bind(this);
     }
 
     handleNameChange(event) {
-        this.setState({
-            name: event.target.value,
-            type: this.state.type,
-            initialInvestment: this.state.initialInvestment,
-            cashFlow: this.state.cashFlow
-        });
+        this.setState({name: event.target.value});
     }
 
     handleTypeChange(event) {
-        this.setState({
-            name: this.state.name,
-            type: event.target.value,
-            initialInvestment: this.state.initialInvestment,
-            cashFlow: this.state.cashFlow
-        });
+        this.setState({type: event.target.value});
     }
 
     handleInitialInvestmentChange(event) {
-        this.setState({
-            name: this.state.name,
-            type: this.state.type,
-            initialInvestment: event.target.value,
-            cashFlow: this.state.cashFlow
-        });
+        this.setState({initialInvestment: event.target.value});
     }
 
     handleCashFlowChange(event) {
-        this.setState({
-            name: this.state.name,
-            type: this.state.type,
-            initialInvestment: this.state.initialInvestment,
-            cashFlow: event.target.value
-        });
+        this.setState({cashFlow: event.target.value});
+    }
+
+    formIsValid() {
+        return this.state.name && this.state.type && this.state.initialInvestment && this.state.cashFlow;
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this.props.onSubmission(this.state);
+        if (this.formIsValid()) {
+            this.props.onSubmission(this.state);
+        } else {
+            alert("All fields are required.")
+        }
     }
 
     render() {
@@ -79,10 +69,20 @@ class SimpleAssetForm extends React.Component {
                     </select>
                 </div>
                 <div>
-                    <label>Initial Investment: </label><input value={this.state.initialInvestment} type="number" onChange={this.handleInitialInvestmentChange} />
+                    <label>Initial Investment: </label>
+                    <input
+                        value={this.state.initialInvestment}
+                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                        onChange={this.handleInitialInvestmentChange}
+                    />
                 </div>
                 <div>
-                    <label>Monthly Cash Flow: </label><input value={this.state.cashFlow} type="number" onChange={this.handleCashFlowChange} />
+                    <label>Monthly Cash Flow: </label>
+                    <input
+                        value={this.state.cashFlow}
+                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                        onChange={this.handleCashFlowChange}
+                    />
                 </div>
                 <input type="submit" value="Add Asset" />
             </form>
