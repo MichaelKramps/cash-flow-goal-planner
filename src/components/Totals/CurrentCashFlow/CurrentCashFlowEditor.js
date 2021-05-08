@@ -20,17 +20,21 @@ class CurrentCashFlowEditor extends React.Component {
     }
 
     listAssets(assetList, updateFunction) {
-        return assetList.map((asset, index) => {
-            return <SimpleAsset
-                key={index}
-                index={index}
-                name={asset.name}
-                type={asset.type}
-                initialInvestment={asset.initialInvestment}
-                cashFlow={asset.cashFlow}
-                onUpdate={updateFunction}
-            />
-        })
+        if (assetList.length > 0) {
+            return assetList.map((asset, index) => {
+                return <SimpleAsset
+                    key={index}
+                    index={index}
+                    name={asset.name}
+                    type={asset.type}
+                    initialInvestment={asset.initialInvestment}
+                    cashFlow={asset.cashFlow}
+                    onUpdate={updateFunction}
+                />
+            })
+        } else {
+            return <div>You currently have no assets.</div>
+        }
     }
 
     submitCurrentAsset(asset) {
@@ -69,6 +73,7 @@ class CurrentCashFlowEditor extends React.Component {
     render() {
         return (
             <Modal visible={this.props.editing} onSubmission={this.handleSubmit}>
+                <h3>Add assets you currently own to increase your current cash flow.</h3>
                 {this.listAssets(this.state.currentAssets, this.updateCurrentAsset)}
                 <AddCurrentAsset onSubmission={this.submitCurrentAsset} />
                 <button onClick={this.handleSubmit}>Update</button>

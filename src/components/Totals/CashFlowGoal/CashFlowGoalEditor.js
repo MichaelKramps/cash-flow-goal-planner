@@ -15,6 +15,7 @@ class CashFlowGoalEditor extends React.Component {
                 utilities: 0,
                 food: 0,
                 travel: 0,
+                insurance: 0,
                 entertainment: 0,
                 miscellaneous: 0,
                 investing: 0
@@ -26,6 +27,7 @@ class CashFlowGoalEditor extends React.Component {
         this.handleUtilitiesChange = this.handleUtilitiesChange.bind(this);
         this.handleFoodChange = this.handleFoodChange.bind(this);
         this.handleTravelChange = this.handleTravelChange.bind(this);
+        this.handleInsuranceChange = this.handleInsuranceChange.bind(this);
         this.handleEntertainmentChange = this.handleEntertainmentChange.bind(this);
         this.handleMiscellaneousChange = this.handleMiscellaneousChange.bind(this);
         this.handleInvestingChange = this.handleInvestingChange.bind(this);
@@ -65,6 +67,10 @@ class CashFlowGoalEditor extends React.Component {
         this.handleExpenseChange(event, "travel");
     }
 
+    handleInsuranceChange(event) {
+        this.handleExpenseChange(event, "insurance");
+    }
+
     handleEntertainmentChange(event) {
         this.handleExpenseChange(event, "entertainment");
     }
@@ -82,6 +88,7 @@ class CashFlowGoalEditor extends React.Component {
             FormUtils.parseIntegerInput(this.state.expenses.utilities) +
             FormUtils.parseIntegerInput(this.state.expenses.food) +
             FormUtils.parseIntegerInput(this.state.expenses.travel) +
+            FormUtils.parseIntegerInput(this.state.expenses.insurance) +
             FormUtils.parseIntegerInput(this.state.expenses.entertainment) +
             FormUtils.parseIntegerInput(this.state.expenses.miscellaneous) +
             FormUtils.parseIntegerInput(this.state.expenses.investing);
@@ -143,6 +150,14 @@ class CashFlowGoalEditor extends React.Component {
                         value={this.state.expenses.travel}
                         onKeyDown={FormUtils.validateIntegerInput}
                         onChange={this.handleTravelChange}
+                    />
+                </div>
+                <div>
+                    <label>Insurance</label>
+                    <input
+                        value={this.state.expenses.insurance}
+                        onKeyDown={FormUtils.validateIntegerInput}
+                        onChange={this.handleInsuranceChange}
                     />
                 </div>
                 <div>

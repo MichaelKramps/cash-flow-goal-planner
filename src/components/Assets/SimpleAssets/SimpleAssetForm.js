@@ -69,7 +69,7 @@ class SimpleAssetForm extends React.Component {
                 <div>
                     <label>Type: </label>
                     <select value={this.state.type} onChange={this.handleTypeChange}>
-                        <option value="">Select an investment type</option>
+                        <option value=""></option>
                         <option value="Short Term Rental">Short Term Rental</option>
                         <option value="Long Term Rental">Long Term Rental</option>
                         <option value="Business">Business</option>
