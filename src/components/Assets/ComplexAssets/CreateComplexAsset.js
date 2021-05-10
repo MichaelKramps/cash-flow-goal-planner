@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from "../../Shared/Modal";
+import './CreateComplexAsset.css';
+import ShortTermRentalAsset from "./ShortTermRentalAsset";
 
 class CreateComplexAsset extends React.Component {
 
@@ -7,28 +9,29 @@ class CreateComplexAsset extends React.Component {
         super(props);
 
         this.state = {
-            futureAssets: []
+            futureAssets: [],
+            view: 'list-view'
         };
 
-        this.foo = this.foo.bind(this);
+        this.changeView = this.changeView.bind(this);
     }
 
-    foo() {
-        return null
+    changeView(viewName) {
+        this.setState({view: viewName});
     }
 
     render() {
         return (
-            <Modal visible={this.props.visible} onSubmission={this.props.onSubmission}>
+            <Modal visible={this.props.visible} onSubmission={this.props.onSubmission} className={this.state.view}>
                 <h3>What type of investment will you buy next?</h3>
-                <div>
+                <div className='investment-type-list'>
                     <button>Long Term Rental</button>
-                    <button>Short Term Rental</button>
+                    <button onClick={() => {this.changeView('short-term-rental-view')}}>Short Term Rental</button>
                     <button>Business</button>
                     <button>Stock</button>
                     <button>Retirement Account</button>
                 </div>
-                {/*<ShortTermRentalAsset />*/}
+                <ShortTermRentalAsset />
                 {/*<LongTermRentalAsset />*/}
                 {/*<BusinessAsset />*/}
                 {/*<StockAsset />*/}

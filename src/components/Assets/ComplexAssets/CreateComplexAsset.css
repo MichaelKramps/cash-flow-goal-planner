@@ -1,0 +1,12 @@
+.investment-type-list,
+.short-term-rental-asset
+{
+    display: none;
+}
+
+.list-view .investment-type-list,
+.short-term-rental-view .short-term-rental-asset,
+.short-term-rental-view .short-term-rental-calculator
+{
+    display: block;
+}
