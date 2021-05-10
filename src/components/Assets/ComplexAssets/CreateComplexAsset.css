@@ -1,12 +1,13 @@
-.investment-type-list,
-.short-term-rental-asset
+.page-one,
+.page-two,
+.page-three
 {
     display: none;
 }
 
-.list-view .investment-type-list,
-.short-term-rental-view .short-term-rental-asset,
-.short-term-rental-view .short-term-rental-calculator
+.page-one .page-one,
+.page-two .page-two,
+.page-three .page-three
 {
     display: block;
 }
