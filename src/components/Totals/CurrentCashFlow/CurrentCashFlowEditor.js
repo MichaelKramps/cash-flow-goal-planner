@@ -17,9 +17,10 @@ class CurrentCashFlowEditor extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.submitCurrentAsset = this.submitCurrentAsset.bind(this);
         this.updateCurrentAsset = this.updateCurrentAsset.bind(this);
+        this.deleteCurrentAsset = this.deleteCurrentAsset.bind(this);
     }
 
-    listAssets(assetList, updateFunction) {
+    listAssets(assetList, updateFunction, deleteFunction) {
         if (assetList.length > 0) {
             return assetList.map((asset, index) => {
                 return <SimpleAsset
@@ -30,6 +31,7 @@ class CurrentCashFlowEditor extends React.Component {
                     initialInvestment={asset.initialInvestment}
                     cashFlow={asset.cashFlow}
                     onUpdate={updateFunction}
+                    onDelete={deleteFunction}
                 />
             })
         } else {
@@ -49,6 +51,16 @@ class CurrentCashFlowEditor extends React.Component {
         newAssets[index] = asset;
 
         this.setState({currentAssets: newAssets});
+    }
+
+    deleteCurrentAsset(index) {
+        let newAssets = this.state.currentAssets.slice();
+        newAssets.splice(index, 1);
+
+        // no idea why, but this extra step seems to be necessary
+        this.setState({currentAssets: []}, () => {
+            this.setState({currentAssets: newAssets})
+        });
     }
 
     calculateTotalCashFlow() {
@@ -73,7 +85,7 @@ class CurrentCashFlowEditor extends React.Component {
         return (
             <Modal visible={this.props.editing} onSubmission={this.handleSubmit}>
                 <h3>Add assets you currently own to increase your current cash flow.</h3>
-                {this.listAssets(this.state.currentAssets, this.updateCurrentAsset)}
+                {this.listAssets(this.state.currentAssets, this.updateCurrentAsset, this.deleteCurrentAsset)}
                 <AddCurrentAsset onSubmission={this.submitCurrentAsset} />
                 <button onClick={this.handleSubmit}>Update</button>
             </Modal>

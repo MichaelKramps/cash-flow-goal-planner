@@ -4,7 +4,6 @@ class AddSimpleAsset extends SimpleAssetForm {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(this.formIsValid())
         if (this.formIsValid()) {
             this.props.stopEditing(this.state);
             this.props.onSubmission(this.state);
