@@ -2,6 +2,8 @@
     display: none;
 }
 
-.short-term-rental-calculator-view .short-term-rental-calculator {
+.short-term-rental-calculator-view .short-term-rental-calculator,
+.short-term-rental-calculator.visible
+{
     display: block;
 }

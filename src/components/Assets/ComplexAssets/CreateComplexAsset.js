@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from "../../Shared/Modal";
 import './CreateComplexAsset.css';
-import ShortTermRentalAsset from "./ShortTermRentalAsset";
+import ShortTermRentalCalculator from "../../Calculators/ShortTermRentalCalculator";
 
 class CreateComplexAsset extends React.Component {
 
@@ -9,18 +9,22 @@ class CreateComplexAsset extends React.Component {
         super(props);
 
         this.state = {
-            futureAssets: [],
-            page: 1
+            page: 1,
+            type: ""
         };
 
         this.changeView = this.changeView.bind(this);
+        this.determinePageNumber = this.determinePageNumber.bind(this);
+        this.pageForward = this.pageForward.bind(this);
+        this.pageBackward = this.pageBackward.bind(this);
+        this.handleTypeChange = this.handleTypeChange.bind(this);
     }
 
     changeView(viewName) {
         this.setState({view: viewName});
     }
 
-    determineClassName() {
+    determinePageNumber() {
         switch(this.state.page){
             case 1:
                 return "page-one";
@@ -30,6 +34,14 @@ class CreateComplexAsset extends React.Component {
                 return "page-three";
             default:
                 return "page-one";
+        }
+    }
+
+    determineVisibility(type) {
+        if (this.state.type === type) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -45,9 +57,13 @@ class CreateComplexAsset extends React.Component {
         }
     }
 
+    handleTypeChange(event) {
+        this.setState({type: event.target.value});
+    }
+
     render() {
         return (
-            <Modal visible={this.props.visible} onSubmission={this.props.onSubmission} className={this.determineClassName()}>
+            <Modal visible={this.props.visible} onSubmission={this.props.onSubmission} className={this.determinePageNumber()}>
                 <div className='page-one'>
                     <h3>Tell me about your next investment...</h3>
                     <label>Give your investment a name: </label><input />
@@ -63,7 +79,7 @@ class CreateComplexAsset extends React.Component {
                     </select>
                 </div>
                 <div className='page-two'>
-                    page two
+                    <ShortTermRentalCalculator visible={this.determineVisibility("Short Term Rental")} />
                 </div>
                 <div className='page-three'>
                     page three

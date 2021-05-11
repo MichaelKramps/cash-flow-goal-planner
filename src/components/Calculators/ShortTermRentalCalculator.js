@@ -99,8 +99,9 @@ class ShortTermRentalCalculator extends React.Component {
     }
 
     render() {
+        let visible = this.props.visible ? "visible" : "";
         return (
-            <div className="short-term-rental-calculator">
+            <div className={"short-term-rental-calculator " + visible}>
                 <form>
                     <h2>Short Term Rental Calculator</h2>
                     <div>
