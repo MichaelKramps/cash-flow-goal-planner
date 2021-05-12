@@ -18,6 +18,16 @@ class App extends React.Component {
       }
 
       this.changeView = this.changeView.bind(this);
+      this.determineVisibility = this.determineVisibility.bind(this);
+  }
+
+  determineVisibility(viewName) {
+      console.log(viewName)
+      if (this.state.view === viewName) {
+          return true;
+      } else {
+          return false;
+      }
   }
 
   changeView(viewName) {
@@ -28,13 +38,13 @@ class App extends React.Component {
         return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
-              <Simulator />
-              <InvestingConstants />
-              <InvestmentCalculator />
-              <LoanCalculator />
-              <LongTermRentalCalculator />
-              <MortgageCalculator />
-              <ShortTermRentalCalculator />
+              <Simulator visible={this.determineVisibility("simulator-view")} />
+              <InvestingConstants visible={this.determineVisibility("investing-constants-view")} />
+              <InvestmentCalculator visible={this.determineVisibility("investment-calculator-view")} />
+              <LoanCalculator visible={this.determineVisibility("loan-calculator-view")} />
+              <LongTermRentalCalculator visible={this.determineVisibility("long-term-rental-calculator-view")} />
+              <MortgageCalculator visible={this.determineVisibility("mortgage-calculator-view")} />
+              <ShortTermRentalCalculator visible={this.determineVisibility("short-term-rental-calculator-view")} />
           </div>
       );
   }

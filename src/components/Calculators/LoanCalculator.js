@@ -2,6 +2,7 @@ import React from 'react';
 import './LoanCalculator.css';
 import AmortizationSchedule from "../Shared/AmortizationSchedule";
 import FormUtils from "../Shared/FormUtils";
+import Shared from "../Shared/Shared";
 
 class LoanCalculator extends React.Component {
 
@@ -89,7 +90,7 @@ class LoanCalculator extends React.Component {
 
     render() {
         return (
-            <div className="loan-calculator">
+            <div className={"loan-calculator " + Shared.determineVisibility(this.props)}>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Loan Calculator</h2>
                     <div>

@@ -1,11 +1,4 @@
-.simulator {
-    padding: 16px;
-    display: none;
-}
 
-.simulator-view .simulator {
-    display: block;
-}
 
 h2 {
     text-align: left;

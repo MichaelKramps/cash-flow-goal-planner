@@ -3,6 +3,7 @@ import SimpleAsset from './Assets/SimpleAssets/SimpleAsset';
 import './Simulator.css';
 import Highlights from "./Totals/Highlights";
 import AddFutureAsset from "./Assets/AddFutureAsset";
+import Shared from "./Shared/Shared";
 
 class Simulator extends React.Component {
 
@@ -49,7 +50,7 @@ class Simulator extends React.Component {
 
     render() {
         return (
-            <div className="simulator">
+            <div className={"simulator " + Shared.determineVisibility(this.props)}>
                 <h1>Cash Flow Early Retirement Planner</h1>
                 <div className="simulator-totals-container">
                     <Highlights {...this.state} />

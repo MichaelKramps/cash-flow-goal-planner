@@ -3,6 +3,7 @@ import './ShortTermRentalCalculator.css'
 import FormUtils from "../Shared/FormUtils";
 import MortgageCalculatorForm from "./Forms/MortgageCalculatorForm";
 import Modal from "../Shared/Modal";
+import Shared from "../Shared/Shared";
 
 class ShortTermRentalCalculator extends React.Component {
 
@@ -99,9 +100,8 @@ class ShortTermRentalCalculator extends React.Component {
     }
 
     render() {
-        let visible = this.props.visible ? "visible" : "";
         return (
-            <div className={"short-term-rental-calculator " + visible}>
+            <div className={"short-term-rental-calculator " + Shared.determineVisibility(this.props)}>
                 <form>
                     <h2>Short Term Rental Calculator</h2>
                     <div>

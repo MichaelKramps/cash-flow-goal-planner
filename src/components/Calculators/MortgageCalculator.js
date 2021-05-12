@@ -2,6 +2,7 @@ import React from 'react';
 import './MortgageCalculator.css';
 import AmortizationSchedule from "../Shared/AmortizationSchedule";
 import MortgageCalculatorForm from "./Forms/MortgageCalculatorForm";
+import Shared from "../Shared/Shared";
 
 class MortgageCalculator extends React.Component {
 
@@ -29,7 +30,7 @@ class MortgageCalculator extends React.Component {
 
     render() {
         return (
-            <div className="mortgage-calculator">
+            <div className={"mortgage-calculator " + Shared.determineVisibility(this.props)}>
                 <MortgageCalculatorForm onSubmission={this.handleSubmit} />
                 <AmortizationSchedule amortization={this.state.amortization} />
             </div>

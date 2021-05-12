@@ -9,10 +9,6 @@
     overflow: auto;
 }
 
-.modal.visible {
-    display: block;
-}
-
 .modal-curtain {
     position: fixed;
     left: 0;
