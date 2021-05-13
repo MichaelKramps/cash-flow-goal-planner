@@ -22,7 +22,6 @@ class App extends React.Component {
   }
 
   determineVisibility(viewName) {
-      console.log(viewName)
       if (this.state.view === viewName) {
           return true;
       } else {

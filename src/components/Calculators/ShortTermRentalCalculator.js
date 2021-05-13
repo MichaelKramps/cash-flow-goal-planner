@@ -33,6 +33,7 @@ class ShortTermRentalCalculator extends React.Component {
         this.handleSuppliesChange = this.handleSuppliesChange.bind(this);
         this.handleOtherExpensesChange = this.handleOtherExpensesChange.bind(this);
         this.handleMortgageCalculatorSubmit = this.handleMortgageCalculatorSubmit.bind(this);
+        this.formIsValid = this.formIsValid.bind(this);
     }
 
     handleMonthlyIncomeChange(event) {
@@ -97,12 +98,21 @@ class ShortTermRentalCalculator extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        if (this.formIsValid()) {
+            this.setState({cashFlow: this.updateCashFlow()}, () => {
+                this.props.onSubmission(this.state);
+            })
+        }
+    }
+
+    formIsValid() {
+        return true;
     }
 
     render() {
         return (
             <div className={"short-term-rental-calculator " + Shared.determineVisibility(this.props)}>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <h2>Short Term Rental Calculator</h2>
                     <div>
                         <label>Expected Monthly Income</label>
@@ -177,6 +187,7 @@ class ShortTermRentalCalculator extends React.Component {
                     <p>Value of the property, rate of appreciation, loan terms and years left on loan</p>
                     <h3>Considerations for ROI</h3>
                     <p>Down payment and Additional Initial investment (furniture, linens, etc)</p>
+                    <input type="Submit" value="Submit" />
                 </form>
                 <Modal visible={this.state.modals.mortgageCalculator}>
                     <MortgageCalculatorForm onSubmission={this.handleMortgageCalculatorSubmit} />

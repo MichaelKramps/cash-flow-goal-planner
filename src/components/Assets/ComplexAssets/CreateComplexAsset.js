@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from "../../Shared/Modal";
 import './CreateComplexAsset.css';
 import ShortTermRentalCalculator from "../../Calculators/ShortTermRentalCalculator";
+import LongTermRentalCalculator from "../../Calculators/LongTermRentalCalculator";
 
 class CreateComplexAsset extends React.Component {
 
@@ -18,6 +19,7 @@ class CreateComplexAsset extends React.Component {
         this.pageForward = this.pageForward.bind(this);
         this.pageBackward = this.pageBackward.bind(this);
         this.handleTypeChange = this.handleTypeChange.bind(this);
+        this.handleAssetSubmission = this.handleAssetSubmission.bind(this);
     }
 
     changeView(viewName) {
@@ -30,8 +32,6 @@ class CreateComplexAsset extends React.Component {
                 return "page-one";
             case 2:
                 return "page-two";
-            case 3:
-                return "page-three";
             default:
                 return "page-one";
         }
@@ -46,7 +46,7 @@ class CreateComplexAsset extends React.Component {
     }
 
     pageForward() {
-        if (this.state.page < 3) {
+        if (this.state.page < 2) {
             this.setState({page: this.state.page + 1})
         }
     }
@@ -59,6 +59,22 @@ class CreateComplexAsset extends React.Component {
 
     handleTypeChange(event) {
         this.setState({type: event.target.value});
+    }
+
+    handleAssetSubmission(state) {
+        this.props.onSubmission(state);
+    }
+
+    renderButtons() {
+        if (this.state.page === 1) {
+            return (
+                <button onClick={() => {this.pageForward()}}>Next</button>
+            )
+        } else {
+            return (
+                <button onClick={() => {this.pageBackward()}}>Back</button>
+            )
+        }
     }
 
     render() {
@@ -79,13 +95,13 @@ class CreateComplexAsset extends React.Component {
                     </select>
                 </div>
                 <div className='page-two'>
-                    <ShortTermRentalCalculator visible={this.determineVisibility("Short Term Rental")} />
+                    <ShortTermRentalCalculator
+                        visible={this.determineVisibility("Short Term Rental")}
+                        onSubmission={this.handleAssetSubmission}
+                    />
+                    <LongTermRentalCalculator visible={this.determineVisibility("Long Term Rental")} />
                 </div>
-                <div className='page-three'>
-                    page three
-                </div>
-                <button onClick={() => {this.pageBackward()}}>Back</button>
-                <button onClick={() => {this.pageForward()}}>Next</button>
+                {this.renderButtons()}
             </Modal>
         );
     }
