@@ -11,13 +11,15 @@ class CreateComplexAsset extends React.Component {
 
         this.state = {
             page: 1,
-            type: ""
+            type: "",
+            name: ""
         };
 
         this.changeView = this.changeView.bind(this);
         this.determinePageNumber = this.determinePageNumber.bind(this);
         this.pageForward = this.pageForward.bind(this);
         this.pageBackward = this.pageBackward.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
         this.handleTypeChange = this.handleTypeChange.bind(this);
         this.handleAssetSubmission = this.handleAssetSubmission.bind(this);
     }
@@ -57,12 +59,19 @@ class CreateComplexAsset extends React.Component {
         }
     }
 
+    handleNameChange(event) {
+        this.setState({name: event.target.value});
+    }
+
     handleTypeChange(event) {
         this.setState({type: event.target.value});
     }
 
     handleAssetSubmission(state) {
-        this.props.onSubmission(state);
+        let fullState = state;
+        fullState.name = this.state.name;
+        fullState.type = this.state.type;
+        this.props.onSubmission(fullState);
     }
 
     renderButtons() {
@@ -82,7 +91,7 @@ class CreateComplexAsset extends React.Component {
             <Modal visible={this.props.visible} onSubmission={this.props.onSubmission} className={this.determinePageNumber()}>
                 <div className='page-one'>
                     <h3>Tell me about your next investment...</h3>
-                    <label>Give your investment a name: </label><input />
+                    <label>Give your investment a name: </label><input value={this.state.name} onChange={this.handleNameChange} />
                     <label>What type of investment is this?</label>
                     <select value={this.state.type} onChange={this.handleTypeChange}>
                         <option value=""></option>
