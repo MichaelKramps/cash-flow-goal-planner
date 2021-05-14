@@ -47,12 +47,17 @@ class AddFutureAsset extends React.Component {
     }
 
     handleSubmit(state) {
-        this.setState({editing: false});
+        this.setState({editing: false}, () => {
+            let futureAssets = this.state.futureAssets.slice();
+            futureAssets.push(state);
+            this.setState({futureAssets: futureAssets});
+        });
     }
 
     render() {
         return (
             <div>
+                {this.listAssets(this.state.futureAssets, this.updateFutureAsset)}
                 <button onClick={() => {this.setState({editing: true})}}>Add my next investment</button>
                 <CreateComplexAsset visible={this.state.editing} onSubmission={this.handleSubmit} />
             </div>

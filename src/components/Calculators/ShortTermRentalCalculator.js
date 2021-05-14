@@ -73,7 +73,7 @@ class ShortTermRentalCalculator extends React.Component {
     }
 
     handleOtherExpensesChange(event) {
-        this.setState({mortgage: event.target.value}, () => {
+        this.setState({otherExpenses: event.target.value}, () => {
             this.updateCashFlow();
         });
     }
@@ -99,9 +99,7 @@ class ShortTermRentalCalculator extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.formIsValid()) {
-            this.setState({cashFlow: this.updateCashFlow()}, () => {
-                this.props.onSubmission(this.state);
-            })
+            this.props.onSubmission(this.state);
         }
     }
 
