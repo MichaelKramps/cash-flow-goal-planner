@@ -3,6 +3,10 @@ import Modal from "../../Shared/Modal";
 import './CreateComplexAsset.css';
 import ShortTermRentalCalculator from "../../Calculators/ShortTermRentalCalculator";
 import LongTermRentalCalculator from "../../Calculators/LongTermRentalCalculator";
+import BusinessCalculator from "../../Calculators/BusinessCalculator";
+import StockPortfolioCalculator from "../../Calculators/StockPortfolioCalculator";
+import RetirementPortfolioCalculator from "../../Calculators/RetirementPortfolioCalculator";
+import GenericInvestmentCalculator from "../../Calculators/GenericInvestmentCalculator";
 
 class CreateComplexAsset extends React.Component {
 
@@ -108,7 +112,26 @@ class CreateComplexAsset extends React.Component {
                         visible={this.determineVisibility("Short Term Rental")}
                         onSubmission={this.handleAssetSubmission}
                     />
-                    <LongTermRentalCalculator visible={this.determineVisibility("Long Term Rental")} />
+                    <LongTermRentalCalculator
+                        visible={this.determineVisibility("Long Term Rental")}
+                        onSubmission={this.handleAssetSubmission}
+                    />
+                    <BusinessCalculator
+                        visible={this.determineVisibility("Business")}
+                        onSubmission={this.handleAssetSubmission}
+                    />
+                    <StockPortfolioCalculator
+                        visible={this.determineVisibility("Stock Portfolio")}
+                        onSubmission={this.handleAssetSubmission}
+                    />
+                    <RetirementPortfolioCalculator
+                        visible={this.determineVisibility("Retirement Account")}
+                        onSubmission={this.handleAssetSubmission}
+                    />
+                    <GenericInvestmentCalculator
+                        visible={this.determineVisibility("Other")}
+                        onSubmission={this.handleAssetSubmission}
+                    />
                 </div>
                 {this.renderButtons()}
             </Modal>
