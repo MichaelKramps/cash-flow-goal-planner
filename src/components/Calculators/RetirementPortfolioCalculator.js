@@ -7,7 +7,7 @@ class RetirementPortfolioCalculator extends React.Component {
     render() {
         return (
             <div className={"retirement-portfolio-calculator " + Shared.determineVisibility(this.props)}>
-                Retirment Portfolio Calculator
+                Retirement Portfolio Calculator
             </div>
         );
     }

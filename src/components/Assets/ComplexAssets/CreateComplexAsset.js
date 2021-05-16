@@ -23,6 +23,7 @@ class CreateComplexAsset extends React.Component {
         this.determinePageNumber = this.determinePageNumber.bind(this);
         this.pageForward = this.pageForward.bind(this);
         this.pageBackward = this.pageBackward.bind(this);
+        this.validateNameAndType = this.validateNameAndType.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleTypeChange = this.handleTypeChange.bind(this);
         this.handleAssetSubmission = this.handleAssetSubmission.bind(this);
@@ -52,8 +53,10 @@ class CreateComplexAsset extends React.Component {
     }
 
     pageForward() {
-        if (this.state.page < 2) {
+        if (this.state.page < 2 && this.validateNameAndType()) {
             this.setState({page: this.state.page + 1})
+        } else {
+            alert ("All fields are required")
         }
     }
 
@@ -61,6 +64,10 @@ class CreateComplexAsset extends React.Component {
         if (this.state.page > 1) {
             this.setState({page: this.state.page - 1})
         }
+    }
+
+    validateNameAndType() {
+        return this.state.name && this.state.type;
     }
 
     handleNameChange(event) {
