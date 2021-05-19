@@ -158,7 +158,7 @@ class BusinessCalculator extends React.Component {
         newState[yearlyItemToUpdate] = newYearlyValue;
         newState[monthlyItemToUpdate] = newMonthlyValue;
         this.setState(newState, () => {
-            this.updateCashFlow();
+            this.updateExpensesAndCashFlow();
         });
     }
 
@@ -171,6 +171,28 @@ class BusinessCalculator extends React.Component {
         newState[yearlyItemToUpdate] = newYearlyValue;
         newState[monthlyItemToUpdate] = newMonthlyValue;
         this.setState(newState, () => {
+            this.updateExpensesAndCashFlow();
+        });
+    }
+
+    updateExpensesAndCashFlow() {
+        let totalYearlyExpenses = FormUtils.parseIntegerInput(this.state.yearlyRent) +
+            FormUtils.parseIntegerInput(this.state.yearlyPayroll) +
+            FormUtils.parseIntegerInput(this.state.yearlySubscriptions) +
+            FormUtils.parseIntegerInput(this.state.yearlyOtherExpenses);
+
+        this.setState({totalYearlyExpenses: totalYearlyExpenses}, () => {
+            this.updateMonthlyExpensesAndCashFlow(); //
+        });
+    }
+
+    updateMonthlyExpensesAndCashFlow() {
+        let totalMonthlyExpenses = FormUtils.parseIntegerInput(this.state.monthlyRent) +
+            FormUtils.parseIntegerInput(this.state.monthlyPayroll) +
+            FormUtils.parseIntegerInput(this.state.monthlySubscriptions) +
+            FormUtils.parseIntegerInput(this.state.monthlyOtherExpenses);
+
+        this.setState({totalMonthlyExpenses: totalMonthlyExpenses}, () => {
             this.updateCashFlow();
         });
     }
