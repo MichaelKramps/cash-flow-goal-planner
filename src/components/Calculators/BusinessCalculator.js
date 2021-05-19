@@ -64,7 +64,6 @@ class BusinessCalculator extends React.Component {
     }
 
     handleTotalYearlyExpensesChange(event, calculatedValue){
-        console.log(calculatedValue)
         if (calculatedValue) {
             this.setState({totalYearlyExpenses: calculatedValue}, () => {
                 this.recalculateYearlyExpenses();
@@ -84,8 +83,8 @@ class BusinessCalculator extends React.Component {
             - FormUtils.parseIntegerInput(this.state.yearlyPayroll)
             - FormUtils.parseIntegerInput(this.state.yearlySubscriptions);
 
-        this.setState({
-            yearlyOtherExpenses: yearlyOtherExpenses
+        this.setState({yearlyOtherExpenses: yearlyOtherExpenses}, () => {
+            this.updateExpensesAndCashFlow();
         })
     }
 
@@ -110,8 +109,8 @@ class BusinessCalculator extends React.Component {
             - FormUtils.parseIntegerInput(this.state.monthlyPayroll)
             - FormUtils.parseIntegerInput(this.state.monthlySubscriptions);
 
-        this.setState({
-            monthlyOtherExpenses: monthlyOtherExpenses
+        this.setState({monthlyOtherExpenses: monthlyOtherExpenses}, () => {
+            this.updateExpensesAndCashFlow();
         })
     }
 

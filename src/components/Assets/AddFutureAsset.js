@@ -20,13 +20,14 @@ class AddFutureAsset extends React.Component {
 
     listAssets(assetList, updateFunction) {
         return assetList.map((asset, index) => {
+            let cashFlow = asset.cashFlow ? asset.cashFlow : asset.monthlyCashFlow;
             return <SimpleAsset
                 key={index}
                 index={index}
                 name={asset.name}
                 type={asset.type}
                 initialInvestment={asset.initialInvestment}
-                cashFlow={asset.cashFlow}
+                cashFlow={cashFlow}
                 onUpdate={updateFunction}
             />
         })
