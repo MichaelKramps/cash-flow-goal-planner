@@ -5,7 +5,6 @@ import ShortTermRentalCalculator from "../../Calculators/ShortTermRentalCalculat
 import LongTermRentalCalculator from "../../Calculators/LongTermRentalCalculator";
 import BusinessCalculator from "../../Calculators/BusinessCalculator";
 import StockPortfolioCalculator from "../../Calculators/StockPortfolioCalculator";
-import RetirementPortfolioCalculator from "../../Calculators/RetirementPortfolioCalculator";
 import GenericInvestmentCalculator from "../../Calculators/GenericInvestmentCalculator";
 
 class CreateComplexAsset extends React.Component {
@@ -110,7 +109,6 @@ class CreateComplexAsset extends React.Component {
                         <option value="Long Term Rental">Long Term Rental</option>
                         <option value="Business">Business</option>
                         <option value="Stock Portfolio">Stock Portfolio</option>
-                        <option value="Retirement Account">Retirement Account</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>
@@ -129,10 +127,6 @@ class CreateComplexAsset extends React.Component {
                     />
                     <StockPortfolioCalculator
                         visible={this.determineVisibility("Stock Portfolio")}
-                        onSubmission={this.handleAssetSubmission}
-                    />
-                    <RetirementPortfolioCalculator
-                        visible={this.determineVisibility("Retirement Account")}
                         onSubmission={this.handleAssetSubmission}
                     />
                     <GenericInvestmentCalculator

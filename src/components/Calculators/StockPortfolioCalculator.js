@@ -12,7 +12,9 @@ class StockPortfolioCalculator extends React.Component {
             value: this.props.value || 0,
             returnOnValue: this.props.returnOnValue,
             dividendYield: this.props.dividendYield,
-            cashFlow: 0
+            cashFlow: 0,
+            fiveYearCashFlow: 0,
+            tenYearCashFlow: 0
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,9 +42,22 @@ class StockPortfolioCalculator extends React.Component {
     }
 
     updateCashFlow() {
-        let newCashFlow = (FormUtils.parseIntegerInput(this.state.value) * FormUtils.parseIntegerInput(this.state.dividendYield) / 1200).toFixed(0);
+        let value = FormUtils.parseIntegerInput(this.state.value);
+        let dividendYield = FormUtils.parseIntegerInput(this.state.dividendYield) / 100;
+        let returnOnValue = FormUtils.parseIntegerInput(this.state.returnOnValue) / 100;
 
-        this.setState({cashFlow: newCashFlow});
+        let newCashFlow = (value * dividendYield / 12).toFixed(0);
+        let newFiveYearCashFlow = (value * Math.pow(1 + returnOnValue, 5) * dividendYield / 12).toFixed(0);
+        console.log(newFiveYearCashFlow)
+        let newTenYearCashFlow = (value * Math.pow(1 + returnOnValue, 10) * dividendYield / 12).toFixed(0);
+
+        let newState = JSON.parse(JSON.stringify(this.state));
+
+        newState.cashFlow = newCashFlow;
+        newState.fiveYearCashFlow = newFiveYearCashFlow;
+        newState.tenYearCashFlow = newTenYearCashFlow;
+
+        this.setState(newState);
     }
 
     handleSubmit(event) {
@@ -86,7 +101,13 @@ class StockPortfolioCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        Monthly Cash Flow: ${this.state.cashFlow}
+                        Current Monthly Cash Flow: ${this.state.cashFlow}
+                    </div>
+                    <div>
+                        Monthly Cash Flow in 5 years: ${this.state.fiveYearCashFlow}
+                    </div>
+                    <div>
+                        Monthly Cash Flow in 10 years: ${this.state.tenYearCashFlow}
                     </div>
                     <input type="Submit" value="Submit" />
                 </form>

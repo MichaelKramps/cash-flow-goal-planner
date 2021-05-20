@@ -1,5 +1,4 @@
 import React from 'react';
-import SimpleAsset from './Assets/SimpleAssets/SimpleAsset';
 import './Simulator.css';
 import Highlights from "./Totals/Highlights";
 import AddFutureAsset from "./Assets/AddFutureAsset";
