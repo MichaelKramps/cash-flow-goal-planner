@@ -131,7 +131,7 @@ class GenericInvestmentCalculator extends React.Component {
                         <label>Yearly Percentage Increase in Value</label>
                         <input
                             value={this.state.yearlyValueGrowth}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
                             onChange={this.handleYearlyValueGrowthChange}
                         />
                     </div>
@@ -156,7 +156,7 @@ class GenericInvestmentCalculator extends React.Component {
                         <label>Yearly Increase in Payments</label>
                         <input
                             value={this.state.yearlyPaymentGrowth}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
                             onChange={this.handleYearlyPaymentGrowthChange}
                         />
                     </div>
@@ -181,7 +181,7 @@ class GenericInvestmentCalculator extends React.Component {
                         <label>Yearly Increase in Expenses</label>
                         <input
                             value={this.state.yearlyExpenseGrowth}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
                             onChange={this.handleYearlyExpenseGrowthChange}
                         />
                     </div>

@@ -43,8 +43,8 @@ class StockPortfolioCalculator extends React.Component {
 
     updateCashFlow() {
         let value = FormUtils.parseIntegerInput(this.state.value);
-        let dividendYield = FormUtils.parseIntegerInput(this.state.dividendYield) / 100;
-        let returnOnValue = FormUtils.parseIntegerInput(this.state.returnOnValue) / 100;
+        let dividendYield = FormUtils.parseFloatInput(this.state.dividendYield) / 100;
+        let returnOnValue = FormUtils.parseFloatInput(this.state.returnOnValue) / 100;
 
         let newCashFlow = (value * dividendYield / 12).toFixed(0);
         let newFiveYearCashFlow = (value * Math.pow(1 + returnOnValue, 5) * dividendYield / 12).toFixed(0);
@@ -88,7 +88,7 @@ class StockPortfolioCalculator extends React.Component {
                         <label>Yearly Percentage Increase in Value</label>
                         <input
                             value={this.state.returnOnValue}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
                             onChange={this.handleReturnOnValueChange}
                         />
                     </div>
@@ -96,7 +96,7 @@ class StockPortfolioCalculator extends React.Component {
                         <label>Yearly Dividend Yield</label>
                         <input
                             value={this.state.dividendYield}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
                             onChange={this.handleDividendYieldChange}
                         />
                     </div>
