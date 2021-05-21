@@ -9,14 +9,16 @@ import GenericInvestmentCalculator from "../../Calculators/GenericInvestmentCalc
 
 class CreateComplexAsset extends React.Component {
 
+    defaultState = {
+        page: 1,
+        type: "",
+        name: ""
+    }
+
     constructor(props) {
         super(props);
 
-        this.state = {
-            page: 1,
-            type: "",
-            name: ""
-        };
+        this.state = this.defaultState;
 
         this.changeView = this.changeView.bind(this);
         this.determinePageNumber = this.determinePageNumber.bind(this);
@@ -78,6 +80,8 @@ class CreateComplexAsset extends React.Component {
     }
 
     handleAssetSubmission(state) {
+        this.setState(this.defaultState);
+
         let fullState = state;
         fullState.name = this.state.name;
         fullState.type = this.state.type;
@@ -98,7 +102,7 @@ class CreateComplexAsset extends React.Component {
 
     render() {
         return (
-            <Modal visible={this.props.visible} onSubmission={this.props.onSubmission} className={this.determinePageNumber()}>
+            <Modal visible={this.props.visible} onSubmission={this.handleAssetSubmission} className={this.determinePageNumber()}>
                 <div className='page-one'>
                     <h3>Tell me about your next investment...</h3>
                     <label>Give your investment a name: </label><input value={this.state.name} onChange={this.handleNameChange} />

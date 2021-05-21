@@ -7,22 +7,24 @@ import Shared from "../Shared/Shared";
 
 class ShortTermRentalCalculator extends React.Component {
 
+    defaultState = {
+        monthlyIncome: this.props.monthlyIncome || 0,
+        mortgage: this.props.mortgage || 0,
+        utilities: this.props.utilities || 0,
+        maintenance: this.props.maintenance || 0,
+        cleaning: this.props.cleaning || 0,
+        supplies: this.props.supplies || 0,
+        otherExpenses: this.props.otherExpenses || 0,
+        cashFlow: this.props.cashFlow || 0,
+        modals: {
+            mortgageCalculator: false
+        }
+    };
+
     constructor(props) {
         super(props);
 
-        this.state = {
-            monthlyIncome: this.props.monthlyIncome || 0,
-            mortgage: this.props.mortgage,
-            utilities: this.props.utilities,
-            maintenance: this.props.maintenance,
-            cleaning: this.props.cleaning,
-            supplies: this.props.supplies,
-            otherExpenses: this.props.otherExpenses,
-            cashFlow: 0,
-            modals: {
-                mortgageCalculator: false
-            }
-        };
+        this.state = this.defaultState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleMonthlyIncomeChange = this.handleMonthlyIncomeChange.bind(this);
@@ -99,6 +101,7 @@ class ShortTermRentalCalculator extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.formIsValid()) {
+            this.setState(this.defaultState);
             this.props.onSubmission(this.state);
         }
     }

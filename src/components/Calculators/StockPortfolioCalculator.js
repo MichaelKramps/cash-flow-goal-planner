@@ -5,17 +5,19 @@ import FormUtils from "../Shared/FormUtils";
 
 class StockPortfolioCalculator extends React.Component {
 
+    defaultState = {
+        value: this.props.value || 0,
+        returnOnValue: this.props.returnOnValue || 0,
+        dividendYield: this.props.dividendYield || 0,
+        cashFlow: this.props.cashFlow || 0,
+        fiveYearCashFlow: this.props.fiveYearCashFlow || 0,
+        tenYearCashFlow: this.props.tenYearCashFlow || 0
+    };
+
     constructor(props) {
         super(props);
 
-        this.state = {
-            value: this.props.value || 0,
-            returnOnValue: this.props.returnOnValue,
-            dividendYield: this.props.dividendYield,
-            cashFlow: 0,
-            fiveYearCashFlow: 0,
-            tenYearCashFlow: 0
-        };
+        this.state = this.defaultState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleValueChange = this.handleValueChange.bind(this);
@@ -63,6 +65,7 @@ class StockPortfolioCalculator extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.formIsValid()) {
+            this.setState(this.defaultState);
             this.props.onSubmission(this.state);
         }
     }

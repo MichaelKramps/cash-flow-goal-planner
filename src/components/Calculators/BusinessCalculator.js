@@ -5,27 +5,29 @@ import FormUtils from "../Shared/FormUtils";
 
 class BusinessCalculator extends React.Component {
 
+    defaultState = {
+        yearlyRevenue: this.props.yearlyRevenue || 0,
+        monthlyRevenue: this.props.monthlyRevenue || 0,
+        totalYearlyExpenses: this.props.totalYearlyExpenses || 0,
+        totalMonthlyExpenses: this.props.totalMonthlyExpenses || 0,
+        yearlyRent: this.props.yearlyRent || 0,
+        monthlyRent: this.props.monthlyRent || 0,
+        yearlyLoanPayment: this.props.yearlyLoanPayment || 0,
+        monthlyLoanPayment: this.props.monthlyLoanPayment || 0,
+        yearlyPayroll: this.props.yearlyPayroll || 0,
+        monthlyPayroll: this.props.monthlyPayroll || 0,
+        yearlySubscriptions: this.props.yearlySubscriptions || 0,
+        monthlySubscriptions: this.props.monthlySubscriptions || 0,
+        yearlyOtherExpenses: this.props.yearlyOtherExpenses || 0,
+        monthlyOtherExpenses: this.props.monthlyOtherExpenses || 0,
+        yearlyCashFlow: this.props.yearlyCashFlow || 0,
+        monthlyCashFlow: this.props.monthlyCashFlow || 0
+    }
+
     constructor(props) {
         super(props);
 
-        this.state = {
-            yearlyRevenue: this.props.yearlyRevenue || 0,
-            monthlyRevenue: this.props.monthlyRevenue || 0,
-            totalYearlyExpenses: this.props.totalYearlyExpenses,
-            totalMonthlyExpenses: this.props.totalMonthlyExpenses,
-            yearlyRent: this.props.yearlyRent,
-            monthlyRent: this.props.monthlyRent,
-            yearlyLoanPayment: this.props.yearlyLoanPayment,
-            monthlyLoanPayment: this.props.monthlyLoanPayment,
-            yearlyPayroll: this.props.yearlyPayroll,
-            monthlyPayroll: this.props.monthlyPayroll,
-            yearlySubscriptions: this.props.yearlySubscriptions,
-            monthlySubscriptions: this.props.monthlySubscriptions,
-            yearlyOtherExpenses: this.props.yearlyOtherExpenses,
-            monthlyOtherExpenses: this.props.monthlyOtherExpenses,
-            yearlyCashFlow: 0,
-            monthlyCashFlow: 0
-        };
+        this.state = this.defaultState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleYearlyRevenueChange = this.handleYearlyRevenueChange.bind(this);
@@ -215,6 +217,7 @@ class BusinessCalculator extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.formIsValid()) {
+            this.setState(this.defaultState);
             this.props.onSubmission(this.state);
         }
     }

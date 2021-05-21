@@ -5,20 +5,22 @@ import FormUtils from "../Shared/FormUtils";
 
 class GenericInvestmentCalculator extends React.Component {
 
+    defaultState = {
+        value: this.props.value || 0,
+        yearlyValueGrowth: this.props.yearlyValueGrowth || 0,
+        yearlyPayments: this.props.yearlyPayments || 0,
+        monthlyPayments: this.props.monthlyPayments || 0,
+        yearlyPaymentGrowth: this.props.yearlyPaymentGrowth || 0,
+        yearlyExpenses: this.props.yearlyExpenses || 0,
+        monthlyExpenses: this.props.monthlyExpenses || 0,
+        yearlyExpenseGrowth: this.props.yearlyExpenseGrowth || 0,
+        cashFlow: this.props.cashFlow || 0
+    };
+
     constructor(props) {
         super(props);
 
-        this.state = {
-            value: this.props.value || 0,
-            yearlyValueGrowth: this.props.yearlyValueGrowth,
-            yearlyPayments: this.props.yearlyPayments,
-            monthlyPayments: this.props.monthlyPayments,
-            yearlyPaymentGrowth: this.props.yearlyPaymentGrowth,
-            yearlyExpenses: this.props.yearlyExpenses,
-            monthlyExpenses: this.props.monthlyExpenses,
-            yearlyExpenseGrowth: this.props.yearlyExpenseGrowth,
-            cashFlow: 0
-        };
+        this.state = this.defaultState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleValueChange = this.handleValueChange.bind(this);
@@ -106,6 +108,7 @@ class GenericInvestmentCalculator extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.formIsValid()) {
+            this.setState(this.defaultState);
             this.props.onSubmission(this.state);
         }
     }

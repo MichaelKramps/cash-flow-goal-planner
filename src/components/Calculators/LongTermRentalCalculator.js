@@ -5,19 +5,21 @@ import FormUtils from "../Shared/FormUtils";
 
 class LongTermRentalCalculator extends React.Component {
 
+    defaultState = {
+        monthlyIncome: this.props.monthlyIncome || 0,
+        mortgage: this.props.mortgage || 0,
+        utilities: this.props.utilities || 0,
+        maintenance: this.props.maintenance || 0,
+        vacancy: this.props.vacancy || 0,
+        management: this.props.management || 0,
+        otherExpenses: this.props.otherExpenses || 0,
+        cashFlow: this.props.cashFlow || 0
+    }
+
     constructor(props) {
         super(props);
 
-        this.state = {
-            monthlyIncome: this.props.monthlyIncome || 0,
-            mortgage: this.props.mortgage,
-            utilities: this.props.utilities,
-            maintenance: this.props.maintenance,
-            vacancy: this.props.vacancy,
-            management: this.props.management,
-            otherExpenses: this.props.otherExpenses,
-            cashFlow: 0
-        };
+        this.state = this.defaultState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleMonthlyIncomeChange = this.handleMonthlyIncomeChange.bind(this);
@@ -86,6 +88,7 @@ class LongTermRentalCalculator extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.formIsValid()) {
+            this.setState(this.defaultState);
             this.props.onSubmission(this.state);
         }
     }
