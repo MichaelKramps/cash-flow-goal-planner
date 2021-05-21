@@ -14,11 +14,12 @@ class AddFutureAsset extends React.Component {
 
         this.listAssets = this.listAssets.bind(this);
         this.updateFutureAsset = this.updateFutureAsset.bind(this);
+        this.deleteFutureAsset = this.deleteFutureAsset.bind(this);
         this.submitFutureAsset = this.submitFutureAsset.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    listAssets(assetList, updateFunction) {
+    listAssets(assetList, updateFunction, deleteFunction) {
         return assetList.map((asset, index) => {
             let cashFlow = asset.cashFlow ? asset.cashFlow : asset.monthlyCashFlow;
             return <SimpleAsset
@@ -29,6 +30,7 @@ class AddFutureAsset extends React.Component {
                 initialInvestment={asset.initialInvestment}
                 cashFlow={cashFlow}
                 onUpdate={updateFunction}
+                onDelete={deleteFunction}
             />
         })
     }
@@ -38,6 +40,16 @@ class AddFutureAsset extends React.Component {
         newAssets[index] = asset;
 
         this.setState({futureAssets: newAssets});
+    }
+
+    deleteFutureAsset(index) {
+        let newAssets = this.state.futureAssets.slice();
+        newAssets.splice(index, 1);
+
+        // no idea why, but this extra step seems to be necessary
+        this.setState({futureAssets: []}, () => {
+            this.setState({futureAssets: newAssets})
+        });
     }
 
     submitFutureAsset(asset) {
@@ -58,7 +70,7 @@ class AddFutureAsset extends React.Component {
     render() {
         return (
             <div>
-                {this.listAssets(this.state.futureAssets, this.updateFutureAsset)}
+                {this.listAssets(this.state.futureAssets, this.updateFutureAsset, this.deleteFutureAsset)}
                 <button onClick={() => {this.setState({editing: true})}}>Add my next investment</button>
                 <CreateComplexAsset visible={this.state.editing} onSubmission={this.handleSubmit} />
             </div>
