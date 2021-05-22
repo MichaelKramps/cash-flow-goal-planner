@@ -4,7 +4,6 @@ class EditSimpleAsset extends SimpleAssetForm {
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log('edit')
         if (this.formIsValid()) {
             this.props.stopEditing(this.state);
             this.props.onSubmission(this.props.index, this.state);

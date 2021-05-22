@@ -1,6 +1,6 @@
 import React from 'react';
-import SimpleAsset from "./SimpleAssets/SimpleAsset";
 import CreateComplexAsset from "./ComplexAssets/CreateComplexAsset";
+import ComplexAsset from "./ComplexAssets/ComplexAsset";
 
 class AddFutureAsset extends React.Component {
 
@@ -22,7 +22,7 @@ class AddFutureAsset extends React.Component {
     listAssets(assetList, updateFunction, deleteFunction) {
         return assetList.map((asset, index) => {
             let cashFlow = asset.cashFlow ? asset.cashFlow : asset.monthlyCashFlow;
-            return <SimpleAsset
+            return <ComplexAsset
                 key={index}
                 index={index}
                 name={asset.name}

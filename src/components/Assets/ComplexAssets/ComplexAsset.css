@@ -1,0 +1,13 @@
+.complex-asset {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.complex-asset div {
+    flex: 1 1 0px;
+}
+
+.complex-asset div {
+    cursor: pointer;
+}
