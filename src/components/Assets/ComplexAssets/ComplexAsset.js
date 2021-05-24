@@ -10,9 +10,10 @@ class ComplexAsset extends React.Component {
         this.state = {
             name: this.props.name,
             type: this.props.type,
-            initialInvestment: this.props.initialInvestment,
             cashFlow: this.props.cashFlow,
+            initialInvestment: this.props.initialInvestment,
             cashOnCash: this.calculateCashOnCash(this.props.cashFlow, this.props.initialInvestment) || 0,
+            advanced: this.props.advanced,
             editing: false
         }
 
@@ -47,6 +48,7 @@ class ComplexAsset extends React.Component {
                     visible={this.state.editing}
                     initialInvestment={this.state.initialInvestment}
                     cashFlow={this.state.cashFlow}
+                    advanced={this.state.advanced}
                     onSubmission={this.props.onUpdate}
                     stopEditing={this.stopEditing}
                     index={this.props.index}/>

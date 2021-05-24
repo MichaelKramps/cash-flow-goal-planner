@@ -7,7 +7,8 @@ class EditComplexAsset extends React.Component {
 
         this.state = {
             name: this.props.name,
-            type: this.props.type
+            type: this.props.type,
+            advanced: this.props.advanced
         }
 
         this.stopEditing = this.stopEditing.bind(this);

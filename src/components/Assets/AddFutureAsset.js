@@ -27,6 +27,7 @@ class AddFutureAsset extends React.Component {
                 index={index}
                 name={asset.name}
                 type={asset.type}
+                advanced={asset.advanced}
                 initialInvestment={asset.initialInvestment}
                 cashFlow={cashFlow}
                 onUpdate={updateFunction}
@@ -61,6 +62,8 @@ class AddFutureAsset extends React.Component {
 
     handleSubmit(state) {
         this.setState({editing: false}, () => {
+            let assetProps = JSON.parse(JSON.stringify(state));
+            assetProps.advanced = state;
             let futureAssets = this.state.futureAssets.slice();
             futureAssets.push(state);
             this.setState({futureAssets: futureAssets});
