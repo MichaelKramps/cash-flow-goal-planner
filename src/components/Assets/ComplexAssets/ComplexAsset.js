@@ -18,6 +18,7 @@ class ComplexAsset extends React.Component {
         }
 
         this.stopEditing = this.stopEditing.bind(this);
+        this.updateComplexAsset = this.updateComplexAsset.bind(this);
     }
 
     stopEditing(edits) {
@@ -39,6 +40,12 @@ class ComplexAsset extends React.Component {
         }
     }
 
+    updateComplexAsset(state) {
+        this.setState({editing: false}, () => {
+            this.props.onUpdate(this.props.index, state);
+        });
+    }
+
     render() {
         if (this.state.editing) {
             return (
@@ -46,10 +53,8 @@ class ComplexAsset extends React.Component {
                     name={this.state.name}
                     type={this.state.type}
                     visible={this.state.editing}
-                    initialInvestment={this.state.initialInvestment}
-                    cashFlow={this.state.cashFlow}
                     advanced={this.state.advanced}
-                    onSubmission={this.props.onUpdate}
+                    onSubmission={this.updateComplexAsset}
                     stopEditing={this.stopEditing}
                     index={this.props.index}/>
             )

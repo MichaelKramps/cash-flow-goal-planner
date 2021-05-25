@@ -21,6 +21,7 @@ class AddFutureAsset extends React.Component {
 
     listAssets(assetList, updateFunction, deleteFunction) {
         return assetList.map((asset, index) => {
+            console.log(this.state);
             let cashFlow = asset.cashFlow ? asset.cashFlow : asset.monthlyCashFlow;
             return <ComplexAsset
                 key={index}
@@ -40,7 +41,9 @@ class AddFutureAsset extends React.Component {
         let newAssets = this.state.futureAssets.slice();
         newAssets[index] = asset;
 
-        this.setState({futureAssets: newAssets});
+        this.setState({futureAssets: []}, () => {
+            this.setState({futureAssets: newAssets});
+        });
     }
 
     deleteFutureAsset(index) {
@@ -65,7 +68,7 @@ class AddFutureAsset extends React.Component {
             let assetProps = JSON.parse(JSON.stringify(state));
             assetProps.advanced = state;
             let futureAssets = this.state.futureAssets.slice();
-            futureAssets.push(state);
+            futureAssets.push(assetProps);
             this.setState({futureAssets: futureAssets});
         });
     }
