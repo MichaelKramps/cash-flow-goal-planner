@@ -16,6 +16,7 @@ class AddFutureAsset extends React.Component {
         this.updateFutureAsset = this.updateFutureAsset.bind(this);
         this.deleteFutureAsset = this.deleteFutureAsset.bind(this);
         this.submitFutureAsset = this.submitFutureAsset.bind(this);
+        this.stopEditing = this.stopEditing.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -63,6 +64,10 @@ class AddFutureAsset extends React.Component {
         this.setState({futureAssets: newAssets});
     }
 
+    stopEditing() {
+        this.setState({editing: false});
+    }
+
     handleSubmit(state) {
         this.setState({editing: false}, () => {
             let assetProps = JSON.parse(JSON.stringify(state));
@@ -78,7 +83,7 @@ class AddFutureAsset extends React.Component {
             <div>
                 {this.listAssets(this.state.futureAssets, this.updateFutureAsset, this.deleteFutureAsset)}
                 <button onClick={() => {this.setState({editing: true})}}>Add my next investment</button>
-                <CreateComplexAsset visible={this.state.editing} onSubmission={this.handleSubmit} />
+                <CreateComplexAsset visible={this.state.editing} stopEditing={this.stopEditing} onSubmission={this.handleSubmit} />
             </div>
         );
     }

@@ -80,12 +80,16 @@ class CreateComplexAsset extends React.Component {
     }
 
     handleAssetSubmission(state) {
-        this.setState(this.defaultState);
+        if (this.state.page === 2) {
+            this.setState(this.defaultState);
 
-        let fullState = state;
-        fullState.name = this.state.name;
-        fullState.type = this.state.type;
-        this.props.onSubmission(fullState);
+            let fullState = state;
+            fullState.name = this.state.name;
+            fullState.type = this.state.type;
+            this.props.onSubmission(fullState);
+        } else {
+            this.props.stopEditing();
+        }
     }
 
     renderButtons() {
