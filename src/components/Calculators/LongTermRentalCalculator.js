@@ -161,7 +161,7 @@ class LongTermRentalCalculator extends React.Component {
                     <div>
                         Monthly Cash Flow: ${this.state.cashFlow}
                     </div>
-                    <input type="Submit" value="Submit" />
+                    <input type="Submit" value="Submit" onChange={() => {}} />
                 </form>
             </div>
         );

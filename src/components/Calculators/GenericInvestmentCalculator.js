@@ -191,7 +191,7 @@ class GenericInvestmentCalculator extends React.Component {
                     <div>
                         Current Monthly Cash Flow: ${this.state.cashFlow}
                     </div>
-                    <input type="Submit" value="Submit" />
+                    <input type="Submit" value="Submit" onChange={() => {}} />
                 </form>
             </div>
         );

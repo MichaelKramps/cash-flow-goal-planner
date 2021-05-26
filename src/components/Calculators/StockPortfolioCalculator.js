@@ -112,7 +112,7 @@ class StockPortfolioCalculator extends React.Component {
                     <div>
                         Monthly Cash Flow in 10 years: ${this.state.tenYearCashFlow}
                     </div>
-                    <input type="Submit" value="Submit" />
+                    <input type="Submit" value="Submit" onChange={() => {}} />
                 </form>
             </div>
         );

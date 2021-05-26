@@ -351,7 +351,7 @@ class BusinessCalculator extends React.Component {
                     <div>
                         Monthly Cash Flow: ${this.state.monthlyCashFlow}
                     </div>
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit" onChange={() => {}} />
                 </form>
             </div>
         );

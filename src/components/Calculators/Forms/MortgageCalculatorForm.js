@@ -177,7 +177,7 @@ class MortgageCalculatorForm extends React.Component {
                     Monthly Payment: ${this.state.monthlyPayment}
                 </div>
                 <div>
-                    <input type="submit" value="Calculate" />
+                    <input type="submit" value="Calculate" onChange={() => {}} />
                 </div>
             </form>
         );

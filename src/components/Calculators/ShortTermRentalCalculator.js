@@ -188,7 +188,7 @@ class ShortTermRentalCalculator extends React.Component {
                     <p>Value of the property, rate of appreciation, loan terms and years left on loan</p>
                     <h3>Considerations for ROI</h3>
                     <p>Down payment and Additional Initial investment (furniture, linens, etc)</p>
-                    <input type="Submit" value="Submit" />
+                    <input type="Submit" value="Submit" onChange={() => {}} />
                 </form>
                 <Modal visible={this.state.modals.mortgageCalculator}>
                     <MortgageCalculatorForm onSubmission={this.handleMortgageCalculatorSubmit} />

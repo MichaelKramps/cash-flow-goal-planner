@@ -120,7 +120,7 @@ class LoanCalculator extends React.Component {
                         Monthly Payment: ${this.state.monthlyPayment}
                     </div>
                     <div>
-                        <input type="submit" value="Calculate" />
+                        <input type="submit" value="Calculate" onChange={() => {}} />
                     </div>
                 </form>
                 <AmortizationSchedule amortization={this.state.amortization} />
