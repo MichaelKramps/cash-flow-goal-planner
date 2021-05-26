@@ -22,14 +22,7 @@ class ComplexAsset extends React.Component {
     }
 
     stopEditing(edits) {
-        this.setState({
-            name: edits.name,
-            type: edits.type,
-            initialInvestment: edits.initialInvestment,
-            cashFlow: edits.cashFlow,
-            cashOnCash: this.calculateCashOnCash(edits.cashFlow, edits.initialInvestment) || 0,
-            editing: false
-        })
+        this.setState({editing: false});
     }
 
     calculateCashOnCash(cashFlow, initialInvestment) {

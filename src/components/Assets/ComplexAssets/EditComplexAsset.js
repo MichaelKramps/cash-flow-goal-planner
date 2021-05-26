@@ -30,11 +30,15 @@ class EditComplexAsset extends React.Component {
     }
 
     handleSubmission(state) {
-        let newState = JSON.parse(JSON.stringify(state));
-        newState.name = this.state.name;
-        newState.type = this.state.type;
-        newState.advanced = state;
-        this.props.onSubmission(newState);
+        if (state.cashFlow) {
+            let newState = JSON.parse(JSON.stringify(state));
+            newState.name = this.state.name;
+            newState.type = this.state.type;
+            newState.advanced = state;
+            this.props.onSubmission(newState);
+        } else {
+            this.props.stopEditing();
+        }
     }
 
     render() {
