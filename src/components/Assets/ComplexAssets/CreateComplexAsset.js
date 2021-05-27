@@ -80,13 +80,13 @@ class CreateComplexAsset extends React.Component {
     }
 
     handleAssetSubmission(state) {
-        if (this.state.page === 2 && state.cashFlow) {
-            this.setState(this.defaultState);
-
+        if (this.state.page === 2 && (state.cashFlow || state.monthlyCashFlow)) {
             let fullState = state;
             fullState.name = this.state.name;
             fullState.type = this.state.type;
             this.props.onSubmission(fullState);
+
+            this.setState(this.defaultState);
         } else {
             this.props.stopEditing();
         }

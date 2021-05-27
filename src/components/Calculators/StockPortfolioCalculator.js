@@ -65,8 +65,8 @@ class StockPortfolioCalculator extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.formIsValid()) {
-            this.setState(this.defaultState);
             this.props.onSubmission(this.state);
+            this.setState(this.defaultState);
         }
     }
 
