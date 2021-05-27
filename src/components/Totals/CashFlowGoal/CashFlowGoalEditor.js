@@ -186,7 +186,7 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleInvestingChange}
                     />
                 </div>
-                <input type="submit" value="Change goal" />
+                <input type="submit" value="Update goal" />
             </ModalForm>
         )
     }

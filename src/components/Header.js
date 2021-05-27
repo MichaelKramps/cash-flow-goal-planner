@@ -6,8 +6,8 @@ class Header extends React.Component {
     render() {
         return (
             <header>
-                <div onClick={() => {this.props.changeView("simulator-view")}}>
-                    Simulator
+                <div onClick={() => {this.props.changeView("planner-view")}}>
+                    Cash Flow Planner
                 </div>
                 <div className="header-dropdown-container">
                     <span>Calculators</span>
@@ -19,8 +19,8 @@ class Header extends React.Component {
                         <li onClick={() => {this.props.changeView("investment-calculator-view")}}>Investment Calculator</li>
                     </ul>
                 </div>
-                <div onClick={() => {this.props.changeView("investing-constants-view")}}>
-                    Investing Constants
+                <div onClick={() => {this.props.changeView("learn-view")}}>
+                    Using This Tool
                 </div>
             </header>
         );

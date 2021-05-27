@@ -7,14 +7,14 @@ import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCal
 import MortgageCalculator from "./components/Calculators/MortgageCalculator";
 import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalCalculator";
 import InvestmentCalculator from "./components/Calculators/InvestmentCalculator";
-import InvestingConstants from "./components/InvestingConstants/InvestingConstants";
+import Learn from "./components/Learn/Learn";
 
 class App extends React.Component {
 
   constructor(props){
       super(props);
       this.state = {
-          view: "simulator-view"
+          view: "planner-view"
       }
 
       this.changeView = this.changeView.bind(this);
@@ -37,8 +37,8 @@ class App extends React.Component {
         return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
-              <Simulator visible={this.determineVisibility("simulator-view")} />
-              <InvestingConstants visible={this.determineVisibility("investing-constants-view")} />
+              <Simulator visible={this.determineVisibility("planner-view")} />
+              <Learn visible={this.determineVisibility("learn-view")} />
               <InvestmentCalculator visible={this.determineVisibility("investment-calculator-view")} />
               <LoanCalculator visible={this.determineVisibility("loan-calculator-view")} />
               <LongTermRentalCalculator visible={this.determineVisibility("long-term-rental-calculator-view")} />
