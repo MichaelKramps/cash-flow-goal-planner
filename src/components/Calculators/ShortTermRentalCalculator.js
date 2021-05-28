@@ -1,13 +1,16 @@
 import React from 'react';
 import './ShortTermRentalCalculator.css'
 import FormUtils from "../Shared/FormUtils";
-import MortgageCalculatorForm from "./Forms/MortgageCalculatorForm";
-import Modal from "../Shared/Modal";
 import Shared from "../Shared/Shared";
 
 class ShortTermRentalCalculator extends React.Component {
 
     defaultState = {
+        propertyValue: this.props.propertyValue || 0,
+        downPayment: this.props.downPayment || 0,
+        renovationCosts: this.props.renovationCosts || 0,
+        furnishingCosts: this.props.furnishingCosts || 0,
+        otherInitialCosts: this.props.otherInitialCosts || 0,
         monthlyIncome: this.props.monthlyIncome || 0,
         mortgage: this.props.mortgage || 0,
         utilities: this.props.utilities || 0,
@@ -15,10 +18,8 @@ class ShortTermRentalCalculator extends React.Component {
         cleaning: this.props.cleaning || 0,
         supplies: this.props.supplies || 0,
         otherExpenses: this.props.otherExpenses || 0,
-        cashFlow: this.props.cashFlow || 0,
-        modals: {
-            mortgageCalculator: false
-        }
+        initialInvestment: this.props.initialInvestment || 0,
+        cashFlow: this.props.cashFlow || 0
     };
 
     constructor(props) {
@@ -27,6 +28,11 @@ class ShortTermRentalCalculator extends React.Component {
         this.state = this.defaultState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handlePropertyValueChange = this.handlePropertyValueChange.bind(this);
+        this.handleDownPaymentChange = this.handleDownPaymentChange.bind(this);
+        this.handleRenovationCostsChange = this.handleRenovationCostsChange.bind(this);
+        this.handleFurnishingCostsChange = this.handleFurnishingCostsChange.bind(this);
+        this.handleOtherInitialCostsChange = this.handleOtherInitialCostsChange.bind(this);
         this.handleMonthlyIncomeChange = this.handleMonthlyIncomeChange.bind(this);
         this.handleMortgageChange = this.handleMortgageChange.bind(this);
         this.handleUtilitiesChange = this.handleUtilitiesChange.bind(this);
@@ -34,50 +40,88 @@ class ShortTermRentalCalculator extends React.Component {
         this.handleCleaningChange = this.handleCleaningChange.bind(this);
         this.handleSuppliesChange = this.handleSuppliesChange.bind(this);
         this.handleOtherExpensesChange = this.handleOtherExpensesChange.bind(this);
-        this.handleMortgageCalculatorSubmit = this.handleMortgageCalculatorSubmit.bind(this);
         this.formIsValid = this.formIsValid.bind(this);
+    }
+
+    handlePropertyValueChange(event) {
+        this.setState({propertyValue: event.target.value}, () => {
+            this.updateDynamicFields();
+        });
+    }
+
+    handleDownPaymentChange(event) {
+        this.setState({downPayment: event.target.value}, () => {
+            this.updateDynamicFields();
+        });
+    }
+
+    handleRenovationCostsChange(event) {
+        this.setState({renovationCosts: event.target.value}, () => {
+            this.updateDynamicFields();
+        });
+    }
+
+    handleFurnishingCostsChange(event) {
+        this.setState({furnishingCosts: event.target.value}, () => {
+            this.updateDynamicFields();
+        });
+    }
+
+    handleOtherInitialCostsChange(event) {
+        this.setState({otherInitialCosts: event.target.value}, () => {
+            this.updateDynamicFields();
+        });
     }
 
     handleMonthlyIncomeChange(event) {
         this.setState({monthlyIncome: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
     handleMortgageChange(event) {
         this.setState({mortgage: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
     handleUtilitiesChange(event) {
         this.setState({utilities: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
     handleMaintenanceChange(event) {
         this.setState({maintenance: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
     handleCleaningChange(event) {
         this.setState({cleaning: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
     handleSuppliesChange(event) {
         this.setState({supplies: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
     handleOtherExpensesChange(event) {
         this.setState({otherExpenses: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
+    }
+
+    updateInitialInvestment() {
+        let initialInvestment = FormUtils.parseIntegerInput(this.state.downPayment);
+        initialInvestment += FormUtils.parseIntegerInput(this.state.renovationCosts);
+        initialInvestment += FormUtils.parseIntegerInput(this.state.furnishingCosts);
+        initialInvestment += FormUtils.parseIntegerInput(this.state.otherInitialCosts);
+
+        this.setState({initialInvestment: initialInvestment});
     }
 
     updateCashFlow() {
@@ -92,10 +136,9 @@ class ShortTermRentalCalculator extends React.Component {
         this.setState({cashFlow: newCashFlow});
     }
 
-    handleMortgageCalculatorSubmit(state) {
-        this.setState({mortgage: state.monthlyPayment}, () => {
-            this.setState({modals: {mortgageCalculator: false}});
-        })
+    updateDynamicFields() {
+        this.updateCashFlow();
+        this.updateInitialInvestment();
     }
 
     handleSubmit(event) {
@@ -115,6 +158,51 @@ class ShortTermRentalCalculator extends React.Component {
             <div className={"short-term-rental-calculator " + Shared.determineVisibility(this.props)}>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Short Term Rental Calculator</h2>
+                    <h3>Initial Investment</h3>
+                    <div>
+                        <label>Purchase Price/Property Value</label>
+                        <input
+                            value={this.state.propertyValue}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handlePropertyValueChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Down Payment</label>
+                        <input
+                            value={this.state.downPayment}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleDownPaymentChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Renovation Costs</label>
+                        <input
+                            value={this.state.renovationCosts}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleRenovationCostsChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Furnishing Costs</label>
+                        <input
+                            value={this.state.furnishingCosts}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleFurnishingCostsChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Other Initial Costs</label>
+                        <input
+                            value={this.state.otherInitialCosts}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleOtherInitialCostsChange}
+                        />
+                    </div>
+                    <div>
+                        Total Initial Investment: ${this.state.initialInvestment}
+                    </div>
+                    <h3>Revenue</h3>
                     <div>
                         <label>Expected Monthly Income</label>
                         <input
@@ -122,8 +210,6 @@ class ShortTermRentalCalculator extends React.Component {
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleMonthlyIncomeChange}
                         />
-                        <a href="#">Short Term Rental Income Calculator</a>
-                        <p>Yearly increase to nightly rate</p>
                     </div>
                     <h3>Expenses</h3>
                     <div>
@@ -133,7 +219,6 @@ class ShortTermRentalCalculator extends React.Component {
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleMortgageChange}
                         />
-                        <span onClick={() => {this.setState({modals: {mortgageCalculator: true}})}}>Mortgage Calculator</span>
                     </div>
                     <div>
                         <label>Utilities</label>
@@ -142,7 +227,6 @@ class ShortTermRentalCalculator extends React.Component {
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleUtilitiesChange}
                         />
-                        <a href="#">Utilities Helper (lists out possible utilities like internet, water, trash, gas) find numbers by looking at past statements or calling the utility companies</a>
                     </div>
                     <div>
                         <label>Maintenance</label>
@@ -151,7 +235,6 @@ class ShortTermRentalCalculator extends React.Component {
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleMaintenanceChange}
                         />
-                        <p>Maintenance is 1-3% of the value of the property and includes things like lawn care, home repairs</p>
                     </div>
                     <div>
                         <label>Cleaning</label>
@@ -160,7 +243,6 @@ class ShortTermRentalCalculator extends React.Component {
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleCleaningChange}
                         />
-                        <p>$0 if you do your own cleaning, but short term rentals require regular cleans</p>
                     </div>
                     <div>
                         <label>Supplies</label>
@@ -168,7 +250,6 @@ class ShortTermRentalCalculator extends React.Component {
                             value={this.state.supplies}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleSuppliesChange} />
-                        <p>Includes things like food, toiletries, coffee bar, cleaning supplies</p>
                     </div>
                     <div>
                         <label>Other Expenses</label>
@@ -179,20 +260,10 @@ class ShortTermRentalCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        Inflation Rate
-                    </div>
-                    <div>
                         Monthly Cash Flow: ${this.state.cashFlow}
                     </div>
-                    <h3>Considerations for Net Worth</h3>
-                    <p>Value of the property, rate of appreciation, loan terms and years left on loan</p>
-                    <h3>Considerations for ROI</h3>
-                    <p>Down payment and Additional Initial investment (furniture, linens, etc)</p>
                     <input type="Submit" value="Submit" onChange={() => {}} />
                 </form>
-                <Modal visible={this.state.modals.mortgageCalculator}>
-                    <MortgageCalculatorForm onSubmission={this.handleMortgageCalculatorSubmit} />
-                </Modal>
             </div>
         );
     }
