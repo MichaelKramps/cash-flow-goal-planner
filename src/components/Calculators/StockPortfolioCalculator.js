@@ -7,6 +7,7 @@ class StockPortfolioCalculator extends React.Component {
 
     defaultState = {
         value: this.props.value || 0,
+        initialInvestment: this.props.initialInvestment || 0,
         returnOnValue: this.props.returnOnValue || 0,
         dividendYield: this.props.dividendYield || 0,
         cashFlow: this.props.cashFlow || 0,
@@ -20,13 +21,20 @@ class StockPortfolioCalculator extends React.Component {
         this.state = this.defaultState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
+
         this.handleValueChange = this.handleValueChange.bind(this);
+        this.handleInitialInvestmentChange = this.handleInitialInvestmentChange.bind(this);
         this.handleReturnOnValueChange = this.handleReturnOnValueChange.bind(this);
         this.handleDividendYieldChange = this.handleDividendYieldChange.bind(this);
     }
 
     handleValueChange(event) {
         this.setState({value: event.target.value}, () => {
+            this.updateCashFlow();
+        });
+    }
+    handleInitialInvestmentChange(event) {
+        this.setState({initialInvestment: event.target.value}, () => {
             this.updateCashFlow();
         });
     }
@@ -79,12 +87,21 @@ class StockPortfolioCalculator extends React.Component {
             <div className={"stock-calculator " + Shared.determineVisibility(this.props)}>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Stock Portfolio Calculator</h2>
+                    <h3>Initial Investment</h3>
                     <div>
                         <label>Value of Portfolio</label>
                         <input
                             value={this.state.value}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleValueChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Cash Put In To Portfolio</label>
+                        <input
+                            value={this.state.initialInvestment}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleInitialInvestmentChange}
                         />
                     </div>
                     <div>
