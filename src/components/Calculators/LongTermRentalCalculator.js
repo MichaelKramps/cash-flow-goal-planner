@@ -18,6 +18,7 @@ class LongTermRentalCalculator extends React.Component {
         vacancy: this.props.vacancy || 0,
         management: this.props.management || 0,
         otherExpenses: this.props.otherExpenses || 0,
+        initialInvestment: this.props.initialInvestment || 0,
         cashFlow: this.props.cashFlow || 0
     }
 

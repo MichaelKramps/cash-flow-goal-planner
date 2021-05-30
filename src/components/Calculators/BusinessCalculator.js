@@ -6,6 +6,9 @@ import FormUtils from "../Shared/FormUtils";
 class BusinessCalculator extends React.Component {
 
     defaultState = {
+        businessValue: this.props.businessValue || 0,
+        downPayment: this.props.downPayment || 0,
+        otherInitialCosts: this.props.otherInitialCosts || 0,
         yearlyRevenue: this.props.yearlyRevenue || 0,
         monthlyRevenue: this.props.monthlyRevenue || 0,
         totalYearlyExpenses: this.props.totalYearlyExpenses || 0,
@@ -20,6 +23,7 @@ class BusinessCalculator extends React.Component {
         monthlySubscriptions: this.props.monthlySubscriptions || 0,
         yearlyOtherExpenses: this.props.yearlyOtherExpenses || 0,
         monthlyOtherExpenses: this.props.monthlyOtherExpenses || 0,
+        initialInvestment: this.props.initialInvestment || 0,
         yearlyCashFlow: this.props.yearlyCashFlow || 0,
         monthlyCashFlow: this.props.monthlyCashFlow || 0
     }
@@ -30,6 +34,9 @@ class BusinessCalculator extends React.Component {
         this.state = this.defaultState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleBusinessValueChange = this.handleBusinessValueChange.bind(this);
+        this.handleDownPaymentChange = this.handleDownPaymentChange.bind(this);
+        this.handleOtherInitialCostsChange = this.handleOtherInitialCostsChange.bind(this);
         this.handleYearlyRevenueChange = this.handleYearlyRevenueChange.bind(this);
         this.handleMonthlyRevenueChange = this.handleMonthlyRevenueChange.bind(this);
         this.handleTotalYearlyExpensesChange = this.handleTotalYearlyExpensesChange.bind(this);
@@ -45,6 +52,31 @@ class BusinessCalculator extends React.Component {
         this.handleYearlyOtherExpensesChange = this.handleYearlyOtherExpensesChange.bind(this);
         this.handleMonthlyOtherExpensesChange = this.handleMonthlyOtherExpensesChange.bind(this);
         this.updateCashFlow = this.updateCashFlow.bind(this);
+    }
+
+    handleBusinessValueChange(event) {
+        this.setState({businessValue: event.target.value}, () => {
+            this.updateDynamicFields();
+        });
+    }
+
+    handleDownPaymentChange(event) {
+        this.setState({downPayment: event.target.value}, () => {
+            this.updateDynamicFields();
+        });
+    }
+
+    handleOtherInitialCostsChange(event) {
+        this.setState({otherInitialCosts: event.target.value}, () => {
+            this.updateDynamicFields();
+        });
+    }
+
+    updateInitialInvestment() {
+        let initialInvestment = FormUtils.parseIntegerInput(this.state.downPayment);
+        initialInvestment += FormUtils.parseIntegerInput(this.state.otherInitialCosts);
+
+        this.setState({initialInvestment: initialInvestment});
     }
 
     updateCashFlow() {
@@ -86,7 +118,7 @@ class BusinessCalculator extends React.Component {
             - FormUtils.parseIntegerInput(this.state.yearlySubscriptions);
 
         this.setState({yearlyOtherExpenses: yearlyOtherExpenses}, () => {
-            this.updateExpensesAndCashFlow();
+            this.updateDynamicFields();
         })
     }
 
@@ -111,7 +143,7 @@ class BusinessCalculator extends React.Component {
             - FormUtils.parseIntegerInput(this.state.monthlySubscriptions);
 
         this.setState({monthlyOtherExpenses: monthlyOtherExpenses}, () => {
-            this.updateExpensesAndCashFlow();
+            this.updateDynamicFields();
         })
     }
 
@@ -172,7 +204,7 @@ class BusinessCalculator extends React.Component {
         newState[yearlyItemToUpdate] = newYearlyValue;
         newState[monthlyItemToUpdate] = newMonthlyValue;
         this.setState(newState, () => {
-            this.updateExpensesAndCashFlow();
+            this.updateDynamicFields();
         });
     }
 
@@ -185,8 +217,13 @@ class BusinessCalculator extends React.Component {
         newState[yearlyItemToUpdate] = newYearlyValue;
         newState[monthlyItemToUpdate] = newMonthlyValue;
         this.setState(newState, () => {
-            this.updateExpensesAndCashFlow();
+            this.updateDynamicFields();
         });
+    }
+
+    updateDynamicFields() {
+        this.updateExpensesAndCashFlow();
+        this.updateInitialInvestment();
     }
 
     updateExpensesAndCashFlow() {
@@ -230,6 +267,35 @@ class BusinessCalculator extends React.Component {
             <div className={"business-calculator " + Shared.determineVisibility(this.props)}>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Business Investment Calculator</h2>
+                    <h3>Initial Investment</h3>
+                    <div>
+                        <label>Purchase Price/Business Value</label>
+                        <input
+                            value={this.state.businessValue}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleBusinessValueChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Down Payment</label>
+                        <input
+                            value={this.state.downPayment}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleDownPaymentChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Other Initial Costs</label>
+                        <input
+                            value={this.state.otherInitialCosts}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleOtherInitialCostsChange}
+                        />
+                    </div>
+                    <div>
+                        Total Initial Investment: ${this.state.initialInvestment}
+                    </div>
+                    <h3>Revenue</h3>
                     <div>
                         <label>Expected Yearly Revenue</label>
                         <input
