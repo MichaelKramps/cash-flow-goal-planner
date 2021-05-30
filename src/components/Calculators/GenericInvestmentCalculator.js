@@ -7,6 +7,8 @@ class GenericInvestmentCalculator extends React.Component {
 
     defaultState = {
         value: this.props.value || 0,
+        downPayment: this.props.downPayment || 0,
+        otherInitialCosts: this.props.otherInitialCosts || 0,
         yearlyValueGrowth: this.props.yearlyValueGrowth || 0,
         yearlyPayments: this.props.yearlyPayments || 0,
         monthlyPayments: this.props.monthlyPayments || 0,
@@ -14,6 +16,7 @@ class GenericInvestmentCalculator extends React.Component {
         yearlyExpenses: this.props.yearlyExpenses || 0,
         monthlyExpenses: this.props.monthlyExpenses || 0,
         yearlyExpenseGrowth: this.props.yearlyExpenseGrowth || 0,
+        initialInvestment: this.props.initialInvestment || 0,
         cashFlow: this.props.cashFlow || 0
     };
 
@@ -23,6 +26,8 @@ class GenericInvestmentCalculator extends React.Component {
         this.state = this.defaultState;
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDownPaymentChange = this.handleDownPaymentChange.bind(this);
+        this.handleOtherInitialCostsChange = this.handleOtherInitialCostsChange.bind(this);
         this.handleValueChange = this.handleValueChange.bind(this);
         this.handleYearlyValueGrowthChange = this.handleYearlyValueGrowthChange.bind(this);
         this.handleYearlyPaymentsChange = this.handleYearlyPaymentsChange.bind(this);
@@ -35,13 +40,25 @@ class GenericInvestmentCalculator extends React.Component {
 
     handleValueChange(event) {
         this.setState({value: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
+        });
+    }
+
+    handleDownPaymentChange(event) {
+        this.setState({downPayment: event.target.value}, () => {
+            this.updateDynamicFields();
+        });
+    }
+
+    handleOtherInitialCostsChange(event) {
+        this.setState({otherInitialCosts: event.target.value}, () => {
+            this.updateDynamicFields();
         });
     }
 
     handleYearlyValueGrowthChange(event) {
         this.setState({yearlyValueGrowth: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
@@ -55,7 +72,7 @@ class GenericInvestmentCalculator extends React.Component {
 
     handleYearlyPaymentGrowthChange(event) {
         this.setState({yearlyPaymentGrowth: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
@@ -69,7 +86,7 @@ class GenericInvestmentCalculator extends React.Component {
 
     handleYearlyExpenseGrowthChange(event) {
         this.setState({yearlyExpenseGrowth: event.target.value}, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
@@ -82,7 +99,7 @@ class GenericInvestmentCalculator extends React.Component {
         newState[yearlyItemToUpdate] = newYearlyValue;
         newState[monthlyItemToUpdate] = newMonthlyValue;
         this.setState(newState, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
     }
 
@@ -95,14 +112,26 @@ class GenericInvestmentCalculator extends React.Component {
         newState[yearlyItemToUpdate] = newYearlyValue;
         newState[monthlyItemToUpdate] = newMonthlyValue;
         this.setState(newState, () => {
-            this.updateCashFlow();
+            this.updateDynamicFields();
         });
+    }
+
+    updateInitialInvestment() {
+        let initialInvestment = FormUtils.parseIntegerInput(this.state.downPayment);
+        initialInvestment += FormUtils.parseIntegerInput(this.state.otherInitialCosts);
+
+        this.setState({initialInvestment: initialInvestment});
     }
 
     updateCashFlow() {
         let cashFlow = FormUtils.parseIntegerInput(this.state.monthlyPayments) - FormUtils.parseIntegerInput(this.state.monthlyExpenses);
 
         this.setState({cashFlow: cashFlow});
+    }
+
+    updateDynamicFields() {
+        this.updateCashFlow();
+        this.updateInitialInvestment();
     }
 
     handleSubmit(event) {
@@ -122,6 +151,7 @@ class GenericInvestmentCalculator extends React.Component {
             <div className={"generic-investment-calculator " + Shared.determineVisibility(this.props)}>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Generic Investment Calculator</h2>
+                    <h3>Initial Investment</h3>
                     <div>
                         <label>Value of Investment</label>
                         <input
@@ -137,6 +167,25 @@ class GenericInvestmentCalculator extends React.Component {
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
                             onChange={this.handleYearlyValueGrowthChange}
                         />
+                    </div>
+                    <div>
+                        <label>Down Payment</label>
+                        <input
+                            value={this.state.downPayment}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleDownPaymentChange}
+                        />
+                    </div>
+                    <div>
+                        <label>Other Initial Costs</label>
+                        <input
+                            value={this.state.otherInitialCosts}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleOtherInitialCostsChange}
+                        />
+                    </div>
+                    <div>
+                        Total Initial Investment: ${this.state.initialInvestment}
                     </div>
                     <h3>Revenue</h3>
                     <div>
