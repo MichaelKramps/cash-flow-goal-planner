@@ -25,17 +25,27 @@ class Highlights extends React.Component {
         newState.cashFlowGoal = state.cashFlowGoal;
         newState.goalDate = state.goalDate;
         newState.editingCashFlowGoal = false;
-        this.setState(newState);
+        this.setState(newState, () => {
+            this.updateSimulator();
+        });
     }
 
     updateCurrentCashFlow(state) {
         this.setState({currentCashFlow: state.totalCashFlow}, () => {
+            this.updateSimulator();
             this.setState({editingCurrentCashFlow: false});
         });
     }
 
     calculateCashFlowNeeded() {
         return FormUtils.parseIntegerInput(this.state.cashFlowGoal) - FormUtils.parseIntegerInput(this.state.currentCashFlow);
+    }
+
+    updateSimulator() {
+        let updatedState = JSON.parse(JSON.stringify(this.state));
+        updatedState.editingCashFlowGoal = false;
+        updatedState.editingCurrentCashFlow = false;
+        this.props.updateSimulator(updatedState);
     }
 
     render() {
@@ -49,7 +59,7 @@ class Highlights extends React.Component {
                             <span onClick={() => {this.setState({editingCashFlowGoal: true})}}>&#9998;</span>
                         </p>
                         <p>
-                            by: ${this.state.goalDate}
+                            by: {this.state.goalDate}
                         </p>
                     </div>
                     <CashFlowGoalEditor

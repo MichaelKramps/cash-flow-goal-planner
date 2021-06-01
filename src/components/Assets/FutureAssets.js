@@ -43,7 +43,9 @@ class FutureAssets extends React.Component {
         newAssets[index] = asset;
 
         this.setState({futureAssets: []}, () => {
-            this.setState({futureAssets: newAssets});
+            this.setState({futureAssets: newAssets}, () => {
+                this.updateSimulator();
+            });
         });
     }
 
@@ -53,7 +55,9 @@ class FutureAssets extends React.Component {
 
         // no idea why, but this extra step seems to be necessary
         this.setState({futureAssets: []}, () => {
-            this.setState({futureAssets: newAssets})
+            this.setState({futureAssets: newAssets}, () => {
+                this.updateSimulator();
+            })
         });
     }
 
@@ -61,7 +65,13 @@ class FutureAssets extends React.Component {
         let newAssets = this.state.futureAssets.slice();
         newAssets.push(asset);
 
-        this.setState({futureAssets: newAssets});
+        this.setState({futureAssets: newAssets}, () => {
+            this.updateSimulator();
+        });
+    }
+
+    updateSimulator() {
+        this.props.updateSimulator(this.state);
     }
 
     stopEditing() {
