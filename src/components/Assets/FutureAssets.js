@@ -2,7 +2,7 @@ import React from 'react';
 import CreateComplexAsset from "./ComplexAssets/CreateComplexAsset";
 import ComplexAsset from "./ComplexAssets/ComplexAsset";
 
-class AddFutureAsset extends React.Component {
+class FutureAssets extends React.Component {
 
     constructor(props) {
         super(props);
@@ -89,4 +89,4 @@ class AddFutureAsset extends React.Component {
     }
 }
 
-export default AddFutureAsset;
+export default FutureAssets;
