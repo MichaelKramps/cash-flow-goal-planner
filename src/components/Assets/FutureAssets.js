@@ -15,14 +15,12 @@ class FutureAssets extends React.Component {
         this.listAssets = this.listAssets.bind(this);
         this.updateFutureAsset = this.updateFutureAsset.bind(this);
         this.deleteFutureAsset = this.deleteFutureAsset.bind(this);
-        this.submitFutureAsset = this.submitFutureAsset.bind(this);
         this.stopEditing = this.stopEditing.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     listAssets(assetList, updateFunction, deleteFunction) {
         return assetList.map((asset, index) => {
-            console.log(this.state);
             let cashFlow = asset.cashFlow ? asset.cashFlow : asset.monthlyCashFlow;
             return <ComplexAsset
                 key={index}
@@ -61,15 +59,6 @@ class FutureAssets extends React.Component {
         });
     }
 
-    submitFutureAsset(asset) {
-        let newAssets = this.state.futureAssets.slice();
-        newAssets.push(asset);
-
-        this.setState({futureAssets: newAssets}, () => {
-            this.updateSimulator();
-        });
-    }
-
     updateSimulator() {
         this.props.updateSimulator(this.state);
     }
@@ -84,7 +73,9 @@ class FutureAssets extends React.Component {
             assetProps.advanced = state;
             let futureAssets = this.state.futureAssets.slice();
             futureAssets.push(assetProps);
-            this.setState({futureAssets: futureAssets});
+            this.setState({futureAssets: futureAssets}, () => {
+                this.updateSimulator();
+            });
         });
     }
 

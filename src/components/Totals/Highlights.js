@@ -9,9 +9,12 @@ class Highlights extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cashFlowGoal: 0,
-            goalDate: "",
-            currentCashFlow: 0,
+            cashFlowGoal: {
+                cashFlowGoal: 0
+            },
+            currentCashFlow: {
+                currentCashFlow: 0
+            },
             editingCashFlowGoal: false,
             editingCurrentCashFlow: false
         }
@@ -21,19 +24,18 @@ class Highlights extends React.Component {
     }
 
     updateCashFlowGoal(state) {
-        let newState = JSON.parse(JSON.stringify(this.state));
-        newState.cashFlowGoal = state.cashFlowGoal;
-        newState.goalDate = state.goalDate;
-        newState.editingCashFlowGoal = false;
-        this.setState(newState, () => {
-            this.updateSimulator();
+        this.setState({cashFlowGoal: state}, () => {
+            this.setState({editingCashFlowGoal: false}, () => {
+                this.updateSimulator();
+            });
         });
     }
 
     updateCurrentCashFlow(state) {
-        this.setState({currentCashFlow: state.totalCashFlow}, () => {
-            this.updateSimulator();
-            this.setState({editingCurrentCashFlow: false});
+        this.setState({currentCashFlow: state}, () => {
+            this.setState({editingCurrentCashFlow: false}, () => {
+                this.updateSimulator();
+            });
         });
     }
 
@@ -55,24 +57,26 @@ class Highlights extends React.Component {
                     <h2>Cash Flow Goal</h2>
                     <div className="cash-flow-goal">
                         <p>
-                            Goal: ${this.state.cashFlowGoal}/month
+                            Goal: ${this.state.cashFlowGoal.cashFlowGoal}/month
                             <span onClick={() => {this.setState({editingCashFlowGoal: true})}}>&#9998;</span>
                         </p>
                         <p>
-                            by: {this.state.goalDate}
+                            by: {this.state.cashFlowGoal.goalDate}
                         </p>
                     </div>
                     <CashFlowGoalEditor
+                        {...this.state.cashFlowGoal}
                         editing={this.state.editingCashFlowGoal}
                         onSubmission={this.updateCashFlowGoal} />
                 </div>
                 <div>
                     <h3>Current Cash Flow</h3>
                     <div className="current-cash-flow">
-                        Goal: ${this.state.currentCashFlow}/month
+                        Goal: ${this.state.currentCashFlow.totalCashFlow}/month
                         <span onClick={() => {this.setState({editingCurrentCashFlow: true})}}>&#9998;</span>
                     </div>
                     <CurrentCashFlowEditor
+                        {...this.state.currentCashFlow}
                         editing={this.state.editingCurrentCashFlow}
                         onSubmission={this.updateCurrentCashFlow} />
                 </div>
