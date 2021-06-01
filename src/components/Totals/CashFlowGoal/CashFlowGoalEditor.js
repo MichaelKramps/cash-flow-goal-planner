@@ -19,7 +19,8 @@ class CashFlowGoalEditor extends React.Component {
                 entertainment: 0,
                 miscellaneous: 0,
                 investing: 0
-            }
+            },
+            goalDate: this.props.goalDate
         };
 
         this.handleGoalChange = this.handleGoalChange.bind(this);
@@ -31,6 +32,7 @@ class CashFlowGoalEditor extends React.Component {
         this.handleEntertainmentChange = this.handleEntertainmentChange.bind(this);
         this.handleMiscellaneousChange = this.handleMiscellaneousChange.bind(this);
         this.handleInvestingChange = this.handleInvestingChange.bind(this);
+        this.handleGoalDateChange = this.handleGoalDateChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -101,6 +103,10 @@ class CashFlowGoalEditor extends React.Component {
             cashFlowGoal: this.calculateGoal(),
             expenses: newExpenses
         });
+    }
+
+    handleGoalDateChange(event) {
+        this.setState({goalDate: event.target.value});
     }
 
     handleSubmit(event) {
@@ -186,6 +192,13 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleInvestingChange}
                     />
                 </div>
+                <h3>Date to Reach Cash Flow Goal</h3>
+                    <label>Goal Date</label>
+                <input
+                    type="date"
+                    value={this.state.goalDate}
+                    onChange={this.handleGoalDateChange}
+                />
                 <input type="submit" value="Update goal" />
             </ModalForm>
         )

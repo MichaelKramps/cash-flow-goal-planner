@@ -10,6 +10,7 @@ class Highlights extends React.Component {
         super(props);
         this.state = {
             cashFlowGoal: 0,
+            goalDate: "",
             currentCashFlow: 0,
             editingCashFlowGoal: false,
             editingCurrentCashFlow: false
@@ -20,9 +21,11 @@ class Highlights extends React.Component {
     }
 
     updateCashFlowGoal(state) {
-        this.setState({cashFlowGoal: state.cashFlowGoal}, () => {
-            this.setState({editingCashFlowGoal: false});
-        });
+        let newState = JSON.parse(JSON.stringify(this.state));
+        newState.cashFlowGoal = state.cashFlowGoal;
+        newState.goalDate = state.goalDate;
+        newState.editingCashFlowGoal = false;
+        this.setState(newState);
     }
 
     updateCurrentCashFlow(state) {
@@ -41,8 +44,13 @@ class Highlights extends React.Component {
                 <div>
                     <h2>Cash Flow Goal</h2>
                     <div className="cash-flow-goal">
-                        Goal: ${this.state.cashFlowGoal}/month
-                        <span onClick={() => {this.setState({editingCashFlowGoal: true})}}>&#9998;</span>
+                        <p>
+                            Goal: ${this.state.cashFlowGoal}/month
+                            <span onClick={() => {this.setState({editingCashFlowGoal: true})}}>&#9998;</span>
+                        </p>
+                        <p>
+                            by: ${this.state.goalDate}
+                        </p>
                     </div>
                     <CashFlowGoalEditor
                         editing={this.state.editingCashFlowGoal}
