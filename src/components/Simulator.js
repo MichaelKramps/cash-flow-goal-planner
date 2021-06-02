@@ -11,13 +11,11 @@ class Simulator extends React.Component {
         super(props);
         this.state = {
             highlights: {},
-            futureAssets: {},
-            cashFlowOutlook: {}
+            futureAssets: {}
         };
 
         this.updateHighlights = this.updateHighlights.bind(this);
         this.updateFutureAssets = this.updateFutureAssets.bind(this);
-        this.updateCashFlowOutlook = this.updateCashFlowOutlook.bind(this);
     }
 
     updateHighlights(state) {
@@ -28,12 +26,7 @@ class Simulator extends React.Component {
         this.setState({futureAssets: state});
     }
 
-    updateCashFlowOutlook(state) {
-        this.setState({cashFlowOutlook: state});
-    }
-
     render() {
-        console.log(this.state);
         return (
             <div className={"simulator " + Shared.determineVisibility(this.props)}>
                 <h1>Cash Flow Early Retirement Planner</h1>
@@ -45,7 +38,7 @@ class Simulator extends React.Component {
                     <FutureAssets {...this.state.futureAssets} updateSimulator={this.updateFutureAssets} />
                 </div>
                 <h2>Future Cash Flow Outlook</h2>
-                    <CashFlowOutlook {...this.state.cashFlowOutlook} updateSimulator={this.updateCashFlowOutlook} />
+                    <CashFlowOutlook highlights={this.state.highlights} futureAssets={this.state.futureAssets} />
             </div>
         );
     }
