@@ -1,5 +1,6 @@
 import React from 'react';
 import './CashFlowOutlook.css';
+import FormUtils from "../Shared/FormUtils";
 
 class CashFlowOutlook extends React.Component {
 
@@ -17,9 +18,7 @@ class CashFlowOutlook extends React.Component {
     }
 
     listAllAssets() {
-        let listOfExistingAssetsWithCashFlow = this.createListOfExistingAssetsWithCashFlow();
-        let listOfFutureAssetsWithCashFlow = this.createListOfFutureAssetsWithCashFlow();
-        let allAssetsWithFutureCashFlow = listOfExistingAssetsWithCashFlow.concat(listOfFutureAssetsWithCashFlow);
+        let allAssetsWithFutureCashFlow = this.createAllAssetsWithCashFlow();
 
         return allAssetsWithFutureCashFlow.map((asset) => {
             return (
@@ -33,6 +32,29 @@ class CashFlowOutlook extends React.Component {
                 </tr>
             )
         })
+    }
+
+    calculateCashFlowTotals() {
+        let cashFlowTotals = [0, 0, 0, 0, 0];
+        let allAssetsWithFutureCashFlow = this.createAllAssetsWithCashFlow();
+
+        for (let asset = 0; asset < allAssetsWithFutureCashFlow.length; asset ++) {
+            let thisAsset = allAssetsWithFutureCashFlow[asset];
+            console.log(thisAsset)
+            cashFlowTotals[0] += FormUtils.parseFloatInput(thisAsset.cashFlow[0]);
+            cashFlowTotals[1] += FormUtils.parseFloatInput(thisAsset.cashFlow[1]);
+            cashFlowTotals[2] += FormUtils.parseFloatInput(thisAsset.cashFlow[2]);
+            cashFlowTotals[3] += FormUtils.parseFloatInput(thisAsset.cashFlow[3]);
+            cashFlowTotals[4] += FormUtils.parseFloatInput(thisAsset.cashFlow[4]);
+        }
+
+        return cashFlowTotals;
+    }
+
+    createAllAssetsWithCashFlow() {
+        let listOfExistingAssetsWithCashFlow = this.createListOfExistingAssetsWithCashFlow();
+        let listOfFutureAssetsWithCashFlow = this.createListOfFutureAssetsWithCashFlow();
+        return listOfExistingAssetsWithCashFlow.concat(listOfFutureAssetsWithCashFlow);
     }
 
     createListOfExistingAssetsWithCashFlow() {
@@ -85,6 +107,7 @@ class CashFlowOutlook extends React.Component {
 
     render() {
         let years = this.createYearsArray();
+        let cashFlowTotals = this.calculateCashFlowTotals();
         return (
             <table className="cash-flow-outlook">
                 <thead>
@@ -101,11 +124,11 @@ class CashFlowOutlook extends React.Component {
                     {this.listAllAssets()}
                     <tr>
                         <td>Total</td>
-                        <td>total cash flow year 1</td>
-                        <td>total cash flow year 2</td>
-                        <td>total cash flow year 3</td>
-                        <td>total cash flow year 4</td>
-                        <td>total cash flow year 5</td>
+                        <td>${cashFlowTotals[0].toFixed(2)}</td>
+                        <td>${cashFlowTotals[1].toFixed(2)}</td>
+                        <td>${cashFlowTotals[2].toFixed(2)}</td>
+                        <td>${cashFlowTotals[3].toFixed(2)}</td>
+                        <td>${cashFlowTotals[4].toFixed(2)}</td>
                     </tr>
                 </tbody>
             </table>
