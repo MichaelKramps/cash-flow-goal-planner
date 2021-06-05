@@ -93,6 +93,7 @@ class CashFlowOutlook extends React.Component {
     }
 
     createFutureAssetWithCashFlow(futureAsset) {
+        console.log(futureAsset)
         let assetWithCashFlow = {};
         assetWithCashFlow.name = futureAsset.name;
         assetWithCashFlow.cashFlow = [];

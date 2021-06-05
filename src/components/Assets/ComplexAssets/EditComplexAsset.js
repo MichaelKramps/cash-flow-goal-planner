@@ -14,6 +14,7 @@ class EditComplexAsset extends React.Component {
         this.state = {
             name: this.props.name,
             type: this.props.type,
+            year: this.props.year,
             advanced: this.props.advanced
         }
 
@@ -34,6 +35,7 @@ class EditComplexAsset extends React.Component {
             let newState = JSON.parse(JSON.stringify(state));
             newState.name = this.state.name;
             newState.type = this.state.type;
+            newState.year = this.state.year;
             newState.advanced = state;
             this.props.onSubmission(newState);
         } else {

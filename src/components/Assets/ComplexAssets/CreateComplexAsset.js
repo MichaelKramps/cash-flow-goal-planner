@@ -12,7 +12,8 @@ class CreateComplexAsset extends React.Component {
     defaultState = {
         page: 1,
         type: "",
-        name: ""
+        name: "",
+        year: ""
     }
 
     constructor(props) {
@@ -27,6 +28,7 @@ class CreateComplexAsset extends React.Component {
         this.validateNameAndType = this.validateNameAndType.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleTypeChange = this.handleTypeChange.bind(this);
+        this.handleYearChange = this.handleYearChange.bind(this);
         this.handleAssetSubmission = this.handleAssetSubmission.bind(this);
     }
 
@@ -79,11 +81,16 @@ class CreateComplexAsset extends React.Component {
         this.setState({type: event.target.value});
     }
 
+    handleYearChange(event) {
+        this.setState({year: event.target.value});
+    }
+
     handleAssetSubmission(state) {
         if (this.state.page === 2 && (state.cashFlow || state.monthlyCashFlow)) {
             let fullState = state;
             fullState.name = this.state.name;
             fullState.type = this.state.type;
+            fullState.year = this.state.year;
             this.props.onSubmission(fullState);
 
             this.setState(this.defaultState);
@@ -105,6 +112,7 @@ class CreateComplexAsset extends React.Component {
     }
 
     render() {
+        let currentYear = new Date().getFullYear();
         return (
             <Modal visible={this.props.visible} onSubmission={this.handleAssetSubmission} className={this.determinePageNumber()}>
                 <div className='page-one'>
@@ -118,6 +126,20 @@ class CreateComplexAsset extends React.Component {
                         <option value="Business">Business</option>
                         <option value="Stock Portfolio">Stock Portfolio</option>
                         <option value="Other">Other</option>
+                    </select>
+                    <label>When do you plan to buy?</label>
+                    <select value={this.state.year} onChange={this.handleYearChange}>
+                        <option value=""></option>
+                        <option value={currentYear}>{currentYear}</option>
+                        <option value={currentYear + 1}>{currentYear + 1}</option>
+                        <option value={currentYear + 2}>{currentYear + 2}</option>
+                        <option value={currentYear + 3}>{currentYear + 3}</option>
+                        <option value={currentYear + 4}>{currentYear + 4}</option>
+                        <option value={currentYear + 5}>{currentYear + 5}</option>
+                        <option value={currentYear + 6}>{currentYear + 6}</option>
+                        <option value={currentYear + 7}>{currentYear + 7}</option>
+                        <option value={currentYear + 8}>{currentYear + 8}</option>
+                        <option value={currentYear + 9}>{currentYear + 9}</option>
                     </select>
                 </div>
                 <div className='page-two'>
