@@ -93,13 +93,17 @@ class CashFlowOutlook extends React.Component {
     }
 
     createFutureAssetWithCashFlow(futureAsset) {
-        console.log(futureAsset)
         let assetWithCashFlow = {};
         assetWithCashFlow.name = futureAsset.name;
         assetWithCashFlow.cashFlow = [];
 
-        for (let year = 0; year < 5; year++) {
-            let thisSegmentsCashFlow = (futureAsset.cashFlow * Math.pow(1.03, year)).toFixed(2);
+        for (let yearIndex = 0; yearIndex < 5; yearIndex++) {
+            let thisYear = new Date().getFullYear() + yearIndex;
+            let thisSegmentsCashFlow = 0;
+            if (thisYear >= FormUtils.parseIntegerInput(futureAsset.year)) {
+                let yearsSincePurchased = thisYear - FormUtils.parseIntegerInput(futureAsset.year);
+                thisSegmentsCashFlow = (futureAsset.cashFlow * Math.pow(1.03, yearsSincePurchased)).toFixed(2);
+            }
             assetWithCashFlow.cashFlow.push(thisSegmentsCashFlow)
         }
 
