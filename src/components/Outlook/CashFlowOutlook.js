@@ -40,7 +40,6 @@ class CashFlowOutlook extends React.Component {
 
         for (let asset = 0; asset < allAssetsWithFutureCashFlow.length; asset ++) {
             let thisAsset = allAssetsWithFutureCashFlow[asset];
-            console.log(thisAsset)
             cashFlowTotals[0] += FormUtils.parseFloatInput(thisAsset.cashFlow[0]);
             cashFlowTotals[1] += FormUtils.parseFloatInput(thisAsset.cashFlow[1]);
             cashFlowTotals[2] += FormUtils.parseFloatInput(thisAsset.cashFlow[2]);

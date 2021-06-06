@@ -25,7 +25,8 @@ class BusinessCalculator extends React.Component {
         monthlyOtherExpenses: this.props.monthlyOtherExpenses || 0,
         initialInvestment: this.props.initialInvestment || 0,
         yearlyCashFlow: this.props.yearlyCashFlow || 0,
-        monthlyCashFlow: this.props.monthlyCashFlow || 0
+        monthlyCashFlow: this.props.monthlyCashFlow || 0,
+        cashFlow: this.props.cashFlow || 0
     }
 
     constructor(props) {
@@ -81,7 +82,10 @@ class BusinessCalculator extends React.Component {
 
     updateCashFlow() {
         this.setState({yearlyCashFlow: this.calculateYearlyCashFlow()}, () => {
-            this.setState({monthlyCashFlow: this.calculateMonthlyCashFlow()});
+            let monthlyCashFlow = this.calculateMonthlyCashFlow();
+            this.setState({monthlyCashFlow: monthlyCashFlow}, () => {
+                this.setState({cashFlow: monthlyCashFlow});
+            });
         });
     }
 
