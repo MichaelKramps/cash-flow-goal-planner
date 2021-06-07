@@ -1,3 +1,8 @@
 .cash-flow-outlook {
     width: 100%;
 }
+
+.cash-flow-outlook td, .cash-flow-outlook th {
+    padding: 12px;
+    text-align: left;
+}

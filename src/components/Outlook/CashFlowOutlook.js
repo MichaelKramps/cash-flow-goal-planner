@@ -157,7 +157,6 @@ class CashFlowOutlook extends React.Component {
     }
 
     render() {
-        let cashFlowTotals = this.calculateCashFlowTotals();
         return (
             <table className="cash-flow-outlook">
                 <thead>
