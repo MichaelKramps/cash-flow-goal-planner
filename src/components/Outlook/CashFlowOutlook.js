@@ -4,17 +4,31 @@ import FormUtils from "../Shared/FormUtils";
 
 class CashFlowOutlook extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            yearsToPredict: 5
+        };
+    }
     createYearsArray() {
         let yearsArray = [];
         let thisYear = new Date().getFullYear();
+        let yearsToPredict = this.getYearsToPredict();
 
-        yearsArray.push(thisYear);
-        yearsArray.push(thisYear + 1);
-        yearsArray.push(thisYear + 2);
-        yearsArray.push(thisYear + 3);
-        yearsArray.push(thisYear + 4);
+        for (let year = 0; year <= yearsToPredict; year ++) {
+            yearsArray.push(thisYear + year);
+        }
 
         return yearsArray;
+    }
+
+    getYearsToPredict() {
+        let thisYear = new Date().getFullYear();
+        let goalYear = this.props.highlights.cashFlowGoal && this.props.highlights.cashFlowGoal.goalDate ? FormUtils.parseIntegerInput(this.props.highlights.cashFlowGoal.goalDate.split(" ")[1]) : thisYear;
+        let yearsToPredict = goalYear - thisYear > 5 ? goalYear - thisYear : 5;
+
+        return yearsToPredict;
     }
 
     listAllAssets() {
@@ -24,27 +38,60 @@ class CashFlowOutlook extends React.Component {
             return (
                 <tr key={asset.name}>
                     <td>{asset.name}</td>
-                    <td>${asset.cashFlow[0]}</td>
-                    <td>${asset.cashFlow[1]}</td>
-                    <td>${asset.cashFlow[2]}</td>
-                    <td>${asset.cashFlow[3]}</td>
-                    <td>${asset.cashFlow[4]}</td>
+                    {this.listAssetCashFlow(asset.cashFlow)}
                 </tr>
             )
         })
     }
 
+    listAssetCashFlow(cashFlowArray) {
+        return cashFlowArray.map((cashFlow) => {
+            return (
+                <React.Fragment>
+                    <td>${cashFlow}</td>
+                </React.Fragment>
+            )
+        })
+    }
+
+    listYears() {
+        let years = this.createYearsArray();
+
+        return years.map((year) => {
+            return (
+                <React.Fragment>
+                    <td>{year}</td>
+                </React.Fragment>
+            )
+        })
+    }
+
+    listCashFlowTotals() {
+        let totals = this.calculateCashFlowTotals();
+
+        return totals.map((total) => {
+            return (
+                <React.Fragment>
+                    <td>${total.toFixed(2)}</td>
+                </React.Fragment>
+            )
+        })
+    }
+
     calculateCashFlowTotals() {
-        let cashFlowTotals = [0, 0, 0, 0, 0];
+        let cashFlowTotals = [];
         let allAssetsWithFutureCashFlow = this.createAllAssetsWithCashFlow();
 
         for (let asset = 0; asset < allAssetsWithFutureCashFlow.length; asset ++) {
             let thisAsset = allAssetsWithFutureCashFlow[asset];
-            cashFlowTotals[0] += FormUtils.parseFloatInput(thisAsset.cashFlow[0]);
-            cashFlowTotals[1] += FormUtils.parseFloatInput(thisAsset.cashFlow[1]);
-            cashFlowTotals[2] += FormUtils.parseFloatInput(thisAsset.cashFlow[2]);
-            cashFlowTotals[3] += FormUtils.parseFloatInput(thisAsset.cashFlow[3]);
-            cashFlowTotals[4] += FormUtils.parseFloatInput(thisAsset.cashFlow[4]);
+            for (let year = 0; year <= this.getYearsToPredict(); year++) {
+                if (cashFlowTotals[year]){
+                    cashFlowTotals[year] += FormUtils.parseFloatInput(thisAsset.cashFlow[year]);
+                } else {
+                    cashFlowTotals[year] = FormUtils.parseFloatInput(thisAsset.cashFlow[year]);
+                }
+
+            }
         }
 
         return cashFlowTotals;
@@ -58,7 +105,7 @@ class CashFlowOutlook extends React.Component {
 
     createListOfExistingAssetsWithCashFlow() {
         let existingAssetsWithCashFlow = [];
-        let rawExistingAssets = this.props.highlights.currentCashFlow ? this.props.highlights.currentCashFlow.currentAssets : [];
+        let rawExistingAssets = this.props.highlights.currentCashFlow && this.props.highlights.currentCashFlow.currentAssets ? this.props.highlights.currentCashFlow.currentAssets : [];
 
         for (let index = 0; index < rawExistingAssets.length; index++) {
             existingAssetsWithCashFlow.push(this.createCurrentAssetWithCashFlow(rawExistingAssets[index]));
@@ -72,7 +119,7 @@ class CashFlowOutlook extends React.Component {
         assetWithCashFlow.name = currentAsset.name;
         assetWithCashFlow.cashFlow = [];
 
-        for (let year = 0; year < 5; year++) {
+        for (let year = 0; year <= this.getYearsToPredict(); year++) {
             let thisSegmentsCashFlow = (currentAsset.cashFlow * Math.pow(1.03, year)).toFixed(2);
             assetWithCashFlow.cashFlow.push(thisSegmentsCashFlow)
         }
@@ -96,7 +143,7 @@ class CashFlowOutlook extends React.Component {
         assetWithCashFlow.name = futureAsset.name;
         assetWithCashFlow.cashFlow = [];
 
-        for (let yearIndex = 0; yearIndex < 5; yearIndex++) {
+        for (let yearIndex = 0; yearIndex <= this.getYearsToPredict(); yearIndex++) {
             let thisYear = new Date().getFullYear() + yearIndex;
             let thisSegmentsCashFlow = 0;
             if (thisYear >= FormUtils.parseIntegerInput(futureAsset.year)) {
@@ -110,29 +157,20 @@ class CashFlowOutlook extends React.Component {
     }
 
     render() {
-        let years = this.createYearsArray();
         let cashFlowTotals = this.calculateCashFlowTotals();
         return (
             <table className="cash-flow-outlook">
                 <thead>
                     <tr>
                         <th>Asset</th>
-                        <th>{years[0]}</th>
-                        <th>{years[1]}</th>
-                        <th>{years[2]}</th>
-                        <th>{years[3]}</th>
-                        <th>{years[4]}</th>
+                        {this.listYears()}
                     </tr>
                 </thead>
                 <tbody>
                     {this.listAllAssets()}
                     <tr>
                         <td>Total</td>
-                        <td>${cashFlowTotals[0].toFixed(2)}</td>
-                        <td>${cashFlowTotals[1].toFixed(2)}</td>
-                        <td>${cashFlowTotals[2].toFixed(2)}</td>
-                        <td>${cashFlowTotals[3].toFixed(2)}</td>
-                        <td>${cashFlowTotals[4].toFixed(2)}</td>
+                        {this.listCashFlowTotals()}
                     </tr>
                 </tbody>
             </table>
