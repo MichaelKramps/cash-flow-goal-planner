@@ -8,7 +8,7 @@ class CashFlowOutlook extends React.Component {
         super(props);
 
         this.state = {
-            yearsToPredict: 5
+            yearsToPredict: 4
         };
     }
     createYearsArray() {
@@ -26,7 +26,7 @@ class CashFlowOutlook extends React.Component {
     getYearsToPredict() {
         let thisYear = new Date().getFullYear();
         let goalYear = this.props.highlights.cashFlowGoal && this.props.highlights.cashFlowGoal.goalDate ? FormUtils.parseIntegerInput(this.props.highlights.cashFlowGoal.goalDate.split(" ")[1]) : thisYear;
-        let yearsToPredict = goalYear - thisYear > 5 ? goalYear - thisYear : 5;
+        let yearsToPredict = goalYear - thisYear > 4 ? goalYear - thisYear : 4;
 
         return yearsToPredict;
     }
@@ -148,12 +148,55 @@ class CashFlowOutlook extends React.Component {
             let thisSegmentsCashFlow = 0;
             if (thisYear >= FormUtils.parseIntegerInput(futureAsset.year)) {
                 let yearsSincePurchased = thisYear - FormUtils.parseIntegerInput(futureAsset.year);
-                thisSegmentsCashFlow = (futureAsset.cashFlow * Math.pow(1.03, yearsSincePurchased)).toFixed(2);
+                switch(futureAsset.type.toLowerCase()) {
+                    case "short term rental":
+                        thisSegmentsCashFlow = this.calculateShortTermRentalFutureCashFlow(futureAsset, yearsSincePurchased);
+                        break;
+                    case "long term rental":
+                        thisSegmentsCashFlow = this.calculateLongTermRentalFutureCashFlow(futureAsset, yearsSincePurchased);
+                        break;
+                    case "business":
+                        thisSegmentsCashFlow = this.calculateBusinessFutureCashFlow(futureAsset, yearsSincePurchased);
+                        break;
+                    case "stock portfolio":
+                        thisSegmentsCashFlow = this.calculateStockFutureCashFlow(futureAsset, yearsSincePurchased);
+                        break;
+                    case "other":
+                        thisSegmentsCashFlow = this.calculateGenericFutureCashFlow(futureAsset, yearsSincePurchased);
+                        break;
+                    default:
+                        thisSegmentsCashFlow = this.defaultFutureCashFlow(futureAsset, yearsSincePurchased);
+                        break;
+                }
             }
             assetWithCashFlow.cashFlow.push(thisSegmentsCashFlow)
         }
 
         return assetWithCashFlow;
+    }
+
+    calculateShortTermRentalFutureCashFlow(asset, yearsSincePurchased) {
+        return 11;
+    }
+
+    calculateLongTermRentalFutureCashFlow(asset, yearsSincePurchased) {
+        return 31;
+    }
+
+    calculateBusinessFutureCashFlow(asset, yearsSincePurchased) {
+        return 52;
+    }
+
+    calculateStockFutureCashFlow(asset, yearsSincePurchased) {
+        return 654;
+    }
+
+    calculateGenericFutureCashFlow(asset, yearsSincePurchased) {
+        return 78;
+    }
+
+    defaultFutureCashFlow(asset, yearsSincePurchased) {
+        return (asset.cashFlow * Math.pow(1.03, yearsSincePurchased)).toFixed(2);
     }
 
     render() {
