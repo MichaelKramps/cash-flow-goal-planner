@@ -176,23 +176,26 @@ class CashFlowOutlook extends React.Component {
     }
 
     calculateShortTermRentalFutureCashFlow(asset, yearsSincePurchased) {
-        return 11;
+        return this.defaultFutureCashFlow(asset, yearsSincePurchased);
     }
 
     calculateLongTermRentalFutureCashFlow(asset, yearsSincePurchased) {
-        return 31;
+        return this.defaultFutureCashFlow(asset, yearsSincePurchased);
     }
 
     calculateBusinessFutureCashFlow(asset, yearsSincePurchased) {
-        return 52;
+        return this.defaultFutureCashFlow(asset, yearsSincePurchased);
     }
 
     calculateStockFutureCashFlow(asset, yearsSincePurchased) {
-        return 654;
+        let valueIncrease = 1 + (asset.returnOnValue / 100);
+        let currentValue = asset.value * Math.pow(valueIncrease, yearsSincePurchased);
+        let currentCashFlow = (currentValue * (asset.dividendYield / 1200)).toFixed(2);
+        return currentCashFlow;
     }
 
     calculateGenericFutureCashFlow(asset, yearsSincePurchased) {
-        return 78;
+        return this.defaultFutureCashFlow(asset, yearsSincePurchased);
     }
 
     defaultFutureCashFlow(asset, yearsSincePurchased) {
