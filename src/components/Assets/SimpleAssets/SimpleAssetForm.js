@@ -10,7 +10,8 @@ class SimpleAssetForm extends React.Component {
             name: this.props.name,
             type: this.props.type,
             initialInvestment: this.props.initialInvestment,
-            cashFlow: this.props.cashFlow
+            cashFlow: this.props.cashFlow,
+            cashFlowIncrease: this.props.cashFlowIncrease
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,6 +19,7 @@ class SimpleAssetForm extends React.Component {
         this.handleTypeChange = this.handleTypeChange.bind(this);
         this.handleInitialInvestmentChange = this.handleInitialInvestmentChange.bind(this);
         this.handleCashFlowChange = this.handleCashFlowChange.bind(this);
+        this.handleCashFlowIncreaseChange = this.handleCashFlowIncreaseChange.bind(this);
         this.formIsValid = this.formIsValid.bind(this);
     }
 
@@ -35,6 +37,10 @@ class SimpleAssetForm extends React.Component {
 
     handleCashFlowChange(event) {
         this.setState({cashFlow: event.target.value});
+    }
+
+    handleCashFlowIncreaseChange(event) {
+        this.setState({cashFlowIncrease: event.target.value});
     }
 
     formIsValid() {
@@ -82,6 +88,15 @@ class SimpleAssetForm extends React.Component {
                         value={this.state.cashFlow}
                         onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                         onChange={this.handleCashFlowChange}
+                    />
+                </div>
+                <div>
+                    <label>Yearly Percentage Increase to Monthly Cash Flow: </label>
+                    <input
+                        value={this.state.cashFlowIncrease}
+                        onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
+                        defaultValue={3}
+                        onChange={this.handleCashFlowIncreaseChange}
                     />
                 </div>
                 <input type="submit" value="Add Asset" />

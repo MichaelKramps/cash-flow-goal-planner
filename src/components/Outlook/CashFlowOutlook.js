@@ -108,23 +108,10 @@ class CashFlowOutlook extends React.Component {
         let rawExistingAssets = this.props.highlights.currentCashFlow && this.props.highlights.currentCashFlow.currentAssets ? this.props.highlights.currentCashFlow.currentAssets : [];
 
         for (let index = 0; index < rawExistingAssets.length; index++) {
-            existingAssetsWithCashFlow.push(this.createCurrentAssetWithCashFlow(rawExistingAssets[index]));
+            existingAssetsWithCashFlow.push(this.createAssetWithCashFlow(rawExistingAssets[index]));
         }
 
         return existingAssetsWithCashFlow;
-    }
-
-    createCurrentAssetWithCashFlow(currentAsset) {
-        let assetWithCashFlow = {};
-        assetWithCashFlow.name = currentAsset.name;
-        assetWithCashFlow.cashFlow = [];
-
-        for (let year = 0; year <= this.getYearsToPredict(); year++) {
-            let thisSegmentsCashFlow = (currentAsset.cashFlow * Math.pow(1.03, year)).toFixed(2);
-            assetWithCashFlow.cashFlow.push(thisSegmentsCashFlow)
-        }
-
-        return assetWithCashFlow;
     }
 
     createListOfFutureAssetsWithCashFlow() {
@@ -132,40 +119,40 @@ class CashFlowOutlook extends React.Component {
         let rawFutureAssets = this.props.futureAssets.futureAssets ? this.props.futureAssets.futureAssets : [];
 
         for (let index = 0; index < rawFutureAssets.length; index++) {
-            futureAssetsWithCashFlow.push(this.createFutureAssetWithCashFlow(rawFutureAssets[index]));
+            futureAssetsWithCashFlow.push(this.createAssetWithCashFlow(rawFutureAssets[index]));
         }
 
         return futureAssetsWithCashFlow;
     }
 
-    createFutureAssetWithCashFlow(futureAsset) {
+    createAssetWithCashFlow(asset) {
         let assetWithCashFlow = {};
-        assetWithCashFlow.name = futureAsset.name;
+        assetWithCashFlow.name = asset.name;
         assetWithCashFlow.cashFlow = [];
 
         for (let yearIndex = 0; yearIndex <= this.getYearsToPredict(); yearIndex++) {
             let thisYear = new Date().getFullYear() + yearIndex;
             let thisSegmentsCashFlow = 0;
-            if (thisYear >= FormUtils.parseIntegerInput(futureAsset.year)) {
-                let yearsSincePurchased = thisYear - FormUtils.parseIntegerInput(futureAsset.year);
-                switch(futureAsset.type.toLowerCase()) {
+            if (thisYear >= FormUtils.parseIntegerInput(asset.year)) {
+                let yearsSincePurchased = asset.year ? thisYear - FormUtils.parseIntegerInput(asset.year) : yearIndex;
+                switch(asset.type.toLowerCase()) {
                     case "short term rental":
-                        thisSegmentsCashFlow = this.calculateShortTermRentalFutureCashFlow(futureAsset, yearsSincePurchased);
+                        thisSegmentsCashFlow = this.calculateShortTermRentalFutureCashFlow(asset, yearsSincePurchased);
                         break;
                     case "long term rental":
-                        thisSegmentsCashFlow = this.calculateLongTermRentalFutureCashFlow(futureAsset, yearsSincePurchased);
+                        thisSegmentsCashFlow = this.calculateLongTermRentalFutureCashFlow(asset, yearsSincePurchased);
                         break;
                     case "business":
-                        thisSegmentsCashFlow = this.calculateBusinessFutureCashFlow(futureAsset, yearsSincePurchased);
+                        thisSegmentsCashFlow = this.calculateBusinessFutureCashFlow(asset, yearsSincePurchased);
                         break;
                     case "stock portfolio":
-                        thisSegmentsCashFlow = this.calculateStockFutureCashFlow(futureAsset, yearsSincePurchased);
+                        thisSegmentsCashFlow = this.calculateStockFutureCashFlow(asset, yearsSincePurchased);
                         break;
                     case "other":
-                        thisSegmentsCashFlow = this.calculateGenericFutureCashFlow(futureAsset, yearsSincePurchased);
+                        thisSegmentsCashFlow = this.calculateGenericFutureCashFlow(asset, yearsSincePurchased);
                         break;
                     default:
-                        thisSegmentsCashFlow = this.defaultFutureCashFlow(futureAsset, yearsSincePurchased);
+                        thisSegmentsCashFlow = this.defaultFutureCashFlow(asset, yearsSincePurchased);
                         break;
                 }
             }
@@ -188,10 +175,14 @@ class CashFlowOutlook extends React.Component {
     }
 
     calculateStockFutureCashFlow(asset, yearsSincePurchased) {
-        let valueIncrease = 1 + (asset.returnOnValue / 100);
-        let currentValue = asset.value * Math.pow(valueIncrease, yearsSincePurchased);
-        let currentCashFlow = (currentValue * (asset.dividendYield / 1200)).toFixed(2);
-        return currentCashFlow;
+        if (asset.returnOnValue && asset.value && asset.dividendYield) {
+            let valueIncrease = 1 + (asset.returnOnValue / 100);
+            let currentValue = asset.value * Math.pow(valueIncrease, yearsSincePurchased);
+            let currentCashFlow = (currentValue * (asset.dividendYield / 1200)).toFixed(2);
+            return currentCashFlow;
+        } else {
+            return this.defaultFutureCashFlow(asset, yearsSincePurchased);
+        }
     }
 
     calculateGenericFutureCashFlow(asset, yearsSincePurchased) {
@@ -199,7 +190,8 @@ class CashFlowOutlook extends React.Component {
     }
 
     defaultFutureCashFlow(asset, yearsSincePurchased) {
-        return (asset.cashFlow * Math.pow(1.03, yearsSincePurchased)).toFixed(2);
+        let yearlyPercentageIncrease = asset.cashFlowIncrease ? FormUtils.parseFloatInput(asset.cashFlowIncrease) / 100 : 0.03;
+        return (asset.cashFlow * Math.pow(1 + yearlyPercentageIncrease, yearsSincePurchased)).toFixed(2);
     }
 
     render() {
