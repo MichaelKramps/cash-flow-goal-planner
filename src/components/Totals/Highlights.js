@@ -13,7 +13,7 @@ class Highlights extends React.Component {
                 cashFlowGoal: 0
             },
             currentCashFlow: {
-                currentCashFlow: 0
+                totalCashFlow: 0
             },
             editingCashFlowGoal: false,
             editingCurrentCashFlow: false
@@ -40,7 +40,8 @@ class Highlights extends React.Component {
     }
 
     calculateCashFlowNeeded() {
-        return FormUtils.parseIntegerInput(this.state.cashFlowGoal) - FormUtils.parseIntegerInput(this.state.currentCashFlow);
+        console.log(this.state.currentCashFlow)
+        return FormUtils.parseIntegerInput(this.state.cashFlowGoal.cashFlowGoal) - FormUtils.parseIntegerInput(this.state.currentCashFlow.totalCashFlow);
     }
 
     updateSimulator() {
