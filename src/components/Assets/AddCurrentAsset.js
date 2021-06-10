@@ -20,7 +20,7 @@ class AddCurrentAsset extends React.Component {
         } else {
             return(
                 <button onClick={() => {this.setState({editing: true})}}>
-                    Add an Asset
+                    Add New Asset
                 </button>
             );
         }

@@ -99,7 +99,7 @@ class SimpleAssetForm extends React.Component {
                         onChange={this.handleCashFlowIncreaseChange}
                     />
                 </div>
-                <input type="submit" value="Add Asset" />
+                <input type="submit" value="Submit Asset" />
             </form>
         );
     }

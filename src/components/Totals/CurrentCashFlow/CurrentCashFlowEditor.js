@@ -88,7 +88,7 @@ class CurrentCashFlowEditor extends React.Component {
                 <h3>Add assets you currently own to increase your current cash flow.</h3>
                 {this.listAssets(this.state.currentAssets, this.updateCurrentAsset, this.deleteCurrentAsset)}
                 <AddCurrentAsset onSubmission={this.submitCurrentAsset} />
-                <button onClick={this.handleSubmit}>Update</button>
+                <button onClick={this.handleSubmit}>Finish</button>
             </Modal>
         )
     }
