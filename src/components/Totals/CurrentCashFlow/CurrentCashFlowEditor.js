@@ -30,6 +30,7 @@ class CurrentCashFlowEditor extends React.Component {
                     type={asset.type}
                     initialInvestment={asset.initialInvestment}
                     cashFlow={asset.cashFlow}
+                    cashFlowIncrease={asset.cashFlowIncrease}
                     onUpdate={updateFunction}
                     onDelete={deleteFunction}
                 />

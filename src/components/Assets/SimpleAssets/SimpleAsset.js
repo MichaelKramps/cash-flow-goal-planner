@@ -12,6 +12,7 @@ class SimpleAsset extends React.Component {
             type: this.props.type,
             initialInvestment: this.props.initialInvestment,
             cashFlow: this.props.cashFlow,
+            cashFlowIncrease: this.props.cashFlowIncrease,
             cashOnCash: this.calculateCashOnCash(this.props.cashFlow, this.props.initialInvestment),
             editing: false
         }
@@ -43,6 +44,7 @@ class SimpleAsset extends React.Component {
                     visible={this.state.editing}
                     initialInvestment={this.state.initialInvestment}
                     cashFlow={this.state.cashFlow}
+                    cashFlowIncrease={this.state.cashFlowIncrease}
                     onSubmission={this.props.onUpdate}
                     stopEditing={this.stopEditing}
                     index={this.props.index}/>

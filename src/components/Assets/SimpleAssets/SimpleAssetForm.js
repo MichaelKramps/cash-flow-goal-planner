@@ -11,7 +11,7 @@ class SimpleAssetForm extends React.Component {
             type: this.props.type,
             initialInvestment: this.props.initialInvestment,
             cashFlow: this.props.cashFlow,
-            cashFlowIncrease: this.props.cashFlowIncrease
+            cashFlowIncrease: this.props.cashFlowIncrease || 3
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -94,7 +94,7 @@ class SimpleAssetForm extends React.Component {
                     <label>Yearly Percentage Increase to Monthly Cash Flow: </label>
                     <input
                         value={this.state.cashFlowIncrease}
-                        onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
+                        onKeyDown={(event) => {FormUtils.validateFloatInput(event, this.state.cashFlowIncrease)}}
                         defaultValue={3}
                         onChange={this.handleCashFlowIncreaseChange}
                     />
