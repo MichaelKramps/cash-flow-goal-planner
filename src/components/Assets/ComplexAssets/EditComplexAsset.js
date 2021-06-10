@@ -19,6 +19,9 @@ class EditComplexAsset extends React.Component {
         }
 
         this.determineVisibility = this.determineVisibility.bind(this);
+        this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleTypeChange = this.handleTypeChange.bind(this);
+        this.handleYearChange = this.handleYearChange.bind(this);
         this.handleSubmission = this.handleSubmission.bind(this);
     }
 
@@ -28,6 +31,18 @@ class EditComplexAsset extends React.Component {
         } else {
             return false;
         }
+    }
+
+    handleNameChange(event) {
+        this.setState({name: event.target.value});
+    }
+
+    handleTypeChange(event) {
+        this.setState({type: event.target.value});
+    }
+
+    handleYearChange(event) {
+        this.setState({year: event.target.value});
     }
 
     handleSubmission(state) {
@@ -44,8 +59,37 @@ class EditComplexAsset extends React.Component {
     }
 
     render() {
+        let currentYear = new Date().getFullYear();
+        console.log(this.state)
         return (
             <Modal visible={this.props.visible} onSubmission={this.handleSubmission}>
+                <div>
+                    <h3>Edit your investment...</h3>
+                    <label>Give your investment a name: </label><input value={this.state.name} onChange={this.handleNameChange} />
+                    <label>What type of investment is this?</label>
+                    <select value={this.state.type} onChange={this.handleTypeChange}>
+                        <option value=""></option>
+                        <option value="Short Term Rental">Short Term Rental</option>
+                        <option value="Long Term Rental">Long Term Rental</option>
+                        <option value="Business">Business</option>
+                        <option value="Stock Portfolio">Stock Portfolio</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <label>When do you plan to buy?</label>
+                    <select value={this.state.year} onChange={this.handleYearChange}>
+                        <option value=""></option>
+                        <option value={currentYear}>{currentYear}</option>
+                        <option value={currentYear + 1}>{currentYear + 1}</option>
+                        <option value={currentYear + 2}>{currentYear + 2}</option>
+                        <option value={currentYear + 3}>{currentYear + 3}</option>
+                        <option value={currentYear + 4}>{currentYear + 4}</option>
+                        <option value={currentYear + 5}>{currentYear + 5}</option>
+                        <option value={currentYear + 6}>{currentYear + 6}</option>
+                        <option value={currentYear + 7}>{currentYear + 7}</option>
+                        <option value={currentYear + 8}>{currentYear + 8}</option>
+                        <option value={currentYear + 9}>{currentYear + 9}</option>
+                    </select>
+                </div>
                 <ShortTermRentalCalculator
                     {...this.state.advanced}
                     visible={this.determineVisibility("Short Term Rental")}

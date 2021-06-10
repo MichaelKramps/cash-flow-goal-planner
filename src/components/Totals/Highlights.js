@@ -40,7 +40,6 @@ class Highlights extends React.Component {
     }
 
     calculateCashFlowNeeded() {
-        console.log(this.state.currentCashFlow)
         return FormUtils.parseIntegerInput(this.state.cashFlowGoal.cashFlowGoal) - FormUtils.parseIntegerInput(this.state.currentCashFlow.totalCashFlow);
     }
 

@@ -27,6 +27,7 @@ class FutureAssets extends React.Component {
                 index={index}
                 name={asset.name}
                 type={asset.type}
+                year={asset.year}
                 advanced={asset.advanced}
                 initialInvestment={asset.initialInvestment}
                 cashFlow={cashFlow}
