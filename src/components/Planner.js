@@ -5,7 +5,7 @@ import FutureAssets from "./Assets/FutureAssets";
 import Shared from "./Shared/Shared";
 import CashFlowOutlook from "./Outlook/CashFlowOutlook";
 
-class Simulator extends React.Component {
+class Planner extends React.Component {
 
     constructor(props) {
         super(props);
@@ -44,4 +44,4 @@ class Simulator extends React.Component {
     }
 }
 
-export default Simulator;
+export default Planner;

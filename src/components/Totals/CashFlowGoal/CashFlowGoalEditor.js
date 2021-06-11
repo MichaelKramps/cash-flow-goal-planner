@@ -2,6 +2,7 @@ import React from 'react';
 import './CashFlowGoalEditor.css';
 import ModalForm from "../../Shared/ModalForm";
 import FormUtils from "../../Shared/FormUtils";
+import InformationIcon from "../../Shared/InformationIcon";
 
 class CashFlowGoalEditor extends React.Component {
 

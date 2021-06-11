@@ -58,7 +58,6 @@ class StockPortfolioCalculator extends React.Component {
 
         let newCashFlow = (value * dividendYield / 12).toFixed(0);
         let newFiveYearCashFlow = (value * Math.pow(1 + returnOnValue, 5) * dividendYield / 12).toFixed(0);
-        console.log(newFiveYearCashFlow)
         let newTenYearCashFlow = (value * Math.pow(1 + returnOnValue, 10) * dividendYield / 12).toFixed(0);
 
         let newState = JSON.parse(JSON.stringify(this.state));

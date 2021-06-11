@@ -60,7 +60,6 @@ class EditComplexAsset extends React.Component {
 
     render() {
         let currentYear = new Date().getFullYear();
-        console.log(this.state)
         return (
             <Modal visible={this.props.visible} onSubmission={this.handleSubmission}>
                 <div>

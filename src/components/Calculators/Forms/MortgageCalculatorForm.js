@@ -57,7 +57,6 @@ class MortgageCalculatorForm extends React.Component {
     }
 
     calculateMonthlyPayments() {
-        console.log(this.state.price)
         let loanAmount = FormUtils.parseIntegerInput(this.state.price) - FormUtils.parseIntegerInput(this.state.downPayment);
         let periodicInterestRate = FormUtils.parseFloatInput(this.state.interestRate) / 1200;
         let numberPayments = FormUtils.parseIntegerInput(this.state.term) * 12;

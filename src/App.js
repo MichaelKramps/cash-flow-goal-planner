@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Simulator from "./components/Simulator";
+import Planner from "./components/Planner";
 import Header from "./components/Header";
 import LoanCalculator from "./components/Calculators/LoanCalculator";
 import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCalculator";
@@ -37,7 +37,7 @@ class App extends React.Component {
         return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
-              <Simulator visible={this.determineVisibility("planner-view")} />
+              <Planner visible={this.determineVisibility("planner-view")} />
               <Learn visible={this.determineVisibility("learn-view")} />
               <InvestmentCalculator visible={this.determineVisibility("investment-calculator-view")} />
               <LoanCalculator visible={this.determineVisibility("loan-calculator-view")} />
