@@ -36,7 +36,7 @@ class InformationIcon extends React.Component {
     render(){
         return(
             <div className="information-icon"  onClick={this.toggleContentVisibility}>
-                <span>&#9432;</span>
+                <span>&#9432;&nbsp;</span>
                 {this.determineContent()}
             </div>
         )

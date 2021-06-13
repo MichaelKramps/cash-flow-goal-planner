@@ -157,7 +157,7 @@ class CashFlowGoalEditor extends React.Component {
             <ModalForm visible={this.props.editing} onSubmission={this.handleSubmit}>
                 <h3>Update your monthly cash flow goal</h3>
                 <div>
-                    <label>Monthly cash flow goal</label>
+                    <label>Monthly cash flow goal: </label>
                     <input
                         value={this.state.cashFlowGoal}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -165,7 +165,7 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div>
-                    <label>Mortgage/rent</label>
+                    <label>Mortgage/rent: </label>
                     <input
                         value={this.state.expenses.mortgage}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -173,7 +173,10 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div>
-                    <label>Utilities</label>
+                    <label>Utilities: </label>
+                    <InformationIcon>
+                        Include water, electric, sewer, trash, and internet.
+                    </InformationIcon>
                     <input
                         value={this.state.expenses.utilities}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -181,7 +184,7 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div>
-                    <label>Food</label>
+                    <label>Food: </label>
                     <input
                         value={this.state.expenses.food}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -189,7 +192,7 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div>
-                    <label>Travel</label>
+                    <label>Travel: </label>
                     <input
                         value={this.state.expenses.travel}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -197,7 +200,10 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div>
-                    <label>Insurance</label>
+                    <label>Insurance: </label>
+                    <InformationIcon>
+                        Include car insurance, health insurance, vision insurance, life insurance, and any other kind of insurance you expect to pay for.
+                    </InformationIcon>
                     <input
                         value={this.state.expenses.insurance}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -205,7 +211,7 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div>
-                    <label>Entertainment</label>
+                    <label>Entertainment: </label>
                     <input
                         value={this.state.expenses.entertainment}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -213,7 +219,10 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div>
-                    <label>Miscellaneous Expenses</label>
+                    <label>Miscellaneous Expenses: </label>
+                    <InformationIcon>
+                        This includes anything that doesn't fit into another category or unexpected expenses, for example car repairs, gifts or home renovations.
+                    </InformationIcon>
                     <input
                         value={this.state.expenses.miscellaneous}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -221,7 +230,10 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div>
-                    <label>Cash for investing</label>
+                    <label>Cash for investing: </label>
+                    <InformationIcon>
+                        Remember that the force of inflation is always present, your money is always losing value and you should never stop investing.
+                    </InformationIcon>
                     <input
                         value={this.state.expenses.investing}
                         onKeyDown={FormUtils.validateIntegerInput}

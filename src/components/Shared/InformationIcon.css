@@ -1,6 +1,11 @@
 .information-icon {
     position: relative;
     display: inline-block;
+    cursor: pointer;
+}
+
+.information-icon span {
+    color: #ff4d4d;
 }
 
 .information-icon-content {
