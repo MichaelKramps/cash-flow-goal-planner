@@ -2,6 +2,7 @@ import React from 'react';
 import './LongTermRentalCalculator.css'
 import Shared from "../Shared/Shared";
 import FormUtils from "../Shared/FormUtils";
+import InformationIcon from "../Shared/InformationIcon";
 
 class LongTermRentalCalculator extends React.Component {
 
@@ -184,6 +185,9 @@ class LongTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Holding Costs</label>
+                        <InformationIcon>
+                            This is the cost related with not immediately renting your space. It typically includes utilities and can optionally include lost rent.
+                        </InformationIcon>
                         <input
                             value={this.state.holdingCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -213,6 +217,9 @@ class LongTermRentalCalculator extends React.Component {
                     <h3>Expenses</h3>
                     <div>
                         <label>Mortgage Payment</label>
+                        <InformationIcon>
+                            Include the cost of property taxes and insurance here along with your loan payment.
+                        </InformationIcon>
                         <input
                             value={this.state.mortgage}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -221,6 +228,7 @@ class LongTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Utilities</label>
+                        <InformationIcon>Can be zero if your tenants pay all utilities.</InformationIcon>
                         <input
                             value={this.state.utilities}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -229,6 +237,9 @@ class LongTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Maintenance</label>
+                        <InformationIcon>
+                            This is usually taken as a percentage of the purchase price/property value. I typically use 1-2% of the property's value for my yearly maintenance costs, then divide that number by 12.
+                        </InformationIcon>
                         <input
                             value={this.state.maintenance}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -237,6 +248,9 @@ class LongTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Vacancy</label>
+                        <InformationIcon>
+                            This is the cost associated with not getting rent when you bring in new tenants. I generally plan for 1 month of vacancy each year. So this number should be one month's rent divided by 12.
+                        </InformationIcon>
                         <input
                             value={this.state.vacancy}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -245,6 +259,9 @@ class LongTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Property Management</label>
+                        <InformationIcon>
+                            Management companies usually take a percentage of the monthly rent.
+                        </InformationIcon>
                         <input
                             value={this.state.management}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -252,6 +269,9 @@ class LongTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Other Expenses</label>
+                        <InformationIcon>
+                            This can include HOA fees and other fees associated with owning your property.
+                        </InformationIcon>
                         <input
                             value={this.state.otherExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}

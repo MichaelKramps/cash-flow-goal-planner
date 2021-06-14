@@ -2,6 +2,7 @@ import React from 'react';
 import './StockPortfolioCalculator.css';
 import Shared from "../Shared/Shared";
 import FormUtils from "../Shared/FormUtils";
+import InformationIcon from "../Shared/InformationIcon";
 
 class StockPortfolioCalculator extends React.Component {
 
@@ -97,6 +98,9 @@ class StockPortfolioCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Cash Put In To Portfolio</label>
+                        <InformationIcon>
+                            This should be the amount of your own cash that you used to buy the portfolio. Unless you used a loan, this number should be identical to the value of the portfolio.
+                        </InformationIcon>
                         <input
                             value={this.state.initialInvestment}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -105,6 +109,9 @@ class StockPortfolioCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Yearly Percentage Increase in Value</label>
+                        <InformationIcon>
+                            This is the average yearly increase in the value of your stock portfolio. A long term average of the S&P 500 is about 7%. If you reinvest your dividends, add your dividend yield to this number. For S&P 500 the total would be around 9-10%.
+                        </InformationIcon>
                         <input
                             value={this.state.returnOnValue}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
@@ -113,6 +120,9 @@ class StockPortfolioCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Yearly Dividend Yield</label>
+                        <InformationIcon>
+                            This is the percentage of the value of your portfolio that gets paid out in dividends each year. For the S&P 500 this number would be 2-3%.
+                        </InformationIcon>
                         <input
                             value={this.state.dividendYield}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}

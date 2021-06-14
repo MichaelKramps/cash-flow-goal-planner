@@ -2,6 +2,7 @@ import React from 'react';
 import './ShortTermRentalCalculator.css'
 import FormUtils from "../Shared/FormUtils";
 import Shared from "../Shared/Shared";
+import InformationIcon from "../Shared/InformationIcon";
 
 class ShortTermRentalCalculator extends React.Component {
 
@@ -185,6 +186,9 @@ class ShortTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Furnishing Costs</label>
+                        <InformationIcon>
+                            You must furnish your short term rental, so include the cost of couches, TVs, beds, sheets, towels, rugs and anything else you plan to put in your rental.
+                        </InformationIcon>
                         <input
                             value={this.state.furnishingCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -193,6 +197,9 @@ class ShortTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Other Initial Costs</label>
+                        <InformationIcon>
+                            This can include a number of things, but a common one is consulting fees for a lawyer or accountant.
+                        </InformationIcon>
                         <input
                             value={this.state.otherInitialCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -214,6 +221,9 @@ class ShortTermRentalCalculator extends React.Component {
                     <h3>Expenses</h3>
                     <div>
                         <label>Mortgage Payment</label>
+                        <InformationIcon>
+                            Include your property taxes and insurance here in addition to your loan payment.
+                        </InformationIcon>
                         <input
                             value={this.state.mortgage}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -222,6 +232,9 @@ class ShortTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Utilities</label>
+                        <InformationIcon>
+                            Include internet in addition to water, sewer, electricity, gas, etc.
+                        </InformationIcon>
                         <input
                             value={this.state.utilities}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -230,6 +243,9 @@ class ShortTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Maintenance</label>
+                        <InformationIcon>
+                            For maintenance costs, I generally use 1-2% of the property's value and divide that number by 12. You can also include lawn maintenance here.
+                        </InformationIcon>
                         <input
                             value={this.state.maintenance}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -238,6 +254,9 @@ class ShortTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Cleaning</label>
+                        <InformationIcon>
+                            If you will do your own cleaning this number is 0.
+                        </InformationIcon>
                         <input
                             value={this.state.cleaning}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -246,6 +265,9 @@ class ShortTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Supplies</label>
+                        <InformationIcon>
+                            We spend money regularly on food, coffee, toilet paper, paper towels, cleaning solutions, and soap for the washer and dishwasher.
+                        </InformationIcon>
                         <input
                             value={this.state.supplies}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -253,6 +275,9 @@ class ShortTermRentalCalculator extends React.Component {
                     </div>
                     <div>
                         <label>Other Expenses</label>
+                        <InformationIcon>
+                            HOA fees would fit here and any other regular or unexpected expense. Some examples would be if you pay for a pool membership for your guests or maybe a monthly dock fee for a lake property.
+                        </InformationIcon>
                         <input
                             value={this.state.otherExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}

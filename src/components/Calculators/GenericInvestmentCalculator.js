@@ -2,6 +2,7 @@ import React from 'react';
 import './GenericInvestmentCalculator.css';
 import Shared from "../Shared/Shared";
 import FormUtils from "../Shared/FormUtils";
+import InformationIcon from "../Shared/InformationIcon";
 
 class GenericInvestmentCalculator extends React.Component {
 
@@ -153,7 +154,7 @@ class GenericInvestmentCalculator extends React.Component {
                     <h2>Generic Investment Calculator</h2>
                     <h3>Initial Investment</h3>
                     <div>
-                        <label>Value of Investment</label>
+                        <label>Value of Investment: </label>
                         <input
                             value={this.state.value}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -161,7 +162,7 @@ class GenericInvestmentCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Yearly Percentage Increase in Value</label>
+                        <label>Yearly Percentage Increase in Value: </label>
                         <input
                             value={this.state.yearlyValueGrowth}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
@@ -169,7 +170,7 @@ class GenericInvestmentCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Down Payment</label>
+                        <label>Down Payment: </label>
                         <input
                             value={this.state.downPayment}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -177,7 +178,10 @@ class GenericInvestmentCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Other Initial Costs</label>
+                        <label>Other Initial Costs: </label>
+                        <InformationIcon>
+                            This can include lawyer fees, accountant fees and other professional consulting fees, as well as renovation costs and a number of other things.
+                        </InformationIcon>
                         <input
                             value={this.state.otherInitialCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -189,7 +193,7 @@ class GenericInvestmentCalculator extends React.Component {
                     </div>
                     <h3>Revenue</h3>
                     <div>
-                        <label>Payments from Investment Each Year</label>
+                        <label>Payments from Investment Each Year: </label>
                         <input
                             value={this.state.yearlyPayments}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -197,7 +201,7 @@ class GenericInvestmentCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Payments from Investment Each Month</label>
+                        <label>Payments from Investment Each Month: </label>
                         <input
                             value={this.state.monthlyPayments}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -205,7 +209,10 @@ class GenericInvestmentCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Yearly Increase in Payments</label>
+                        <label>Yearly Increase in Payments: </label>
+                        <InformationIcon>
+                            This is your yearly percentage increase in sales or revenue. Put 5 here if your company's sales grow 5% each year.
+                        </InformationIcon>
                         <input
                             value={this.state.yearlyPaymentGrowth}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
@@ -214,7 +221,7 @@ class GenericInvestmentCalculator extends React.Component {
                     </div>
                     <h3>Expenses</h3>
                     <div>
-                        <label>Expenses for the Investment Each Year</label>
+                        <label>Total Expenses for Investment Each Year: </label>
                         <input
                             value={this.state.yearlyExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -222,7 +229,7 @@ class GenericInvestmentCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Expenses for the Investment Each Month</label>
+                        <label>Total Expenses for the Investment Each Month: </label>
                         <input
                             value={this.state.monthlyExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -230,7 +237,10 @@ class GenericInvestmentCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Yearly Increase in Expenses</label>
+                        <label>Yearly Increase in Expenses: </label>
+                        <InformationIcon>
+                            This is your yearly percentage increase in business related expenses. Put 5 here if your company spends 5% more each year.
+                        </InformationIcon>
                         <input
                             value={this.state.yearlyExpenseGrowth}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
