@@ -2,6 +2,7 @@ import React from 'react';
 import './BusinessCalculator.css';
 import Shared from "../Shared/Shared";
 import FormUtils from "../Shared/FormUtils";
+import InformationIcon from "../Shared/InformationIcon";
 
 class BusinessCalculator extends React.Component {
 
@@ -199,6 +200,38 @@ class BusinessCalculator extends React.Component {
         this.handleMonthlyChange(event, "yearlyOtherExpenses", "monthlyOtherExpenses");
     }
 
+    otherInitialCostsInfo() {
+        return(
+            <InformationIcon>
+                Depending on your specific business initial costs can include just about anything. Some examples are lawyer, accountant or other professional fees, new equipment, renovation costs, signing bonuses, or furnishing costs.
+            </InformationIcon>
+        )
+    }
+
+    payrollInfo() {
+        return(
+            <InformationIcon>
+                Include employee salaries and the cost of any benefit programs like health insurance and retirement plans.
+            </InformationIcon>
+        )
+    }
+
+    subscriptionsInfo() {
+        return(
+            <InformationIcon>
+                Include any monthly recurring fees. Some examples are licensing fees, taxes, analytics software, server costs, and Photoshop.
+            </InformationIcon>
+        )
+    }
+
+    otherExpensesInfo() {
+        return(
+            <InformationIcon>
+                There are a huge number of expenses that may not fit into the other categories. For example travel expenses, conferences, business related meals, and contract work.
+            </InformationIcon>
+        )
+    }
+
     handleYearlyChange(event, yearlyItemToUpdate, monthlyItemToUpdate) {
         let newState = JSON.parse(JSON.stringify(this.state));
 
@@ -273,7 +306,7 @@ class BusinessCalculator extends React.Component {
                     <h2>Business Investment Calculator</h2>
                     <h3>Initial Investment</h3>
                     <div>
-                        <label>Purchase Price/Business Value</label>
+                        <label>Purchase Price/Business Value: </label>
                         <input
                             value={this.state.businessValue}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -281,7 +314,7 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Down Payment</label>
+                        <label>Down Payment: </label>
                         <input
                             value={this.state.downPayment}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -289,7 +322,8 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Other Initial Costs</label>
+                        <label>Other Initial Costs: </label>
+                        {this.otherInitialCostsInfo()}
                         <input
                             value={this.state.otherInitialCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -301,7 +335,7 @@ class BusinessCalculator extends React.Component {
                     </div>
                     <h3>Revenue</h3>
                     <div>
-                        <label>Expected Yearly Revenue</label>
+                        <label>Expected Yearly Revenue: </label>
                         <input
                             value={this.state.yearlyRevenue}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -309,7 +343,7 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Expected Monthly Revenue</label>
+                        <label>Expected Monthly Revenue: </label>
                         <input
                             value={this.state.monthlyRevenue}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -318,7 +352,7 @@ class BusinessCalculator extends React.Component {
                     </div>
                     <h3>Expenses</h3>
                     <div>
-                    <label>Total Yearly Expenses</label>
+                    <label>Total Yearly Expenses: </label>
                     <input
                         value={this.state.totalYearlyExpenses}
                         onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -326,7 +360,7 @@ class BusinessCalculator extends React.Component {
                     />
                 </div>
                     <div className="yearly-expenses">
-                        <label>Yearly Rent</label>
+                        <label>Yearly Rent: </label>
                         <input
                             value={this.state.yearlyRent}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -334,7 +368,7 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div className="yearly-expenses">
-                        <label>Yearly Loan Payments</label>
+                        <label>Yearly Loan Payments: </label>
                         <input
                             value={this.state.yearlyLoanPayment}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -342,7 +376,8 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div className="yearly-expenses">
-                        <label>Yearly Payroll</label>
+                        <label>Yearly Payroll: </label>
+                        {this.payrollInfo()}
                         <input
                             value={this.state.yearlyPayroll}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -350,7 +385,8 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div className="yearly-expenses">
-                        <label>Yearly Subscriptions</label>
+                        <label>Yearly Subscriptions: </label>
+                        {this.subscriptionsInfo()}
                         <input
                             value={this.state.yearlySubscriptions}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -358,7 +394,8 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div className="yearly-expenses">
-                        <label>Yearly Other Expenses</label>
+                        <label>Yearly Other Expenses: </label>
+                        {this.otherExpensesInfo()}
                         <input
                             value={this.state.yearlyOtherExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -366,7 +403,7 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div>
-                        <label>Total Monthly Expenses</label>
+                        <label>Total Monthly Expenses: </label>
                         <input
                             value={this.state.totalMonthlyExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -374,7 +411,7 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div className="monthly-expenses">
-                        <label>Monthly Rent</label>
+                        <label>Monthly Rent: </label>
                         <input
                             value={this.state.monthlyRent}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -382,7 +419,7 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div className="monthly-expenses">
-                        <label>Monthly Loan Payments</label>
+                        <label>Monthly Loan Payments: </label>
                         <input
                             value={this.state.monthlyLoanPayment}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -390,7 +427,8 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <div className="monthly-expenses">
-                        <label>Monthly Payroll</label>
+                        <label>Monthly Payroll: </label>
+                        {this.payrollInfo()}
                         <input
                             value={this.state.monthlyPayroll}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -399,6 +437,7 @@ class BusinessCalculator extends React.Component {
                     </div>
                     <div className="monthly-expenses">
                         <label>Monthly Subscriptions</label>
+                        {this.subscriptionsInfo()}
                         <input
                             value={this.state.monthlySubscriptions}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -407,6 +446,7 @@ class BusinessCalculator extends React.Component {
                     </div>
                     <div className="monthly-expenses">
                         <label>Monthly Other Expenses</label>
+                        {this.otherExpensesInfo()}
                         <input
                             value={this.state.monthlyOtherExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
