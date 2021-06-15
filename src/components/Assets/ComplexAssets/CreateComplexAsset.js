@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from "../../Shared/Modal";
 import './CreateComplexAsset.css';
-import ShortTermRentalCalculator from "../../Calculators/ShortTermRentalCalculator";
+import ShortTermRentalCalculatorForm from "../../Calculators/Forms/ShortTermRentalCalculatorForm";
 import LongTermRentalCalculator from "../../Calculators/LongTermRentalCalculator";
 import BusinessCalculator from "../../Calculators/BusinessCalculator";
 import StockPortfolioCalculator from "../../Calculators/StockPortfolioCalculator";
@@ -143,7 +143,7 @@ class CreateComplexAsset extends React.Component {
                     </select>
                 </div>
                 <div className='page-two'>
-                    <ShortTermRentalCalculator
+                    <ShortTermRentalCalculatorForm
                         visible={this.determineVisibility("Short Term Rental")}
                         onSubmission={this.handleAssetSubmission}
                     />

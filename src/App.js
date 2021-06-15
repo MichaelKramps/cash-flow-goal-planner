@@ -5,9 +5,9 @@ import Header from "./components/Header";
 import LoanCalculator from "./components/Calculators/LoanCalculator";
 import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCalculator";
 import MortgageCalculator from "./components/Calculators/MortgageCalculator";
-import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalCalculator";
 import InvestmentCalculator from "./components/Calculators/InvestmentCalculator";
 import Learn from "./components/Learn/Learn";
+import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalCalculator";
 
 class App extends React.Component {
 

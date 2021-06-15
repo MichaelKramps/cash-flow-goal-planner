@@ -1,5 +1,5 @@
 import React from 'react';
-import ShortTermRentalCalculator from "../../Calculators/ShortTermRentalCalculator";
+import ShortTermRentalCalculatorForm from "../../Calculators/Forms/ShortTermRentalCalculatorForm";
 import LongTermRentalCalculator from "../../Calculators/LongTermRentalCalculator";
 import BusinessCalculator from "../../Calculators/BusinessCalculator";
 import StockPortfolioCalculator from "../../Calculators/StockPortfolioCalculator";
@@ -89,7 +89,7 @@ class EditComplexAsset extends React.Component {
                         <option value={currentYear + 9}>{currentYear + 9}</option>
                     </select>
                 </div>
-                <ShortTermRentalCalculator
+                <ShortTermRentalCalculatorForm
                     {...this.state.advanced}
                     visible={this.determineVisibility("Short Term Rental")}
                     onSubmission={this.handleSubmission}
