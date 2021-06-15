@@ -27,9 +27,9 @@ class ShortTermRentalCalculator extends React.Component {
         for (let year = 0; year < 10; year++) {
             let thisYear = {};
             thisYear.year = new Date().getFullYear() + year;
-            thisYear.revenue = Math.pow(1.03, year) * state.monthlyIncome;
-            thisYear.expenses = Math.pow(1.03, year) * state.totalMonthlyExpenses;
-            thisYear.cashFlow = thisYear.revenue - thisYear.expenses;
+            thisYear.revenue = (Math.pow(1.03, year) * state.monthlyIncome).toFixed(2);
+            thisYear.expenses = (Math.pow(1.03, year) * state.totalMonthlyExpenses).toFixed(2);
+            thisYear.cashFlow = (thisYear.revenue - thisYear.expenses).toFixed(2);
             cashFlowSchedule.push(thisYear);
         }
 
