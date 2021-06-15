@@ -146,6 +146,7 @@ class CreateComplexAsset extends React.Component {
                     <ShortTermRentalCalculatorForm
                         visible={this.determineVisibility("Short Term Rental")}
                         onSubmission={this.handleAssetSubmission}
+                        resetFormOnSubmission={true}
                     />
                     <LongTermRentalCalculator
                         visible={this.determineVisibility("Long Term Rental")}

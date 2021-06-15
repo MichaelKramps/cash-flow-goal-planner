@@ -159,7 +159,9 @@ class ShortTermRentalCalculatorForm extends React.Component {
         event.preventDefault();
         if (this.formIsValid()) {
             this.props.onSubmission(this.state);
-            this.setState(this.defaultState);
+            if (this.props.resetFormOnSubmission) {
+                this.setState(this.defaultState);
+            }
         }
     }
 
