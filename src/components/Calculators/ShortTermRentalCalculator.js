@@ -17,7 +17,6 @@ class ShortTermRentalCalculator extends React.Component {
 
     handleSubmit(state) {
         let cashFlowSchedule = this.createCashFlowSchedule(state);
-        console.log(cashFlowSchedule)
         this.setState({cashFlowSchedule: cashFlowSchedule});
     }
 

@@ -3,11 +3,11 @@ import './App.css';
 import Planner from "./components/Planner";
 import Header from "./components/Header";
 import LoanCalculator from "./components/Calculators/LoanCalculator";
-import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCalculator";
 import MortgageCalculator from "./components/Calculators/MortgageCalculator";
 import InvestmentCalculator from "./components/Calculators/InvestmentCalculator";
 import Learn from "./components/Learn/Learn";
 import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalCalculator";
+import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCalculator";
 
 class App extends React.Component {
 

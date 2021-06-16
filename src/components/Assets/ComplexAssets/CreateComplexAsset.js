@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from "../../Shared/Modal";
 import './CreateComplexAsset.css';
 import ShortTermRentalCalculatorForm from "../../Calculators/Forms/ShortTermRentalCalculatorForm";
-import LongTermRentalCalculator from "../../Calculators/LongTermRentalCalculator";
+import LongTermRentalCalculatorForm from "../../Calculators/Forms/LongTermRentalCalculatorForm";
 import BusinessCalculator from "../../Calculators/BusinessCalculator";
 import StockPortfolioCalculator from "../../Calculators/StockPortfolioCalculator";
 import GenericInvestmentCalculator from "../../Calculators/GenericInvestmentCalculator";
@@ -148,21 +148,25 @@ class CreateComplexAsset extends React.Component {
                         onSubmission={this.handleAssetSubmission}
                         resetFormOnSubmission={true}
                     />
-                    <LongTermRentalCalculator
+                    <LongTermRentalCalculatorForm
                         visible={this.determineVisibility("Long Term Rental")}
                         onSubmission={this.handleAssetSubmission}
+                        resetFormOnSubmission={true}
                     />
                     <BusinessCalculator
                         visible={this.determineVisibility("Business")}
                         onSubmission={this.handleAssetSubmission}
+                        resetFormOnSubmission={true}
                     />
                     <StockPortfolioCalculator
                         visible={this.determineVisibility("Stock Portfolio")}
                         onSubmission={this.handleAssetSubmission}
+                        resetFormOnSubmission={true}
                     />
                     <GenericInvestmentCalculator
                         visible={this.determineVisibility("Other")}
                         onSubmission={this.handleAssetSubmission}
+                        resetFormOnSubmission={true}
                     />
                 </div>
                 {this.renderButtons()}
