@@ -20,7 +20,7 @@ class CashFlowSchedule extends React.Component {
         return this.props.cashFlowSchedule.map((year, index) => {
             return (
                 <div key={index} className="cash-flow-schedule-row">
-                    <div>{index + 1}</div>
+                    <div>{year.year}</div>
                     <div>${year.revenue}</div>
                     <div>${year.expenses}</div>
                     <div>${year.cashFlow}</div>

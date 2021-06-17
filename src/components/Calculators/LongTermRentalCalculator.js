@@ -37,7 +37,7 @@ class LongTermRentalCalculator extends React.Component {
 
     render() {
         return (
-            <div className={"short-term-rental-calculator " + Shared.determineVisibility(this.props)}>
+            <div className={"long-term-rental " + Shared.determineVisibility(this.props)}>
                 <LongTermRentalCalculatorForm onSubmission={this.handleSubmit} visible={true} />
                 <CashFlowSchedule cashFlowSchedule={this.state.cashFlowSchedule} visible={this.state.cashFlowSchedule.length > 0} />
             </div>

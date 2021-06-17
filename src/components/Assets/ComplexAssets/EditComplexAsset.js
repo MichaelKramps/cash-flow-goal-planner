@@ -3,7 +3,7 @@ import ShortTermRentalCalculatorForm from "../../Calculators/Forms/ShortTermRent
 import LongTermRentalCalculatorForm from "../../Calculators/Forms/LongTermRentalCalculatorForm";
 import BusinessCalculator from "../../Calculators/BusinessCalculator";
 import StockPortfolioCalculator from "../../Calculators/StockPortfolioCalculator";
-import GenericInvestmentCalculator from "../../Calculators/GenericInvestmentCalculator";
+import GenericInvestmentCalculatorForm from "../../Calculators/Forms/GenericInvestmentCalculatorForm";
 import Modal from "../../Shared/Modal";
 
 class EditComplexAsset extends React.Component {
@@ -109,7 +109,7 @@ class EditComplexAsset extends React.Component {
                     visible={this.determineVisibility("Stock Portfolio")}
                     onSubmission={this.handleSubmission}
                 />
-                <GenericInvestmentCalculator
+                <GenericInvestmentCalculatorForm
                     {...this.state.advanced}
                     visible={this.determineVisibility("Other")}
                     onSubmission={this.handleSubmission}

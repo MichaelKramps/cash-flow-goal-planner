@@ -5,7 +5,7 @@ import ShortTermRentalCalculatorForm from "../../Calculators/Forms/ShortTermRent
 import LongTermRentalCalculatorForm from "../../Calculators/Forms/LongTermRentalCalculatorForm";
 import BusinessCalculator from "../../Calculators/BusinessCalculator";
 import StockPortfolioCalculator from "../../Calculators/StockPortfolioCalculator";
-import GenericInvestmentCalculator from "../../Calculators/GenericInvestmentCalculator";
+import GenericInvestmentCalculatorForm from "../../Calculators/Forms/GenericInvestmentCalculatorForm";
 
 class CreateComplexAsset extends React.Component {
 
@@ -163,7 +163,7 @@ class CreateComplexAsset extends React.Component {
                         onSubmission={this.handleAssetSubmission}
                         resetFormOnSubmission={true}
                     />
-                    <GenericInvestmentCalculator
+                    <GenericInvestmentCalculatorForm
                         visible={this.determineVisibility("Other")}
                         onSubmission={this.handleAssetSubmission}
                         resetFormOnSubmission={true}

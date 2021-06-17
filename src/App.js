@@ -4,10 +4,10 @@ import Planner from "./components/Planner";
 import Header from "./components/Header";
 import LoanCalculator from "./components/Calculators/LoanCalculator";
 import MortgageCalculator from "./components/Calculators/MortgageCalculator";
-import InvestmentCalculator from "./components/Calculators/InvestmentCalculator";
 import Learn from "./components/Learn/Learn";
 import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalCalculator";
 import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCalculator";
+import GenericInvestmentCalculator from "./components/Calculators/GenericInvestmentCalculator";
 
 class App extends React.Component {
 
@@ -39,7 +39,7 @@ class App extends React.Component {
               <Header changeView={this.changeView} />
               <Planner visible={this.determineVisibility("planner-view")} />
               <Learn visible={this.determineVisibility("learn-view")} />
-              <InvestmentCalculator visible={this.determineVisibility("investment-calculator-view")} />
+              <GenericInvestmentCalculator visible={this.determineVisibility("investment-calculator-view")} />
               <LoanCalculator visible={this.determineVisibility("loan-calculator-view")} />
               <LongTermRentalCalculator visible={this.determineVisibility("long-term-rental-calculator-view")} />
               <MortgageCalculator visible={this.determineVisibility("mortgage-calculator-view")} />
