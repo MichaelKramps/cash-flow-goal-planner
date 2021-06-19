@@ -53,36 +53,42 @@ class Highlights extends React.Component {
     render() {
         return (
             <div className="totals-container">
-                <div>
-                    <h2>Cash Flow Goal</h2>
-                    <div className="cash-flow-goal">
+                <div className="cash-flow-goal highlights-container">
+                    <div className="highlights-item">
+                        <h3>Cash Flow Goal</h3>
                         <p>
-                            Goal: ${this.state.cashFlowGoal.cashFlowGoal}/month
-                            <span onClick={() => {this.setState({editingCashFlowGoal: true})}}>&#9998;</span>
+                            ${this.state.cashFlowGoal.cashFlowGoal}/month
                         </p>
                         <p>
                             by: {this.state.cashFlowGoal.goalDate}
                         </p>
+                    </div>
+                    <div className="highlights-item">
+                        <button onClick={() => {this.setState({editingCashFlowGoal: true})}}>Edit&#9998;</button>
                     </div>
                     <CashFlowGoalEditor
                         {...this.state.cashFlowGoal}
                         editing={this.state.editingCashFlowGoal}
                         onSubmission={this.updateCashFlowGoal} />
                 </div>
-                <div>
-                    <h3>Current Cash Flow</h3>
-                    <div className="current-cash-flow">
-                        Goal: ${this.state.currentCashFlow.totalCashFlow}/month
-                        <span onClick={() => {this.setState({editingCurrentCashFlow: true})}}>&#9998;</span>
+                <div className="current-cash-flow highlights-container">
+                    <div className="highlights-item">
+                        <h3>Current Cash Flow</h3>
+                        <p>${this.state.currentCashFlow.totalCashFlow}/month</p>
+                    </div>
+                    <div className="highlights-item">
+                        <button onClick={() => {this.setState({editingCurrentCashFlow: true})}}>Edit&#9998;</button>
                     </div>
                     <CurrentCashFlowEditor
                         {...this.state.currentCashFlow}
                         editing={this.state.editingCurrentCashFlow}
                         onSubmission={this.updateCurrentCashFlow} />
                 </div>
-                <div>
-                    <h3>Additional Cash Flow Needed</h3>
-                    <div>${this.calculateCashFlowNeeded()}/month</div>
+                <div className="highlights-container">
+                    <div className="highlights-item">
+                        <h3>Additional Cash Flow Needed</h3>
+                        <p>${this.calculateCashFlowNeeded()}/month</p>
+                    </div>
                 </div>
             </div>
         );

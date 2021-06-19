@@ -3,9 +3,43 @@
     flex-direction: row;
     justify-content: space-between;
     background: #D3E0EA;
-    padding: 0px 12px;
+    text-align: center;
 }
 
-.totals-container div {
+.totals-container > div {
     flex: 1 1 0px;
+    border-bottom: 1px solid #312121;
+    border-right: 1px solid #312121;
+}
+
+.totals-container > div:last-child {
+    border-right: none;
+}
+
+.highlights-container {
+    display: flex;
+    justify-content: center;
+}
+
+.highlights-container > .highlights-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 12px 12px 12px;
+}
+
+.highlights-item p {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.totals-container button {
+    background: #276678;
+    color: #ffffff;
+    font-size: 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
