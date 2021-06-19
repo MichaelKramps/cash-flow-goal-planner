@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
     background: #D3E0EA;
+    padding: 0px 12px;
 }
 
 .totals-container div {
