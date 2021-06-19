@@ -1,5 +1,5 @@
 import React from 'react';
-import './Totals.css';
+import './Highlights.css';
 import CashFlowGoalEditor from "./CashFlowGoal/CashFlowGoalEditor";
 import FormUtils from "../Shared/FormUtils";
 import CurrentCashFlowEditor from "./CurrentCashFlow/CurrentCashFlowEditor";

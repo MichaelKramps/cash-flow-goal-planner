@@ -1,5 +1,5 @@
 import React from 'react';
-import './Simulator.css';
+import './Planner.css';
 import Highlights from "./Totals/Highlights";
 import FutureAssets from "./Assets/FutureAssets";
 import Shared from "./Shared/Shared";
@@ -28,11 +28,8 @@ class Planner extends React.Component {
 
     render() {
         return (
-            <div className={"simulator " + Shared.determineVisibility(this.props)}>
-                <h1>Cash Flow Early Retirement Planner</h1>
-                <div className="simulator-totals-container">
-                    <Highlights {...this.state.highlights} updateSimulator={this.updateHighlights} />
-                </div>
+            <div className={"planner " + Shared.determineVisibility(this.props)}>
+                <Highlights {...this.state.highlights} updateSimulator={this.updateHighlights} />
                 <h2>Future Investments</h2>
                 <div>
                     <FutureAssets {...this.state.futureAssets} updateSimulator={this.updateFutureAssets} />

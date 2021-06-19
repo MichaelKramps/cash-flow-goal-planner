@@ -1,15 +1,13 @@
-
-
 h2 {
     text-align: left;
 }
 
-.simulator-header-container {
+.planner-header-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.simulator-header-container div {
+.planner-header-container div {
     flex: 1 1 0px;
 }
