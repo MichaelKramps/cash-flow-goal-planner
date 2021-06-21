@@ -156,7 +156,7 @@ class CashFlowGoalEditor extends React.Component {
         return (
             <ModalForm visible={this.props.editing} onSubmission={this.handleSubmit}>
                 <h3>Update your monthly cash flow goal</h3>
-                <div>
+                <div className="calculator-input-container">
                     <label>Monthly cash flow goal: </label>
                     <input
                         value={this.state.cashFlowGoal}
@@ -164,7 +164,7 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleGoalChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Mortgage/rent: </label>
                     <input
                         value={this.state.expenses.mortgage}
@@ -172,7 +172,7 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleMortgageChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Utilities: </label>
                     <InformationIcon>
                         Include water, electric, sewer, trash, and internet.
@@ -183,7 +183,7 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleUtilitiesChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Food: </label>
                     <input
                         value={this.state.expenses.food}
@@ -191,7 +191,7 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleFoodChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Travel: </label>
                     <input
                         value={this.state.expenses.travel}
@@ -199,7 +199,7 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleTravelChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Insurance: </label>
                     <InformationIcon>
                         Include car insurance, health insurance, vision insurance, life insurance, and any other kind of insurance you expect to pay for.
@@ -210,7 +210,7 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleInsuranceChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Entertainment: </label>
                     <input
                         value={this.state.expenses.entertainment}
@@ -218,7 +218,7 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleEntertainmentChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Miscellaneous Expenses: </label>
                     <InformationIcon>
                         This includes anything that doesn't fit into another category or unexpected expenses, for example car repairs, gifts or home renovations.
@@ -229,7 +229,7 @@ class CashFlowGoalEditor extends React.Component {
                         onChange={this.handleMiscellaneousChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Cash for investing: </label>
                     <InformationIcon>
                         Remember that the force of inflation is always present, your money is always losing value and you should never stop investing.

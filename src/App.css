@@ -5,3 +5,7 @@
 .visible, .modal.visible {
     display: block;
 }
+
+.calculator-input-container {
+    margin-bottom: 8px;
+}
