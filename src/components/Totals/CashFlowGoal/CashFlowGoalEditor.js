@@ -173,10 +173,11 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Utilities: </label>
-                    <InformationIcon>
-                        Include water, electric, sewer, trash, and internet.
-                    </InformationIcon>
+                    <label>Utilities:
+                        <InformationIcon>
+                            Include water, electric, sewer, trash, and internet.
+                        </InformationIcon>
+                    </label>
                     <input
                         value={this.state.expenses.utilities}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -200,10 +201,11 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Insurance: </label>
-                    <InformationIcon>
-                        Include car insurance, health insurance, vision insurance, life insurance, and any other kind of insurance you expect to pay for.
-                    </InformationIcon>
+                    <label>Insurance:
+                        <InformationIcon>
+                            Include car insurance, health insurance, vision insurance, life insurance, and any other kind of insurance you expect to pay for.
+                        </InformationIcon>
+                    </label>
                     <input
                         value={this.state.expenses.insurance}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -219,10 +221,11 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Miscellaneous Expenses: </label>
-                    <InformationIcon>
-                        This includes anything that doesn't fit into another category or unexpected expenses, for example car repairs, gifts or home renovations.
-                    </InformationIcon>
+                    <label>Miscellaneous Expenses:
+                        <InformationIcon>
+                            This includes anything that doesn't fit into another category or unexpected expenses, for example car repairs, gifts or home renovations.
+                        </InformationIcon>
+                    </label>
                     <input
                         value={this.state.expenses.miscellaneous}
                         onKeyDown={FormUtils.validateIntegerInput}
@@ -230,10 +233,11 @@ class CashFlowGoalEditor extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Cash for investing: </label>
-                    <InformationIcon>
-                        Remember that the force of inflation is always present, your money is always losing value and you should never stop investing.
-                    </InformationIcon>
+                    <label>Cash for investing:
+                        <InformationIcon>
+                            Remember that the force of inflation is always present, your money is always losing value and you should never stop investing.
+                        </InformationIcon>
+                    </label>
                     <input
                         value={this.state.expenses.investing}
                         onKeyDown={FormUtils.validateIntegerInput}

@@ -27,3 +27,13 @@ input {
     padding: 10px;
     font-size: 14px;
 }
+
+button, input[type=submit] {
+    background: #276678;
+    color: #ffffff;
+    font-size: 24px;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    cursor: pointer;
+}

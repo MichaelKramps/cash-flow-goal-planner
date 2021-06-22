@@ -21,7 +21,7 @@
 
 .modal .modal-content {
     background-color: #fefefe;
-    margin: 50px auto;
+    margin: 40px auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
@@ -29,3 +29,11 @@
     text-align: left;
 }
 
+.modal-content h3 {
+    text-decoration: underline;
+}
+
+label {
+    width: 240px;
+    display: inline-block;
+}
