@@ -9,6 +9,10 @@
     overflow: auto;
 }
 
+.modal.visible {
+    display: flex;
+}
+
 .modal-curtain {
     position: fixed;
     left: 0;
@@ -21,7 +25,7 @@
 
 .modal .modal-content {
     background-color: #fefefe;
-    margin: 40px auto;
+    margin: auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
@@ -34,6 +38,6 @@
 }
 
 label {
-    width: 240px;
+    width: 300px;
     display: inline-block;
 }

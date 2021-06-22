@@ -37,3 +37,7 @@ button, input[type=submit] {
     padding: 6px 10px;
     cursor: pointer;
 }
+
+button:last-child, input[type=submit] {
+    float: right;
+}
