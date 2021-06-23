@@ -88,41 +88,44 @@ class StockPortfolioCalculator extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2>Stock Portfolio Calculator</h2>
                     <h3>Initial Investment</h3>
-                    <div>
-                        <label>Value of Portfolio</label>
+                    <div className="calculator-input-container">
+                        <label>Value of Portfolio: </label>
                         <input
                             value={this.state.value}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleValueChange}
                         />
                     </div>
-                    <div>
-                        <label>Cash Put In To Portfolio</label>
-                        <InformationIcon>
-                            This should be the amount of your own cash that you used to buy the portfolio. Unless you used a loan, this number should be identical to the value of the portfolio.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Cash Put In To Portfolio:
+                            <InformationIcon>
+                                This should be the amount of your own cash that you used to buy the portfolio. Unless you used a loan, this number should be identical to the value of the portfolio.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.initialInvestment}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleInitialInvestmentChange}
                         />
                     </div>
-                    <div>
-                        <label>Yearly Percentage Increase in Value</label>
-                        <InformationIcon>
-                            This is the average yearly increase in the value of your stock portfolio. A long term average of the S&P 500 is about 7%. If you reinvest your dividends, add your dividend yield to this number. For S&P 500 the total would be around 9-10%.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Yearly Percentage Increase in Value:
+                            <InformationIcon>
+                                This is the average yearly increase in the value of your stock portfolio. A long term average of the S&P 500 is about 7%. If you reinvest your dividends, add your dividend yield to this number. For S&P 500 the total would be around 9-10%.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.returnOnValue}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
                             onChange={this.handleReturnOnValueChange}
                         />
                     </div>
-                    <div>
-                        <label>Yearly Dividend Yield</label>
-                        <InformationIcon>
-                            This is the percentage of the value of your portfolio that gets paid out in dividends each year. For the S&P 500 this number would be 2-3%.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Yearly Dividend Yield:
+                            <InformationIcon>
+                                This is the percentage of the value of your portfolio that gets paid out in dividends each year. For the S&P 500 this number would be 2-3%.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.dividendYield}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}

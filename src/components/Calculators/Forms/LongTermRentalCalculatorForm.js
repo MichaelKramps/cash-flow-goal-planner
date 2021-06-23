@@ -174,43 +174,44 @@ class LongTermRentalCalculatorForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2>Long Term Rental Calculator</h2>
                     <h3>Initial Investment</h3>
-                    <div>
-                        <label>Purchase Price/Property Value</label>
+                    <div className="calculator-input-container">
+                        <label>Purchase Price/Property Value: </label>
                         <input
                             value={this.state.propertyValue}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handlePropertyValueChange}
                         />
                     </div>
-                    <div>
-                        <label>Down Payment</label>
+                    <div className="calculator-input-container">
+                        <label>Down Payment: </label>
                         <input
                             value={this.state.downPayment}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleDownPaymentChange}
                         />
                     </div>
-                    <div>
-                        <label>Renovation Costs</label>
+                    <div className="calculator-input-container">
+                        <label>Renovation Costs: </label>
                         <input
                             value={this.state.renovationCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleRenovationCostsChange}
                         />
                     </div>
-                    <div>
-                        <label>Holding Costs</label>
-                        <InformationIcon>
-                            This is the cost related with not immediately renting your space. It typically includes utilities and can optionally include lost rent.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Holding Costs:
+                            <InformationIcon>
+                                This is the cost related with not immediately renting your space. It typically includes utilities and can optionally include lost rent.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.holdingCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleHoldingCostsChange}
                         />
                     </div>
-                    <div>
-                        <label>Other Initial Costs</label>
+                    <div className="calculator-input-container">
+                        <label>Other Initial Costs: </label>
                         <input
                             value={this.state.otherInitialCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -221,8 +222,8 @@ class LongTermRentalCalculatorForm extends React.Component {
                         Total Initial Investment: ${this.state.initialInvestment}
                     </div>
                     <h3>Revenue</h3>
-                    <div>
-                        <label>Expected Monthly Income</label>
+                    <div className="calculator-input-container">
+                        <label>Expected Monthly Income: </label>
                         <input
                             value={this.state.monthlyIncome}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -230,63 +231,69 @@ class LongTermRentalCalculatorForm extends React.Component {
                         />
                     </div>
                     <h3>Expenses</h3>
-                    <div>
-                        <label>Mortgage Payment</label>
-                        <InformationIcon>
-                            Include the cost of property taxes and insurance here along with your loan payment.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Mortgage Payment:
+                            <InformationIcon>
+                                Include the cost of property taxes and insurance here along with your loan payment.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.mortgage}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleMortgageChange}
                         />
                     </div>
-                    <div>
-                        <label>Utilities</label>
-                        <InformationIcon>Can be zero if your tenants pay all utilities.</InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Utilities:
+                            <InformationIcon>Can be zero if your tenants pay all utilities.</InformationIcon>
+                        </label>
                         <input
                             value={this.state.utilities}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleUtilitiesChange}
                         />
                     </div>
-                    <div>
-                        <label>Maintenance</label>
-                        <InformationIcon>
-                            This is usually taken as a percentage of the purchase price/property value. I typically use 1-2% of the property's value for my yearly maintenance costs, then divide that number by 12.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Maintenance:
+                            <InformationIcon>
+                                This is usually taken as a percentage of the purchase price/property value. I typically use 1-2% of the property's value for my yearly maintenance costs, then divide that number by 12.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.maintenance}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleMaintenanceChange}
                         />
                     </div>
-                    <div>
-                        <label>Vacancy</label>
-                        <InformationIcon>
-                            This is the cost associated with not getting rent when you bring in new tenants. I generally plan for 1 month of vacancy each year. So this number should be one month's rent divided by 12.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Vacancy:
+                            <InformationIcon>
+                                This is the cost associated with not getting rent when you bring in new tenants. I generally plan for 1 month of vacancy each year. So this number should be one month's rent divided by 12.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.vacancy}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleVacancyChange}
                         />
                     </div>
-                    <div>
-                        <label>Property Management</label>
-                        <InformationIcon>
-                            Management companies usually take a percentage of the monthly rent.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Property Management:
+                            <InformationIcon>
+                                Management companies usually take a percentage of the monthly rent.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.management}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleManagementChange} />
                     </div>
-                    <div>
-                        <label>Other Expenses</label>
-                        <InformationIcon>
-                            This can include HOA fees and other fees associated with owning your property.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Other Expenses:
+                            <InformationIcon>
+                                This can include HOA fees and other fees associated with owning your property.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.otherExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}

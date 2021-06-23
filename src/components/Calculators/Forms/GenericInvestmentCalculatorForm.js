@@ -155,7 +155,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2>Generic Investment Calculator</h2>
                     <h3>Initial Investment</h3>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Value of Investment: </label>
                         <input
                             value={this.state.value}
@@ -163,7 +163,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                             onChange={this.handleValueChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Yearly Percentage Increase in Value: </label>
                         <input
                             value={this.state.yearlyValueGrowth}
@@ -171,7 +171,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                             onChange={this.handleYearlyValueGrowthChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Down Payment: </label>
                         <input
                             value={this.state.downPayment}
@@ -179,11 +179,12 @@ class GenericInvestmentCalculatorForm extends React.Component {
                             onChange={this.handleDownPaymentChange}
                         />
                     </div>
-                    <div>
-                        <label>Other Initial Costs: </label>
-                        <InformationIcon>
-                            This can include lawyer fees, accountant fees and other professional consulting fees, as well as renovation costs and a number of other things.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Other Initial Costs:
+                            <InformationIcon>
+                                This can include lawyer fees, accountant fees and other professional consulting fees, as well as renovation costs and a number of other things.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.otherInitialCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -194,7 +195,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                         Total Initial Investment: ${this.state.initialInvestment}
                     </div>
                     <h3>Revenue</h3>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Payments from Investment Each Year: </label>
                         <input
                             value={this.state.yearlyPayments}
@@ -202,7 +203,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                             onChange={this.handleYearlyPaymentsChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Payments from Investment Each Month: </label>
                         <input
                             value={this.state.monthlyPayments}
@@ -210,11 +211,12 @@ class GenericInvestmentCalculatorForm extends React.Component {
                             onChange={this.handleMonthlyPaymentsChange}
                         />
                     </div>
-                    <div>
-                        <label>Yearly Increase in Payments: </label>
-                        <InformationIcon>
-                            This is your yearly percentage increase in sales or revenue. Put 5 here if your company's sales grow 5% each year.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Yearly Increase in Payments:
+                            <InformationIcon>
+                                This is your yearly percentage increase in sales or revenue. Put 5 here if your company's sales grow 5% each year.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.yearlyPaymentGrowth}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
@@ -222,7 +224,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                         />
                     </div>
                     <h3>Expenses</h3>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Total Expenses for Investment Each Year: </label>
                         <input
                             value={this.state.yearlyExpenses}
@@ -230,7 +232,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                             onChange={this.handleYearlyExpensesChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Total Expenses for the Investment Each Month: </label>
                         <input
                             value={this.state.monthlyExpenses}
@@ -238,11 +240,12 @@ class GenericInvestmentCalculatorForm extends React.Component {
                             onChange={this.handleMonthlyExpensesChange}
                         />
                     </div>
-                    <div>
-                        <label>Yearly Increase in Expenses: </label>
-                        <InformationIcon>
-                            This is your yearly percentage increase in business related expenses. Put 5 here if your company spends 5% more each year.
-                        </InformationIcon>
+                    <div className="calculator-input-container">
+                        <label>Yearly Increase in Expenses:
+                            <InformationIcon>
+                                This is your yearly percentage increase in business related expenses. Put 5 here if your company spends 5% more each year.
+                            </InformationIcon>
+                        </label>
                         <input
                             value={this.state.yearlyExpenseGrowth}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event)}}
