@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-bottom: 12px;
 }
 
 .simple-asset div {
@@ -10,4 +11,12 @@
 
 .simple-asset div {
     cursor: pointer;
+}
+
+input.submit-simple-asset {
+    float: left;
+}
+
+.no-assets-message {
+    margin-bottom: 16px;
 }

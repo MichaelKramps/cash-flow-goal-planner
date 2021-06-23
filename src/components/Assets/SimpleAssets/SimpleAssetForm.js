@@ -59,10 +59,11 @@ class SimpleAssetForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label>Name: </label><input value={this.state.name} onChange={this.handleNameChange} />
+                <h3>Tell me about your new asset</h3>
+                <div className="calculator-input-container">
+                    <label>Investment Name: </label><input value={this.state.name} onChange={this.handleNameChange} />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Type: </label>
                     <select value={this.state.type} onChange={this.handleTypeChange}>
                         <option value=""></option>
@@ -74,7 +75,7 @@ class SimpleAssetForm extends React.Component {
                         <option value="Other">Other</option>
                     </select>
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Initial Investment: </label>
                     <input
                         value={this.state.initialInvestment}
@@ -82,7 +83,7 @@ class SimpleAssetForm extends React.Component {
                         onChange={this.handleInitialInvestmentChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Monthly Cash Flow: </label>
                     <input
                         value={this.state.cashFlow}
@@ -90,16 +91,16 @@ class SimpleAssetForm extends React.Component {
                         onChange={this.handleCashFlowChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Yearly Percentage Increase to Monthly Cash Flow: </label>
                     <input
                         value={this.state.cashFlowIncrease}
                         onKeyDown={(event) => {FormUtils.validateFloatInput(event, this.state.cashFlowIncrease)}}
                         defaultValue={3}
                         onChange={this.handleCashFlowIncreaseChange}
-                    />
+                    />&nbsp;%
                 </div>
-                <input type="submit" value="Submit Asset" />
+                <input className="submit-simple-asset" type="submit" value="Submit Asset" />
             </form>
         );
     }
