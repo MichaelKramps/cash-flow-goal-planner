@@ -352,113 +352,119 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <h3>Expenses</h3>
-                    <div className="calculator-input-container">
-                        <label>Total Yearly Expenses: </label>
-                        <input
-                            value={this.state.totalYearlyExpenses}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleTotalYearlyExpensesChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Yearly Rent: </label>
-                        <input
-                            value={this.state.yearlyRent}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleYearlyRentChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Yearly Loan Payments: </label>
-                        <input
-                            value={this.state.yearlyLoanPayment}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleYearlyLoanPaymentChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Yearly Payroll:
-                            {this.payrollInfo()}
-                        </label>
-                        <input
-                            value={this.state.yearlyPayroll}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleYearlyPayrollChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Yearly Subscriptions:
-                            {this.subscriptionsInfo()}
-                        </label>
-                        <input
-                            value={this.state.yearlySubscriptions}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleYearlySubscriptionsChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Yearly Other Expenses:
-                            {this.otherExpensesInfo()}
-                        </label>
-                        <input
-                            value={this.state.yearlyOtherExpenses}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleYearlyOtherExpensesChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Total Monthly Expenses: </label>
-                        <input
-                            value={this.state.totalMonthlyExpenses}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleTotalMonthlyExpensesChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Monthly Rent: </label>
-                        <input
-                            value={this.state.monthlyRent}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleMonthlyRentChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Monthly Loan Payments: </label>
-                        <input
-                            value={this.state.monthlyLoanPayment}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleMonthlyLoanPaymentChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Monthly Payroll:
-                            {this.payrollInfo()}
-                        </label>
-                        <input
-                            value={this.state.monthlyPayroll}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleMonthlyPayrollChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Monthly Subscriptions:
-                            {this.subscriptionsInfo()}
-                        </label>
-                        <input
-                            value={this.state.monthlySubscriptions}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleMonthlySubscriptionsChange}
-                        />
-                    </div>
-                    <div className="calculator-input-container">
-                        <label>Monthly Other Expenses:
-                            {this.otherExpensesInfo()}
-                        </label>
-                        <input
-                            value={this.state.monthlyOtherExpenses}
-                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                            onChange={this.handleMonthlyOtherExpensesChange}
-                        />
+                    <div className="multiple-column-container">
+                        <div className="column-container">
+                            <div className="calculator-input-container">
+                                <label>Total Yearly Expenses: </label>
+                                <input
+                                    value={this.state.totalYearlyExpenses}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleTotalYearlyExpensesChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Yearly Rent: </label>
+                                <input
+                                    value={this.state.yearlyRent}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleYearlyRentChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Yearly Loan Payments: </label>
+                                <input
+                                    value={this.state.yearlyLoanPayment}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleYearlyLoanPaymentChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Yearly Payroll:
+                                    {this.payrollInfo()}
+                                </label>
+                                <input
+                                    value={this.state.yearlyPayroll}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleYearlyPayrollChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Yearly Subscriptions:
+                                    {this.subscriptionsInfo()}
+                                </label>
+                                <input
+                                    value={this.state.yearlySubscriptions}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleYearlySubscriptionsChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Yearly Other Expenses:
+                                    {this.otherExpensesInfo()}
+                                </label>
+                                <input
+                                    value={this.state.yearlyOtherExpenses}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleYearlyOtherExpensesChange}
+                                />
+                            </div>
+                        </div>
+                        <div className="column-container">
+                            <div className="calculator-input-container">
+                                <label>Total Monthly Expenses: </label>
+                                <input
+                                    value={this.state.totalMonthlyExpenses}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleTotalMonthlyExpensesChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Monthly Rent: </label>
+                                <input
+                                    value={this.state.monthlyRent}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleMonthlyRentChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Monthly Loan Payments: </label>
+                                <input
+                                    value={this.state.monthlyLoanPayment}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleMonthlyLoanPaymentChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Monthly Payroll:
+                                    {this.payrollInfo()}
+                                </label>
+                                <input
+                                    value={this.state.monthlyPayroll}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleMonthlyPayrollChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Monthly Subscriptions:
+                                    {this.subscriptionsInfo()}
+                                </label>
+                                <input
+                                    value={this.state.monthlySubscriptions}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleMonthlySubscriptionsChange}
+                                />
+                            </div>
+                            <div className="calculator-input-container">
+                                <label>Monthly Other Expenses:
+                                    {this.otherExpensesInfo()}
+                                </label>
+                                <input
+                                    value={this.state.monthlyOtherExpenses}
+                                    onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                                    onChange={this.handleMonthlyOtherExpensesChange}
+                                />
+                            </div>
+                        </div>
                     </div>
                     <h3>Cash Flow</h3>
                     <div className="calculator-cash-flow-result">

@@ -36,8 +36,3 @@
 .modal-content h3 {
     text-decoration: underline;
 }
-
-label {
-    width: 300px;
-    display: inline-block;
-}

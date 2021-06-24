@@ -41,3 +41,8 @@ button, input[type=submit] {
 button:last-child, input[type=submit] {
     float: right;
 }
+
+label {
+    width: 260px;
+    display: inline-block;
+}

@@ -19,3 +19,13 @@
     margin-bottom: 16px;
     margin-top: 16px;
 }
+
+.multiple-column-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.column-container {
+    margin-right: 16px;
+}
