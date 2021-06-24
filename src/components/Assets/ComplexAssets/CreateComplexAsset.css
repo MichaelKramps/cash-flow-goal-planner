@@ -11,3 +11,11 @@
 {
     display: block;
 }
+
+button.modal-next-button {
+    float: right;
+}
+
+button.modal-back-button {
+    float: left;
+}

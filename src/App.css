@@ -7,5 +7,15 @@
 }
 
 .calculator-input-container {
+    display: flex;
+    align-items: center;
     margin-bottom: 8px;
+}
+
+.calculator-cash-flow-result {
+    color: #276678;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 16px;
+    margin-top: 16px;
 }

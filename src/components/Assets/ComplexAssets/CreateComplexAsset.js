@@ -102,11 +102,11 @@ class CreateComplexAsset extends React.Component {
     renderButtons() {
         if (this.state.page === 1) {
             return (
-                <button onClick={() => {this.pageForward()}}>Next</button>
+                <button className="modal-next-button" onClick={() => {this.pageForward()}}>Next</button>
             )
         } else {
             return (
-                <button onClick={() => {this.pageBackward()}}>Back</button>
+                <button className="modal-back-button" onClick={() => {this.pageBackward()}}>Back</button>
             )
         }
     }

@@ -132,13 +132,13 @@ class StockPortfolioCalculator extends React.Component {
                             onChange={this.handleDividendYieldChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Current Monthly Cash Flow: ${this.state.cashFlow}
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Monthly Cash Flow in 5 years: ${this.state.fiveYearCashFlow}
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Monthly Cash Flow in 10 years: ${this.state.tenYearCashFlow}
                     </div>
                     <input type="Submit" value="Submit" onChange={() => {}} />

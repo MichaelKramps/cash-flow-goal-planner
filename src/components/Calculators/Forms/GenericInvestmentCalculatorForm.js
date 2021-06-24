@@ -191,7 +191,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                             onChange={this.handleOtherInitialCostsChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Total Initial Investment: ${this.state.initialInvestment}
                     </div>
                     <h3>Revenue</h3>
@@ -252,7 +252,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                             onChange={this.handleYearlyExpenseGrowthChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Current Monthly Cash Flow: ${this.state.cashFlow}
                     </div>
                     <input type="Submit" value="Submit" onChange={() => {}} />

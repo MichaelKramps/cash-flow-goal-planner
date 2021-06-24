@@ -218,7 +218,7 @@ class LongTermRentalCalculatorForm extends React.Component {
                             onChange={this.handleOtherInitialCostsChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Total Initial Investment: ${this.state.initialInvestment}
                     </div>
                     <h3>Revenue</h3>
@@ -300,7 +300,7 @@ class LongTermRentalCalculatorForm extends React.Component {
                             onChange={this.handleOtherExpensesChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Monthly Cash Flow: ${this.state.cashFlow}
                     </div>
                     <input type="Submit" value="Submit" onChange={() => {}} />

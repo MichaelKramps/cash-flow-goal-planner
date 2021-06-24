@@ -305,7 +305,7 @@ class BusinessCalculator extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2>Business Investment Calculator</h2>
                     <h3>Initial Investment</h3>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Purchase Price/Business Value: </label>
                         <input
                             value={this.state.businessValue}
@@ -313,7 +313,7 @@ class BusinessCalculator extends React.Component {
                             onChange={this.handleBusinessValueChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Down Payment: </label>
                         <input
                             value={this.state.downPayment}
@@ -321,20 +321,21 @@ class BusinessCalculator extends React.Component {
                             onChange={this.handleDownPaymentChange}
                         />
                     </div>
-                    <div>
-                        <label>Other Initial Costs: </label>
-                        {this.otherInitialCostsInfo()}
+                    <div className="calculator-input-container">
+                        <label>Other Initial Costs:
+                            {this.otherInitialCostsInfo()}
+                        </label>
                         <input
                             value={this.state.otherInitialCosts}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleOtherInitialCostsChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Total Initial Investment: ${this.state.initialInvestment}
                     </div>
                     <h3>Revenue</h3>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Expected Yearly Revenue: </label>
                         <input
                             value={this.state.yearlyRevenue}
@@ -342,7 +343,7 @@ class BusinessCalculator extends React.Component {
                             onChange={this.handleYearlyRevenueChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Expected Monthly Revenue: </label>
                         <input
                             value={this.state.monthlyRevenue}
@@ -351,15 +352,15 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <h3>Expenses</h3>
-                    <div>
-                    <label>Total Yearly Expenses: </label>
-                    <input
-                        value={this.state.totalYearlyExpenses}
-                        onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
-                        onChange={this.handleTotalYearlyExpensesChange}
-                    />
-                </div>
-                    <div className="yearly-expenses">
+                    <div className="calculator-input-container">
+                        <label>Total Yearly Expenses: </label>
+                        <input
+                            value={this.state.totalYearlyExpenses}
+                            onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
+                            onChange={this.handleTotalYearlyExpensesChange}
+                        />
+                    </div>
+                    <div className="calculator-input-container">
                         <label>Yearly Rent: </label>
                         <input
                             value={this.state.yearlyRent}
@@ -367,7 +368,7 @@ class BusinessCalculator extends React.Component {
                             onChange={this.handleYearlyRentChange}
                         />
                     </div>
-                    <div className="yearly-expenses">
+                    <div className="calculator-input-container">
                         <label>Yearly Loan Payments: </label>
                         <input
                             value={this.state.yearlyLoanPayment}
@@ -375,34 +376,37 @@ class BusinessCalculator extends React.Component {
                             onChange={this.handleYearlyLoanPaymentChange}
                         />
                     </div>
-                    <div className="yearly-expenses">
-                        <label>Yearly Payroll: </label>
-                        {this.payrollInfo()}
+                    <div className="calculator-input-container">
+                        <label>Yearly Payroll:
+                            {this.payrollInfo()}
+                        </label>
                         <input
                             value={this.state.yearlyPayroll}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleYearlyPayrollChange}
                         />
                     </div>
-                    <div className="yearly-expenses">
-                        <label>Yearly Subscriptions: </label>
-                        {this.subscriptionsInfo()}
+                    <div className="calculator-input-container">
+                        <label>Yearly Subscriptions:
+                            {this.subscriptionsInfo()}
+                        </label>
                         <input
                             value={this.state.yearlySubscriptions}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleYearlySubscriptionsChange}
                         />
                     </div>
-                    <div className="yearly-expenses">
-                        <label>Yearly Other Expenses: </label>
-                        {this.otherExpensesInfo()}
+                    <div className="calculator-input-container">
+                        <label>Yearly Other Expenses:
+                            {this.otherExpensesInfo()}
+                        </label>
                         <input
                             value={this.state.yearlyOtherExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleYearlyOtherExpensesChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Total Monthly Expenses: </label>
                         <input
                             value={this.state.totalMonthlyExpenses}
@@ -410,7 +414,7 @@ class BusinessCalculator extends React.Component {
                             onChange={this.handleTotalMonthlyExpensesChange}
                         />
                     </div>
-                    <div className="monthly-expenses">
+                    <div className="calculator-input-container">
                         <label>Monthly Rent: </label>
                         <input
                             value={this.state.monthlyRent}
@@ -418,7 +422,7 @@ class BusinessCalculator extends React.Component {
                             onChange={this.handleMonthlyRentChange}
                         />
                     </div>
-                    <div className="monthly-expenses">
+                    <div className="calculator-input-container">
                         <label>Monthly Loan Payments: </label>
                         <input
                             value={this.state.monthlyLoanPayment}
@@ -426,27 +430,30 @@ class BusinessCalculator extends React.Component {
                             onChange={this.handleMonthlyLoanPaymentChange}
                         />
                     </div>
-                    <div className="monthly-expenses">
-                        <label>Monthly Payroll: </label>
-                        {this.payrollInfo()}
+                    <div className="calculator-input-container">
+                        <label>Monthly Payroll:
+                            {this.payrollInfo()}
+                        </label>
                         <input
                             value={this.state.monthlyPayroll}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleMonthlyPayrollChange}
                         />
                     </div>
-                    <div className="monthly-expenses">
-                        <label>Monthly Subscriptions</label>
-                        {this.subscriptionsInfo()}
+                    <div className="calculator-input-container">
+                        <label>Monthly Subscriptions:
+                            {this.subscriptionsInfo()}
+                        </label>
                         <input
                             value={this.state.monthlySubscriptions}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleMonthlySubscriptionsChange}
                         />
                     </div>
-                    <div className="monthly-expenses">
-                        <label>Monthly Other Expenses</label>
-                        {this.otherExpensesInfo()}
+                    <div className="calculator-input-container">
+                        <label>Monthly Other Expenses:
+                            {this.otherExpensesInfo()}
+                        </label>
                         <input
                             value={this.state.monthlyOtherExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -454,10 +461,10 @@ class BusinessCalculator extends React.Component {
                         />
                     </div>
                     <h3>Cash Flow</h3>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Yearly Cash Flow: ${this.state.yearlyCashFlow}
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Monthly Cash Flow: ${this.state.monthlyCashFlow}
                     </div>
                     <input type="submit" value="Submit" onChange={() => {}} />
