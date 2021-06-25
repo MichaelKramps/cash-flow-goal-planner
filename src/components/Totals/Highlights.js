@@ -39,8 +39,18 @@ class Highlights extends React.Component {
         });
     }
 
+    calculateCashFlowNeededText() {
+        let cashFlowNeeded = this.calculateCashFlowNeeded();
+        if (cashFlowNeeded > 0) {
+            return "$" + cashFlowNeeded + "/month";
+        } else {
+            return "Goal Reached!";
+        }
+    }
+
     calculateCashFlowNeeded() {
-        return FormUtils.parseIntegerInput(this.state.cashFlowGoal.cashFlowGoal) - FormUtils.parseIntegerInput(this.state.currentCashFlow.totalCashFlow);
+        let cashFlowNeeded = FormUtils.parseIntegerInput(this.state.cashFlowGoal.cashFlowGoal) - FormUtils.parseIntegerInput(this.state.currentCashFlow.totalCashFlow);
+        return cashFlowNeeded;
     }
 
     updateSimulator() {
@@ -51,6 +61,7 @@ class Highlights extends React.Component {
     }
 
     render() {
+        let reachedCashFlowGoal = this.calculateCashFlowNeeded() > 0 ? "additional-cash-flow-needed" : "reached-cash-flow-goal";
         return (
             <div className="totals-container">
                 <div className="cash-flow-goal highlights-container">
@@ -84,10 +95,10 @@ class Highlights extends React.Component {
                         editing={this.state.editingCurrentCashFlow}
                         onSubmission={this.updateCurrentCashFlow} />
                 </div>
-                <div className="highlights-container">
+                <div className={"highlights-container " + reachedCashFlowGoal}>
                     <div className="highlights-item">
                         <h3>Additional Cash Flow Needed</h3>
-                        <p>${this.calculateCashFlowNeeded()}/month</p>
+                        <p>{this.calculateCashFlowNeededText()}</p>
                     </div>
                 </div>
             </div>

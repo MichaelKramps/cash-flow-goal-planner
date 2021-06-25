@@ -1,8 +1,23 @@
 .cash-flow-outlook {
     width: 100%;
+    padding: 12px;
+}
+
+.cash-flow-outlook thead tr:last-child {
+    background: #312121;
+    color: #ffffff;
 }
 
 .cash-flow-outlook td, .cash-flow-outlook th {
     padding: 12px;
     text-align: left;
+}
+
+.cash-flow-outlook tr:last-child {
+    color: #276678;
+}
+
+.cash-flow-outlook tr:last-child td {
+    border-top: 1px solid #312121;
+    font-weight: bold;
 }

@@ -60,7 +60,7 @@ class CashFlowOutlook extends React.Component {
         return years.map((year) => {
             return (
                 <React.Fragment>
-                    <td>{year}</td>
+                    <th>{year}</th>
                 </React.Fragment>
             )
         })

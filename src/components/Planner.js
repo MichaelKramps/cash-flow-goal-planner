@@ -31,7 +31,7 @@ class Planner extends React.Component {
             <div className={"planner " + Shared.determineVisibility(this.props)}>
                 <Highlights {...this.state.highlights} updateSimulator={this.updateHighlights} />
                 <h2>Future Investments</h2>
-                <div>
+                <div className="future-assets">
                     <FutureAssets {...this.state.futureAssets} updateSimulator={this.updateFutureAssets} />
                 </div>
                 <h2>Future Cash Flow Outlook</h2>

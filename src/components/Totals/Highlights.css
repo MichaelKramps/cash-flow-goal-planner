@@ -34,3 +34,11 @@
     font-weight: bold;
     font-size: 24px;
 }
+
+.additional-cash-flow-needed p {
+    color: #cc6600;
+}
+
+.reached-cash-flow-goal p {
+    color: #008000;
+}
