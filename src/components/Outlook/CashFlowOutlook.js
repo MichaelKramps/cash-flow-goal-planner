@@ -34,6 +34,10 @@ class CashFlowOutlook extends React.Component {
     listAllAssets() {
         let allAssetsWithFutureCashFlow = this.createAllAssetsWithCashFlow();
 
+        if (allAssetsWithFutureCashFlow.length === 0) {
+            return <tr><td>You have no assets</td></tr>
+        }
+
         return allAssetsWithFutureCashFlow.map((asset) => {
             return (
                 <tr key={asset.name}>

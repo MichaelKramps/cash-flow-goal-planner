@@ -1,6 +1,6 @@
 .cash-flow-outlook {
-    width: 100%;
-    padding: 12px;
+    width: 97%;
+    margin: 1.5%;
 }
 
 .cash-flow-outlook thead tr:last-child {
@@ -20,4 +20,8 @@
 .cash-flow-outlook tr:last-child td {
     border-top: 1px solid #312121;
     font-weight: bold;
+}
+
+.cash-flow-outlook tbody tr:nth-child(even) {
+    background: #D3E0EA;
 }
