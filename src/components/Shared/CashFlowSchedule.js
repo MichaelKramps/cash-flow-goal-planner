@@ -16,7 +16,6 @@ class CashFlowSchedule extends React.Component {
     }
 
     createRows() {
-        console.log(this.props);
         return this.props.cashFlowSchedule.map((year, index) => {
             return (
                 <div key={index} className="cash-flow-schedule-row">

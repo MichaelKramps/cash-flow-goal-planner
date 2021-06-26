@@ -1,6 +1,7 @@
 .cash-flow-outlook {
     width: 97%;
     margin: 1.5%;
+    border-collapse: collapse;
 }
 
 .cash-flow-outlook thead tr:last-child {
