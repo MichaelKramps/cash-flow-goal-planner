@@ -35,7 +35,7 @@ class CashFlowOutlook extends React.Component {
         let allAssetsWithFutureCashFlow = this.createAllAssetsWithCashFlow();
 
         if (allAssetsWithFutureCashFlow.length === 0) {
-            return <tr><td>You have no assets</td></tr>
+            return <tr><td>You have no assets</td>{this.listSingleValue("-")}</tr>
         }
 
         return allAssetsWithFutureCashFlow.map((asset) => {
@@ -73,10 +73,26 @@ class CashFlowOutlook extends React.Component {
     listCashFlowTotals() {
         let totals = this.calculateCashFlowTotals();
 
+        if (totals.length === 0) {
+            return this.listSingleValue("-")
+        }
+
         return totals.map((total) => {
             return (
                 <React.Fragment>
                     <td>${total.toFixed(2)}</td>
+                </React.Fragment>
+            )
+        })
+    }
+
+    listSingleValue(value) {
+        let years = this.createYearsArray();
+
+        return years.map((year) => {
+            return (
+                <React.Fragment>
+                    <td>{value}</td>
                 </React.Fragment>
             )
         })
