@@ -29,3 +29,21 @@
 .column-container {
     margin-right: 16px;
 }
+
+.short-term-rental-calculator,
+.long-term-rental-calculator,
+.generic-investment,
+.loan-calculator,
+.mortgage-calculator {
+    padding: 12px;
+    margin-bottom: 24px;
+}
+
+.short-term-rental-calculator input[type=submit],
+.long-term-rental-calculator input[type=submit],
+.generic-investment input[type=submit],
+.loan-calculator input[type=submit],
+.mortgage-calculator input[type=submit] {
+    float: none;
+    margin-bottom: 24px;
+}

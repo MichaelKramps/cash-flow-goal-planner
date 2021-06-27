@@ -93,7 +93,7 @@ class LoanCalculator extends React.Component {
             <div className={"loan-calculator " + Shared.determineVisibility(this.props)}>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Loan Calculator</h2>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Loan Amount</label>
                         <input
                             value={this.state.amount}
@@ -101,14 +101,14 @@ class LoanCalculator extends React.Component {
                             onChange={this.handleAmountChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Length of Loan</label>
                         <input
                             value={this.state.term}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleTermChange} />
                     </div>
-                    <div>
+                    <div className="calculator-input-container">
                         <label>Interest Rate</label>
                         <input
                             value={this.state.interestRate}
@@ -116,7 +116,7 @@ class LoanCalculator extends React.Component {
                             onChange={this.handleInterestRateChange}
                         />
                     </div>
-                    <div>
+                    <div className="calculator-cash-flow-result">
                         Monthly Payment: ${this.state.monthlyPayment}
                     </div>
                     <div>

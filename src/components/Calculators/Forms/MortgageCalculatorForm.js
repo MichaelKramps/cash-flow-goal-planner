@@ -116,7 +116,7 @@ class MortgageCalculatorForm extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <h2>Mortgage Calculator</h2>
-                <div>
+                <div className="calculator-input-container">
                     <label>Price of the home</label>
                     <input
                         value={this.state.price}
@@ -124,7 +124,7 @@ class MortgageCalculatorForm extends React.Component {
                         onChange={this.handlePriceChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Down Payment</label>
                     <input
                         value={this.state.downPayment}
@@ -132,7 +132,7 @@ class MortgageCalculatorForm extends React.Component {
                         onChange={this.handleDownPaymentChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Length of Loan</label>
                     <input
                         value={this.state.term}
@@ -140,7 +140,7 @@ class MortgageCalculatorForm extends React.Component {
                         onChange={this.handleTermChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Interest Rate</label>
                     <input
                         value={this.state.interestRate}
@@ -148,7 +148,7 @@ class MortgageCalculatorForm extends React.Component {
                         onChange={this.handleInterestRateChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Home Insurance</label>
                     <input
                         value={this.state.insurance}
@@ -156,7 +156,7 @@ class MortgageCalculatorForm extends React.Component {
                         onChange={this.handleInsuranceChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Property Taxes</label>
                     <input
                         value={this.state.propertyTax}
@@ -164,7 +164,7 @@ class MortgageCalculatorForm extends React.Component {
                         onChange={this.handlePropertyTaxChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-input-container">
                     <label>Home Owner's Association Fee</label>
                     <input
                         value={this.state.hoa}
@@ -172,7 +172,7 @@ class MortgageCalculatorForm extends React.Component {
                         onChange={this.handleHoaChange}
                     />
                 </div>
-                <div>
+                <div className="calculator-cash-flow-result">
                     Monthly Payment: ${this.state.monthlyPayment}
                 </div>
                 <div>

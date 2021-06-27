@@ -171,7 +171,7 @@ class ShortTermRentalCalculatorForm extends React.Component {
 
     render() {
         return (
-            <div className={"short-term-rental-calculator " + Shared.determineVisibility(this.props)}>
+            <div className={Shared.determineVisibility(this.props)}>
                 <form onSubmit={this.handleSubmit}>
                     <h2>Short Term Rental Calculator</h2>
                     <h3>Initial Investment</h3>
