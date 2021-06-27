@@ -98,7 +98,8 @@ class Highlights extends React.Component {
                 <div className={"highlights-container " + reachedCashFlowGoal}>
                     <div className="highlights-item">
                         <h3>Additional Cash Flow Needed</h3>
-                        <p>{this.calculateCashFlowNeededText()}</p>
+                        <p className="cash-flow-needed-text">{this.calculateCashFlowNeededText()}</p>
+                        <p className="enter-cash-flow-goal-text">Enter a Cash Flow Goal</p>
                     </div>
                 </div>
             </div>

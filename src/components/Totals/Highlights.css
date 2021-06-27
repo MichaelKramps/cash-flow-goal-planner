@@ -42,3 +42,12 @@
 .reached-cash-flow-goal p {
     color: #008000;
 }
+
+.enter-cash-flow-goal-text,
+.cash-flow-goal-empty .cash-flow-needed-text {
+    display: none;
+}
+
+.cash-flow-goal-empty .enter-cash-flow-goal-text {
+    display: inline;
+}

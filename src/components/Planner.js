@@ -26,9 +26,21 @@ class Planner extends React.Component {
         this.setState({futureAssets: state});
     }
 
+    determineEmptyCashFlowClass() {
+        if (this.state.highlights === undefined ||
+            this.state.highlights.cashFlowGoal === undefined ||
+            this.state.highlights.cashFlowGoal.cashFlowGoal === undefined ||
+            this.state.highlights.cashFlowGoal.cashFlowGoal <= 0)
+        {
+            return "cash-flow-goal-empty";
+        } else {
+            return "cash-flow-goal-full";
+        }
+    }
+
     render() {
         return (
-            <div className={"planner " + Shared.determineVisibility(this.props)}>
+            <div className={"planner " + Shared.determineVisibility(this.props) + " " + this.determineEmptyCashFlowClass()}>
                 <Highlights {...this.state.highlights} updateSimulator={this.updateHighlights} />
                 <h2>Future Investments</h2>
                 <div className="future-assets">
