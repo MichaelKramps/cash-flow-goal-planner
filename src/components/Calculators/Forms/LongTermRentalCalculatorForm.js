@@ -183,7 +183,7 @@ class LongTermRentalCalculatorForm extends React.Component {
                         />
                     </div>
                     <div className="calculator-input-container">
-                        <label>Down Payment: </label>
+                        <label>Down Payment (amount): </label>
                         <input
                             value={this.state.downPayment}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}

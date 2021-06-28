@@ -117,7 +117,7 @@ class MortgageCalculatorForm extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <h2>Mortgage Calculator</h2>
                 <div className="calculator-input-container">
-                    <label>Price of the home</label>
+                    <label>Price of the home: </label>
                     <input
                         value={this.state.price}
                         onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -125,7 +125,7 @@ class MortgageCalculatorForm extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Down Payment</label>
+                    <label>Down Payment (amount): </label>
                     <input
                         value={this.state.downPayment}
                         onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -133,7 +133,7 @@ class MortgageCalculatorForm extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Length of Loan</label>
+                    <label>Length of Loan (years): </label>
                     <input
                         value={this.state.term}
                         onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -141,7 +141,7 @@ class MortgageCalculatorForm extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Interest Rate</label>
+                    <label>Interest Rate (%): </label>
                     <input
                         value={this.state.interestRate}
                         onKeyDown={(event) => {FormUtils.validateFloatInput(event, this.state.interestRate)}}
@@ -149,7 +149,7 @@ class MortgageCalculatorForm extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Home Insurance</label>
+                    <label>Home Insurance (per month): </label>
                     <input
                         value={this.state.insurance}
                         onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -157,7 +157,7 @@ class MortgageCalculatorForm extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Property Taxes</label>
+                    <label>Property Taxes (per month): </label>
                     <input
                         value={this.state.propertyTax}
                         onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -165,7 +165,7 @@ class MortgageCalculatorForm extends React.Component {
                     />
                 </div>
                 <div className="calculator-input-container">
-                    <label>Home Owner's Association Fee</label>
+                    <label>Home Owner's Association Fee (per month): </label>
                     <input
                         value={this.state.hoa}
                         onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}

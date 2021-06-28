@@ -94,7 +94,7 @@ class LoanCalculator extends React.Component {
                 <form onSubmit={this.handleSubmit}>
                     <h2>Loan Calculator</h2>
                     <div className="calculator-input-container">
-                        <label>Loan Amount</label>
+                        <label>Loan Amount: </label>
                         <input
                             value={this.state.amount}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -102,14 +102,14 @@ class LoanCalculator extends React.Component {
                         />
                     </div>
                     <div className="calculator-input-container">
-                        <label>Length of Loan</label>
+                        <label>Length of Loan (years): </label>
                         <input
                             value={this.state.term}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
                             onChange={this.handleTermChange} />
                     </div>
                     <div className="calculator-input-container">
-                        <label>Interest Rate</label>
+                        <label>Interest Rate (%): </label>
                         <input
                             value={this.state.interestRate}
                             onKeyDown={(event) => {FormUtils.validateFloatInput(event, this.state.interestRate)}}

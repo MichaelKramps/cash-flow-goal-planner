@@ -121,7 +121,7 @@ class StockPortfolioCalculator extends React.Component {
                         />
                     </div>
                     <div className="calculator-input-container">
-                        <label>Yearly Dividend Yield:
+                        <label>Yearly Dividend Yield (%):
                             <InformationIcon>
                                 This is the percentage of the value of your portfolio that gets paid out in dividends each year. For the S&P 500 this number would be 2-3%.
                             </InformationIcon>

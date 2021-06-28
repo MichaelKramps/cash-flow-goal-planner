@@ -172,7 +172,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                         />
                     </div>
                     <div className="calculator-input-container">
-                        <label>Down Payment: </label>
+                        <label>Down Payment (amount): </label>
                         <input
                             value={this.state.downPayment}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -196,7 +196,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                     </div>
                     <h3>Revenue</h3>
                     <div className="calculator-input-container">
-                        <label>Payments from Investment Each Year: </label>
+                        <label>Payments from Investment Per Year: </label>
                         <input
                             value={this.state.yearlyPayments}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -204,7 +204,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                         />
                     </div>
                     <div className="calculator-input-container">
-                        <label>Payments from Investment Each Month: </label>
+                        <label>Payments from Investment Per Month: </label>
                         <input
                             value={this.state.monthlyPayments}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -212,7 +212,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                         />
                     </div>
                     <div className="calculator-input-container">
-                        <label>Yearly Increase in Payments:
+                        <label>Yearly Percentage Increase in Payments:
                             <InformationIcon>
                                 This is your yearly percentage increase in sales or revenue. Put 5 here if your company's sales grow 5% each year.
                             </InformationIcon>
@@ -225,7 +225,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                     </div>
                     <h3>Expenses</h3>
                     <div className="calculator-input-container">
-                        <label>Total Expenses for Investment Each Year: </label>
+                        <label>Total Expenses for Investment Per Year: </label>
                         <input
                             value={this.state.yearlyExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -233,7 +233,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                         />
                     </div>
                     <div className="calculator-input-container">
-                        <label>Total Expenses for the Investment Each Month: </label>
+                        <label>Total Expenses for the Investment Per Month: </label>
                         <input
                             value={this.state.monthlyExpenses}
                             onKeyDown={(event) => {FormUtils.validateIntegerInput(event)}}
@@ -241,7 +241,7 @@ class GenericInvestmentCalculatorForm extends React.Component {
                         />
                     </div>
                     <div className="calculator-input-container">
-                        <label>Yearly Increase in Expenses:
+                        <label>Yearly Percentage Increase in Expenses:
                             <InformationIcon>
                                 This is your yearly percentage increase in business related expenses. Put 5 here if your company spends 5% more each year.
                             </InformationIcon>
