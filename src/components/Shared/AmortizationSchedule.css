@@ -5,4 +5,14 @@
 
 .amortization-row div {
     flex: 1 1 0px;
+    padding: 12px;
+}
+
+body .amortization-schedule > div:first-child {
+    background: #312121;
+    color: #ffffff;
+}
+
+.amortization-schedule > div:nth-child(odd) {
+    background: #D3E0EA;
 }

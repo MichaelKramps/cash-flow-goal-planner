@@ -77,10 +77,13 @@ class AmortizationSchedule extends React.Component {
             return null;
         } else {
             return (
-                <div className="amortization-schedule">
-                    {this.createRowHeaders()}
-                    {this.createRows()}
-                </div>
+                <React.Fragment>
+                    <h2>Amortization Schedule</h2>
+                    <div className="amortization-schedule">
+                        {this.createRowHeaders()}
+                        {this.createRows()}
+                    </div>
+                </React.Fragment>
             );
         }
     }

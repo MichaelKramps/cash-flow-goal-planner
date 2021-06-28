@@ -30,10 +30,13 @@ class CashFlowSchedule extends React.Component {
 
     render() {
         return (
-            <div className={"cash-flow-schedule " + Shared.determineVisibility(this.props)}>
-                {this.createRowHeaders()}
-                {this.createRows()}
-            </div>
+            <React.Fragment>
+                <h2>Cash Flow Schedule</h2>
+                <div className={"cash-flow-schedule " + Shared.determineVisibility(this.props)}>
+                    {this.createRowHeaders()}
+                    {this.createRows()}
+                </div>
+            </React.Fragment>
         );
     }
 }
