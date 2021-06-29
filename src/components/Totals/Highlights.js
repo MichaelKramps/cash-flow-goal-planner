@@ -53,6 +53,10 @@ class Highlights extends React.Component {
         return cashFlowNeeded;
     }
 
+    calculateCurrentCashFlow() {
+        return "Make this work!";
+    }
+
     updateSimulator() {
         let updatedState = JSON.parse(JSON.stringify(this.state));
         updatedState.editingCashFlowGoal = false;
@@ -85,15 +89,8 @@ class Highlights extends React.Component {
                 <div className="current-cash-flow highlights-container">
                     <div className="highlights-item">
                         <h3>Current Cash Flow</h3>
-                        <p>${this.state.currentCashFlow.totalCashFlow}/month</p>
+                        <p>${this.calculateCurrentCashFlow()}/month</p>
                     </div>
-                    <div className="highlights-item">
-                        <button onClick={() => {this.setState({editingCurrentCashFlow: true})}}>Edit&#9998;</button>
-                    </div>
-                    <CurrentCashFlowEditor
-                        {...this.state.currentCashFlow}
-                        editing={this.state.editingCurrentCashFlow}
-                        onSubmission={this.updateCurrentCashFlow} />
                 </div>
                 <div className={"highlights-container " + reachedCashFlowGoal}>
                     <div className="highlights-item">

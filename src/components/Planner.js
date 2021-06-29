@@ -4,6 +4,7 @@ import Highlights from "./Totals/Highlights";
 import FutureAssets from "./Assets/FutureAssets";
 import Shared from "./Shared/Shared";
 import CashFlowOutlook from "./Outlook/CashFlowOutlook";
+import CurrentAssets from "./Assets/CurrentAssets";
 
 class Planner extends React.Component {
 
@@ -11,15 +12,21 @@ class Planner extends React.Component {
         super(props);
         this.state = {
             highlights: {},
+            currentAssets: {},
             futureAssets: {}
         };
 
         this.updateHighlights = this.updateHighlights.bind(this);
+        this.updateCurrentAssets = this.updateCurrentAssets.bind(this);
         this.updateFutureAssets = this.updateFutureAssets.bind(this);
     }
 
     updateHighlights(state) {
         this.setState({highlights: state});
+    }
+
+    updateCurrentAssets(state) {
+        this.setState({currentAssets: state});
     }
 
     updateFutureAssets(state) {
@@ -39,9 +46,14 @@ class Planner extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className={"planner " + Shared.determineVisibility(this.props) + " " + this.determineEmptyCashFlowClass()}>
                 <Highlights {...this.state.highlights} updateSimulator={this.updateHighlights} />
+                <h2>Current Investments</h2>
+                <div className="current-assets">
+                    <CurrentAssets {...this.state.currentAssets} updateSimulator={this.updateCurrentAssets} />
+                </div>
                 <h2>Future Investments</h2>
                 <div className="future-assets">
                     <FutureAssets {...this.state.futureAssets} updateSimulator={this.updateFutureAssets} />
