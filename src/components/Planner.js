@@ -49,7 +49,7 @@ class Planner extends React.Component {
         console.log(this.state)
         return (
             <div className={"planner " + Shared.determineVisibility(this.props) + " " + this.determineEmptyCashFlowClass()}>
-                <Highlights {...this.state.highlights} updateSimulator={this.updateHighlights} />
+                <Highlights highlights={this.state.highlights} currentAssets={this.state.currentAssets} updateSimulator={this.updateHighlights} />
                 <h2>Current Investments</h2>
                 <div className="current-assets">
                     <CurrentAssets {...this.state.currentAssets} updateSimulator={this.updateCurrentAssets} />

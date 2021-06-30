@@ -2,7 +2,6 @@ import React from 'react';
 import './Highlights.css';
 import CashFlowGoalEditor from "./CashFlowGoal/CashFlowGoalEditor";
 import FormUtils from "../Shared/FormUtils";
-import CurrentCashFlowEditor from "./CurrentCashFlow/CurrentCashFlowEditor";
 
 class Highlights extends React.Component {
 
@@ -54,7 +53,15 @@ class Highlights extends React.Component {
     }
 
     calculateCurrentCashFlow() {
-        return "Make this work!";
+        let currentCashFlow = 0;
+        if (this.props.currentAssets && this.props.currentAssets.currentAssets) {
+            let assets = this.props.currentAssets.currentAssets;
+            for (let asset = 0; asset < assets.length; asset++) {
+                let thisAsset = assets[asset];
+                currentCashFlow += FormUtils.parseIntegerInput(thisAsset.cashFlow);
+            }
+        }
+        return currentCashFlow;
     }
 
     updateSimulator() {
@@ -65,6 +72,7 @@ class Highlights extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         let reachedCashFlowGoal = this.calculateCashFlowNeeded() > 0 ? "additional-cash-flow-needed" : "reached-cash-flow-goal";
         return (
             <div className="totals-container">

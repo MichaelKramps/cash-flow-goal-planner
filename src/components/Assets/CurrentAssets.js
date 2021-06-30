@@ -1,6 +1,5 @@
 import React from 'react';
 import SimpleAsset from "./SimpleAssets/SimpleAsset";
-import CreateComplexAsset from "./ComplexAssets/CreateComplexAsset";
 import AddSimpleAsset from "./SimpleAssets/AddSimpleAsset";
 import Modal from "../Shared/Modal";
 
