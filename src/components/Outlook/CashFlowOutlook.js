@@ -125,7 +125,7 @@ class CashFlowOutlook extends React.Component {
 
     createListOfExistingAssetsWithCashFlow() {
         let existingAssetsWithCashFlow = [];
-        let rawExistingAssets = this.props.highlights.currentCashFlow && this.props.highlights.currentCashFlow.currentAssets ? this.props.highlights.currentCashFlow.currentAssets : [];
+        let rawExistingAssets = this.props.currentAssets && this.props.currentAssets.currentAssets ? this.props.currentAssets.currentAssets : [];
 
         for (let index = 0; index < rawExistingAssets.length; index++) {
             existingAssetsWithCashFlow.push(this.createAssetWithCashFlow(rawExistingAssets[index]));

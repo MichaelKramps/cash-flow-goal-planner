@@ -59,7 +59,7 @@ class Planner extends React.Component {
                     <FutureAssets {...this.state.futureAssets} updateSimulator={this.updateFutureAssets} />
                 </div>
                 <h2>Future Cash Flow Outlook</h2>
-                    <CashFlowOutlook highlights={this.state.highlights} futureAssets={this.state.futureAssets} />
+                    <CashFlowOutlook highlights={this.state.highlights} currentAssets={this.state.currentAssets} futureAssets={this.state.futureAssets} />
             </div>
         );
     }
