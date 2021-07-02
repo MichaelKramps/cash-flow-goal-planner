@@ -1,15 +1,25 @@
 .totals-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    background: #D3E0EA;
+    justify-content: space-around;
     text-align: center;
+    margin: 86px 0;
 }
 
 .totals-container > div {
-    flex: 1 1 0px;
-    border-bottom: 1px solid #312121;
-    border-right: 1px solid #312121;
+    width: 25%;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 10px 15px -7px;
+    background: #FFBE9F;
+}
+
+.totals-container > .cash-flow-goal {
+    background: #D3E0EA;
+}
+
+.totals-container > .current-cash-flow {
+    background: #A9E1B2;
 }
 
 .totals-container > div:last-child {
