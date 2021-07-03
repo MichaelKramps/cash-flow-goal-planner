@@ -8,18 +8,17 @@
 
 .totals-container > div {
     width: 25%;
-    border-radius: 8px;
     padding: 16px;
-    box-shadow: 2px 10px 15px -5px;
-    background: #FFBE9F;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    background: #FFFFFF;
 }
 
 .totals-container > .cash-flow-goal {
-    background: #D3E0EA;
+    background: #FFFFFF;
 }
 
 .totals-container > .current-cash-flow {
-    background: #A9E1B2;
+    background: #FFFFFF;
 }
 
 .totals-container > div:last-child {
