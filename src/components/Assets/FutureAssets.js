@@ -37,7 +37,7 @@ class FutureAssets extends React.Component {
                 />
             })
         } else {
-            return <div className="complex-asset"><div>You have no assets</div></div>
+            return <div className="complex-asset"><div>You have no future assets</div></div>
         }
     }
 

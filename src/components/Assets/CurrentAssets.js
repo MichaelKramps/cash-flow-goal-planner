@@ -38,7 +38,7 @@ class CurrentAssets extends React.Component {
                 />
             })
         } else {
-            return <div className="simple-asset"><div>You have no assets</div></div>
+            return <div className="simple-asset"><div>You have no existing assets</div></div>
         }
     }
 
