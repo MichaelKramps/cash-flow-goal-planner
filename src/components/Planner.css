@@ -12,10 +12,13 @@
     padding: 0 1.5%;
 }
 
-.current-assets {
-    padding: 12px 1.5%;
+.full-width-card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
+    background: #FFFFFF;
+    margin: 24px;
+    padding: 1px 16px 16px 16px;
 }
 
-.future-assets {
-    padding: 12px 1.5%;
+.current-assets, .future-assets {
+    padding: 4px 0;
 }
