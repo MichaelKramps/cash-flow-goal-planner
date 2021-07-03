@@ -19,6 +19,15 @@
     padding: 1px 16px 16px 16px;
 }
 
-.current-assets, .future-assets {
-    padding: 4px 0;
+.future-asset-headings, .current-asset-headings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 12px 0;
+    padding: 12px 0;
+    border-bottom: 1px solid #312121;
+}
+
+.future-asset-headings > div, .current-asset-headings > div {
+    flex: 1 1 0px;
 }

@@ -20,21 +20,25 @@ class FutureAssets extends React.Component {
     }
 
     listAssets(assetList, updateFunction, deleteFunction) {
-        return assetList.map((asset, index) => {
-            let cashFlow = asset.cashFlow ? asset.cashFlow : asset.monthlyCashFlow;
-            return <ComplexAsset
-                key={index}
-                index={index}
-                name={asset.name}
-                type={asset.type}
-                year={asset.year}
-                advanced={asset.advanced}
-                initialInvestment={asset.initialInvestment}
-                cashFlow={cashFlow}
-                onUpdate={updateFunction}
-                onDelete={deleteFunction}
-            />
-        })
+        if (assetList.length > 0) {
+            return assetList.map((asset, index) => {
+                let cashFlow = asset.cashFlow ? asset.cashFlow : asset.monthlyCashFlow;
+                return <ComplexAsset
+                    key={index}
+                    index={index}
+                    name={asset.name}
+                    type={asset.type}
+                    year={asset.year}
+                    advanced={asset.advanced}
+                    initialInvestment={asset.initialInvestment}
+                    cashFlow={cashFlow}
+                    onUpdate={updateFunction}
+                    onDelete={deleteFunction}
+                />
+            })
+        } else {
+            return <div className="complex-asset"><div>You have no assets</div></div>
+        }
     }
 
     updateFutureAsset(index, asset) {

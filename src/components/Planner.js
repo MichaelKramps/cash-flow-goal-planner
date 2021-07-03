@@ -46,18 +46,29 @@ class Planner extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div className={"planner " + Shared.determineVisibility(this.props) + " " + this.determineEmptyCashFlowClass()}>
                 <Highlights highlights={this.state.highlights} currentAssets={this.state.currentAssets} updateSimulator={this.updateHighlights} />
                 <div className="full-width-card">
-                    <h2>Current Investments</h2>
+                    <div className="current-asset-headings">
+                        <div>Current Investments</div>
+                        <div>Type</div>
+                        <div>Initial Cost</div>
+                        <div>Monthly Cash Flow</div>
+                        <div>Cash on Cash Return</div>
+                    </div>
                     <div className="current-assets">
                         <CurrentAssets {...this.state.currentAssets} updateSimulator={this.updateCurrentAssets} />
                     </div>
                 </div>
                 <div className="full-width-card">
-                    <h2>Future Investments</h2>
+                    <div className="future-asset-headings">
+                        <div>Future Investments</div>
+                        <div>Type</div>
+                        <div>Initial Cost</div>
+                        <div>Monthly Cash Flow</div>
+                        <div>Cash on Cash Return</div>
+                    </div>
                     <div className="future-assets">
                         <FutureAssets {...this.state.futureAssets} updateSimulator={this.updateFutureAssets} />
                     </div>

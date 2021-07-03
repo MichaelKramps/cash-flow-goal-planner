@@ -21,21 +21,25 @@ class CurrentAssets extends React.Component {
     }
 
     listAssets(assetList, updateFunction, deleteFunction) {
-        return assetList.map((asset, index) => {
-            let cashFlow = asset.cashFlow ? asset.cashFlow : asset.monthlyCashFlow;
-            return <SimpleAsset
-                key={index}
-                index={index}
-                name={asset.name}
-                type={asset.type}
-                year={asset.year}
-                advanced={asset.advanced}
-                initialInvestment={asset.initialInvestment}
-                cashFlow={cashFlow}
-                onUpdate={updateFunction}
-                onDelete={deleteFunction}
-            />
-        })
+        if (assetList.length > 0) {
+            return assetList.map((asset, index) => {
+                let cashFlow = asset.cashFlow ? asset.cashFlow : asset.monthlyCashFlow;
+                return <SimpleAsset
+                    key={index}
+                    index={index}
+                    name={asset.name}
+                    type={asset.type}
+                    year={asset.year}
+                    advanced={asset.advanced}
+                    initialInvestment={asset.initialInvestment}
+                    cashFlow={cashFlow}
+                    onUpdate={updateFunction}
+                    onDelete={deleteFunction}
+                />
+            })
+        } else {
+            return <div className="simple-asset"><div>You have no assets</div></div>
+        }
     }
 
     updateCurrentAsset(index, asset) {
