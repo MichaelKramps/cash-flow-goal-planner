@@ -19,8 +19,8 @@ class Header extends React.Component {
                         <li onClick={() => {this.props.changeView("investment-calculator-view")}}>Investment Calculator</li>
                     </ul>
                 </div>
-                <div onClick={() => {this.props.changeView("learn-view")}}>
-                    Using This Tool
+                <div>
+                    &nbsp;
                 </div>
             </header>
         );

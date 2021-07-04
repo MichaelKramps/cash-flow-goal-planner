@@ -1,6 +1,7 @@
 import React from 'react';
 import './SimpleAsset.css';
 import EditSimpleAsset from "./EditSimpleAsset";
+import Modal from "../../Shared/Modal";
 
 class SimpleAsset extends React.Component {
 
@@ -38,16 +39,18 @@ class SimpleAsset extends React.Component {
     render() {
         if (this.state.editing) {
             return (
-                <EditSimpleAsset
-                    name={this.state.name}
-                    type={this.state.type}
-                    visible={this.state.editing}
-                    initialInvestment={this.state.initialInvestment}
-                    cashFlow={this.state.cashFlow}
-                    cashFlowIncrease={this.state.cashFlowIncrease}
-                    onSubmission={this.props.onUpdate}
-                    stopEditing={this.stopEditing}
-                    index={this.props.index}/>
+                <Modal visible={true} onSubmission={this.props.onUpdate}>
+                    <EditSimpleAsset
+                        name={this.state.name}
+                        type={this.state.type}
+                        visible={this.state.editing}
+                        initialInvestment={this.state.initialInvestment}
+                        cashFlow={this.state.cashFlow}
+                        cashFlowIncrease={this.state.cashFlowIncrease}
+                        onSubmission={this.props.onUpdate}
+                        stopEditing={this.stopEditing}
+                        index={this.props.index}/>
+                </Modal>
             )
         } else {
             return (
