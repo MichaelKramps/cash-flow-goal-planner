@@ -1,6 +1,7 @@
 import React from 'react';
 import './ComplexAsset.css';
 import EditComplexAsset from "./EditComplexAsset";
+import AdditionalActions from "../../Shared/AdditionalActions";
 
 class ComplexAsset extends React.Component {
 
@@ -20,6 +21,8 @@ class ComplexAsset extends React.Component {
 
         this.stopEditing = this.stopEditing.bind(this);
         this.updateComplexAsset = this.updateComplexAsset.bind(this);
+        this.onEdit = this.onEdit.bind(this);
+        this.onDelete = this.onDelete.bind(this);
     }
 
     stopEditing(edits) {
@@ -38,6 +41,14 @@ class ComplexAsset extends React.Component {
         this.setState({editing: false}, () => {
             this.props.onUpdate(this.props.index, state);
         });
+    }
+
+    onEdit() {
+        this.setState({editing: true});
+    }
+
+    onDelete() {
+        this.props.onDelete(this.props.index);
     }
 
     render() {
@@ -59,8 +70,10 @@ class ComplexAsset extends React.Component {
                     <div>{this.state.name}</div>
                     <div>{this.state.type}</div>
                     <div>{this.state.initialInvestment}</div>
-                    <div>{this.state.cashFlow}<span onClick={() => {this.setState({editing: true})}}>&#9998;</span></div>
-                    <div>{this.state.cashOnCash}%<span onClick={() => {this.props.onDelete(this.props.index)}}>&#x1f5d1;</span></div>
+                    <div>{this.state.cashFlow}</div>
+                    <div>{this.state.cashOnCash}%&nbsp;
+                        <AdditionalActions onEdit={this.onEdit} onDelete={this.onDelete} />
+                    </div>
                 </div>
             )
         }

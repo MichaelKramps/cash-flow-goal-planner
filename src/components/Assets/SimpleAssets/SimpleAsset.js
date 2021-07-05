@@ -2,6 +2,7 @@ import React from 'react';
 import './SimpleAsset.css';
 import EditSimpleAsset from "./EditSimpleAsset";
 import Modal from "../../Shared/Modal";
+import AdditionalActions from "../../Shared/AdditionalActions";
 
 class SimpleAsset extends React.Component {
 
@@ -19,6 +20,8 @@ class SimpleAsset extends React.Component {
         }
 
         this.stopEditing = this.stopEditing.bind(this);
+        this.onEdit = this.onEdit.bind(this);
+        this.onDelete = this.onDelete.bind(this);
     }
 
     stopEditing(edits) {
@@ -34,6 +37,14 @@ class SimpleAsset extends React.Component {
 
     calculateCashOnCash(cashFlow, initialInvestment) {
         return (parseFloat(cashFlow) * 12 / parseFloat(initialInvestment) * 100).toFixed(1);
+    }
+
+    onEdit() {
+        this.setState({editing: true});
+    }
+
+    onDelete() {
+        this.props.onDelete(this.props.index)
     }
 
     render() {
@@ -58,9 +69,9 @@ class SimpleAsset extends React.Component {
                     <div>{this.state.name}</div>
                     <div>{this.state.type}</div>
                     <div>{this.state.initialInvestment}</div>
-                    <div>{this.state.cashFlow}<span onClick={() => {this.setState({editing: true})}}>&#9998;</span></div>
-                    <div>{this.state.cashOnCash}%
-                        <span onClick={() => {this.props.onDelete(this.props.index)}}>&#x1f5d1;</span>
+                    <div>{this.state.cashFlow}</div>
+                    <div>{this.state.cashOnCash}%&nbsp;
+                        <AdditionalActions onEdit={this.onEdit} onDelete={this.onDelete} />
                     </div>
                 </div>
             )
