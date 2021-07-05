@@ -31,3 +31,7 @@
 .future-asset-headings > div, .current-asset-headings > div {
     flex: 1 1 0px;
 }
+
+.future-asset-headings > div:last-child, .current-asset-headings > div:last-child {
+    position: relative;
+}

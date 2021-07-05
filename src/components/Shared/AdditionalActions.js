@@ -38,8 +38,8 @@ class AdditionalActions extends React.Component {
                     &#8942;
                 </span>
                 <div className={"additional-actions " + this.state.showActions}>
-                    <div onClick={this.props.onEdit}>&#9998; Edit</div>
-                    <div onClick={this.props.onDelete}>&#x1f5d1; Delete</div>
+                    <div onClick={this.props.onEdit}><span>&#9998;</span>Edit</div>
+                    <div onClick={this.props.onDelete}><span>&#x1f5d1;</span>Delete</div>
                     {this.renderPurchaseGuide()}
                 </div>
             </React.Fragment>
