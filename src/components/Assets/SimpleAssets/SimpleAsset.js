@@ -70,9 +70,8 @@ class SimpleAsset extends React.Component {
                     <div>{this.state.type}</div>
                     <div>{this.state.initialInvestment}</div>
                     <div>{this.state.cashFlow}</div>
-                    <div>{this.state.cashOnCash}%&nbsp;
-                        <AdditionalActions onEdit={this.onEdit} onDelete={this.onDelete} />
-                    </div>
+                    <div>{this.state.cashOnCash}%</div>
+                    <div><AdditionalActions onEdit={this.onEdit} onDelete={this.onDelete} /></div>
                 </div>
             )
         }

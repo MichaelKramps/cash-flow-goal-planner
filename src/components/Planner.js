@@ -56,6 +56,7 @@ class Planner extends React.Component {
                         <div>Initial Cost</div>
                         <div>Monthly Cash Flow</div>
                         <div>Cash on Cash Return</div>
+                        <div>Actions</div>
                     </div>
                     <div className="current-assets">
                         <CurrentAssets {...this.state.currentAssets} updateSimulator={this.updateCurrentAssets} />
@@ -68,6 +69,7 @@ class Planner extends React.Component {
                         <div>Initial Cost</div>
                         <div>Monthly Cash Flow</div>
                         <div>Cash on Cash Return</div>
+                        <div>Actions</div>
                     </div>
                     <div className="future-assets">
                         <FutureAssets {...this.state.futureAssets} updateSimulator={this.updateFutureAssets} />

@@ -1,4 +1,5 @@
 import React from 'react';
+import './AdditionalActions.css';
 
 class AdditionalActions extends React.Component {
 
@@ -20,18 +21,26 @@ class AdditionalActions extends React.Component {
         }
     }
 
+    renderPurchaseGuide() {
+        if (this.props.purchaseGuide) {
+            return (<a href={this.props.purchaseGuide}>View Purchase Guide</a>);
+        } else {
+            return null;
+        }
+    }
+
 
     render() {
         console.log("here")
         return (
             <React.Fragment>
-                <span onClick={this.toggleShowActions}>
+                <span className="additional-actions-button" onClick={this.toggleShowActions}>
                     &#8942;
                 </span>
                 <div className={"additional-actions " + this.state.showActions}>
                     <div onClick={this.props.onEdit}>&#9998; Edit</div>
                     <div onClick={this.props.onDelete}>&#x1f5d1; Delete</div>
-                    <a href={this.props.purchaseGuide}>View Purchase Guide</a>
+                    {this.renderPurchaseGuide()}
                 </div>
             </React.Fragment>
         )
