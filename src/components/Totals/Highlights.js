@@ -72,7 +72,6 @@ class Highlights extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         let reachedCashFlowGoal = this.calculateCashFlowNeeded() > 0 ? "additional-cash-flow-needed" : "reached-cash-flow-goal";
         return (
             <div className="totals-container">
