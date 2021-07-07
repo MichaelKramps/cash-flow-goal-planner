@@ -8,6 +8,7 @@ import Learn from "./components/Learn/Learn";
 import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalCalculator";
 import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCalculator";
 import GenericInvestmentCalculator from "./components/Calculators/GenericInvestmentCalculator";
+import NextSteps from "./components/NextSteps/NextSteps";
 
 class App extends React.Component {
 
@@ -44,6 +45,7 @@ class App extends React.Component {
               <LongTermRentalCalculator visible={this.determineVisibility("long-term-rental-calculator-view")} />
               <MortgageCalculator visible={this.determineVisibility("mortgage-calculator-view")} />
               <ShortTermRentalCalculator visible={this.determineVisibility("short-term-rental-calculator-view")} />
+              <NextSteps visible={this.determineVisibility("next-steps-view")} />
           </div>
       );
   }

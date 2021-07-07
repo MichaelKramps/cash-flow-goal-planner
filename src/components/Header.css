@@ -18,11 +18,15 @@ header > div {
     height: 50px;
     line-height: 50px;
     cursor: pointer;
-    flex: 1 1 0px;
 }
 
-header > div:nth-child(2) {
-    text-align: center;
+header > div:last-child {
+    background: #1a73e8;
+    color: #ffffff;
+    height: 30px;
+    line-height: 30px;
+    padding: 4px 8px;
+    border-radius: 8px;
 }
 
 .header-dropdown {
