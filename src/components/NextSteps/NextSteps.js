@@ -12,7 +12,7 @@ class NextSteps extends React.Component {
         super(props);
 
         this.state = {
-            step: 1
+            step: this.suggestedStep()
         }
 
         this.updateStep = this.updateStep.bind(this);
@@ -28,7 +28,46 @@ class NextSteps extends React.Component {
     }
 
     suggestedStep() {
-        return 1;
+        if (this.cashFlowGoalEmpty()) {
+            return 1;
+        } else if (this.currentAssetsEmpty()) {
+            return 2;
+        } else if (this.futureAssetsEmpty()) {
+            return 3;
+        } else {
+            return 4;
+        }
+    }
+
+    cashFlowGoalEmpty() {
+        if (this.props.highlights &&
+            this.props.highlights.cashFlowGoal &&
+            this.props.highlights.cashFlowGoal.cashFlowGoal &&
+            this.props.highlights.cashFlowGoal.cashFlowGoal > 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    currentAssetsEmpty() {
+        if (this.props.currentAssets &&
+            this.props.currentAssets.currentAssets &&
+            this.props.currentAssets.currentAssets.length > 0)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    futureAssetsEmpty() {
+        if (this.props.futureAssets &&
+            this.props.futureAssets.futureAssets &&
+            this.props.futureAssets.futureAssets.length > 0)
+        {
+            return false;
+        }
+        return true;
     }
 
     render() {
