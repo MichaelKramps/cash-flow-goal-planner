@@ -4,7 +4,6 @@ import Planner from "./components/Planner";
 import Header from "./components/Header";
 import LoanCalculator from "./components/Calculators/LoanCalculator";
 import MortgageCalculator from "./components/Calculators/MortgageCalculator";
-import Learn from "./components/Learn/Learn";
 import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalCalculator";
 import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCalculator";
 import GenericInvestmentCalculator from "./components/Calculators/GenericInvestmentCalculator";
@@ -19,6 +18,7 @@ class App extends React.Component {
       }
 
       this.changeView = this.changeView.bind(this);
+      this.updateApp = this.updateApp.bind(this);
       this.determineVisibility = this.determineVisibility.bind(this);
   }
 
@@ -30,6 +30,11 @@ class App extends React.Component {
       }
   }
 
+  updateApp(state) {
+      state.view = this.state.view
+      this.setState(state);
+  }
+
   changeView(viewName) {
       this.setState({view: viewName});
   }
@@ -38,14 +43,13 @@ class App extends React.Component {
         return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
-              <Planner visible={this.determineVisibility("planner-view")} />
-              <Learn visible={this.determineVisibility("learn-view")} />
+              <Planner visible={this.determineVisibility("planner-view")} updateApp={this.updateApp}/>
               <GenericInvestmentCalculator visible={this.determineVisibility("investment-calculator-view")} />
               <LoanCalculator visible={this.determineVisibility("loan-calculator-view")} />
               <LongTermRentalCalculator visible={this.determineVisibility("long-term-rental-calculator-view")} />
               <MortgageCalculator visible={this.determineVisibility("mortgage-calculator-view")} />
               <ShortTermRentalCalculator visible={this.determineVisibility("short-term-rental-calculator-view")} />
-              <NextSteps visible={this.determineVisibility("next-steps-view")} />
+              <NextSteps visible={this.determineVisibility("next-steps-view")} {...this.state} />
           </div>
       );
   }

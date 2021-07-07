@@ -31,7 +31,6 @@ class AdditionalActions extends React.Component {
 
 
     render() {
-        console.log("here")
         return (
             <React.Fragment>
                 <span className="additional-actions-button" onClick={this.toggleShowActions}>

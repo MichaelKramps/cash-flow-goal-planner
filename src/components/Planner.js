@@ -22,15 +22,21 @@ class Planner extends React.Component {
     }
 
     updateHighlights(state) {
-        this.setState({highlights: state});
+        this.setState({highlights: state}, () => {
+            this.props.updateApp(this.state);
+        });
     }
 
     updateCurrentAssets(state) {
-        this.setState({currentAssets: state});
+        this.setState({currentAssets: state}, () => {
+            this.props.updateApp(this.state);
+        });
     }
 
     updateFutureAssets(state) {
-        this.setState({futureAssets: state});
+        this.setState({futureAssets: state}, () => {
+            this.props.updateApp(this.state);
+        });
     }
 
     determineEmptyCashFlowClass() {
