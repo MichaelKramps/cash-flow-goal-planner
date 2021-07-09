@@ -5,7 +5,8 @@ class StepOne extends React.Component {
     render() {
         return (
             <div className={"step-one " + Shared.determineVisibility(this.props)}>
-                Step One
+                <h2>Step One: Enter Your Cash Flow Goal</h2>
+
             </div>
         )
     }

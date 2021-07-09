@@ -1,4 +1,5 @@
 import React from 'react';
+import './NextSteps.css';
 import Shared from "../Shared/Shared";
 import StepOne from "./Steps/StepOne";
 import StepTwo from "./Steps/StepTwo";
@@ -73,6 +74,7 @@ class NextSteps extends React.Component {
     render() {
         return (
             <div className={"next-steps " + Shared.determineVisibility(this.props)}>
+                <h1>Your Next Steps</h1>
                 <StepsControls updateStep={this.updateStep} />
                 <StepOne visible={this.state.step === 1} />
                 <StepTwo visible={this.state.step === 2} />

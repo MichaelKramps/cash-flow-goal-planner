@@ -5,7 +5,7 @@ class StepThree extends React.Component {
     render() {
         return (
             <div className={"step-three " + Shared.determineVisibility(this.props)}>
-                Step Three
+                <h2>Step Three: Plan Your Future Investments</h2>
             </div>
         )
     }
