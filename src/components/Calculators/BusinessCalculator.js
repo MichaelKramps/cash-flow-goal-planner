@@ -292,11 +292,13 @@ class BusinessCalculator extends React.Component {
         if (this.formIsValid()) {
             this.props.onSubmission(this.state);
             this.setState(this.defaultState);
+        } else {
+            alert("Please estimate your initial investment, revenue and expenses")
         }
     }
 
     formIsValid() {
-        return true;
+        return (this.state.initialInvestment && this.state.cashFlow);;
     }
 
     render() {

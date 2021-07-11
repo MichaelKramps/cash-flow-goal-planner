@@ -142,11 +142,13 @@ class GenericInvestmentCalculatorForm extends React.Component {
             if (this.props.resetFormOnSubmission) {
                 this.setState(this.defaultState);
             }
+        } else {
+            alert("Please estimate your initial investment, revenue and expenses")
         }
     }
 
     formIsValid() {
-        return true;
+        return (this.state.initialInvestment && this.state.cashFlow);
     }
 
     render() {

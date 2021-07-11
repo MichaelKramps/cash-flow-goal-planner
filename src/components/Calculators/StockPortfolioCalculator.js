@@ -75,11 +75,13 @@ class StockPortfolioCalculator extends React.Component {
         if (this.formIsValid()) {
             this.props.onSubmission(this.state);
             this.setState(this.defaultState);
+        } else {
+            alert("You must enter a value and a yearly percentage increase in value")
         }
     }
 
     formIsValid() {
-        return true;
+        return (this.state.value && this.state.returnOnValue);
     }
 
     render() {
