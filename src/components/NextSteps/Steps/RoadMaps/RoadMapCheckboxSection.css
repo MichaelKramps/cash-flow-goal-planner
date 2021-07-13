@@ -1,6 +1,6 @@
 .road-map-content {
     display: none;
-    margin-left: 34px;
+    margin-left: 44px;
 }
 
 .road-map-checkbox.show-content .road-map-content {
@@ -29,4 +29,8 @@
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
+}
+
+.road-map-content ul li li {
+    margin-left: 16px;
 }

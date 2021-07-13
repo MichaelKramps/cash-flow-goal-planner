@@ -8,12 +8,9 @@ class StepFour extends React.Component {
             <div className={"step-four " + Shared.determineVisibility(this.props)}>
                 <h2>Step Four: Work Towards Buying Your Next Investment</h2>
                 <div>
-                    <p>What type of investment?</p>
-                    <button>Long Term Rental</button>
-                    <button>Short Term Rental</button>
-                    <button>Business Acquisition</button>
-                    <button>Stocks</button>
-                    <button>Other</button>
+                    <p>Which investment are you working on?</p>
+                    {/*<button>1st investment in future investments list</button>*/}
+                    {/*<button>2nd investment in future investment list</button>*/}
                 </div>
                 <div>
                     <ShortTermRentalRoadMap />
