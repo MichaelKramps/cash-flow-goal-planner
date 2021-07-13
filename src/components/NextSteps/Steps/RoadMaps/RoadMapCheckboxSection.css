@@ -17,6 +17,10 @@
     margin-left: 12px;
 }
 
+.road-map-title input {
+    width: 24px;
+}
+
 .road-map-title > div {
     display: flex;
 }
