@@ -1,0 +1,28 @@
+.road-map-content {
+    display: none;
+    margin-left: 34px;
+}
+
+.road-map-checkbox.show-content .road-map-content {
+    display: block;
+}
+
+.road-map-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.road-map-title h2 {
+    margin-left: 12px;
+}
+
+.road-map-title > div {
+    display: flex;
+}
+
+.road-map-title > span {
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
