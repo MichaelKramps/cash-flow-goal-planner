@@ -1,5 +1,6 @@
 import React from 'react';
 import RoadMapCheckboxSection from "./RoadMapCheckboxSection";
+import Shared from "../../../Shared/Shared";
 
 class ShortTermRentalRoadMap extends React.Component {
 
@@ -21,7 +22,7 @@ class ShortTermRentalRoadMap extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={Shared.determineVisibility(this.props)}>
                 <h1>Road Map: Short Term Rental</h1>
                 <RoadMapCheckboxSection checked={this.state.initialInvestment} title="Save money for your initial investment">
                     <p>I’ve heard of people buying investment properties for $0 down, but that’s certainly not the norm. It can be done, but I’m not going to walk you through how that might be done, because I’ve never done it.</p>

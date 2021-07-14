@@ -79,7 +79,7 @@ class NextSteps extends React.Component {
                 <StepOne visible={this.state.step === 1} />
                 <StepTwo visible={this.state.step === 2} />
                 <StepThree visible={this.state.step === 3} />
-                <StepFour visible={this.state.step === 4} />
+                <StepFour visible={this.state.step === 4} futureAssets={this.props.futureAssets.futureAssets} />
             </div>
         )
     }
