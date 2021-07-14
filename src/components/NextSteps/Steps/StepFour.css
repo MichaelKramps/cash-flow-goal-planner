@@ -1,0 +1,13 @@
+.future-asset-list {
+    display: flex;
+}
+
+.future-asset-list button {
+    float: none;
+    margin-right: 4px;
+}
+
+button.selected {
+    background: #e4e400;
+    color: #312121;
+}

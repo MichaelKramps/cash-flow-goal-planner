@@ -71,15 +71,38 @@ class NextSteps extends React.Component {
         return true;
     }
 
+    returnFutureAssets() {
+        if (this.futureAssetsEmpty()) {
+            return [];
+        } else {
+            return this.props.futureAssets.futureAssets;
+        }
+    }
+
+    stepsClass() {
+        switch(this.state.step) {
+            case 1:
+                return "step-one";
+            case 2:
+                return "step-two";
+            case 3:
+                return "step-three";
+            case 4:
+                return "step-four";
+            default:
+                return "step-one";
+        }
+    }
+
     render() {
         return (
-            <div className={"next-steps " + Shared.determineVisibility(this.props)}>
+            <div className={"next-steps " + this.stepsClass() + " " + Shared.determineVisibility(this.props)}>
                 <h1>Your Next Steps</h1>
                 <StepsControls updateStep={this.updateStep} />
                 <StepOne visible={this.state.step === 1} />
                 <StepTwo visible={this.state.step === 2} />
                 <StepThree visible={this.state.step === 3} />
-                <StepFour visible={this.state.step === 4} futureAssets={this.props.futureAssets.futureAssets} />
+                <StepFour visible={this.state.step === 4} futureAssets={this.returnFutureAssets()} />
             </div>
         )
     }

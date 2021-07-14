@@ -1,6 +1,7 @@
 import React from 'react';
 import Shared from "../../Shared/Shared";
 import ShortTermRentalRoadMap from "./RoadMaps/ShortTermRentalRoadMap";
+import './StepFour.css';
 
 class StepFour extends React.Component {
 
@@ -8,18 +9,24 @@ class StepFour extends React.Component {
         super(props)
 
         this.state = {
-            roadMap: ""
+            roadMap: "",
+            assetNumber: null,
         }
 
         this.listFutureAssets = this.listFutureAssets.bind(this);
-        this.setRoadMap = this.setRoadMap.bind(this);
+        this.setStepState = this.setStepState.bind(this);
     }
 
     listFutureAssets() {
         if (this.props.futureAssets.length > 0) {
-            return this.props.futureAssets.map((asset) => {
+            return this.props.futureAssets.map((asset, index) => {
+                let className = index === this.state.assetNumber ? "selected" : "";
                 return (
-                    <button onClick={() => {this.setRoadMap(asset.type)}}>{asset.name}</button>
+                    <button
+                        className={className}
+                        onClick={() => {this.setStepState(asset.type, index)}}>
+                        {asset.name}
+                    </button>
                 )
             })
         } else {
@@ -27,18 +34,17 @@ class StepFour extends React.Component {
         }
     }
 
-    setRoadMap(investmentType) {
+    setStepState(investmentType, index) {
         let type = investmentType.toLowerCase().split(" ").join("-");
 
-        this.setState({roadMap: type});
+        this.setState({roadMap: type, assetNumber: index});
     }
 
     render() {
         return (
             <div className={"step-four " + Shared.determineVisibility(this.props)}>
                 <h2>Step Four: Work Towards Buying Your Next Investment</h2>
-                <div>
-                    <p>Which investment are you working on?</p>
+                <div className={"future-asset-list " + this.state.assetNumber}>
                     {this.listFutureAssets()}
                 </div>
                 <div>

@@ -19,3 +19,12 @@
 .steps-controls button:last-child {
     margin-right: 0;
 }
+
+.step-one .steps-controls button:nth-child(2),
+.step-two .steps-controls button:nth-child(3),
+.step-three .steps-controls button:nth-child(4),
+.step-four .steps-controls button:nth-child(5)
+{
+    background: #e4e400;
+    color: #312121;
+}
