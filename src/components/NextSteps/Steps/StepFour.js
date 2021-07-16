@@ -3,6 +3,7 @@ import Shared from "../../Shared/Shared";
 import ShortTermRentalRoadMap from "./RoadMaps/ShortTermRentalRoadMap";
 import './StepFour.css';
 import LongTermRentalRoadMap from "./RoadMaps/LongTermRentalRoadMap";
+import BusinessAcquisitionRoadMap from "./RoadMaps/BusinessAcquisitionRoadMap";
 
 class StepFour extends React.Component {
 
@@ -51,6 +52,7 @@ class StepFour extends React.Component {
                 <div>
                     <ShortTermRentalRoadMap visible={this.state.roadMap === "short-term-rental"} />
                     <LongTermRentalRoadMap visible={this.state.roadMap === "long-term-rental"} />
+                    <BusinessAcquisitionRoadMap visible={this.state.roadMap === "business"} />
                 </div>
             </div>
         )
