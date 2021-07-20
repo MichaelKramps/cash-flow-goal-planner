@@ -1,1 +1,10 @@
-{}
+{
+  "auth": {
+    "cashflowhandbookback4a4d0d30": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

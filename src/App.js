@@ -1,4 +1,9 @@
 import React from 'react';
+
+import Amplify, { Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
+Amplify.configure(awsconfig);
+
 import './App.css';
 import Planner from "./components/Planner";
 import Header from "./components/Header";
