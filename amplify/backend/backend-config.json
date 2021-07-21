@@ -1,10 +1,22 @@
 {
   "auth": {
-    "cashflowhandbookback4a4d0d30": {
+    "cashflowhandbookback02317813": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false
+    }
+  },
+  "function": {
+    "cashflowhandbookback799cea61CustomMessage": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "cashflowhandbookback799cea61PostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   }
 }
