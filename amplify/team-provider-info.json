@@ -12,20 +12,6 @@
       "AmplifyAppId": "d3d7ksgilaorqg"
     },
     "categories": {
-      "function": {
-        "cashflowhandbookback799cea61CustomMessage": {
-          "REDIRECTURL": "https://www.fakedomain.com/fake-email-verification-page",
-          "EMAILSUBJECT": "Verify Email Address",
-          "EMAILMESSAGE": "Please verify your email address",
-          "deploymentBucketName": "amplify-cashflowhandbookback-staging-15426-deployment",
-          "s3Key": "amplify-builds/cashflowhandbookback799cea61CustomMessage-72724d6c384265696439-build.zip"
-        },
-        "cashflowhandbookback799cea61PostConfirmation": {
-          "GROUP": "FreeUsers",
-          "deploymentBucketName": "amplify-cashflowhandbookback-staging-15426-deployment",
-          "s3Key": "amplify-builds/cashflowhandbookback799cea61PostConfirmation-4c754b786a4258685473-build.zip"
-        }
-      },
       "auth": {
         "cashflowhandbookback02317813": {}
       }
