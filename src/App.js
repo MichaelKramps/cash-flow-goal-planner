@@ -24,6 +24,7 @@ class App extends React.Component {
       this.changeView = this.changeView.bind(this);
       this.updateApp = this.updateApp.bind(this);
       this.determineVisibility = this.determineVisibility.bind(this);
+      
   }
 
   determineVisibility(viewName) {
