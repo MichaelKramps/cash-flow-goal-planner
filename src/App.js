@@ -9,6 +9,10 @@ import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCal
 import GenericInvestmentCalculator from "./components/Calculators/GenericInvestmentCalculator";
 import NextSteps from "./components/NextSteps/NextSteps";
 
+import Amplify, { Auth } from 'aws-amplify';
+import awsconfig from './aws-exports';
+Amplify.configure(awsconfig);
+
 class App extends React.Component {
 
   constructor(props){
