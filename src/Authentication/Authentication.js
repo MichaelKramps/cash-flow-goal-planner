@@ -2,7 +2,7 @@ import { Auth } from 'aws-amplify';
 
 class Authentication {
 
-    async signUp(email, password) {
+    static async signUp(email, password) {
         try {
             const { user } = await Auth.signUp({
                 email,
@@ -14,15 +14,15 @@ class Authentication {
         }
     }
 
-    async signIn(email, password) {
+    static async signIn(email, password) {
         try {
-            const user = await Auth.signIn(username, password);
+            const user = await Auth.signIn(email, password);
         } catch (error) {
             console.log('error signing in', error);
         }
     }
 
-    async resendConfirmationCode(email) {
+    static async resendConfirmationCode(email) {
         try {
             await Auth.resendSignUp(email);
             console.log('code resent successfully');
@@ -31,7 +31,7 @@ class Authentication {
         }
     }
 
-    async signOut() {
+    static async signOut() {
         try {
             await Auth.signOut();
         } catch (error) {
@@ -39,3 +39,5 @@ class Authentication {
         }
     }
 }
+
+export default Authentication;

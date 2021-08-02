@@ -9,8 +9,10 @@ import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCal
 import GenericInvestmentCalculator from "./components/Calculators/GenericInvestmentCalculator";
 import NextSteps from "./components/NextSteps/NextSteps";
 
-import Amplify, { Auth } from 'aws-amplify';
+import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
+import Modal from "./components/Shared/Modal";
+import LoginForm from "./Authentication/LoginForm";
 Amplify.configure(awsconfig);
 
 class App extends React.Component {
@@ -24,7 +26,7 @@ class App extends React.Component {
       this.changeView = this.changeView.bind(this);
       this.updateApp = this.updateApp.bind(this);
       this.determineVisibility = this.determineVisibility.bind(this);
-      
+
   }
 
   determineVisibility(viewName) {
@@ -55,6 +57,9 @@ class App extends React.Component {
               <MortgageCalculator visible={this.determineVisibility("mortgage-calculator-view")} />
               <ShortTermRentalCalculator visible={this.determineVisibility("short-term-rental-calculator-view")} />
               <NextSteps visible={this.determineVisibility("next-steps-view")} {...this.state} />
+              <Modal visible={true}>
+                    <LoginForm />
+              </Modal>
           </div>
       );
   }
