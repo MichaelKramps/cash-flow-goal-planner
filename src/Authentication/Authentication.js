@@ -5,8 +5,11 @@ class Authentication {
     static async signUp(email, password) {
         try {
             const { user } = await Auth.signUp({
-                email,
-                password
+                username: email,
+                password: password,
+                attributes: {
+                    email: email
+                }
             });
             console.log(user);
         } catch (error) {
@@ -17,6 +20,7 @@ class Authentication {
     static async signIn(email, password) {
         try {
             const user = await Auth.signIn(email, password);
+            console.log(user);
         } catch (error) {
             console.log('error signing in', error);
         }

@@ -1,6 +1,5 @@
 import React from 'react';
 import Authentication from "./Authentication";
-import FormUtils from "../components/Shared/FormUtils";
 
 class LoginForm extends React.Component {
 
@@ -8,6 +7,7 @@ class LoginForm extends React.Component {
         super(props);
 
         this.state = {
+            view: this.props.view || "sign-in",
             email: this.props.email,
             password: this.props.password
         }
@@ -15,6 +15,15 @@ class LoginForm extends React.Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSignUp = this.handleSignUp.bind(this);
+        this.handleSignIn = this.handleSignIn.bind(this);
+    }
+
+    setView(view){
+        this.setState({view: view});
+    }
+
+    determineVisible(view) {
+        return view === this.state.view ? "visible" : "invisible";
     }
 
     handleEmailChange(event) {
@@ -26,23 +35,43 @@ class LoginForm extends React.Component {
     }
 
     async handleSignUp() {
-        console.log(this.state)
         await Authentication.signUp(this.state.email, this.state.password)
+    }
+
+    async handleSignIn() {
+        await Authentication.signIn(this.state.email, this.state.password)
     }
 
     render() {
         return (
-            <div>
-                <input
-                    value={this.state.email}
-                    onChange={this.handleEmailChange}
-                />
-                <input
-                    value={this.state.password}
-                    onChange={this.handlePasswordChange}
-                />
-                <button onClick={this.handleSignUp}>Sign up</button>
-            </div>
+            <React.Fragment>
+                <div className={this.determineVisible("sign-in")}>
+                    <label>Email: </label>
+                    <input
+                        value={this.state.email}
+                        onChange={this.handleEmailChange}
+                    />
+                    <label>Password: </label>
+                    <input
+                        value={this.state.password}
+                        onChange={this.handlePasswordChange}
+                    />
+                    <a href="#" onClick={(e) => {e.preventDefault(); this.setView("sign-up")}}>Sign up</a>
+                    <button onClick={this.handleSignIn}>Sign in</button>
+                </div>
+                <div className={this.determineVisible("sign-up")}>
+                    <input
+                        value={this.state.email}
+                        onChange={this.handleEmailChange}
+                    />
+                    <input
+                        value={this.state.password}
+                        onChange={this.handlePasswordChange}
+                    />
+                    <a href="#" onClick={(e) => {e.preventDefault(); this.setView("sign-in")}}>Sign in</a>
+                    <button onClick={this.handleSignUp}>Sign up</button>
+                </div>
+            </React.Fragment>
         )
     }
 }
