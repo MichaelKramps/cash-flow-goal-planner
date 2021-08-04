@@ -13,7 +13,16 @@ class Authentication {
             });
             console.log(user);
         } catch (error) {
-            console.log('error signing up:', error);
+            throw error;
+        }
+    }
+
+    static async confirmSignUp(email, confirmationCode) {
+        try {
+            let successMessage = await Auth.confirmSignUp(email, confirmationCode);
+            console.log(successMessage);
+        } catch (error) {
+            console.log('error confirming sign up:', error);
         }
     }
 
@@ -22,7 +31,16 @@ class Authentication {
             const user = await Auth.signIn(email, password);
             console.log(user);
         } catch (error) {
-            console.log('error signing in', error);
+            throw error;
+        }
+    }
+
+    static async confirmSignIn(email, confirmationCode) {
+        try {
+            let something = await Auth.confirmSignIn(email, confirmationCode);
+            console.log(something);
+        } catch (error) {
+            console.log('error confirming sign in:', error);
         }
     }
 
