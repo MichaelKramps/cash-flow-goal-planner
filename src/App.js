@@ -20,12 +20,14 @@ class App extends React.Component {
   constructor(props){
       super(props);
       this.state = {
-          view: "planner-view"
+          view: "planner-view",
+          userLoggedIn: false
       }
 
       this.changeView = this.changeView.bind(this);
       this.updateApp = this.updateApp.bind(this);
       this.determineVisibility = this.determineVisibility.bind(this);
+      this.updateUserLoggedIn = this.updateUserLoggedIn.bind(this);
 
   }
 
@@ -46,8 +48,13 @@ class App extends React.Component {
       this.setState({view: viewName});
   }
 
+  updateUserLoggedIn(user) {
+      let loggedIn = user ? true : false;
+      this.setState({userLoggedIn: loggedIn});
+  }
+
   render() {
-        return (
+      return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
               <Planner visible={this.determineVisibility("planner-view")} updateApp={this.updateApp}/>
@@ -57,8 +64,8 @@ class App extends React.Component {
               <MortgageCalculator visible={this.determineVisibility("mortgage-calculator-view")} />
               <ShortTermRentalCalculator visible={this.determineVisibility("short-term-rental-calculator-view")} />
               <NextSteps visible={this.determineVisibility("next-steps-view")} {...this.state} />
-              <Modal visible={true}>
-                    <LoginForm />
+              <Modal visible={!this.state.userLoggedIn}>
+                    <LoginForm visible={!this.state.userLoggedIn} updateUserLoggedIn={this.updateUserLoggedIn} />
               </Modal>
           </div>
       );

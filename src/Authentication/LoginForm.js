@@ -1,6 +1,7 @@
 import React from 'react';
 import Authentication from "./Authentication";
 import './LoginForm.css';
+import Shared from "../components/Shared/Shared";
 
 class LoginForm extends React.Component {
 
@@ -77,13 +78,16 @@ class LoginForm extends React.Component {
     async handleSignIn() {
         this.setState({error: null});
         try {
-            await Authentication.signIn(this.state.email, this.state.password)
+            await Authentication.signIn(this.state.email, this.state.password);
+            this.props.updateUserLoggedIn(Authentication.currentUser());
         } catch (error) {
-            this.setState({error: error.message});
-            if (error.code === "UserNotConfirmedException") {
-                this.setView("confirm-sign-up");
+            if (!/pending|Pending/.test(error)) {
+                this.setState({error: error.message});
+                if (error.code === "UserNotConfirmedException") {
+                    this.setView("confirm-sign-up");
+                }
+                console.log("error signing in:", error);
             }
-            console.log("error signing in:", error);
         }
     }
 
@@ -100,7 +104,7 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <form className="login-container" onSubmit={this.onSubmit}>
+            <form className={"login-container " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
                 <div className={this.determineVisible("sign-in")}>
                     <h2>Sign in</h2>
                     {this.printError()}

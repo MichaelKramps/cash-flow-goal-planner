@@ -29,7 +29,6 @@ class Authentication {
     static async signIn(email, password) {
         try {
             const user = await Auth.signIn(email, password);
-            console.log(user);
         } catch (error) {
             throw error;
         }
@@ -58,6 +57,15 @@ class Authentication {
             await Auth.signOut();
         } catch (error) {
             console.log('error signing out: ', error);
+        }
+    }
+
+    static async currentUser() {
+        try {
+            let user = await Auth.currentAuthenticatedUser();
+            return user;
+        } catch {
+            return false;
         }
     }
 }
