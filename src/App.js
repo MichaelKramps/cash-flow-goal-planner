@@ -23,7 +23,8 @@ class App extends React.Component {
       this.state = {
           view: "planner-view",
           userLoggedIn: false,
-          plannerState: {}
+          plannerState: {},
+          plannerId: ""
       }
 
       this.changeView = this.changeView.bind(this);
@@ -43,8 +44,12 @@ class App extends React.Component {
 
   updateApp(state) {
       state.view = this.state.view
-      this.setState(state, () => {
-          console.log("need to update the planner state")
+      this.setState(state, async () => {
+          console.log("updating state: ")
+          let plannerState = JSON.stringify(state)
+          console.log(state)
+          let queryResult = await PlannerQueries.updatePlannerState(this.state.plannerId, plannerState);
+          console.log(queryResult)
       });
   }
 
@@ -62,8 +67,16 @@ class App extends React.Component {
               if (planners.length === 0) {
                   await PlannerQueries.createPlanner(this.state.plannerState, email, "never");
               } else {
-                  let plannerState = planners[0];
-                  this.setState({plannerState: plannerState});
+                  let planner = planners[0];
+                  let plannerState = JSON.parse(planner.state)
+                  console.log("loading state")
+                  console.log(plannerState)
+                  this.setState({
+                      view: this.state.view,
+                      loggedIn: this.state.loggedIn,
+                      plannerState: plannerState,
+                      plannerId: planner.id
+                  });
               }
           } catch (error) {
               console.log(error)

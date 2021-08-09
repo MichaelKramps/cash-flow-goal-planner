@@ -1,6 +1,6 @@
 import { API } from 'aws-amplify';
-import {listPlanners, getPlannerByEmail} from "./queries";
-import {createPlanner, updatePlanner, deletePlanner} from "./mutations";
+import {listPlanners} from "./queries";
+import {createPlanner, updatePlanner} from "./mutations";
 
 class PlannerQueries {
 
@@ -23,13 +23,25 @@ class PlannerQueries {
     }
 
     static async createPlanner(plannerState, email, accessExpires) {
-        await API.graphql({
+        return await API.graphql({
             query: createPlanner,
             variables: {
                 input: {
                     state: plannerState,
                     email: email,
                     accessExpires: accessExpires
+                }
+            }
+        })
+    }
+
+    static async updatePlannerState (id, plannerState) {
+        return await API.graphql({
+            query: updatePlanner,
+            variables: {
+                input: {
+                    id: id,
+                    state: plannerState
                 }
             }
         })

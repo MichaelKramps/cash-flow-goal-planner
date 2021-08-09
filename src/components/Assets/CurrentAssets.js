@@ -9,7 +9,7 @@ class CurrentAssets extends React.Component {
         super(props);
 
         this.state = {
-            editing: false,
+            editing: this.props.editing || false,
             currentAssets: this.props.currentAssets || []
         };
 
@@ -83,6 +83,15 @@ class CurrentAssets extends React.Component {
                 this.updateSimulator();
             });
         });
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props !== prevProps) {
+            this.setState({
+                editing: this.props.editing || false,
+                currentAssets: this.props.currentAssets || []
+            })
+        }
     }
 
     render() {

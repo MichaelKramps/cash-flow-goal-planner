@@ -51,6 +51,16 @@ class Planner extends React.Component {
         }
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props !== prevProps) {
+            this.setState({
+                highlights: this.props.highlights || {},
+                currentAssets: this.props.currentAssets || {},
+                futureAssets: this.props.futureAssets || {}
+            })
+        }
+    }
+
     render() {
         return (
             <div className={"planner " + Shared.determineVisibility(this.props) + " " + this.determineEmptyCashFlowClass()}>
