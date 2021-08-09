@@ -1,5 +1,5 @@
 import { API } from 'aws-amplify';
-import {listPlanners} from "./queries";
+import {listPlanners, getPlannerByEmail} from "./queries";
 import {createPlanner, updatePlanner, deletePlanner} from "./mutations";
 
 class PlannerQueries {
@@ -9,7 +9,31 @@ class PlannerQueries {
         return planners;
     }
 
-    static async findUsersPlanner(username) {
-        return null;
+    static async findPlannerByUser(username) {
+        const filter = {
+            email: {eq: username}
+        };
+        const planner = await API.graphql({
+            query: listPlanners,
+            variables: {
+                filter: filter
+            }
+        });
+        return planner;
+    }
+
+    static async createPlanner(plannerState, email, accessExpires) {
+        await API.graphql({
+            query: createPlanner,
+            variables: {
+                input: {
+                    state: plannerState,
+                    email: email,
+                    accessExpires: accessExpires
+                }
+            }
+        })
     }
 }
+
+export default PlannerQueries;

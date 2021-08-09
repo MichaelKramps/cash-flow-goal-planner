@@ -79,7 +79,7 @@ class LoginForm extends React.Component {
         this.setState({error: null});
         try {
             await Authentication.signIn(this.state.email, this.state.password);
-            this.props.updateUserLoggedIn(Authentication.currentUser());
+            this.props.updateUserLoggedIn(Authentication.currentUser(), this.state.email);
         } catch (error) {
             if (!/pending|Pending/.test(error)) {
                 this.setState({error: error.message});

@@ -9,6 +9,7 @@ export const createPlanner = /* GraphQL */ `
     createPlanner(input: $input, condition: $condition) {
       id
       state
+      email
       accessExpires
       createdAt
       updatedAt
@@ -23,6 +24,7 @@ export const updatePlanner = /* GraphQL */ `
     updatePlanner(input: $input, condition: $condition) {
       id
       state
+      email
       accessExpires
       createdAt
       updatedAt
@@ -37,6 +39,7 @@ export const deletePlanner = /* GraphQL */ `
     deletePlanner(input: $input, condition: $condition) {
       id
       state
+      email
       accessExpires
       createdAt
       updatedAt

@@ -6,6 +6,7 @@ export const onCreatePlanner = /* GraphQL */ `
     onCreatePlanner {
       id
       state
+      email
       accessExpires
       createdAt
       updatedAt
@@ -17,6 +18,7 @@ export const onUpdatePlanner = /* GraphQL */ `
     onUpdatePlanner {
       id
       state
+      email
       accessExpires
       createdAt
       updatedAt
@@ -28,6 +30,7 @@ export const onDeletePlanner = /* GraphQL */ `
     onDeletePlanner {
       id
       state
+      email
       accessExpires
       createdAt
       updatedAt

@@ -6,6 +6,7 @@ export const getPlanner = /* GraphQL */ `
     getPlanner(id: $id) {
       id
       state
+      email
       accessExpires
       createdAt
       updatedAt
@@ -22,6 +23,7 @@ export const listPlanners = /* GraphQL */ `
       items {
         id
         state
+        email
         accessExpires
         createdAt
         updatedAt

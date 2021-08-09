@@ -8,6 +8,7 @@ import ShortTermRentalCalculator from "./components/Calculators/ShortTermRentalC
 import LongTermRentalCalculator from "./components/Calculators/LongTermRentalCalculator";
 import GenericInvestmentCalculator from "./components/Calculators/GenericInvestmentCalculator";
 import NextSteps from "./components/NextSteps/NextSteps";
+import PlannerQueries from "./graphql/PlannerQueries";
 
 import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
@@ -21,7 +22,8 @@ class App extends React.Component {
       super(props);
       this.state = {
           view: "planner-view",
-          userLoggedIn: false
+          userLoggedIn: false,
+          plannerState: {}
       }
 
       this.changeView = this.changeView.bind(this);
@@ -41,23 +43,44 @@ class App extends React.Component {
 
   updateApp(state) {
       state.view = this.state.view
-      this.setState(state);
+      this.setState(state, () => {
+          console.log("need to update the planner state")
+      });
   }
 
   changeView(viewName) {
       this.setState({view: viewName});
   }
 
-  updateUserLoggedIn(user) {
+  async updateUserLoggedIn(user, email) {
       let loggedIn = user ? true : false;
-      this.setState({userLoggedIn: loggedIn});
+      this.setState({userLoggedIn: loggedIn}, async () => {
+          try {
+              let queryResult = await PlannerQueries.findPlannerByUser(email);
+              let planners = queryResult.data.listPlanners.items;
+              console.log(planners);
+              if (planners.length === 0) {
+                  await PlannerQueries.createPlanner(this.state.plannerState, email, "never");
+              } else {
+                  let plannerState = planners[0];
+                  this.setState({plannerState: plannerState});
+              }
+          } catch (error) {
+              console.log(error)
+          }
+      });
   }
 
   render() {
       return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
-              <Planner visible={this.determineVisibility("planner-view")} updateApp={this.updateApp}/>
+              <Planner
+                  visible={this.determineVisibility("planner-view")}
+                  highlights={this.state.plannerState.highlights}
+                  currentAssets={this.state.plannerState.currentAssets}
+                  futureAssets={this.state.plannerState.futureAssets}
+                  updateApp={this.updateApp}/>
               <GenericInvestmentCalculator visible={this.determineVisibility("investment-calculator-view")} />
               <LoanCalculator visible={this.determineVisibility("loan-calculator-view")} />
               <LongTermRentalCalculator visible={this.determineVisibility("long-term-rental-calculator-view")} />

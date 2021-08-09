@@ -11,9 +11,9 @@ class Planner extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            highlights: {},
-            currentAssets: {},
-            futureAssets: {}
+            highlights: this.props.highlights || {},
+            currentAssets: this.props.currentAssets || {},
+            futureAssets: this.props.futureAssets || {}
         };
 
         this.updateHighlights = this.updateHighlights.bind(this);
