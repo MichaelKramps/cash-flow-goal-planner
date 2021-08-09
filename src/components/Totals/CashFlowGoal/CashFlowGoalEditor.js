@@ -11,7 +11,7 @@ class CashFlowGoalEditor extends React.Component {
 
         this.state = {
             cashFlowGoal: this.props.cashFlowGoal,
-            expenses: {
+            expenses: this.props.expenses || {
                 mortgage: 0,
                 utilities: 0,
                 food: 0,
@@ -150,6 +150,25 @@ class CashFlowGoalEditor extends React.Component {
         this.setState({cashFlowGoal: this.calculateGoal()}, () => {
             this.props.onSubmission(this.state);
         });
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props !== prevProps) {
+            this.setState({
+                cashFlowGoal: this.props.cashFlowGoal,
+                expenses: this.props.expenses || {
+                    mortgage: 0,
+                    utilities: 0,
+                    food: 0,
+                    travel: 0,
+                    insurance: 0,
+                    entertainment: 0,
+                    miscellaneous: 0,
+                    investing: 0
+                },
+                goalDate: this.props.goalDate
+            })
+        }
     }
 
     render() {

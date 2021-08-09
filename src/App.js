@@ -53,9 +53,10 @@ class App extends React.Component {
       newState.plannerState = plannerState;
       newState.loggedIn = this.state.loggedIn;
       newState.plannerId = this.state.plannerId;
+      console.log(state);
+      console.log(newState);
       this.setState(newState, async () => {
-          let plannerState = JSON.stringify(newState)
-          let queryResult = await PlannerQueries.updatePlannerState(this.state.plannerId, plannerState);
+          let queryResult = await PlannerQueries.updatePlannerState(this.state.plannerId, JSON.stringify(plannerState));
       });
   }
 

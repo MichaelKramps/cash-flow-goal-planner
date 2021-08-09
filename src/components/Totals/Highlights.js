@@ -8,10 +8,10 @@ class Highlights extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cashFlowGoal: this.props.cashFlowGoal || {
+            cashFlowGoal: this.props.highlights.cashFlowGoal || {
                 cashFlowGoal: 0
             },
-            currentCashFlow: this.props.currentCashFlow || {
+            currentCashFlow: this.props.highlights.currentCashFlow || {
                 totalCashFlow: 0
             },
             editingCashFlowGoal: this.props.editingCashFlowGoal || false,
@@ -73,11 +73,12 @@ class Highlights extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props !== prevProps) {
+            console.log(this.props)
             this.setState({
-                cashFlowGoal: this.props.cashFlowGoal || {
+                cashFlowGoal: this.props.highlights.cashFlowGoal || {
                     cashFlowGoal: 0
                 },
-                currentCashFlow: this.props.currentCashFlow || {
+                currentCashFlow: this.props.highlights.currentCashFlow || {
                     totalCashFlow: 0
                 },
                 editingCashFlowGoal: this.props.editingCashFlowGoal || false,
