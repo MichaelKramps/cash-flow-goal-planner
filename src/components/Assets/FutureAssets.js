@@ -8,8 +8,8 @@ class FutureAssets extends React.Component {
         super(props);
 
         this.state = {
-            editing: false,
-            futureAssets: []
+            editing: this.props.editing || false,
+            futureAssets: this.props.futureAssets || []
         };
 
         this.listAssets = this.listAssets.bind(this);
@@ -82,6 +82,15 @@ class FutureAssets extends React.Component {
                 this.updateSimulator();
             });
         });
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props !== prevProps) {
+            this.setState({
+                editing: this.props.editing || false,
+                futureAssets: this.props.futureAssets || []
+            })
+        }
     }
 
     render() {

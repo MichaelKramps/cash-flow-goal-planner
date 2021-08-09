@@ -77,9 +77,9 @@ class CurrentAssets extends React.Component {
         this.setState({editing: false}, () => {
             let assetProps = JSON.parse(JSON.stringify(state));
             assetProps.advanced = state;
-            let futureAssets = this.state.currentAssets.slice();
-            futureAssets.push(assetProps);
-            this.setState({currentAssets: futureAssets}, () => {
+            let currentAssets = this.state.currentAssets.slice();
+            currentAssets.push(assetProps);
+            this.setState({currentAssets: currentAssets}, () => {
                 this.updateSimulator();
             });
         });

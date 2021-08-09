@@ -8,15 +8,15 @@ class Highlights extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            cashFlowGoal: {
+            cashFlowGoal: this.props.cashFlowGoal || {
                 cashFlowGoal: 0
             },
-            currentCashFlow: {
+            currentCashFlow: this.props.currentCashFlow || {
                 totalCashFlow: 0
             },
-            editingCashFlowGoal: false,
-            editingCurrentCashFlow: false
-        }
+            editingCashFlowGoal: this.props.editingCashFlowGoal || false,
+            editingCurrentCashFlow: this.props.editingCurrentCashFlow || false
+        };
 
         this.updateCashFlowGoal = this.updateCashFlowGoal.bind(this);
         this.updateCurrentCashFlow = this.updateCurrentCashFlow.bind(this);
@@ -69,6 +69,21 @@ class Highlights extends React.Component {
         updatedState.editingCashFlowGoal = false;
         updatedState.editingCurrentCashFlow = false;
         this.props.updateSimulator(updatedState);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props !== prevProps) {
+            this.setState({
+                cashFlowGoal: this.props.cashFlowGoal || {
+                    cashFlowGoal: 0
+                },
+                currentCashFlow: this.props.currentCashFlow || {
+                    totalCashFlow: 0
+                },
+                editingCashFlowGoal: this.props.editingCashFlowGoal || false,
+                editingCurrentCashFlow: this.props.editingCurrentCashFlow || false
+            })
+        }
     }
 
     render() {
