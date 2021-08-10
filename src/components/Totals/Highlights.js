@@ -73,7 +73,6 @@ class Highlights extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props !== prevProps) {
-            console.log(this.props)
             this.setState({
                 cashFlowGoal: this.props.highlights.cashFlowGoal || {
                     cashFlowGoal: 0

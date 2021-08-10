@@ -95,6 +95,7 @@ class NextSteps extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div className={"next-steps " + this.stepsClass() + " " + Shared.determineVisibility(this.props)}>
                 <h1>Your Next Steps</h1>

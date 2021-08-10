@@ -102,7 +102,7 @@ class App extends React.Component {
               <LongTermRentalCalculator visible={this.determineVisibility("long-term-rental-calculator-view")} />
               <MortgageCalculator visible={this.determineVisibility("mortgage-calculator-view")} />
               <ShortTermRentalCalculator visible={this.determineVisibility("short-term-rental-calculator-view")} />
-              <NextSteps visible={this.determineVisibility("next-steps-view")} {...this.state} />
+              <NextSteps visible={this.determineVisibility("next-steps-view")} {...this.state.plannerState} />
               <Modal visible={!this.state.userLoggedIn}>
                     <LoginForm visible={!this.state.userLoggedIn} updateUserLoggedIn={this.updateUserLoggedIn} />
               </Modal>
