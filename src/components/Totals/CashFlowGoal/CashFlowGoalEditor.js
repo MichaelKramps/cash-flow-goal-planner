@@ -21,7 +21,8 @@ class CashFlowGoalEditor extends React.Component {
                 miscellaneous: 0,
                 investing: 0
             },
-            goalDate: this.props.goalDate
+            goalDate: this.props.goalDate,
+            rawGoalDate: this.props.rawGoalDate
         };
 
         this.handleGoalChange = this.handleGoalChange.bind(this);
@@ -111,7 +112,14 @@ class CashFlowGoalEditor extends React.Component {
         let splitDate = rawDate.split("-");
         let formattedMonthYear = this.determineMonth(splitDate[1]) + " " + splitDate[0];
 
-        this.setState({goalDate: formattedMonthYear});
+        let newState = {
+            cashFlowGoal: this.state.cashFlowGoal,
+            expenses: this.state.expenses,
+            goalDate: formattedMonthYear,
+            rawGoalDate: rawDate
+        }
+
+        this.setState(newState);
     }
 
     determineMonth (month) {
@@ -267,6 +275,7 @@ class CashFlowGoalEditor extends React.Component {
                     <label>Goal Date</label>
                 <input
                     type="date"
+                    value={this.state.rawGoalDate}
                     onChange={this.handleGoalDateChange}
                 />
                 <input type="submit" value="Update goal" />
