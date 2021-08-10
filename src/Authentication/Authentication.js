@@ -20,8 +20,9 @@ class Authentication {
     static async confirmSignUp(email, confirmationCode) {
         try {
             let successMessage = await Auth.confirmSignUp(email, confirmationCode);
-            console.log(successMessage);
+            return successMessage;
         } catch (error) {
+            return false;
             console.log('error confirming sign up:', error);
         }
     }

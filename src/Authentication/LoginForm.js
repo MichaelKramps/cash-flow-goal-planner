@@ -68,7 +68,10 @@ class LoginForm extends React.Component {
     }
 
     async handleConfirmSignUp() {
-        await Authentication.confirmSignUp(this.state.email, this.state.confirmationCode)
+        let success = await Authentication.confirmSignUp(this.state.email, this.state.confirmationCode)
+        if (success) {
+            this.setView("sign-in");
+        }
     }
 
     async resendCode() {
@@ -157,6 +160,7 @@ class LoginForm extends React.Component {
                     <h2>Confirm your email</h2>
                     {this.printError()}
                     <div className="login-input-container">
+                        <p>A confirmation code has been sent to your email.</p>
                         <label>Confirmation code: </label>
                         <input
                             value={this.state.confirmationCode}
