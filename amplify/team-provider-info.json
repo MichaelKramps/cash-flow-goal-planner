@@ -1,0 +1,38 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-amplify1a9ab5daa96b4-staging-13916-authRole",
+      "UnauthRoleArn": "arn:aws:iam::718137051114:role/amplify-amplify1a9ab5daa96b4-staging-13916-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::718137051114:role/amplify-amplify1a9ab5daa96b4-staging-13916-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-amplify1a9ab5daa96b4-staging-13916-deployment",
+      "UnauthRoleName": "amplify-amplify1a9ab5daa96b4-staging-13916-unauthRole",
+      "StackName": "amplify-amplify1a9ab5daa96b4-staging-13916",
+      "StackId": "arn:aws:cloudformation:us-east-1:718137051114:stack/amplify-amplify1a9ab5daa96b4-staging-13916/f3a0c780-f0d6-11eb-952d-0e007e135db7",
+      "AmplifyAppId": "d3jvouer79xtgw"
+    },
+    "categories": {
+      "auth": {
+        "cashflowgoalplannerfc3c8411": {}
+      }
+    }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cashflowgoalplanner-prod-133423-authRole",
+      "UnauthRoleArn": "arn:aws:iam::718137051114:role/amplify-cashflowgoalplanner-prod-133423-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::718137051114:role/amplify-cashflowgoalplanner-prod-133423-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-cashflowgoalplanner-prod-133423-deployment",
+      "UnauthRoleName": "amplify-cashflowgoalplanner-prod-133423-unauthRole",
+      "StackName": "amplify-cashflowgoalplanner-prod-133423",
+      "StackId": "arn:aws:cloudformation:us-east-1:718137051114:stack/amplify-cashflowgoalplanner-prod-133423/ec98b7e0-f6e4-11eb-9ef0-0ee1cf96ccc3",
+      "AmplifyAppId": "d3jvouer79xtgw"
+    },
+    "categories": {
+      "auth": {
+        "cashflowgoalplannerfc3c8411": {}
+      }
+    }
+  }
+}

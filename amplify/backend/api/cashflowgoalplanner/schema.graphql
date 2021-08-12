@@ -1,0 +1,6 @@
+type Planner @model {
+  id: ID!
+  state: String!
+  email: String!
+  accessExpires: String
+}

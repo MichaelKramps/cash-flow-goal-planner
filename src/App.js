@@ -14,6 +14,7 @@ import Amplify from 'aws-amplify';
 import awsconfig from './aws-exports';
 import Modal from "./components/Shared/Modal";
 import LoginForm from "./Authentication/LoginForm";
+import SignUpForm from "./Authentication/SignUpForm";
 Amplify.configure(awsconfig);
 
 class App extends React.Component {
@@ -106,6 +107,7 @@ class App extends React.Component {
               <Modal visible={!this.state.userLoggedIn}>
                     <LoginForm visible={!this.state.userLoggedIn} updateUserLoggedIn={this.updateUserLoggedIn} />
               </Modal>
+              <SignUpForm visible={true} />
           </div>
       );
   }
