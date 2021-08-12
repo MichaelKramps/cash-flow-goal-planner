@@ -167,8 +167,8 @@ class LoginForm extends React.Component {
                             onChange={this.handleConfirmationCodeChange}
                         />
                     </div>
-                    <a href="#" onClick={this.resendCode}>Send code again</a>
                     <button onClick={this.handleConfirmSignUp}>Confirm code</button>
+                    <a href="#" onClick={this.resendCode}>Send code again</a>
                 </div>
             </form>
         )
