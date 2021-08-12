@@ -88,7 +88,17 @@ class App extends React.Component {
       });
   }
 
+  isSigningUp() {
+      let url = window.location.href;
+      if (/signup=true/.test(url)) {
+          return true;
+      } else {
+          return false;
+      }
+  }
+
   render() {
+      console.log(window.location.href);
       return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
@@ -107,7 +117,7 @@ class App extends React.Component {
               <Modal visible={!this.state.userLoggedIn}>
                     <LoginForm visible={!this.state.userLoggedIn} updateUserLoggedIn={this.updateUserLoggedIn} />
               </Modal>
-              <SignUpForm visible={true} />
+              <SignUpForm visible={this.isSigningUp()} />
           </div>
       );
   }
