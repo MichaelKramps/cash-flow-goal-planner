@@ -9,7 +9,7 @@ exports.handler = async (event) => {
 
         line_items: [
             {
-                price: '12.34',
+                price: 'price_1JOY02L1S8gXXiuCYonQT2XK',
                 quantity: 1,
             },
         ],
