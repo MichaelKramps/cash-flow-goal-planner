@@ -73,6 +73,16 @@ class SignUpForm extends React.Component {
         }
     }
 
+    async createStripeCheckout() {
+        const checkoutUrl = "https://tv4p255fj1.execute-api.us-east-1.amazonaws.com/staging/request-stripe-checkout";
+
+        console.log("requesting checkout url");
+
+        await fetch(checkoutUrl, {
+            method: 'POST'
+        })
+    }
+
     async resendCode() {
         await Authentication.resendConfirmationCode(this.state.email)
     }
@@ -125,6 +135,7 @@ class SignUpForm extends React.Component {
                 </div>
                 <div className={this.determineVisible("pay")}>
                     <h2>Pay</h2>
+                    <input type="submit" value="Pay $25 for access" onClick={this.createStripeCheckout} />
                 </div>
             </form>
         )

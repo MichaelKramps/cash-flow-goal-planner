@@ -23,7 +23,10 @@ exports.handler = async (event) => {
     const response = {
         statusCode: 303,
         headers: {
-            Location: JSON.stringify(session.url)
+            "Location": JSON.stringify(session.url),
+            "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+            "Access-Control-Allow-Methods": "POST,GET"
         }
     };
 
