@@ -2,6 +2,7 @@ import React from 'react';
 import Authentication from "./Authentication";
 import './SignUpForm.css';
 import Shared from "../components/Shared/Shared";
+import PaymentForm from "./PaymentForm";
 
 class SignUpForm extends React.Component {
 
@@ -73,16 +74,6 @@ class SignUpForm extends React.Component {
         }
     }
 
-    async createStripeCheckout() {
-        const checkoutUrl = "https://tv4p255fj1.execute-api.us-east-1.amazonaws.com/staging/request-stripe-checkout";
-
-        console.log("requesting checkout url");
-
-        await fetch(checkoutUrl, {
-            method: 'POST'
-        })
-    }
-
     async resendCode() {
         await Authentication.resendConfirmationCode(this.state.email)
     }
@@ -100,7 +91,7 @@ class SignUpForm extends React.Component {
         return (
             <form className={"sign-up-form " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
                 <div className={this.determineVisible("sign-up")}>
-                    <h2>Sign up</h2>
+                    <h2>Set up your account</h2>
                     {this.printError()}
                     <div className="login-input-container">
                         <label>Email: </label>
@@ -134,8 +125,7 @@ class SignUpForm extends React.Component {
                     <a href="#" onClick={this.resendCode}>Send code again</a>
                 </div>
                 <div className={this.determineVisible("pay")}>
-                    <h2>Pay</h2>
-                    <input type="submit" value="Pay $25 for access" onClick={this.createStripeCheckout} />
+                    <PaymentForm />
                 </div>
             </form>
         )
