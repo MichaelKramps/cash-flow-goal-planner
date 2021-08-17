@@ -89,7 +89,7 @@ class SignUpForm extends React.Component {
 
     render() {
         return (
-            <form className={"sign-up-form " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
+            <div className={"sign-up-form " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
                 <div className={this.determineVisible("sign-up")}>
                     <h2>Set up your account</h2>
                     {this.printError()}
@@ -127,7 +127,7 @@ class SignUpForm extends React.Component {
                 <div className={this.determineVisible("pay")}>
                     <PaymentForm />
                 </div>
-            </form>
+            </div>
         )
     }
 }

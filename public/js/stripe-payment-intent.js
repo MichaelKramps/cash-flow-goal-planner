@@ -44,7 +44,7 @@ fetch("https://tv4p255fj1.execute-api.us-east-1.amazonaws.com/staging/stripe-pay
             document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
         });
 
-        var form = document.getElementById("payment-form");
+        var form = document.getElementById("stripe-payment-form");
 
         form.addEventListener("submit", function(event) {
             event.preventDefault();
@@ -67,9 +67,11 @@ var payWithCard = function(stripe, card, clientSecret) {
             }
         })
         .then(function(result) {
+            console.log(result);
             if (result.error) {
                 showError(result.error.message);
             } else {
+                document.getElementById("stripe-payment-form").submit();
                 orderComplete(result.paymentIntent.id);
             }
         });
@@ -88,7 +90,7 @@ var orderComplete = function(paymentIntentId) {
             "https://dashboard.stripe.com/test/payments/" + paymentIntentId
         );
 
-    document.querySelector(".result-message").classList.remove("hidden");
+    document.querySelector(".result-message").classList.remove("invisible");
     document.querySelector(".stripe-payment-form button").disabled = true;
 };
 
