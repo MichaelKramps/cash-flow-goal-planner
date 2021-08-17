@@ -124,9 +124,6 @@ class SignUpForm extends React.Component {
                     <button onClick={this.handleConfirmSignUp}>Confirm code</button>
                     <a href="#" onClick={this.resendCode}>Send code again</a>
                 </div>
-                <div className={this.determineVisible("pay")}>
-                    <PaymentForm />
-                </div>
             </div>
         )
     }

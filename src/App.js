@@ -15,6 +15,7 @@ import awsconfig from './aws-exports';
 import Modal from "./components/Shared/Modal";
 import LoginForm from "./Authentication/LoginForm";
 import SignUpForm from "./Authentication/SignUpForm";
+import PaymentForm from "./Authentication/PaymentForm";
 Amplify.configure(awsconfig);
 
 class App extends React.Component {
@@ -90,7 +91,16 @@ class App extends React.Component {
 
   isSigningUp() {
       let url = window.location.href;
-      if (/signup=true/.test(url)) {
+      if (/signup/.test(url)) {
+          return true;
+      } else {
+          return false;
+      }
+  }
+
+  isPayment() {
+      let url = window.location.href;
+      if (/payment/.test(url)) {
           return true;
       } else {
           return false;
@@ -118,6 +128,7 @@ class App extends React.Component {
                     <LoginForm visible={!this.state.userLoggedIn} updateUserLoggedIn={this.updateUserLoggedIn} />
               </Modal>
               <SignUpForm visible={this.isSigningUp()} />
+              <PaymentForm visible={this.isPayment()} />
           </div>
       );
   }

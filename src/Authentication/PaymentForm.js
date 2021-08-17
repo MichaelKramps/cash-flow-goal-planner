@@ -1,5 +1,6 @@
 import React from 'react';
 import Shared from "../components/Shared/Shared";
+import './PaymentForm.css';
 
 class PaymentForm extends React.Component {
 

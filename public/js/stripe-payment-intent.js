@@ -1,19 +1,23 @@
-var stripe = Stripe("pk_test_3WEJFfd6Cixu6beZLDo4Zlef");
+let url = window.location.href;
+if (/payment/.test(url)) {
 
-document.querySelector(".stripe-payment-form button").disabled = true;
+    console.log("krampssss")
 
-fetch("https://tv4p255fj1.execute-api.us-east-1.amazonaws.com/staging/stripe-payment-intent/get-intent", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        items: [{ id: "cash-flow-handbook-access" }]
-    })
-}).then(function(result) {
+    var stripe = Stripe("pk_test_3WEJFfd6Cixu6beZLDo4Zlef");
+
+    document.querySelector(".stripe-payment-form button").disabled = true;
+
+    fetch("https://tv4p255fj1.execute-api.us-east-1.amazonaws.com/staging/stripe-payment-intent/get-intent", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            items: [{id: "cash-flow-handbook-access"}]
+        })
+    }).then(function (result) {
         return result.json();
-    })
-    .then(function(data) {
+    }).then(function (data) {
         var elements = stripe.elements();
 
         var style = {
@@ -33,7 +37,7 @@ fetch("https://tv4p255fj1.execute-api.us-east-1.amazonaws.com/staging/stripe-pay
             }
         };
 
-        var card = elements.create("card", { style: style });
+        var card = elements.create("card", {style: style});
 
         // Stripe injects an iframe into the DOM
         card.mount("#card-element");
@@ -46,13 +50,14 @@ fetch("https://tv4p255fj1.execute-api.us-east-1.amazonaws.com/staging/stripe-pay
 
         var form = document.getElementById("stripe-payment-form");
 
-        form.addEventListener("submit", function(event) {
+        form.addEventListener("submit", function (event) {
             event.preventDefault();
             // Complete payment when the submit button is clicked
             payWithCard(stripe, card, data.clientSecret);
         });
     });
 
+}
 // Calls stripe.confirmCardPayment
 // If the card requires authentication Stripe shows a pop-up modal to
 // prompt the user to enter authentication details without leaving your page.
