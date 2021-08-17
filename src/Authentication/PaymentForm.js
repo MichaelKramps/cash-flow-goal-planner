@@ -7,6 +7,7 @@ class PaymentForm extends React.Component {
     render() {
         return (
             <form className={"stripe-payment-form " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
+                <h2>Purchase access to Cash Flow Handbook</h2>
                 <div id="card-element"></div>
                 <button id="submit">
                     <div className="spinner invisible" id="spinner"></div>

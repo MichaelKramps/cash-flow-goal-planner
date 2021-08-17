@@ -22,8 +22,8 @@ class Authentication {
             let successMessage = await Auth.confirmSignUp(email, confirmationCode);
             return successMessage;
         } catch (error) {
-            return false;
             console.log('error confirming sign up:', error);
+            return false;
         }
     }
 
