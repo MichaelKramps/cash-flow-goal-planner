@@ -1,8 +1,6 @@
 let url = window.location.href;
 if (/payment/.test(url)) {
 
-    console.log("krampssss")
-
     var stripe = Stripe("pk_test_3WEJFfd6Cixu6beZLDo4Zlef");
 
     document.querySelector(".stripe-payment-form button").disabled = true;
@@ -20,30 +18,49 @@ if (/payment/.test(url)) {
     }).then(function (data) {
         var elements = stripe.elements();
 
-        var style = {
+        var elementStyles = {
             base: {
-                color: "#32325d",
-                fontFamily: 'Arial, sans-serif',
-                fontSmoothing: "antialiased",
-                fontSize: "16px",
-                "::placeholder": {
-                    color: "#32325d"
-                }
+                color: '#32325D',
+                fontWeight: 500,
+                fontSize: '16px',
+                fontSmoothing: 'antialiased',
+
+                '::placeholder': {
+                    color: '#CFD7DF',
+                },
+                ':-webkit-autofill': {
+                    color: '#e39f48',
+                },
             },
             invalid: {
-                fontFamily: 'Arial, sans-serif',
-                color: "#fa755a",
-                iconColor: "#fa755a"
-            }
+                color: '#E25950',
+
+                '::placeholder': {
+                    color: '#FFCCA5',
+                },
+            },
         };
 
-        var card = elements.create("card", {style: style});
+        var cardNumber = elements.create("cardNumber", {style: elementStyles});
+        cardNumber.mount("#card-number");
 
-        // Stripe injects an iframe into the DOM
-        card.mount("#card-element");
+        var cardExpiry = elements.create("cardExpiry", {style: elementStyles});
+        cardExpiry.mount("#card-expiry");
 
-        card.on("change", function (event) {
-            // Disable the Pay button if there are no card details in the Element
+        var cardCvc = elements.create("cardCvc", {style: elementStyles});
+        cardCvc.mount("#card-cvc");
+
+        cardNumber.on("change", function (event) {
+            document.querySelector(".stripe-payment-form button").disabled = event.empty;
+            document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+        });
+
+        cardExpiry.on("change", function (event) {
+            document.querySelector(".stripe-payment-form button").disabled = event.empty;
+            document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+        });
+
+        cardCvc.on("change", function (event) {
             document.querySelector(".stripe-payment-form button").disabled = event.empty;
             document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
         });
@@ -52,15 +69,13 @@ if (/payment/.test(url)) {
 
         form.addEventListener("submit", function (event) {
             event.preventDefault();
-            // Complete payment when the submit button is clicked
             payWithCard(stripe, card, data.clientSecret);
         });
     });
 
 }
-// Calls stripe.confirmCardPayment
-// If the card requires authentication Stripe shows a pop-up modal to
-// prompt the user to enter authentication details without leaving your page.
+
+
 var payWithCard = function(stripe, card, clientSecret) {
 
     loading(true);
@@ -82,8 +97,7 @@ var payWithCard = function(stripe, card, clientSecret) {
         });
 };
 
-/* ------- UI helpers ------- */
-// Shows a success message when the payment is complete
+
 var orderComplete = function(paymentIntentId) {
 
     loading(false);
@@ -99,7 +113,7 @@ var orderComplete = function(paymentIntentId) {
     document.querySelector(".stripe-payment-form button").disabled = true;
 };
 
-// Show the customer the error from Stripe if their card fails to charge
+
 var showError = function(errorMsgText) {
 
     loading(false);
@@ -112,16 +126,16 @@ var showError = function(errorMsgText) {
     }, 4000);
 };
 
-// Show a spinner on payment submission
+
 var loading = function(isLoading) {
     if (isLoading) {
         // Disable the button and show a spinner
         document.querySelector(".stripe-payment-form button").disabled = true;
-        document.querySelector("#spinner").classList.remove("hidden");
-        document.querySelector("#button-text").classList.add("hidden");
+        document.querySelector("#spinner").classList.remove("invisible");
+        document.querySelector("#button-text").classList.add("invisible");
     } else {
         document.querySelector(".stripe-payment-form button").disabled = false;
-        document.querySelector("#spinner").classList.add("hidden");
-        document.querySelector("#button-text").classList.remove("hidden");
+        document.querySelector("#spinner").classList.add("invisible");
+        document.querySelector("#button-text").classList.remove("invisible");
     }
 };
