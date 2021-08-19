@@ -51,17 +51,14 @@ if (/payment/.test(url)) {
         cardCvc.mount("#card-cvc");
 
         cardNumber.on("change", function (event) {
-            document.querySelector(".stripe-payment-form button").disabled = event.empty;
             document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
         });
 
         cardExpiry.on("change", function (event) {
-            document.querySelector(".stripe-payment-form button").disabled = event.empty;
             document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
         });
 
         cardCvc.on("change", function (event) {
-            document.querySelector(".stripe-payment-form button").disabled = event.empty;
             document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
         });
 

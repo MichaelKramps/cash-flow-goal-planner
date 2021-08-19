@@ -1,6 +1,7 @@
 import React from 'react';
 import Shared from "../components/Shared/Shared";
 import './PaymentForm.css';
+import PlannerQueries from "../graphql/PlannerQueries";
 
 class PaymentForm extends React.Component {
 
@@ -8,7 +9,8 @@ class PaymentForm extends React.Component {
         super(props);
 
         this.state = {
-            email: this.props.emailAddress || ""
+            email: this.props.emailAddress || "",
+            allowedToPay: false
         }
 
         this.updateEmail = this.updateEmail.bind(this);
@@ -16,7 +18,9 @@ class PaymentForm extends React.Component {
     }
 
     updateEmail(event) {
-        this.setState({email: event.target.value});
+        this.setState({email: event.target.value}, () => {
+            this.attemptToEnablePayButton();
+        });
     }
 
     emailClass() {
@@ -26,8 +30,22 @@ class PaymentForm extends React.Component {
         return "";
     }
 
+    attemptToEnablePayButton() {
+        if (this.emailMatchesAccount()) {
+            this.setState({allowedToPay: true})
+        } else {
+            this.setState({allowedToPay: false})
+        }
+    }
+
+    async emailMatchesAccount() {
+        let gameState = await PlannerQueries.findPlannerByUser(this.state.email);
+        console.log(gameState)
+        return false;
+    }
+
     successfulPayment() {
-        console.log("successful payment was made by ")
+        console.log("successful payment was made")
     }
 
     render() {
@@ -66,7 +84,7 @@ class PaymentForm extends React.Component {
                             <div className="baseline"></div>
                         </div>
                     </div>
-                    <button id="submit-payment" onClick={this.onSubmit}>
+                    <button id="submit-payment" onClick={this.onSubmit} disabled={this.state.allowedToPay}>
                         <div className="spinner invisible" id="spinner"></div>
                         Pay Now
                     </button>
