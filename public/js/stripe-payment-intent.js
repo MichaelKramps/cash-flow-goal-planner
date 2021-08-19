@@ -65,33 +65,32 @@ if (/payment/.test(url)) {
             document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
         });
 
-        var form = document.getElementById("stripe-payment-form");
+        var submitButton = document.getElementById("submit-payment");
 
-        form.addEventListener("submit", function (event) {
+        submitButton.addEventListener("click", function (event) {
             event.preventDefault();
-            payWithCard(stripe, card, data.clientSecret);
+            payWithCard(stripe, cardNumber, data.clientSecret);
         });
     });
 
 }
 
 
-var payWithCard = function(stripe, card, clientSecret) {
+var payWithCard = function(stripe, cardNumber, clientSecret) {
 
     loading(true);
 
     stripe
         .confirmCardPayment(clientSecret, {
             payment_method: {
-                card: card
+                card: cardNumber
             }
         })
         .then(function(result) {
-            console.log(result);
             if (result.error) {
                 showError(result.error.message);
             } else {
-                document.getElementById("stripe-payment-form").submit();
+                document.getElementById("signal-successful-payment").click();
                 orderComplete(result.paymentIntent.id);
             }
         });
@@ -132,10 +131,8 @@ var loading = function(isLoading) {
         // Disable the button and show a spinner
         document.querySelector(".stripe-payment-form button").disabled = true;
         document.querySelector("#spinner").classList.remove("invisible");
-        document.querySelector("#button-text").classList.add("invisible");
     } else {
         document.querySelector(".stripe-payment-form button").disabled = false;
         document.querySelector("#spinner").classList.add("invisible");
-        document.querySelector("#button-text").classList.remove("invisible");
     }
 };

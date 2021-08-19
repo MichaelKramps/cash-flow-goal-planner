@@ -4,14 +4,13 @@ import './PaymentForm.css';
 
 class PaymentForm extends React.Component {
 
-    onSubmit(data) {
-        console.log("hello Michael")
+    successfulPayment() {
+        console.log("successful payment was made by ")
     }
-
 
     render() {
         return (
-            <form id="stripe-payment-form" className={"stripe-payment-form " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
+            <div id="stripe-payment-form" className={"stripe-payment-form " + Shared.determineVisibility(this.props)}>
                 <div className="payment-details">
                     <h2>Purchase access to Cash Flow Handbook</h2>
                     <div className="payment-row">
@@ -35,16 +34,17 @@ class PaymentForm extends React.Component {
                             <div className="baseline"></div>
                         </div>
                     </div>
-                    <button id="submit-payment">
+                    <button id="submit-payment" onClick={this.onSubmit}>
                         <div className="spinner invisible" id="spinner"></div>
-                        <input type="submit" id="button-text" value="Pay now" />
+                        Pay Now
                     </button>
+                    <span id="signal-successful-payment" className="hide-offscreen" onClick={this.successfulPayment}>&nbsp;</span>
                     <p id="card-error" role="alert"></p>
                     <p className="result-message invisible">
-                        Payment succeeded
+                        Payment succeeded, see your completed payment <a href="#">here</a>.
                     </p>
                 </div>
-            </form>
+            </div>
         )
     }
 }
