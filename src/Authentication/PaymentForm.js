@@ -4,6 +4,28 @@ import './PaymentForm.css';
 
 class PaymentForm extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: this.props.emailAddress || ""
+        }
+
+        this.updateEmail = this.updateEmail.bind(this);
+        this.emailClass = this.emailClass.bind(this);
+    }
+
+    updateEmail(event) {
+        this.setState({email: event.target.value});
+    }
+
+    emailClass() {
+        if (this.state.email === "") {
+            return "StripeElement--empty";
+        }
+        return "";
+    }
+
     successfulPayment() {
         console.log("successful payment was made by ")
     }
@@ -13,6 +35,16 @@ class PaymentForm extends React.Component {
             <div id="stripe-payment-form" className={"stripe-payment-form " + Shared.determineVisibility(this.props)}>
                 <div className="payment-details">
                     <h2>Purchase access to Cash Flow Handbook</h2>
+                    <div className="payment-row">
+                        <div className="payment-field">
+                            <input id={"payment-email-address"}
+                                className={"input " + this.emailClass()}
+                                value={this.state.email}
+                                onChange={this.updateEmail} />
+                            <label htmlFor="payment-email-address">Email Address: </label>
+                            <div className="baseline"></div>
+                        </div>
+                    </div>
                     <div className="payment-row">
                         <div className="payment-field">
                             <div id="card-number" className="input empty"></div>

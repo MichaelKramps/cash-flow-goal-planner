@@ -36,29 +36,29 @@
     width: 100%;
     left: 0;
     bottom: 0;
-    padding-bottom: 7px;
+    padding: 0 0 7px 0;
+    border: 0;
     color: #32325d;
     background-color: transparent;
-}
-
-.payment-field .input.StripeElement {
     opacity: 0;
     transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
     will-change: opacity;
 }
 
 .payment-field .input.StripeElement--focus,
+#stripe-payment-form .payment-field input:focus,
 .payment-field .input:not(.StripeElement--empty) {
     opacity: 1;
+    outline: none;
 }
 
-.payment-field .input.StripeElement--focus + label {
+.payment-field .input.StripeElement--focus + label,
+#stripe-payment-form .payment-field input:focus + label {
     color: #1a73e8;
 }
 
-
-
 .payment-field .input.StripeElement--focus + label,
+#stripe-payment-form .payment-field input:focus + label,
 .payment-field .input:not(.StripeElement--empty) + label {
     color: #aab7c4;
     transform: scale(0.85) translateY(-25px);
@@ -95,6 +95,12 @@
 #submit-payment {
     margin-top: 24px;
     margin-left: 10px;
+    padding: 12px 24px;
+}
+
+#submit-payment:disabled,
+#submit-payment[disabled] {
+    opacity: 0.4;
 }
 
 #signal-successful-payment {
@@ -104,4 +110,12 @@
     width:1px;
     height:1px;
     overflow:hidden;
+}
+
+#stripe-payment-form p {
+    margin: 16px 10px
+}
+
+#card-error {
+    color: #E25950;
 }

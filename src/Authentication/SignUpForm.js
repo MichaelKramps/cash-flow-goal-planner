@@ -42,7 +42,9 @@ class SignUpForm extends React.Component {
     }
 
     handleEmailChange(event) {
-        this.setState({email: event.target.value});
+        this.setState({email: event.target.value}, () => {
+            this.props.updateEmail(event.target.value)
+        });
     }
 
     handleConfirmationCodeChange(event) {
@@ -70,7 +72,7 @@ class SignUpForm extends React.Component {
     async handleConfirmSignUp() {
         let success = await Authentication.confirmSignUp(this.state.email, this.state.confirmationCode)
         if (success) {
-            this.setView("sign-in");
+            window.location.href = '/payment'
         }
     }
 

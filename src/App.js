@@ -25,12 +25,14 @@ class App extends React.Component {
       this.state = {
           view: "planner-view",
           userLoggedIn: false,
+          userEmail: "",
           plannerState: {},
           plannerId: ""
       }
 
       this.changeView = this.changeView.bind(this);
       this.updateApp = this.updateApp.bind(this);
+      this.updateEmail = this.updateEmail.bind(this);
       this.determineVisibility = this.determineVisibility.bind(this);
       this.updateUserLoggedIn = this.updateUserLoggedIn.bind(this);
 
@@ -55,11 +57,13 @@ class App extends React.Component {
       newState.plannerState = plannerState;
       newState.loggedIn = this.state.loggedIn;
       newState.plannerId = this.state.plannerId;
-      console.log(state);
-      console.log(newState);
       this.setState(newState, async () => {
           let queryResult = await PlannerQueries.updatePlannerState(this.state.plannerId, JSON.stringify(plannerState));
       });
+  }
+
+  updateEmail(email) {
+      this.setState({userEmail: email});
   }
 
   changeView(viewName) {
@@ -108,7 +112,6 @@ class App extends React.Component {
   }
 
   render() {
-      console.log(window.location.href);
       return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
@@ -127,8 +130,8 @@ class App extends React.Component {
               <Modal visible={!this.state.userLoggedIn}>
                     <LoginForm visible={!this.state.userLoggedIn} updateUserLoggedIn={this.updateUserLoggedIn} />
               </Modal>
-              <SignUpForm visible={this.isSigningUp()} />
-              <PaymentForm visible={this.isPayment()} />
+              <SignUpForm visible={this.isSigningUp()} updateEmail={this.updateEmail} />
+              <PaymentForm visible={this.isPayment()} emailAddress={this.state.userEmail} />
           </div>
       );
   }
