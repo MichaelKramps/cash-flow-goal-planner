@@ -62,10 +62,6 @@ class SignUpForm extends React.Component {
             this.setView("confirm-sign-up");
         } catch (error) {
             this.setState({error: error.message});
-            if (error.code === "UsernameExistsException") {
-                this.setView("confirm-sign-up");
-            }
-            console.log(error);
         }
     }
 
@@ -96,7 +92,7 @@ class SignUpForm extends React.Component {
         return (
             <div className={"sign-up-form " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
                 <div className={"sign-up " + this.determineVisible("sign-up")}>
-                    <h2>Set up your account</h2>
+                    <h2>Sign up a new account</h2>
                     {this.printError()}
                     <div className="login-input-container">
                         <label>Email: </label>
@@ -114,23 +110,40 @@ class SignUpForm extends React.Component {
                         />
                     </div>
                     <button onClick={this.handleSignUp}>Sign up</button>
+                    <p>I need to&nbsp;
+                        <a href="#"
+                           onClick={(e) => {e.preventDefault();this.setState({view: "confirm-sign-up"})}}>
+                            confirm my account
+                        </a>
+                    </p>
                 </div>
                 <div className={"confirm-sign-up " + this.determineVisible("confirm-sign-up")}>
-                    <h2>Confirm your email</h2>
+                    <h2>Confirm your email address</h2>
                     {this.printError()}
-                    <div className="login-input-container">
+                    <div>
                         <p>A confirmation code has been sent to your email.</p>
-                        <label>Confirmation code: </label>
-                        <input
-                            value={this.state.confirmationCode}
-                            onChange={this.handleConfirmationCodeChange}
-                        />
+                        <div className="login-input-container">
+                            <label>My email: </label>
+                            <input
+                                value={this.state.email}
+                                onChange={this.handleEmailChange}
+                            />
+                        </div>
+                        <div className="login-input-container">
+                            <label>Confirmation code: </label>
+                            <input
+                                value={this.state.confirmationCode}
+                                onChange={this.handleConfirmationCodeChange}
+                            />
+                        </div>
                     </div>
                     <button onClick={this.handleConfirmSignUp}>
                         Confirm code
                         <div className="spinner invisible" id="spinner"></div>
                     </button>
-                    <a href="#" onClick={this.resendCode}>Send code again</a>
+                    <p>
+                        <a href="#" onClick={this.resendCode}>Send code again</a>
+                    </p>
                 </div>
             </div>
         )
