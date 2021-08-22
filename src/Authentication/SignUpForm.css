@@ -10,6 +10,12 @@
     z-index: 10;
 }
 
+.sign-up, .confirm-sign-up {
+    width: 80%;
+    max-width: 600px;
+    margin: auto;
+}
+
 .sign-up-form button {
     float: none;
 }

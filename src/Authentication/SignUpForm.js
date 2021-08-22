@@ -2,7 +2,7 @@ import React from 'react';
 import Authentication from "./Authentication";
 import './SignUpForm.css';
 import Shared from "../components/Shared/Shared";
-import PaymentForm from "./PaymentForm";
+import PlannerQueries from "../graphql/PlannerQueries";
 
 class SignUpForm extends React.Component {
 
@@ -70,9 +70,12 @@ class SignUpForm extends React.Component {
     }
 
     async handleConfirmSignUp() {
-        let success = await Authentication.confirmSignUp(this.state.email, this.state.confirmationCode)
-        if (success) {
-            window.location.href = '/payment'
+        let confirm = await Authentication.confirmSignUp(this.state.email, this.state.confirmationCode)
+        if (confirm === "SUCCESS") {
+            await PlannerQueries.createPlanner({}, this.state.email, "immediately");
+            window.location.href = '/payment';
+        } else {
+            this.setState({error: confirm.message});
         }
     }
 
@@ -92,7 +95,7 @@ class SignUpForm extends React.Component {
     render() {
         return (
             <div className={"sign-up-form " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
-                <div className={this.determineVisible("sign-up")}>
+                <div className={"sign-up " + this.determineVisible("sign-up")}>
                     <h2>Set up your account</h2>
                     {this.printError()}
                     <div className="login-input-container">
@@ -112,7 +115,7 @@ class SignUpForm extends React.Component {
                     </div>
                     <button onClick={this.handleSignUp}>Sign up</button>
                 </div>
-                <div className={this.determineVisible("confirm-sign-up")}>
+                <div className={"confirm-sign-up " + this.determineVisible("confirm-sign-up")}>
                     <h2>Confirm your email</h2>
                     {this.printError()}
                     <div className="login-input-container">
@@ -123,7 +126,10 @@ class SignUpForm extends React.Component {
                             onChange={this.handleConfirmationCodeChange}
                         />
                     </div>
-                    <button onClick={this.handleConfirmSignUp}>Confirm code</button>
+                    <button onClick={this.handleConfirmSignUp}>
+                        Confirm code
+                        <div className="spinner invisible" id="spinner"></div>
+                    </button>
                     <a href="#" onClick={this.resendCode}>Send code again</a>
                 </div>
             </div>
