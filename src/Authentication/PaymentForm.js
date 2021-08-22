@@ -18,8 +18,8 @@ class PaymentForm extends React.Component {
     }
 
     updateEmail(event) {
-        this.setState({email: event.target.value}, () => {
-            this.attemptToEnablePayButton();
+        this.setState({email: event.target.value}, async () => {
+            await this.attemptToEnablePayButton();
         });
     }
 
@@ -30,8 +30,8 @@ class PaymentForm extends React.Component {
         return "";
     }
 
-    attemptToEnablePayButton() {
-        if (this.emailMatchesAccount()) {
+    async attemptToEnablePayButton() {
+        if (await this.emailMatchesAccount()) {
             this.setState({allowedToPay: true})
         } else {
             this.setState({allowedToPay: false})
@@ -39,8 +39,11 @@ class PaymentForm extends React.Component {
     }
 
     async emailMatchesAccount() {
-        let gameState = await PlannerQueries.findPlannerByUser(this.state.email);
-        console.log(gameState)
+        const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (emailRegex.test(this.state.email)) {
+            let queryResult = await PlannerQueries.findPlannerByUser(this.state.email);
+            return queryResult.data.listPlanners.items.length > 0;
+        }
         return false;
     }
 
@@ -84,9 +87,9 @@ class PaymentForm extends React.Component {
                             <div className="baseline"></div>
                         </div>
                     </div>
-                    <button id="submit-payment" onClick={this.onSubmit} disabled={this.state.allowedToPay}>
-                        <div className="spinner invisible" id="spinner"></div>
+                    <button id="submit-payment" onClick={this.onSubmit} disabled={!this.state.allowedToPay}>
                         Pay Now
+                        <div className="spinner invisible" id="spinner"></div>
                     </button>
                     <span id="signal-successful-payment" className="hide-offscreen" onClick={this.successfulPayment}>&nbsp;</span>
                     <p id="card-error" role="alert"></p>
