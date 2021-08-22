@@ -10,6 +10,7 @@ class PaymentForm extends React.Component {
 
         this.state = {
             email: this.props.emailAddress || "",
+            errorMessage: "",
             allowedToPay: false
         }
 
@@ -42,9 +43,23 @@ class PaymentForm extends React.Component {
         const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (emailRegex.test(this.state.email)) {
             let queryResult = await PlannerQueries.findPlannerByUser(this.state.email);
-            return queryResult.data.listPlanners.items.length > 0;
+            if (queryResult.data.listPlanners.items.length > 0) {
+                this.setState({errorMessage: ""});
+                return true;
+            }
+            this.setState({errorMessage: "We could not find an account associated with the email address you" +
+                    " entered."});
         }
         return false;
+    }
+
+    errorMessage() {
+        if (this.state.errorMessage) {
+            return (
+                <p>{this.state.errorMessage}</p>
+            )
+        }
+        return null;
     }
 
     successfulPayment() {
@@ -87,7 +102,7 @@ class PaymentForm extends React.Component {
                             <div className="baseline"></div>
                         </div>
                     </div>
-                    <button id="submit-payment" onClick={this.onSubmit} disabled={!this.state.allowedToPay}>
+                    <button id="submit-payment" disabled={!this.state.allowedToPay}>
                         Pay Now
                         <div className="spinner invisible" id="spinner"></div>
                     </button>
@@ -96,6 +111,7 @@ class PaymentForm extends React.Component {
                     <p className="result-message invisible">
                         Payment succeeded, see your completed payment <a href="#">here</a>.
                     </p>
+                    {this.errorMessage()}
                 </div>
             </div>
         )
