@@ -99,7 +99,7 @@ var orderComplete = function(paymentIntentId) {
     loading(false);
 
     document
-        .querySelector(".result-message a")
+        .querySelector(".result-message a.payment-confirmation")
         .setAttribute(
             "href",
             "https://dashboard.stripe.com/test/payments/" + paymentIntentId

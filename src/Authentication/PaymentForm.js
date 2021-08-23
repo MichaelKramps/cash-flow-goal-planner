@@ -17,6 +17,8 @@ class PaymentForm extends React.Component {
 
         this.updateEmail = this.updateEmail.bind(this);
         this.emailClass = this.emailClass.bind(this);
+        this.emailMatchesAccount = this.emailMatchesAccount.bind(this);
+        this.successfulPayment = this.successfulPayment.bind(this);
     }
 
     updateEmail(event) {
@@ -72,11 +74,10 @@ class PaymentForm extends React.Component {
     }
 
     async successfulPayment() {
-        await PlannerQueries.updatePlannerState(this.state.plannerId, "never");
+        await PlannerQueries.updatePlannerExpires(this.state.plannerId, "never");
     }
 
     render() {
-        console.log(this.state)
         return (
             <div id="stripe-payment-form" className={"stripe-payment-form " + Shared.determineVisibility(this.props)}>
                 <div className="payment-details">
@@ -119,7 +120,7 @@ class PaymentForm extends React.Component {
                     <span id="signal-successful-payment" className="hide-offscreen" onClick={this.successfulPayment}>&nbsp;</span>
                     <p id="card-error" role="alert"></p>
                     <p className="result-message invisible">
-                        Payment succeeded, see your completed payment <a href="#">here</a>.
+                        Payment succeeded, you may now log in to the <a href="/">cash flow planner</a>.
                     </p>
                     {this.errorMessage()}
                 </div>
