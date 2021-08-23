@@ -46,6 +46,18 @@ class PlannerQueries {
             }
         })
     }
+
+    static async updatePlannerExpires (id, plannerExpires) {
+        return await API.graphql({
+            query: updatePlanner,
+            variables: {
+                input: {
+                    id: id,
+                    accessExpires: plannerExpires
+                }
+            }
+        })
+    }
 }
 
 export default PlannerQueries;

@@ -112,6 +112,7 @@ class App extends React.Component {
   }
 
   render() {
+      console.log(this.state.userEmail)
       return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />

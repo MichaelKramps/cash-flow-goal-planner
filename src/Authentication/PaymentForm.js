@@ -11,6 +11,7 @@ class PaymentForm extends React.Component {
         this.state = {
             email: this.props.emailAddress || "",
             errorMessage: "",
+            plannerId: "",
             allowedToPay: false
         }
 
@@ -20,7 +21,7 @@ class PaymentForm extends React.Component {
 
     updateEmail(event) {
         this.setState({email: event.target.value}, async () => {
-            await this.attemptToEnablePayButton();
+            await this.emailMatchesAccount();
         });
     }
 
@@ -31,26 +32,34 @@ class PaymentForm extends React.Component {
         return "";
     }
 
-    async attemptToEnablePayButton() {
-        if (await this.emailMatchesAccount()) {
-            this.setState({allowedToPay: true})
-        } else {
-            this.setState({allowedToPay: false})
-        }
-    }
-
     async emailMatchesAccount() {
         const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (emailRegex.test(this.state.email)) {
             let queryResult = await PlannerQueries.findPlannerByUser(this.state.email);
             if (queryResult.data.listPlanners.items.length > 0) {
-                this.setState({errorMessage: ""});
-                return true;
+                const newState = {};
+                newState.errorMessage = "";
+                const planner = queryResult.data.listPlanners.items[0];
+                newState.plannerId = planner.id;
+                newState.email = this.state.email;
+                newState.allowedToPay = true;
+                this.setState(newState);
+            } else {
+                const newState = {};
+                newState.errorMessage = "We could not find an account associated with the email address you entered.";
+                newState.plannerId = "";
+                newState.email = this.state.email;
+                newState.allowedToPay = false;
+                this.setState(newState);
             }
-            this.setState({errorMessage: "We could not find an account associated with the email address you" +
-                    " entered."});
+        } else {
+            const newState = {};
+            newState.errorMessage = "";
+            newState.plannerId = "";
+            newState.email = this.state.email;
+            newState.allowedToPay = false;
+            this.setState(newState);
         }
-        return false;
     }
 
     errorMessage() {
@@ -62,11 +71,12 @@ class PaymentForm extends React.Component {
         return null;
     }
 
-    successfulPayment() {
-        console.log("successful payment was made")
+    async successfulPayment() {
+        await PlannerQueries.updatePlannerState(this.state.plannerId, "never");
     }
 
     render() {
+        console.log(this.state)
         return (
             <div id="stripe-payment-form" className={"stripe-payment-form " + Shared.determineVisibility(this.props)}>
                 <div className="payment-details">

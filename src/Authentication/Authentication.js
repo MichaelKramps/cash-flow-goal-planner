@@ -4,14 +4,13 @@ class Authentication {
 
     static async signUp(email, password) {
         try {
-            const { user } = await Auth.signUp({
+            await Auth.signUp({
                 username: email,
                 password: password,
                 attributes: {
                     email: email
                 }
             });
-            console.log(user);
         } catch (error) {
             throw error;
         }
@@ -22,8 +21,7 @@ class Authentication {
             let successMessage = await Auth.confirmSignUp(email, confirmationCode);
             return successMessage;
         } catch (error) {
-            console.log('error confirming sign up:', error);
-            return false;
+            return error;
         }
     }
 

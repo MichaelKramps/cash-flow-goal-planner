@@ -92,7 +92,7 @@ class SignUpForm extends React.Component {
         return (
             <div className={"sign-up-form " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
                 <div className={"sign-up " + this.determineVisible("sign-up")}>
-                    <h2>Sign up a new account</h2>
+                    <h2>Create a new account</h2>
                     {this.printError()}
                     <div className="login-input-container">
                         <label>Email: </label>
@@ -139,7 +139,6 @@ class SignUpForm extends React.Component {
                     </div>
                     <button onClick={this.handleConfirmSignUp}>
                         Confirm code
-                        <div className="spinner invisible" id="spinner"></div>
                     </button>
                     <p>
                         <a href="#" onClick={this.resendCode}>Send code again</a>
