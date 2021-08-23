@@ -70,26 +70,22 @@ class App extends React.Component {
       this.setState({view: viewName});
   }
 
-  async updateUserLoggedIn(user, email) {
-      let loggedIn = user ? true : false;
-      this.setState({userLoggedIn: loggedIn}, async () => {
+  async updateUserLoggedIn(usersPlanner, email) {
+      let parsePlannerState = function() {
           try {
-              let queryResult = await PlannerQueries.findPlannerByUser(email);
-              let planners = queryResult.data.listPlanners.items;
-              if (planners.length === 0) {
-                  await PlannerQueries.createPlanner(this.state.plannerState, email, "never");
-              } else {
-                  let planner = planners[0];
-                  this.setState({
-                      view: this.state.view,
-                      loggedIn: this.state.loggedIn,
-                      plannerState: JSON.parse(planner.state),
-                      plannerId: planner.id
-                  });
-              }
-          } catch (error) {
-              console.log(error)
+              const plannerState = JSON.parse(usersPlanner.state);
+              return plannerState;
+          } catch (e) {
+              return {};
           }
+      };
+
+      this.setState({
+          view: this.state.view,
+          userLoggedIn: true,
+          userEmail: email,
+          plannerState: parsePlannerState(),
+          plannerId: usersPlanner.id
       });
   }
 
@@ -112,12 +108,11 @@ class App extends React.Component {
   }
 
   render() {
-      console.log(this.state.userEmail)
       return (
           <div className={this.state.view}>
               <Header changeView={this.changeView} />
               <Planner
-                  visible={this.determineVisibility("planner-view")}
+                  visible={this.determineVisibility("planner-view") && this.state.userLoggedIn}
                   highlights={this.state.plannerState.highlights}
                   currentAssets={this.state.plannerState.currentAssets}
                   futureAssets={this.state.plannerState.futureAssets}

@@ -35,8 +35,7 @@ class Authentication {
 
     static async confirmSignIn(email, confirmationCode) {
         try {
-            let something = await Auth.confirmSignIn(email, confirmationCode);
-            console.log(something);
+            await Auth.confirmSignIn(email, confirmationCode);
         } catch (error) {
             console.log('error confirming sign in:', error);
         }
