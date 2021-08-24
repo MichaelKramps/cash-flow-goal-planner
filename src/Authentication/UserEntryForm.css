@@ -26,12 +26,12 @@
     display: flex;
     background-color: #fefefe;
     margin: auto;
-    border: 1px solid #888;
     width: 80%;
     height: 75%;
     max-height: 447px;
     position: relative;
     text-align: left;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 2px 1px -1px rgba(0,0,0,.12);
 }
 
 .user-entry-form-content > div {
@@ -50,7 +50,8 @@
 }
 
 .user-entry-form-content .promotional-content p {
-    max-width: 450px;
+    max-width: 350px;
+    line-height: 22px;
     text-align: justify;
     font-weight: bold;
 }

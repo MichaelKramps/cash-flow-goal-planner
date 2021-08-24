@@ -3,6 +3,7 @@ import Authentication from "./Authentication";
 import './LoginForm.css';
 import Shared from "../components/Shared/Shared";
 import PlannerQueries from "../graphql/PlannerQueries";
+import UserEntryForm from "./UserEntryForm";
 
 class LoginForm extends React.Component {
 
@@ -78,9 +79,9 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <div className={"login-container " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
+            <UserEntryForm className="login-container" visible={this.props.visible}>
                 <div>
-                    <h2>Sign in</h2>
+                    <h2>Sign in to The Investor's Handbook</h2>
                     {this.printError()}
                     {this.printMoreErrorInfo()}
                     <div className="login-input-container">
@@ -101,7 +102,7 @@ class LoginForm extends React.Component {
                     {/*<p>forgot your password?</p>*/}
                     <button onClick={this.handleSignIn}>Sign in</button>
                 </div>
-            </div>
+            </UserEntryForm>
         )
     }
 }

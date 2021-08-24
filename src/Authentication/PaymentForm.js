@@ -81,7 +81,7 @@ class PaymentForm extends React.Component {
         return (
             <UserEntryForm id="stripe-payment-form" className="stripe-payment-form" visible={this.props.visible}>
                 <div className="payment-details">
-                    <h2>Purchase access to Cash Flow Handbook</h2>
+                    <h2>Lifetime access to The Investor's Handbook</h2>
                     <div className="payment-row">
                         <div className="payment-field">
                             <input id={"payment-email-address"}
@@ -114,7 +114,7 @@ class PaymentForm extends React.Component {
                         </div>
                     </div>
                     <button id="submit-payment" disabled={!this.state.allowedToPay}>
-                        Pay Now
+                        Pay $20
                         <div className="spinner invisible" id="spinner"></div>
                     </button>
                     <span id="signal-successful-payment" className="hide-offscreen" onClick={this.successfulPayment}>&nbsp;</span>

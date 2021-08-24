@@ -13,8 +13,7 @@ class UserEntryForm extends React.Component {
                         {this.props.children}
                     </div>
                     <div className="promotional-content">
-                        <h3>The Investor's Handbook</h3>
-                        <p>It's a resource made for cash flow investors. Set investing goals based on your own financial situation, track your current investments, and get step by step guides for acquiring your next investment.</p>
+                        <p>The Investor's Handbook is a resource made for cash flow investors. Set investing goals based on your own financial situation, track your current investments, and get step by step guides for acquiring your next investment.</p>
                     </div>
                 </div>
             </div>
