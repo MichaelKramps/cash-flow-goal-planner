@@ -3,6 +3,7 @@ import Authentication from "./Authentication";
 import './SignUpForm.css';
 import Shared from "../components/Shared/Shared";
 import PlannerQueries from "../graphql/PlannerQueries";
+import UserEntryForm from "./UserEntryForm";
 
 class SignUpForm extends React.Component {
 
@@ -23,7 +24,6 @@ class SignUpForm extends React.Component {
         this.handleSignUp = this.handleSignUp.bind(this);
         this.handleConfirmSignUp = this.handleConfirmSignUp.bind(this);
         this.resendCode = this.resendCode.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
 
     setView(view){
@@ -79,18 +79,9 @@ class SignUpForm extends React.Component {
         await Authentication.resendConfirmationCode(this.state.email)
     }
 
-    async onSubmit(e) {
-        e.preventDefault();
-        if (this.state.view === "sign-up") {
-            await this.handleSignUp();
-        } else if (this.state.view === "confirm-sign-up") {
-            await this.handleConfirmSignUp();
-        }
-    }
-
     render() {
         return (
-            <div className={"sign-up-form " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
+            <UserEntryForm className="sign-up-form" visible={this.props.visible}>
                 <div className={"sign-up " + this.determineVisible("sign-up")}>
                     <h2>Create a new account</h2>
                     {this.printError()}
@@ -110,10 +101,14 @@ class SignUpForm extends React.Component {
                         />
                     </div>
                     <button onClick={this.handleSignUp}>Sign up</button>
-                    <p>I need to&nbsp;
+                    <p>Already have an account?&nbsp;
                         <a href="#"
                            onClick={(e) => {e.preventDefault();this.setState({view: "confirm-sign-up"})}}>
-                            confirm my account
+                            confirm your email address
+                        </a>
+                        &nbsp;or&nbsp;
+                        <a href="/payment">
+                            pay for access
                         </a>
                     </p>
                 </div>
@@ -144,7 +139,7 @@ class SignUpForm extends React.Component {
                         <a href="#" onClick={this.resendCode}>Send code again</a>
                     </p>
                 </div>
-            </div>
+            </UserEntryForm>
         )
     }
 }

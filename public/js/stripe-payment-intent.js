@@ -98,13 +98,6 @@ var orderComplete = function(paymentIntentId) {
 
     loading(false);
 
-    document
-        .querySelector(".result-message a.payment-confirmation")
-        .setAttribute(
-            "href",
-            "https://dashboard.stripe.com/test/payments/" + paymentIntentId
-        );
-
     document.querySelector(".result-message").classList.remove("invisible");
     document.querySelector(".stripe-payment-form button").disabled = true;
 };

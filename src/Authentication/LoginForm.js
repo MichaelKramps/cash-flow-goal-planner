@@ -10,7 +10,6 @@ class LoginForm extends React.Component {
         super(props);
 
         this.state = {
-            view: this.props.view || "sign-in",
             email: this.props.email,
             password: this.props.password,
             error: "",
@@ -20,7 +19,6 @@ class LoginForm extends React.Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSignIn = this.handleSignIn.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
     }
 
     printError() {
@@ -78,16 +76,9 @@ class LoginForm extends React.Component {
         }
     }
 
-    async onSubmit(e) {
-        e.preventDefault();
-        if (this.state.view === "sign-in") {
-            await this.handleSignIn();
-        }
-    }
-
     render() {
         return (
-            <form className={"login-container " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
+            <div className={"login-container " + Shared.determineVisibility(this.props)} onSubmit={this.onSubmit}>
                 <div>
                     <h2>Sign in</h2>
                     {this.printError()}
@@ -110,7 +101,7 @@ class LoginForm extends React.Component {
                     {/*<p>forgot your password?</p>*/}
                     <button onClick={this.handleSignIn}>Sign in</button>
                 </div>
-            </form>
+            </div>
         )
     }
 }

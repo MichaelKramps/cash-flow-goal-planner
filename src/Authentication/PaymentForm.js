@@ -2,6 +2,7 @@ import React from 'react';
 import Shared from "../components/Shared/Shared";
 import './PaymentForm.css';
 import PlannerQueries from "../graphql/PlannerQueries";
+import UserEntryForm from "./UserEntryForm";
 
 class PaymentForm extends React.Component {
 
@@ -79,7 +80,7 @@ class PaymentForm extends React.Component {
 
     render() {
         return (
-            <div id="stripe-payment-form" className={"stripe-payment-form " + Shared.determineVisibility(this.props)}>
+            <UserEntryForm id="stripe-payment-form" className="stripe-payment-form" visible={this.props.visible}>
                 <div className="payment-details">
                     <h2>Purchase access to Cash Flow Handbook</h2>
                     <div className="payment-row">
@@ -124,7 +125,7 @@ class PaymentForm extends React.Component {
                     </p>
                     {this.errorMessage()}
                 </div>
-            </div>
+            </UserEntryForm>
         )
     }
 }
