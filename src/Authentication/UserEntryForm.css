@@ -35,7 +35,7 @@
 }
 
 .user-entry-form-content > div {
-    flex-grow: 1;
+    width: calc(50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +44,6 @@
 .user-entry-form-content .promotional-content {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     background-image: url("https://www.unboundinvestor.com/wp-content/uploads/2020/03/cropped-mountain-background-1.png");
     background-position: 30% 0%;
 }

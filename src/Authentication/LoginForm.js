@@ -1,7 +1,6 @@
 import React from 'react';
 import Authentication from "./Authentication";
 import './LoginForm.css';
-import Shared from "../components/Shared/Shared";
 import PlannerQueries from "../graphql/PlannerQueries";
 import UserEntryForm from "./UserEntryForm";
 

@@ -68,7 +68,7 @@ class SignUpForm extends React.Component {
         let confirm = await Authentication.confirmSignUp(this.state.email, this.state.confirmationCode)
         if (confirm === "SUCCESS") {
             await PlannerQueries.createPlanner({}, this.state.email, "immediately");
-            window.location.href = '/payment';
+            window.location.href = '/payment?email=' + encodeURIComponent(this.state.email);
         } else {
             this.setState({error: confirm.message});
         }
@@ -100,7 +100,8 @@ class SignUpForm extends React.Component {
                         />
                     </div>
                     <button onClick={this.handleSignUp}>Sign up</button>
-                    <p>Already have an account?&nbsp;
+                    <p>Already have an account? <a href="/">Sign in</a></p>
+                    <p>Or if your account setup is incomplete,&nbsp;
                         <a href="#"
                            onClick={(e) => {e.preventDefault();this.setState({view: "confirm-sign-up"})}}>
                             confirm your email address

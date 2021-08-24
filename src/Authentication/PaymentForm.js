@@ -8,8 +8,16 @@ class PaymentForm extends React.Component {
     constructor(props) {
         super(props);
 
+        let email = "";
+
+        const url = window.location.href;
+        const urlParts = url.split("email=");
+        if (urlParts.length > 1) {
+            email = urlParts[urlParts.length - 1];
+        }
+
         this.state = {
-            email: this.props.emailAddress || "",
+            email: email,
             errorMessage: "",
             plannerId: "",
             allowedToPay: false
@@ -75,6 +83,10 @@ class PaymentForm extends React.Component {
 
     async successfulPayment() {
         await PlannerQueries.updatePlannerExpires(this.state.plannerId, "never");
+    }
+
+    async componentDidMount() {
+        await this.emailMatchesAccount();
     }
 
     render() {
