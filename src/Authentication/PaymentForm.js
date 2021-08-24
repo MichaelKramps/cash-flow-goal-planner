@@ -1,5 +1,4 @@
 import React from 'react';
-import Shared from "../components/Shared/Shared";
 import './PaymentForm.css';
 import PlannerQueries from "../graphql/PlannerQueries";
 import UserEntryForm from "./UserEntryForm";

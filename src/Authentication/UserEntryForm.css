@@ -23,15 +23,36 @@
 }
 
 .user-entry-form .user-entry-form-content {
+    display: flex;
     background-color: #fefefe;
     margin: auto;
-    padding: 20px;
     border: 1px solid #888;
     width: 80%;
     height: 75%;
-    max-height: 500px;
+    max-height: 447px;
     position: relative;
     text-align: left;
+}
+
+.user-entry-form-content > div {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-entry-form-content .promotional-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-image: url("https://www.unboundinvestor.com/wp-content/uploads/2020/03/cropped-mountain-background-1.png");
+    background-position: 30% 0%;
+}
+
+.user-entry-form-content .promotional-content p {
+    max-width: 450px;
+    text-align: justify;
+    font-weight: bold;
 }
 
 .user-entry-form-content h2 {
