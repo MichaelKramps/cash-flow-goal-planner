@@ -1,3 +1,7 @@
+.amortization-schedule {
+    overflow-x: scroll;
+}
+
 .amortization-row {
     display: flex;
     flex-direction: row;
@@ -6,13 +10,14 @@
 .amortization-row div {
     flex: 1 1 0px;
     padding: 12px;
+    min-width: 90px;
 }
 
-body .amortization-schedule > div:first-child {
+body .amortization-schedule > div:first-child div {
     background: #312121;
     color: #ffffff;
 }
 
-.amortization-schedule > div:nth-child(odd) {
+.amortization-schedule > div:nth-child(odd) div {
     background: #D3E0EA;
 }

@@ -1,3 +1,7 @@
+.cash-flow-schedule {
+    overflow-x: scroll;
+}
+
 .cash-flow-schedule-row {
     display: flex;
     flex-direction: row;
@@ -6,13 +10,14 @@
 .cash-flow-schedule-row div {
     flex: 1 1 0px;
     padding: 12px;
+    min-width: 90px;
 }
 
-body .cash-flow-schedule > div:first-child {
+body .cash-flow-schedule > div:first-child div {
     background: #312121;
     color: #ffffff;
 }
 
-.cash-flow-schedule > div:nth-child(odd) {
+.cash-flow-schedule > div:nth-child(odd) div {
     background: #D3E0EA;
 }

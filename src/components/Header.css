@@ -53,3 +53,9 @@ header > div:last-child {
 .header-dropdown-container:hover .header-dropdown {
     display: block;
 }
+
+@media screen and (max-width: 480px) {
+    header {
+        font-size: 12px
+    }
+}
