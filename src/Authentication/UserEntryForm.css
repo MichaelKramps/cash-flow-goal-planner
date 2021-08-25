@@ -24,6 +24,7 @@
 
 .user-entry-form .user-entry-form-content {
     display: flex;
+    flex-wrap: wrap;
     background-color: #fefefe;
     margin: auto;
     width: 80%;
@@ -35,8 +36,9 @@
 }
 
 .user-entry-form-content > div {
-    width: calc(50%);
+    flex: 1;
     display: flex;
+    padding: 12px;
     justify-content: center;
     align-items: center;
 }
@@ -50,6 +52,7 @@
 
 .user-entry-form-content .promotional-content p {
     max-width: 350px;
+    min-width: 300px;
     line-height: 22px;
     text-align: justify;
     font-weight: bold;
@@ -57,4 +60,30 @@
 
 .user-entry-form-content h2 {
     text-decoration: underline;
+}
+
+.user-entry-form label {
+    width: 40%;
+}
+
+@media screen and (max-width: 480px) {
+
+    .user-entry-form .user-entry-form-content {
+        width: 100%;
+        max-height: 100%;
+        height: 100%;
+    }
+
+    .user-entry-form .user-entry-form-content > div {
+        max-height: 100%;
+        height: 100%;
+    }
+
+    .user-entry-form-content .promotional-content {
+        display: none;
+    }
+
+    .user-entry-form label {
+        width: 30%;
+    }
 }
