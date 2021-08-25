@@ -18,6 +18,7 @@
     background: #FFFFFF;
     margin: 24px;
     padding: 1px 16px 16px 16px;
+    overflow-x: scroll;
 }
 
 .future-asset-headings, .current-asset-headings {
@@ -25,15 +26,21 @@
     flex-direction: row;
     justify-content: space-between;
     margin: 12px 0;
-    padding: 12px 0;
-    border-bottom: 1px solid #312121;
 }
 
 .future-asset-headings > div, .current-asset-headings > div {
     flex: 1 1 0px;
-    padding: 0 4px;
+    padding: 8px 0 20px 0;
+    border-bottom: 1px solid #312121;
+    min-width: 150px;
 }
 
 .future-asset-headings > div:last-child, .current-asset-headings > div:last-child {
     position: relative;
+}
+
+@media screen and (max-width: 720px) {
+    .full-width-card {
+        font-size: 14px
+    }
 }

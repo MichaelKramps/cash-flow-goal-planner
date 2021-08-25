@@ -2,16 +2,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 12px 0;
-    padding: 4px 0 16px 0;
-    border-bottom: 1px solid #ccc;
+    margin: 0 0 12px;
 }
 
 .complex-asset div {
     flex: 1 1 0px;
-    padding: 0 4px;
-}
-
-.complex-asset div {
+    min-width: 150px;
+    padding: 8px 0 20px 0;
+    border-bottom: 1px solid #ccc;
     cursor: pointer;
 }
