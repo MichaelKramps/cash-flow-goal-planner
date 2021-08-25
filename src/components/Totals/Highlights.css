@@ -60,3 +60,17 @@
 .cash-flow-goal-empty .enter-cash-flow-goal-text {
     display: inline;
 }
+
+@media screen and (max-width: 800px) {
+    .totals-container {
+        flex-direction: column;
+        margin-bottom: 32px;
+    }
+
+    .totals-container > div {
+        width: 88%;
+        margin: 0 4% 12px 4%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+}
