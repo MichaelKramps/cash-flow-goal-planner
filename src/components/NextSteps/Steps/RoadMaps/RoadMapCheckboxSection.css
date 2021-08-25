@@ -1,6 +1,7 @@
 .road-map-content {
     display: none;
     margin-left: 44px;
+    margin-right: 44px;
 }
 
 .road-map-checkbox.show-content .road-map-content {
@@ -33,4 +34,16 @@
 
 .road-map-content ul li li {
     margin-left: 16px;
+}
+
+@media screen and (max-width: 480px) {
+    .road-map-content {
+        display: none;
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .road-map-title {
+        margin: 4px;
+    }
 }

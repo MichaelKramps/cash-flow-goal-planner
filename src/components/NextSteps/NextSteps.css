@@ -28,3 +28,21 @@
     background: #e4e400;
     color: #312121;
 }
+
+@media screen and (max-width: 680px) {
+    .steps-controls {
+        flex-direction: column;
+    }
+
+    .steps-controls button {
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .next-steps {
+        width: 96%;
+        padding: 16px 2%;
+        min-width: 300px;
+    }
+}
