@@ -13,11 +13,13 @@ class LoginForm extends React.Component {
             email: this.props.email,
             password: this.props.password,
             error: "",
+            showSpinner: false,
             moreErrorInfo: null
         }
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.checkForFormSubmission = this.checkForFormSubmission.bind(this);
         this.handleSignIn = this.handleSignIn.bind(this);
     }
 
@@ -43,43 +45,78 @@ class LoginForm extends React.Component {
         this.setState({password: event.target.value});
     }
 
+    spinnerVisible() {
+        if (this.state.showSpinner) {
+            return "visible";
+        }
+        return "invisible";
+    }
+
+    async checkForFormSubmission(e) {
+        if (e.key === "Enter") {
+            await this.handleSignIn();
+        }
+    }
+
     async handleSignIn() {
         this.setState({error: ""});
         this.setState({moreErrorInfo: ""});
-        try {
-            await Authentication.signIn(this.state.email, this.state.password);
-            const queryResult = await PlannerQueries.findPlannerByUser(this.state.email);
-            const planners = queryResult.data.listPlanners.items;
-            if (planners.length > 0) {
-                const planner = queryResult.data.listPlanners.items[0];
-                const hasPaid = planner.accessExpires === "never" ? true : false;
-                if (hasPaid) {
-                    this.props.updateUserLoggedIn(planner, this.state.email);
-                } else {
-                    this.setState({moreErrorInfo: <p className="login-error">You have not yet paid for access, you can pay <a href="/payment">here</a></p>})
-                }
-            } else {
-                this.setState({moreErrorInfo: <p className="login-error">There is a problem with your account, please contact me at michael@unboundinvestor.com</p>})
-            }
-        } catch (error) {
-            if (!/pending|Pending/.test(error)) {
-                this.setState({error: error.message});
-                if (error.code === "UserNotConfirmedException") {
-                    this.setState({moreErrorInfo: <p className="login-error">If you have already created an account, you must <a href="/signup">confirm your account</a>.</p>})
+        this.setState({showSpinner: true});
+        if (this.state.email && this.state.password) {
+            try {
+                await Authentication.signIn(this.state.email, this.state.password);
+                const queryResult = await PlannerQueries.findPlannerByUser(this.state.email);
+                const planners = queryResult.data.listPlanners.items;
+                if (planners.length > 0) {
+                    const planner = queryResult.data.listPlanners.items[0];
+                    const hasPaid = planner.accessExpires === "never" ? true : false;
+                    if (hasPaid) {
+                        this.props.updateUserLoggedIn(planner, this.state.email);
+                    } else {
+                        this.setState({
+                            moreErrorInfo: <p className="login-error">You have not yet paid for access, you can pay <a
+                                href="/payment">here</a></p>
+                        })
+                    }
                 } else {
                     this.setState({
-                        moreErrorInfo: <p className="login-error">If you don't have an account, <a href="/signup">create
-                            a new one</a>.</p>
+                        moreErrorInfo: <p className="login-error">There is a problem with your account, please contact
+                            me at michael@unboundinvestor.com</p>
                     })
                 }
+                this.setState({showSpinner: false});
+            } catch (error) {
+                if (!/pending|Pending/.test(error)) {
+                    this.setState({error: error.message});
+                    if (error.code === "UserNotConfirmedException") {
+                        this.setState({
+                            moreErrorInfo: <p className="login-error">If you have already created an account, you
+                                must <a href="/signup">confirm your account</a>.</p>
+                        })
+                    } else if (error.code === "InvalidParameterException") {
+                        this.setState({
+                            moreErrorInfo: <p className="login-error">Please enter a valid username and password.</p>
+                        })
+                    } else {
+                        this.setState({
+                            moreErrorInfo: <p className="login-error">If you are having problems logging in, email michael@unboundinvestor.com</p>
+                        })
+                    }
+                }
+                this.setState({showSpinner: false});
             }
+        } else {
+            this.setState({
+                moreErrorInfo: <p className="login-error">Please enter a username and a password.</p>
+            })
+            this.setState({showSpinner: false});
         }
     }
 
     render() {
         return (
             <UserEntryForm className="login-container" visible={this.props.visible}>
-                <div>
+                <div className="login-form">
                     <h2>Sign in to The Investor's Handbook</h2>
                     {this.printError()}
                     {this.printMoreErrorInfo()}
@@ -88,6 +125,7 @@ class LoginForm extends React.Component {
                         <input
                             value={this.state.email}
                             onChange={this.handleEmailChange}
+                            onKeyPress={this.checkForFormSubmission}
                         />
                     </div>
                     <div className="login-input-container">
@@ -96,10 +134,16 @@ class LoginForm extends React.Component {
                             value={this.state.password}
                             type="password"
                             onChange={this.handlePasswordChange}
+                            onKeyPress={this.checkForFormSubmission}
                         />
                     </div>
                     {/*<p>forgot your password?</p>*/}
-                    <button onClick={this.handleSignIn}>Sign in</button>
+                    <button onClick={this.handleSignIn}>
+                        Sign in
+                        <div className={"spinner " + this.spinnerVisible()}></div>
+                    </button>
+                    <p>If you don't have an account, <a href="/signup">create
+                        a new one</a>.</p>
                 </div>
             </UserEntryForm>
         )

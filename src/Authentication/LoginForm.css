@@ -5,3 +5,7 @@
 .login-error {
     color: red;
 }
+
+.login-form button {
+    display: flex;
+}
