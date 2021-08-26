@@ -18,7 +18,7 @@
     background: #FFFFFF;
     margin: 4%;
     padding: 1px 16px 16px 16px;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .future-asset-headings, .current-asset-headings {

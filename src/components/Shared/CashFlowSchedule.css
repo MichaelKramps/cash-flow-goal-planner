@@ -1,5 +1,5 @@
 .cash-flow-schedule {
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .cash-flow-schedule-row {

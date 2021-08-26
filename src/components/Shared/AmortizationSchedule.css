@@ -1,5 +1,5 @@
 .amortization-schedule {
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .amortization-row {
