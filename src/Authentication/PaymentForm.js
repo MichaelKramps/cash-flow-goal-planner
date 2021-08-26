@@ -13,7 +13,7 @@ class PaymentForm extends React.Component {
         const url = window.location.href;
         const urlParts = url.split("email=");
         if (urlParts.length > 1) {
-            email = urlParts[urlParts.length - 1];
+            email = decodeURIComponent(urlParts[urlParts.length - 1]);
         }
 
         this.state = {
