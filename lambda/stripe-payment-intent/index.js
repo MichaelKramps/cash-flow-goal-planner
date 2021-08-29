@@ -1,17 +1,22 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require('stripe');
 
 exports.handler = async (event) => {
 
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: 2999,
+    const secretKey = event.level === "prod" ? process.env.STRIPE_PROD_SECRET_KEY : process.env.STRIPE_STAGING_SECRET_KEY;
+    const stripeInstance = stripe(secretKey);
+
+    const paymentIntent = await stripeInstance.paymentIntents.create({
+        amount: 2000,
         currency: "usd"
     });
+
+    const allowOrigin = event.level === "prod" ? "https://handbook.unboundinvestor.com" : "*";
 
     const response = {
         "statusCode": 200,
         "headers": {
             "Access-Control-Allow-Headers" : "Content-Type",
-            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Origin": allowOrigin,
             "Access-Control-Allow-Methods": "POST"
         },
         "body": JSON.stringify({

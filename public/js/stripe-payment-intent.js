@@ -1,7 +1,9 @@
 let url = window.location.href;
 if (/payment/.test(url)) {
 
-    var stripe = Stripe("pk_test_3WEJFfd6Cixu6beZLDo4Zlef");
+    const level = /unboundinvestor/.test(url) ? "prod" : "staging";
+
+    var stripe = level === "prod" ? Stripe("pk_live_230zsp3ITm9Reh1ZSul8JPqo") : Stripe("pk_test_3WEJFfd6Cixu6beZLDo4Zlef");
 
     document.querySelector(".stripe-payment-form button").disabled = true;
 
@@ -11,7 +13,8 @@ if (/payment/.test(url)) {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            items: [{id: "cash-flow-handbook-access"}]
+            items: [{id: "cash-flow-handbook-access"}],
+            level: level
         })
     }).then(function (result) {
         return result.json();
