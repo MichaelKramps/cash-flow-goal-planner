@@ -12,7 +12,7 @@ exports.handler = async (event) => {
         currency: "usd"
     });
 
-    const allowOrigin = event.level === "prod" ? "https://handbook.unboundinvestor.com" : "*";
+    const allowOrigin = body.level === "prod" ? "https://handbook.unboundinvestor.com" : "*";
 
     const response = {
         "statusCode": 200,
