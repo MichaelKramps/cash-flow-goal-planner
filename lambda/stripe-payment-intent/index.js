@@ -2,7 +2,9 @@ const stripe = require('stripe');
 
 exports.handler = async (event) => {
 
-    const secretKey = event.level === "prod" ? process.env.STRIPE_PROD_SECRET_KEY : process.env.STRIPE_STAGING_SECRET_KEY;
+    const body = JSON.parse(event.body);
+    const secretKey = body.level === "prod" ? process.env.STRIPE_PROD_SECRET_KEY : process.env.STRIPE_STAGING_SECRET_KEY;
+
     const stripeInstance = stripe(secretKey);
 
     const paymentIntent = await stripeInstance.paymentIntents.create({
