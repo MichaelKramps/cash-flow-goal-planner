@@ -2,8 +2,9 @@ let url = window.location.href;
 if (/payment/.test(url)) {
 
     const level = /unboundinvestor/.test(url) ? "prod" : "staging";
+    const secretKey = level === "prod" ? "pk_live_230zsp3ITm9Reh1ZSul8JPqo" : "pk_test_3WEJFfd6Cixu6beZLDo4Zlef"
 
-    var stripe = level === "prod" ? Stripe("pk_live_230zsp3ITm9Reh1ZSul8JPqo") : Stripe("pk_test_3WEJFfd6Cixu6beZLDo4Zlef");
+    var stripe = Stripe(secretKey);
 
     document.querySelector(".stripe-payment-form button").disabled = true;
 
