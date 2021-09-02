@@ -16,6 +16,7 @@ import Modal from "./components/Shared/Modal";
 import LoginForm from "./Authentication/LoginForm";
 import SignUpForm from "./Authentication/SignUpForm";
 import PaymentForm from "./Authentication/PaymentForm";
+import LandingPage from "./components/LandingPage";
 Amplify.configure(awsconfig);
 
 class App extends React.Component {
@@ -107,6 +108,15 @@ class App extends React.Component {
       }
   }
 
+  isLanding() {
+    let url = window.location.href;
+    if (/quit-your-job/.test(url)) {
+        return true;
+    } else {
+        return false;
+    }
+  }
+
   render() {
       return (
           <div className={this.state.view}>
@@ -128,6 +138,7 @@ class App extends React.Component {
               </Modal>
               <SignUpForm visible={this.isSigningUp()} updateEmail={this.updateEmail} />
               <PaymentForm visible={this.isPayment()} emailAddress={this.state.userEmail} />
+              <LandingPage visible={this.isLanding()} />
           </div>
       );
   }
