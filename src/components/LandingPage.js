@@ -24,22 +24,22 @@ class LandingPage extends React.Component {
                         <h2>Features of the software</h2>
                         <div className="features-list">
                             <div>
-                                <div>feature 1</div>
+                                <div>Cash flow based financial planning</div>
                             </div>
                             <div>
-                                <div>feature 2</div>
+                                <div>Set a monthly cash flow goal using your own personal budget</div>
                             </div>
                             <div>
-                                <div>feature 3</div>
+                                <div>Get credit for your current investments and plan your future investments</div>
                             </div>
                             <div>
-                                <div>feature 4</div>
+                                <div>Get step by step instructions for your next real estate purchase, business acquisition or stock purchase</div>
                             </div>
                             <div>
-                                <div>feature 5</div>
+                                <div>Cash flow based calculators that help you measure the primary metric for reaching retirement (monthly cash flow)</div>
                             </div>
                             <div>
-                                <div>feature 6</div>
+                                <div>Lifetime access to features that get regularly updated</div>
                             </div>
                         </div>
                     </section>

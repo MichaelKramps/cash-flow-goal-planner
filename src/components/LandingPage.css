@@ -18,6 +18,7 @@
 .hero-section {
     display: flex;
     align-items: center;
+    background-image: url("../img/freedom.jpg");
 }
 
 .hero-section > div {
@@ -26,6 +27,15 @@
 
 .hero-section button {
     float: none;
+}
+
+.feature-text {
+    color: #ffffff;
+    text-align: center;
+}
+
+.feature-text h1 {
+    font-size: 48px;
 }
 
 .feature-video-container {
@@ -58,7 +68,9 @@
 
 .features-list > div > div {
     padding: 16px;
+    margin: 16px;
     background-color: pink;
     display: inline-block;
+    min-height: 96px;
 }
 
