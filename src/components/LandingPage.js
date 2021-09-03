@@ -13,27 +13,41 @@ class LandingPage extends React.Component {
                         <button>Buy our software</button>
                     </div>
                     <div className="feature-video">
-                        <iframe width="792" height="495" src="https://www.youtube.com/embed/2vLgRd0-zQQ"
-                                title="YouTube video player" frameBorder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen></iframe>
+                        <div className="feature-video-container">
+                            <iframe className="responsive-iframe" src="https://www.youtube.com/embed/2vLgRd0-zQQ"
+                                    allowFullScreen></iframe>
+                        </div>
                     </div>
                 </section>
-                <section className="features-section">
-                    <h2>Features of the software</h2>
-                    <div className="features-list">
-                        <div>feature 1</div>
-                        <div>feature 2</div>
-                        <div>feature 3</div>
-                        <div>feature 4</div>
-                        <div>feature 5</div>
-                        <div>feature 6</div>
-                    </div>
-                </section>
-                <section className="why-us">
-                    <h2>Why Use a Cash Flow Based Investment Tool?</h2>
-                    <p>convincing text</p>
-                </section>
+                <div className="landing-page-minor-sections-container">
+                    <section className="features-section">
+                        <h2>Features of the software</h2>
+                        <div className="features-list">
+                            <div>
+                                <div>feature 1</div>
+                            </div>
+                            <div>
+                                <div>feature 2</div>
+                            </div>
+                            <div>
+                                <div>feature 3</div>
+                            </div>
+                            <div>
+                                <div>feature 4</div>
+                            </div>
+                            <div>
+                                <div>feature 5</div>
+                            </div>
+                            <div>
+                                <div>feature 6</div>
+                            </div>
+                        </div>
+                    </section>
+                    <section className="why-us">
+                        <h2>Why Use a Cash Flow Based Investment Tool?</h2>
+                        <p>convincing text</p>
+                    </section>
+                </div>
             </div>
         )
     }
