@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic&display=swap');
+
 .landing-page {
     position: fixed;
     z-index: 10;
@@ -7,12 +9,7 @@
     height: 100%;
     overflow: auto;
     background: #ffffff;
-}
-
-.landing-page-minor-sections-container {
-    padding: 32px;
-    max-width: 960px;
-    margin: auto;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
 }
 
 .hero-section {
@@ -53,6 +50,24 @@
     right: 0;
     width: 80%;
     height: 80%;
+}
+
+.lead-in {
+    font-size: 24px;
+    background-color: #FFFFA4; /* For browsers that do not support gradients */
+    background-image: linear-gradient(#FFFF87, #FFFFFF);
+    padding: 48px 16px 96px 16px;
+}
+
+.lead-in p {
+    max-width: 960px;
+    margin: auto;
+}
+
+.landing-page-minor-sections-container {
+    padding: 0 32px 32px 32px;
+    max-width: 960px;
+    margin: auto;
 }
 
 .features-list {

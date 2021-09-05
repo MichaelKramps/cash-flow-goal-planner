@@ -19,6 +19,9 @@ class LandingPage extends React.Component {
                         </div>
                     </div>
                 </section>
+                <section className="lead-in">
+                    <p>Using a cash flow investing strategy can allow you to quit your job in less than half the time of traditional investing strategies.</p>
+                </section>
                 <div className="landing-page-minor-sections-container">
                     <section className="features-section">
                         <h2>Features of the software</h2>
