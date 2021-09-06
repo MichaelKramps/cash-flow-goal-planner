@@ -8,14 +8,14 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background: #ffffff;
+    background: #f6f5f5;
     font-family: 'IBM Plex Sans Arabic', sans-serif;
 }
 
 .hero-section {
     display: flex;
-    align-items: center;
     background-image: url("../img/freedom.jpg");
+    padding-bottom: 64px;
 }
 
 .hero-section > div {
@@ -24,15 +24,23 @@
 
 .hero-section button {
     float: none;
+    padding: 16px;
+    font-size: 20px;
+    color: black;
+    background: #feff60;
 }
 
 .feature-text {
+    width: 80%;
+    margin: auto;
     color: #ffffff;
-    text-align: center;
+    text-align: left;
 }
 
 .feature-text h1 {
     font-size: 48px;
+    text-decoration: underline;
+    margin: 48px 0 24px 0;
 }
 
 .feature-video-container {
@@ -52,22 +60,29 @@
     height: 80%;
 }
 
+.landing-page-minor-sections-container {
+    padding: 0 32px 32px 32px;
+    margin: -96px auto 0 auto;
+    max-width: 960px;
+}
+
+.landing-page-minor-sections-container > section {
+    padding: 32px 16px;
+    margin: 48px 0;
+}
+
 .lead-in {
-    font-size: 24px;
-    background-color: #FFFFA4; /* For browsers that do not support gradients */
-    background-image: linear-gradient(#FFFF87, #FFFFFF);
-    padding: 48px 16px 96px 16px;
+    background: #ffffff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
 }
 
 .lead-in p {
-    max-width: 960px;
-    margin: auto;
+    font-size: 24px;
+    margin: 0;
 }
 
-.landing-page-minor-sections-container {
-    padding: 0 32px 32px 32px;
-    max-width: 960px;
-    margin: auto;
+.lead-in strong {
+    text-decoration: underline;
 }
 
 .features-list {

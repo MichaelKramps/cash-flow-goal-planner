@@ -7,10 +7,12 @@ class LandingPage extends React.Component {
         return (
             <div className={"landing-page " + this.props.className + " " + Shared.determineVisibility(this.props)}>
                 <section className="hero-section">
-                    <div className="feature-text">
-                        <h1>The Investor's Handbook</h1>
-                        <h2>A collection of cash flow based financial software tools for new investors.</h2>
-                        <button>$20 Lifetime Access</button>
+                    <div className="feature-text-container">
+                        <div className="feature-text">
+                            <h1>The Investor's Handbook</h1>
+                            <h2>A collection of cash flow based financial software tools for new investors.</h2>
+                            <button>$20 Lifetime Access</button>
+                        </div>
                     </div>
                     <div className="feature-video">
                         <div className="feature-video-container">
@@ -19,10 +21,10 @@ class LandingPage extends React.Component {
                         </div>
                     </div>
                 </section>
-                <section className="lead-in">
-                    <p>Using a cash flow investing strategy can allow you to quit your job in less than half the time of traditional investing strategies.</p>
-                </section>
                 <div className="landing-page-minor-sections-container">
+                    <section className="lead-in">
+                        <p>A cash flow investing strategy can allow you to <strong>quit your job in less than half the time</strong> of traditional investing strategies.</p>
+                    </section>
                     <section className="features-section">
                         <h2>Features of the software</h2>
                         <div className="features-list">
