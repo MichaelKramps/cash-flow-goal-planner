@@ -14,7 +14,8 @@
 
 .hero-section {
     display: flex;
-    background-image: url("../img/freedom.jpg");
+    background-image: url("https://www.unboundinvestor.com/wp-content/uploads/2020/03/cropped-mountain-background-1.png");
+    background-size: auto 100%;
     padding-bottom: 64px;
 }
 
@@ -26,14 +27,11 @@
     float: none;
     padding: 16px;
     font-size: 20px;
-    color: black;
-    background: #feff60;
 }
 
 .feature-text {
     width: 80%;
     margin: auto;
-    color: #ffffff;
     text-align: left;
 }
 
@@ -60,18 +58,10 @@
     height: 80%;
 }
 
-.landing-page-minor-sections-container {
-    padding: 0 32px 32px 32px;
-    margin: -96px auto 0 auto;
-    max-width: 960px;
-}
-
-.landing-page-minor-sections-container > section {
-    padding: 32px 16px;
-    margin: 48px 0;
-}
-
 .lead-in {
+    padding: 32px 16px;
+    margin: -48px auto 48px auto;
+    max-width: 960px;
     background: #ffffff;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
 }
@@ -88,19 +78,22 @@
 .features-list {
     display: flex;
     flex-wrap: wrap;
+    max-width: 1280px;
+    margin: auto;
 }
 
 .features-list > div {
     flex: 0 0 33.333333%;
-    text-align: center;
-    margin-bottom: 24px;
 }
 
 .features-list > div > div {
-    padding: 16px;
-    margin: 16px;
-    background-color: pink;
-    display: inline-block;
+    padding: 12px 4%;
+    margin: 32px 4%;
+    width: 84%;
+    background-color: #d1e3fa;
+    display: flex;
+    font-size: 20px;
     min-height: 96px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
 }
 
