@@ -9,7 +9,7 @@ class LandingPage extends React.Component {
                 <section className="hero-section">
                     <div className="feature-text-container">
                         <div className="feature-text">
-                            <h1>The Investor's Handbook</h1>
+                            <h1>THE INVESTOR'S HANDBOOK</h1>
                             <h2>A collection of cash flow based financial software tools for new investors.</h2>
                             <button>$20 Lifetime Access</button>
                         </div>
@@ -23,6 +23,9 @@ class LandingPage extends React.Component {
                 </section>
                 <section className="lead-in">
                     <p>A cash flow investing strategy can allow you to <strong>quit your job in less than half the time</strong> of traditional investing strategies.</p>
+                </section>
+                <section>
+                    graph
                 </section>
                 <section className="features-section">
                     <div className="features-list">

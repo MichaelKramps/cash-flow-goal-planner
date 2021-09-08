@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 .landing-page {
     position: fixed;
@@ -37,7 +38,7 @@
 
 .feature-text h1 {
     font-size: 48px;
-    text-decoration: underline;
+    font-family: 'Montserrat', sans-serif;
     margin: 48px 0 24px 0;
 }
 
