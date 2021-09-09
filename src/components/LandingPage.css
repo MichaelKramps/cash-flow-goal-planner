@@ -98,3 +98,171 @@
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12);
 }
 
+.why-us {
+    max-width: 960px;
+    margin: 48px auto;
+    padding: 32px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.rapport-photo {
+    display: flex;
+    justify-content: center;
+}
+
+/* styles for bar graph */
+
+.bar-graph {
+    display: flex;
+    justify-content: center;
+}
+
+#q-graph {
+    display: block; /* fixes layout wonkiness in FF1.5 */
+    position: relative;
+    width: 600px;
+    height: 300px;
+    margin: 1.1em 0 0;
+    padding: 0;
+    background: transparent;
+    font-size: 11px;
+}
+
+#q-graph caption {
+    caption-side: top;
+    width: 497px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    top: -40px;
+    position: relative;
+    z-index: 10;
+    font-weight: bold;
+}
+
+#q-graph tr, #q-graph th, #q-graph td {
+    position: absolute;
+    bottom: 0;
+    width: 220px;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+#q-graph td {
+    transition: all .3s ease;
+}
+
+#q-graph thead tr {
+    left: 63%;
+    top: 0;
+    bottom: auto;
+}
+
+#q-graph thead th {
+    width: 7.5em;
+    height: auto;
+    padding: 0.5em 1em;
+}
+
+#q-graph thead th.stocks {
+    top: 0;
+    left: 0;
+    line-height: 3;
+}
+
+#q-graph thead th.real-estate {
+    top: 2.75em;
+    line-height: 3;
+    left: 0;
+}
+
+#q-graph thead th.business {
+    top: 5.5em;
+    line-height: 3;
+    left: 0;
+}
+
+#q-graph tbody tr {
+    height: 296px;
+    padding-top: 2px;
+    color: #AAA;
+}
+
+#q-graph .total-roi {
+    left: 0;
+}
+
+#q-graph .cash-flow-roi {
+    left: 280px;
+    border-right: none;
+}
+
+#q-graph tbody th {
+    bottom: -1.75em;
+    vertical-align: top;
+    font-weight: normal;
+    color: #333;
+}
+
+#q-graph .bar {
+    width: 60px;
+    border: 1px solid;
+    border-bottom: none;
+    color: #000;
+}
+
+#q-graph .bar p {
+    margin: 5px 0 0;
+    padding: 0;
+    opacity: .5;
+}
+
+#q-graph .stocks {
+    left: 13px;
+    background-color: #DB4437;
+    border-color: transparent;
+}
+
+#q-graph .real-estate {
+    left: 77px;
+    background-color: #4285F4;
+    border-color: transparent;
+}
+
+#q-graph .business {
+    left: 141px;
+    background-color: #F4B400;
+    border-color: transparent;
+}
+
+#q-graph .total-roi td.stocks {
+    height: 120px;
+}
+
+#q-graph .total-roi td.real-estate {
+    height: 130px;
+}
+
+#q-graph .total-roi td.business {
+    height: 140px;
+}
+
+#q-graph .cash-flow-roi td.stocks {
+    height: 120px;
+}
+
+#q-graph .cash-flow-roi td.real-estate {
+    height: 120px;
+}
+
+#q-graph .cash-flow-roi td.business {
+    height: 120px;
+}
+
+@media only screen and (max-width: 800px) {
+    #q-graph .bar {
+        width: 60px;
+    }
+}
