@@ -66,15 +66,15 @@ class LandingPage extends React.Component {
                         <tbody>
                             <tr className="total-roi">
                                 <th scope="row">Total ROI</th>
-                                <td className="stocks bar"><p>$18,450.00</p></td>
-                                <td className="real-estate bar"><p>$16,500.00</p></td>
-                                <td className="business bar"><p>$16,500.00</p></td>
+                                <td className="stocks bar"><p>12%</p></td>
+                                <td className="real-estate bar"><p>25%</p></td>
+                                <td className="business bar"><p>50%</p></td>
                             </tr>
                             <tr className="cash-flow-roi">
                                 <th scope="row">Cash Flow ROI</th>
-                                <td className="stocks bar"><p>$34,340.72</p></td>
-                                <td className="real-estate bar"><p>$32,340.72</p></td>
-                                <td className="business bar"><p>$32,340.72</p></td>
+                                <td className="stocks bar"><p>4%</p></td>
+                                <td className="real-estate bar"><p>15%</p></td>
+                                <td className="business bar"><p>50%</p></td>
                             </tr>
                         </tbody>
                     </table>
