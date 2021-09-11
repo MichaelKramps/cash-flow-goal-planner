@@ -1,6 +1,7 @@
 import React from 'react';
 import './LandingPage.css';
 import Shared from "./Shared/Shared";
+import michaelAndKate from '../img/michael-and-kate.PNG';
 
 class LandingPage extends React.Component {
     render() {
@@ -112,7 +113,13 @@ class LandingPage extends React.Component {
                     <p>You will never be asked to pay any more for access to these features.</p>
                 </section>
                 <section className="rapport-photo">
-                    <img src="https://thepassiveprofiteer.com/wp-content/uploads/2020/03/KR-10282018-152-683x1024.jpg" />
+                    <img src={michaelAndKate} />
+                    <div>
+                        <h3>Michael and Kate</h3>
+                        <p>Kate and I have been investing in real estate for the last 4 years. Using Airbnb and long term rentals, we've managed to replace the $70,000 income of Kate's old job.</p>
+                        <p>Now I'm close to quitting my full time job (with benefits) after spending the last 12 months purchasing online businesses.</p>
+                        <p>We love investing and we believe, quite strongly, that cash flow investing will always outpace traditional stock market investing.</p>
+                    </div>
                 </section>
                 <section className="why-us">
                     <h3>I Honestly Want To Help</h3>

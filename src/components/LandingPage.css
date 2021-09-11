@@ -35,6 +35,10 @@
     font-size: 20px;
 }
 
+.hero-section button:hover {
+    background: #488FED;
+}
+
 @media only screen and (max-width: 520px) {
     .hero-section > div {
         min-width: 320px;
@@ -193,11 +197,27 @@
 
 .rapport-photo {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    padding: 16px 32px;
 }
 
 .rapport-photo img {
-    max-width: 88%
+    max-width: 88%;
+    margin-right: 24px;
+    object-fit: cover;
+}
+
+.rapport-photo > div {
+    max-width: 540px;
+}
+
+.rapport-photo h3 {
+    font-family: 'Questrial', sans-serif;
+}
+
+.rapport-photo p {
+    line-height: 32px;
 }
 
 /* styles for bar graph */
