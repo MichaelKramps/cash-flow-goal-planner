@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Questrial&family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 
 .landing-page {
@@ -10,7 +11,9 @@
     height: 100%;
     overflow: auto;
     background: #f6f5f5;
-    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    font-size: 17px;
+    color: #464646;
+    font-family: 'Roboto', sans-serif;
 }
 
 .hero-section {
@@ -136,8 +139,15 @@
     max-width: 960px;
     margin: 48px auto;
     padding: 32px;
+    line-height: 32px;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
+}
+
+.why-us h2, .why-us h3 {
+    font-family: 'Questrial', sans-serif;
+    color: #030303;
+    font-size: 32px;
 }
 
 @media only screen and (max-width: 1080px) {
@@ -212,6 +222,7 @@
     caption-side: top;
     width: 795px;
     text-transform: uppercase;
+    font-family: 'Questrial', sans-serif;
     letter-spacing: .5px;
     position: relative;
     z-index: 10;
