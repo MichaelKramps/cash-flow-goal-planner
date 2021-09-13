@@ -29,7 +29,7 @@
     min-width: 516px;
 }
 
-.hero-section button {
+.landing-page button {
     float: none;
     padding: 16px;
     font-size: 20px;
@@ -193,6 +193,11 @@
         padding: 16px;
         font-size: 14px;
     }
+}
+
+.why-us.final-call-to-action {
+    border: none;
+    margin-top: -48px;
 }
 
 .rapport-photo {
