@@ -18,7 +18,7 @@ class LandingPage extends React.Component {
                     </div>
                     <div className="feature-video">
                         <div className="feature-video-container">
-                            <iframe className="responsive-iframe" src="https://www.youtube.com/embed/2vLgRd0-zQQ"
+                            <iframe className="responsive-iframe" src="https://www.youtube.com/embed/f4wZd9K2pcA"
                                     allowFullScreen></iframe>
                         </div>
                     </div>
