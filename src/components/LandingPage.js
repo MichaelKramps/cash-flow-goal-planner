@@ -114,7 +114,7 @@ class LandingPage extends React.Component {
                     <p>You will never be asked to pay any more for access to these features.</p>
                 </section>
                 <section className="rapport-photo">
-                    <img src={michaelAndKate} />
+                    <img src="https://www.unboundinvestor.com/wp-content/uploads/2021/09/michael-and-kate.png" />
                     <div>
                         <h3>Michael and Kate</h3>
                         <p>Kate and I have been investing in real estate for the last 4 years. Using Airbnb and long term rentals, we've managed to replace the $70,000 income of Kate's old job.</p>
