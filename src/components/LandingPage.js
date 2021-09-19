@@ -1,7 +1,6 @@
 import React from 'react';
 import './LandingPage.css';
 import Shared from "./Shared/Shared";
-import michaelAndKate from '../img/michael-and-kate.PNG';
 
 class LandingPage extends React.Component {
 
