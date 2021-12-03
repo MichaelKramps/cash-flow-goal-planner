@@ -2,5 +2,11 @@
   "AppSyncApiName": "cashflowgoalplanner",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
-  "APIKeyExpirationEpoch": "-1"
+  "AuthModeLastUpdated": "2021-12-03T22:28:28.881Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authcashflowgoalplannerfc3c8411",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

@@ -14,10 +14,9 @@
       "output": {
         "authConfig": {
           "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7,
-              "description": "staging"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authcashflowgoalplannerfc3c8411"
             }
           },
           "additionalAuthenticationProviders": []
